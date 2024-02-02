@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hide-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(39, 134, 98, 0.2);
+}
+
+::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
+  transition: width 0.4s ease-in-out;
+}
+:root[scrollbar] ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  transition: width 0.4s ease-in-out;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00A651;
+}
+
+
+::selection {
+  color: white;
+  background: #00A651;
+}
