@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [dev]
+    branches: [dev, main]
   push:
     branches: [dev]
 
@@ -22,18 +22,12 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-
       # - name: Run Tests
       #   run: npm test
 
       - name: Run Linting
         run: npm run lint
-      
+
       - name: Build
         run: npm run build
-        
-      # - name: Pull to main branch if build passes
-      #   if: success()
-      #   run: |
-      #       git switch 'main'
-      #       git pull origin dev
+
