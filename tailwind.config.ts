@@ -12,6 +12,7 @@ const config: Config = {
         primary: "#00A651",
         header: "#282828",
         "main-sec": "#0D062D",
+        footer: "#004622",
       },
       screens: {
         sm: "576px",

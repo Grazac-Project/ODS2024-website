@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import useInView from "@/hooks/useInView";
 import { cn } from "@/utils/twcx";
 import SponsorsSlider from "../sloder/sponsors";
@@ -14,7 +15,7 @@ const Sponsors = () => {
   const isInView2 = useInView(whoWeareRef);
 
   return (
-    <section className="my-8 max-md:pt-12 lg:my-20 w-full flex flex-col items-center">
+    <section className="my-8 max-md:pt-12 lg:my-20 w-full flex flex-col items-center px-4">
       <div
         ref={SponsorsRef}
         className={cn(
@@ -48,15 +49,18 @@ const Sponsors = () => {
             harness the power of technology in tackling significant challenges,
             thereby revolutionizing our digital economy.
           </p>
-          <Link
-            href="/"
-            className="flex gap-2.5 justify-center px-11 py-4 mt-9 text-lg leading-5 text-green-600 whitespace-nowrap rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] max-md:px-5"
-          >
-            <span aria-label="Learn more" role="button" className="grow">
-              Learn more
-            </span>
-            <ArrowRight2 />
-          </Link>
+          <div className="flex lg:h-[110px]">
+            <Link
+              href="/"
+              className="flex gap-2.5 justify-center items-center px-11 py-4 mt-9 text-lg leading-5 text-green-600 whitespace-nowrap rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] max-md:px-5"
+            >
+              <span aria-label="Learn more" role="button" className="grow">
+                Learn more
+              </span>
+              <ArrowRight2 />
+            </Link>
+            <Image src="/arrow.png" alt={""} width={100} height={100}  />
+          </div>
         </div>
       </div>
     </section>

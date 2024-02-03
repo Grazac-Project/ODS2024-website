@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { nunito, montserrat } from "@/fonts";
 import StateContextProvider from "@/context/StateCtx";
 import { Suspense } from "react";
+import Footer from "@/components/footer";
 import GotoTop from "@/components/GoToTop";
 import Navbar from "@/components/navs/NavBar";
 import "../styles/globals.scss";
@@ -27,6 +28,7 @@ export default function RootLayout({
           </Suspense>
           {children}
           <GotoTop />
+          <Footer />
         </StateContextProvider>
       </body>
     </html>
