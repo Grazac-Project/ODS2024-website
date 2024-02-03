@@ -111,7 +111,7 @@ const MobileNav = () => {
             setopenAbout(!openAbout);
           }}
           className={cn(
-            "flex capitalize relative text-lg font-medium text-black gap-2"
+            "flex capitalize relative text-lg font-medium text-header gap-2"
           )}
         >
           <span>About</span>
