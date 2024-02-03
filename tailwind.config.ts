@@ -10,6 +10,23 @@ const config: Config = {
     extend: {
       colors: {
         primary: "#00A651",
+        header: "#282828",
+      },
+      screens: {
+        sm: "576px",
+        "sm-max": { max: "576px" },
+        md: "768px",
+        "md-max": { max: "768px" },
+        lg: "992px",
+        "lg-max": { max: "992px" },
+        xl: "1200px",
+        "xl-max": { max: "1200px" },
+        "2xl": "1320px",
+        "2xl-max": { max: "1320px" },
+        "3xl": "1600px",
+        "3xl-max": { max: "1600px" },
+        "4xl": "1850px",
+        "4xl-max": { max: "1850px" },
       },
       keyframes: {
         pulsing: {
@@ -79,6 +96,10 @@ const config: Config = {
           "rotate3d 2s 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite",
         slideDown: "slideDown 1s 0.2s ease forwards",
         slideNavUp: "slideDown 1s 0.2s ease forwards",
+      },
+      fontFamily: {
+        montserrat: [`var(--font-montserrat)`, "sans-serif"],
+        nunito: [`var(--font-nunito)`, "sans-serif"],
       },
     },
   },

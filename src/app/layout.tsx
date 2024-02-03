@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "../styles/globals.scss";
+import { nunito, montserrat } from "@/fonts";
 import StateContextProvider from "@/context/StateCtx";
-
-const inter = Inter({ subsets: ["latin"] });
+import GotoTop from "@/components/GoToTop";
+import "../styles/globals.scss";
 
 export const metadata: Metadata = {
   title: "OGUN DIGITAL SUMMIT",
   description: "Pathway to our nation's prosperity",
+  // image: ""
 };
 
 export default function RootLayout({
@@ -17,8 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <StateContextProvider>{children}</StateContextProvider>
+      <body className={`${montserrat.className} ${nunito.className}`}>
+        <StateContextProvider>
+          {children}
+          <GotoTop />
+        </StateContextProvider>
       </body>
     </html>
   );
