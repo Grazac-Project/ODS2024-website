@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         primary: "#00A651",
         header: "#282828",
+        "main-sec": "#0D062D",
       },
       screens: {
         sm: "576px",
