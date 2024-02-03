@@ -20,9 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${montserrat.className} ${nunito.className}`}
-      >
+      <body className={`${montserrat.className} ${nunito.className}`}>
         <StateContextProvider>
           <Suspense fallback={<SkeletonNavbar />}>
             <Navbar />
