@@ -1,4 +1,12 @@
+"use client";
+
+import dynamic from "next/dynamic";
+
 import React from "react";
+
+const TypewriterComponent = dynamic(() => import("typewriter-effect"), {
+  ssr: false,
+});
 
 function Hero() {
   return (
@@ -6,7 +14,22 @@ function Hero() {
       <h1
         className={` font-montserrat font-semibold text-[56px] text-white px-[24%] text-center leading-tight`}
       >
-        Shaping Tomorrow&apos;s Tech Landscape
+        <TypewriterComponent
+          component="p"
+          options={{
+            autoStart: true,
+            delay: 100,
+            loop: true,
+            strings: [
+              "Framing the Future of Technology",
+              "Crafting the Tomorrow Techscape",
+              "Molding the Tech Horizon Ahead",
+              "Architecting the Landscape of Future Tech",
+              "Shaping Tomorrow's Tech Landscape",
+            ],
+            deleteSpeed: 50,
+          }}
+        />
       </h1>
       <p
         className={`font-nunito font-semibold text-white px-[24%] text-center`}
