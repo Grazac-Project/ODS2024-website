@@ -25,21 +25,21 @@ const Sponsors = () => {
             : " opacity-0 translate-y-36"
         )}
       >
-        <h2 className="font-bold text-xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-header mb-4 font-montserrat">
+        <h2 className="font-semibold text-xl sm:text-3xl lg:text-5xl text-header mb-4 font-montserrat">
           Our Sponsors
         </h2>
         <SponsorsSlider />
         <div
           ref={whoWeareRef}
           className={cn(
-            "flex flex-col items-center pb-3.5 text-black max-w-[917px] mt-8",
+            "flex flex-col items-center pb-3.5 text-black max-w-[917px] mt-[52px]",
             {
               "opacity-100 translate-y-0 delay-1000 duration-1000": isInView2,
               "opacity-0 translate-y-36": !isInView2,
             }
           )}
         >
-          <h1 className="text-4xl font-semibold whitespace-nowrap font-montserrat">
+          <h1 className="text-5xl font-semibold whitespace-nowrap font-montserrat">
             Who we are
           </h1>
           <p className="self-stretch mt-6 w-full text-xl leading-8 text-center max-md:max-w-full font-nunito">

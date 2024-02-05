@@ -9,7 +9,7 @@ const SponsorsSlider = () => {
   const slideRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(slideRef);
   const carouselSettings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     arrows: false,
@@ -51,7 +51,7 @@ const SponsorsSlider = () => {
           : " opacity-0 translate-y-36"
       )}
     >
-      <Slider {...carouselSettings} className="justify-center items-center">
+      <Slider {...carouselSettings} className="justify-center items-center ">
         <div>
           <Image src={one} alt={""} width={125} height={50} />
         </div>

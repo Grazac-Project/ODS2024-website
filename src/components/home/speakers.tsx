@@ -21,7 +21,7 @@ const SpeakerSection = () => {
       )}
     >
       <div className={` font-montserrat mb-5 `}>
-        <h2 className="text-black font-semibold text-[30px]">
+        <h2 className="text-black font-semibold text-[40px]">
           Meet the Speakers
         </h2>
         <p className={` font-nunito w-[30%] font-medium text-lg`}>
