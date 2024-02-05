@@ -65,3 +65,36 @@ export const speakers = [
     src: "/images/speaker3.svg",
   },
 ];
+
+export const highlights = [
+  {
+    id: 1,
+    title: "Leveraging on social media for business growth",
+    img: "/images/highlight1.svg",
+  },
+  {
+    id: 2,
+    title: "Raising funds for your startup business",
+    img: "/images/highlight2.svg",
+  },
+  {
+    id: 3,
+    title: "Getting started in tech - Knowing what to learn",
+    img: "/images/highlight3.svg",
+  },
+  {
+    id: 4,
+    title: "Leveraging on social media for business growth",
+    img: "/images/highlight1.svg",
+  },
+  {
+    id: 5,
+    title: "Raising funds for your startup business",
+    img: "/images/highlight2.svg",
+  },
+  {
+    id: 6,
+    title: "Getting started in tech - Knowing what to learn",
+    img: "/images/highlight3.svg",
+  },
+];

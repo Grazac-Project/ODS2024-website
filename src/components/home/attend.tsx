@@ -1,11 +1,34 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
+import useInView from "@/hooks/useInView";
+import { cn } from "@/utils/twcx";
 
 function Attend() {
+  const AttendRef = React.useRef<HTMLDivElement>(null);
+  const isInView = useInView(AttendRef);
+  const ReaasonRef1 = React.useRef<HTMLDivElement>(null);
+  const isInView1 = useInView(ReaasonRef1);
+  const ReasonRef2 = React.useRef<HTMLDivElement>(null);
+  const isInView2 = useInView(ReasonRef2);
+  const ReasonRef3 = React.useRef<HTMLDivElement>(null);
+  const isInView3 = useInView(ReasonRef3);
+  const ReasonRef4 = React.useRef<HTMLDivElement>(null);
+  const isInView4 = useInView(ReasonRef4);
+
   return (
-    <div className="font-montserrat mt-20 z-20">
-      <div className="container">
-        <h2 className="text-black-100 font-semibold text-[40px]">
+    <div
+      ref={AttendRef}
+      className={cn(
+        "font-montserrat mt-20 z-20",
+        isInView
+          ? "opacity-100 translate-y-0 md:delay-300 duration-500"
+          : " opacity-0 translate-y-36"
+      )}
+    >
+      <div className="container mb-5">
+        <h2 className="text-black-100 font-semibold text-[40px] ">
           WHY ATTEND ODS23?
         </h2>
         <p className="font-nunito w-[40%]">
@@ -16,7 +39,15 @@ function Attend() {
       <div className="bg-[#111111] mt-4 attend pb-20 relative">
         <div className="container">
           {/* First Reason */}
-          <div className="flex justify-between items-center pt-20">
+          <div
+            ref={ReaasonRef1}
+            className={cn(
+              "flex justify-between items-center pt-20",
+              isInView1
+                ? "opacity-100 translate-y-0 md:delay-300 duration-500"
+                : " opacity-0 translate-y-36"
+            )}
+          >
             <div>
               <Image src="/images/why-1.svg" alt="" width={540} height={440} />
             </div>
@@ -36,7 +67,15 @@ function Attend() {
             </div>
           </div>
           {/* Second Reason */}
-          <div className="flex justify-between items-center pt-20">
+          <div
+            ref={ReasonRef2}
+            className={cn(
+              "flex justify-between items-center pt-20",
+              isInView2
+                ? "opacity-100 translate-y-0 md:delay-300 duration-500"
+                : " opacity-0 translate-y-36"
+            )}
+          >
             <div className="w-[533px] space-y-4">
               <h3 className="graphik">02</h3>
               <h3 className="font-medium text-[40px] text-white leading-[120%]">
@@ -54,7 +93,15 @@ function Attend() {
             </div>
           </div>
           {/* Third Reason */}
-          <div className="flex justify-between items-center pt-20">
+          <div
+            ref={ReasonRef3}
+            className={cn(
+              "flex justify-between items-center pt-20",
+              isInView3
+                ? "opacity-100 translate-y-0 md:delay-300 duration-500"
+                : " opacity-0 translate-y-36"
+            )}
+          >
             <div>
               <Image src="/images/why-3.svg" alt="" width={540} height={440} />
             </div>
@@ -75,7 +122,15 @@ function Attend() {
             </div>
           </div>
           {/* Fourth Reason */}
-          <div className="flex justify-between items-center pt-20">
+          <div
+            ref={ReasonRef4}
+            className={cn(
+              "flex justify-between items-center pt-20",
+              isInView4
+                ? "opacity-100 translate-y-0 md:delay-300 duration-500"
+                : " opacity-0 translate-y-36"
+            )}
+          >
             <div className="w-[533px] space-y-4">
               <h3 className="graphik">04</h3>
               <h3 className="font-medium text-[40px] text-white leading-[120%]">

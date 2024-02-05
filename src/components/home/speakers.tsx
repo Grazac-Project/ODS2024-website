@@ -5,6 +5,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import SpeakersSlder from "../sloder/speakers";
 import useInView from "@/hooks/useInView";
 import { cn } from "@/utils/twcx";
+import Link from "next/link";
 
 const SpeakerSection = () => {
   const SpeakersRef = React.useRef<HTMLDivElement>(null);
@@ -19,25 +20,26 @@ const SpeakerSection = () => {
           : " opacity-0 translate-y-36"
       )}
     >
-      <div className={` font-montserrat`}>
-        <h2 className="text-black font-semibold text-[40px]">
+      <div className={` font-montserrat mb-5 `}>
+        <h2 className="text-black font-semibold text-[30px]">
           Meet the Speakers
         </h2>
-        <p className={` font-nunito w-[40%]`}>
+        <p className={` font-nunito w-[30%] font-medium text-lg`}>
           Here are the amazing outstanding people who will be speaking at this
           year&apos;s Ogun Digital Summit
         </p>
       </div>
       <SpeakersSlder />
       <div className="flex justify-center items-center mt-12">
-        <button
+        <Link
+          href="/"
           className={`font- font-nunito border border-primary text-lg text-primary px-8 py-2 rounded-xl flex items-center gap-3`}
         >
           See all the Speakers{" "}
           <div>
             <IoIosArrowForward />
           </div>
-        </button>
+        </Link>
       </div>
     </div>
   );
