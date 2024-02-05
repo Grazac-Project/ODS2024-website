@@ -98,3 +98,42 @@ export const highlights = [
     img: "/images/highlight3.svg",
   },
 ];
+
+export const teams = [
+  {
+    id: 1,
+    name: "Harrison Obiefule",
+    title: "Program Cordinator",
+    src: "/images/speaker1.svg",
+  },
+  {
+    id: 2,
+    name: "Harrison Obiefule",
+    title: "Media Specialist",
+    src: "/images/speaker4.svg",
+  },
+  {
+    id: 3,
+    name: "Harrison Obiefule",
+    title: "Head of Design",
+    src: "/images/speaker5.svg",
+  },
+  {
+    id: 4,
+    name: "Harrison Obiefule",
+    title: "Software Developer",
+    src: "/images/speaker3.svg",
+  },
+  {
+    id: 5,
+    name: "Harrison Obiefule",
+    title: "Head of Publicity",
+    src: "/images/speaker2.svg",
+  },
+  {
+    id: 6,
+    name: "Harrison Obiefule",
+    title: "Social media manager",
+    src: "/images/speaker6.svg",
+  },
+];
