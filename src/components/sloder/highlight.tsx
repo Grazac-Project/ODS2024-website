@@ -60,7 +60,7 @@ function HighlightsSlider() {
         className="justify-between items-center w-full"
       >
         {highlights?.map((item) => (
-          <div key={item?.id} className="max-w-[353px]">
+          <div key={item?.id} className="lg:max-w-[353px] md:w-[300px]">
             <div className="w-full max-h-[288px]">
               <Image src={item?.img} alt="" width={353} height={288} />
             </div>

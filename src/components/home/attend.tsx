@@ -51,7 +51,7 @@ function Attend() {
             <div>
               <Image src="/images/why-1.svg" alt="" width={540} height={440} />
             </div>
-            <div className="w-[533px] space-y-4">
+            <div className="w-[533px] space-y-4 mb:pl-4 lg:pl-0">
               <h3 className="graphik">01</h3>
               <h3 className="font-medium text-[40px] text-white leading-[120%]">
                 Access to <br /> Industry Experts
