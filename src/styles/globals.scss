@@ -118,3 +118,40 @@ input[type='number']::-webkit-outer-spin-button {
   color: white;
   background: #00A651;
 }
+
+.hero {
+  background-image: url("/images/hero.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.attend {
+  background-image: url("/images/logo_green.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.graphik {
+  background: linear-gradient(157.01deg, #00a651 14.89%, #ffe840 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; 
+  font-weight: 500;
+  font-size: 32px;
+}
+
+.loop {
+  background-image: url('/images/loop3.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.join2 {
+  background-image: url('/images/join2.svg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

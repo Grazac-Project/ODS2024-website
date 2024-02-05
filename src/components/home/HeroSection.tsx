@@ -75,15 +75,8 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full max-h-[500px] object-contain">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/f0677b8b644e707cf50ce7af61a61f0b2344b8cce82f68643d81286db4a049dd?apiKey=252f8d5a726747838fcb04939a832fc3&"
-            // className="w-full aspect-[1.03]  max-md:max-w-full"
-            alt="Nation Prosperity"
-            role="presentation"
-            width={500}
-            height={500}
-          />
+        <div className="shrink-0">
+          <Image src={"/images/hero_img.svg"} alt="" width={618} height={632} />
         </div>
       </div>
     </section>
