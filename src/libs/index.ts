@@ -24,3 +24,44 @@ export const FOOTER_LINKS: FooterLinkProps = {
     { id: 3, email: "Support@codesgranite.com" },
   ],
 };
+
+export const speakers = [
+  {
+    id: 1,
+    name: "Olubunmi Fabanwo",
+    title: "Affiliate Program Manager",
+    title2: "Binance(Africa)",
+    src: "/images/speaker1.svg",
+  },
+  {
+    id: 2,
+    name: "Harrison Obiefule",
+    title: "Co-Lead, SuperteamDAO (Nigeria)",
+    src: "/images/speaker2.svg",
+  },
+  {
+    id: 3,
+    name: "Joshua Chibueze",
+    title: "Co-founder and CMO, Piggyvest",
+    src: "/images/speaker3.svg",
+  },
+  {
+    id: 4,
+    name: "Olubunmi Fabanwo",
+    title: "Affiliate Program Manager",
+    title2: "Binance(Africa)",
+    src: "/images/speaker1.svg",
+  },
+  {
+    id: 5,
+    name: "Harrison Obiefule",
+    title: "Co-Lead, SuperteamDAO (Nigeria)",
+    src: "/images/speaker2.svg",
+  },
+  {
+    id: 6,
+    name: "Joshua Chibueze",
+    title: "Co-founder and CMO, Piggyvest",
+    src: "/images/speaker3.svg",
+  },
+];

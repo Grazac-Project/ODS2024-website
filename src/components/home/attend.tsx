@@ -13,7 +13,7 @@ function Attend() {
           the largest digital summit.
         </p>
       </div>
-      <div className="bg-black-500 mt-4 attend pb-20">
+      <div className="bg-black/20 mt-4 attend pb-20 relative">
         <div className="container">
           {/* First Reason */}
           <div className="flex justify-between items-center pt-20">
@@ -22,14 +22,14 @@ function Attend() {
             </div>
             <div className="w-[533px] space-y-4">
               <h3 className="graphik">01</h3>
-              <h3 className="font-medium text-[40px] text-white-500 leading-[120%]">
+              <h3 className="font-medium text-[40px] text-white leading-[120%]">
                 Access to <br /> Industry Experts
               </h3>
-              <p className="text-xl text-white-500 font-nunito">
+              <p className="text-xl text-white font-nunito">
                 You get access to interact with Industry Experts and engage them
                 in conversation both directly and indirectly.
               </p>
-              <p className="text-xl text-white-500 font-nunito">
+              <p className="text-xl text-white font-nunito">
                 This access can be invaluable in gaining deeper insights into
                 your areas of interest.
               </p>
@@ -39,10 +39,10 @@ function Attend() {
           <div className="flex justify-between items-center pt-20">
             <div className="w-[533px] space-y-4">
               <h3 className="graphik">02</h3>
-              <h3 className="font-medium text-[40px] text-white-500 leading-[120%]">
+              <h3 className="font-medium text-[40px] text-white leading-[120%]">
                 Networking <br /> Opportunities
               </h3>
-              <p className="text-xl text-white-500 font-nunito">
+              <p className="text-xl text-white font-nunito">
                 ODS’ 23 brings together industry leaders, experts and
                 enthusiasts. It’s an ideal place to expand your professional
                 work, giving opportunities to potential collaboration and
@@ -60,15 +60,15 @@ function Attend() {
             </div>
             <div className="w-[533px] space-y-4">
               <h3 className="graphik">03</h3>
-              <h3 className="font-medium text-[40px] text-white-500 leading-[120%]">
+              <h3 className="font-medium text-[40px] text-white leading-[120%]">
                 Cutting Edge <br /> AI Exploration
               </h3>
-              <p className="text-xl text-white-500 font-nunito">
+              <p className="text-xl text-white font-nunito">
                 This year’s event promises to delve deep into the explorative
                 power of AI & WEB3 technologies, while also gaining access to
                 latest trends and innovation in the tech industry.
               </p>
-              <p className="text-xl text-white-500 font-nunito">
+              <p className="text-xl text-white font-nunito">
                 Come experience how these technologies are shaping the world we
                 know.
               </p>
@@ -78,10 +78,10 @@ function Attend() {
           <div className="flex justify-between items-center pt-20">
             <div className="w-[533px] space-y-4">
               <h3 className="graphik">04</h3>
-              <h3 className="font-medium text-[40px] text-white-500 leading-[120%]">
+              <h3 className="font-medium text-[40px] text-white leading-[120%]">
                 Have Fun and <br /> Unwind
               </h3>
-              <p className="text-xl text-white-500 font-nunito">
+              <p className="text-xl text-white font-nunito">
                 Build an enriching experience from ODS’ 23. Explore your
                 interest, meet like-minded individuals, have fun and be a part
                 of an evolving tech community.

@@ -1,16 +1,21 @@
 import HeroSection from "@/components/home/HeroSection";
+import SpeakerSection from "@/components/home/speakers";
 import Sponsors from "@/components/home/Sponsors";
 import Attend from "@/components/home/attend";
-import React from "react";
+import Join from "@/components/home/Join";
+import ODG from "@/components/home/odg";
 
-function page() {
+const Home = () => {
   return (
     <>
       <HeroSection />
       <Sponsors />
       <Attend />
+      <Join />
+      <SpeakerSection />
+      <ODG />
     </>
   );
-}
+};
 
-export default page;
+export default Home;
