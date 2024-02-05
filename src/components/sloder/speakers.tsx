@@ -16,7 +16,7 @@ function SpeakersSlder() {
     speed: 500,
     arrows: false,
     autoplay: true,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     pauseOnHover: false,
     responsive: [
@@ -30,14 +30,14 @@ function SpeakersSlder() {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1.5,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1.5,
+          slidesToShow: 1.2,
           slidesToScroll: 1,
         },
       },
@@ -47,7 +47,7 @@ function SpeakersSlder() {
     <div
       ref={slideRef}
       className={cn(
-        "w-full items-center justify-center p-8  text-black",
+        "w-full items-center justify-center  text-black",
         isInView
           ? "opacity-100 translate-y-0 delay-300 duration-1000"
           : " opacity-0 translate-y-36"
@@ -55,8 +55,23 @@ function SpeakersSlder() {
     >
       <Slider
         {...carouselSettings}
-        className="justify-center items-center"
-      ></Slider>
+        className="justify-between items-center w-full"
+      >
+        {speakers?.map((speaker) => (
+          <div key={speaker?.id} className={`relative`}>
+            <Image src={speaker?.src} alt="" width={420} height={360} />
+            <div className="absolute bottom-3 left-8">
+              <h3 className={`font-semibold text-xl text-white`}>
+                {speaker?.name}
+              </h3>
+              <p className="font-medium text-white">{speaker?.title}</p>
+              {speaker?.title2 && (
+                <p className="font-medium text-white">{speaker?.title2}</p>
+              )}
+            </div>
+          </div>
+        ))}
+      </Slider>
     </div>
   );
 }

@@ -13,7 +13,7 @@ function Attend() {
           the largest digital summit.
         </p>
       </div>
-      <div className="bg-black mt-4 attend pb-20 relative">
+      <div className="bg-[#111111] mt-4 attend pb-20 relative">
         <div className="container">
           {/* First Reason */}
           <div className="flex justify-between items-center pt-20">

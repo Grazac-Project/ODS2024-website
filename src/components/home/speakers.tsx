@@ -13,22 +13,22 @@ const SpeakerSection = () => {
     <div
       ref={SpeakersRef}
       className={cn(
-        "flex flex-col   items-center w-full max-w-[1000px] px-2 sm:px-4",
+        "container mt-20",
         isInView
           ? "opacity-100 translate-y-0 md:delay-300 duration-500"
           : " opacity-0 translate-y-36"
       )}
     >
       <div className={` font-montserrat`}>
-        <h2 className="text-black-100 font-semibold text-[40px]">
+        <h2 className="text-black font-semibold text-[40px]">
           Meet the Speakers
         </h2>
         <p className={` font-nunito w-[40%]`}>
           Here are the amazing outstanding people who will be speaking at this
-          year’s Ogun Digital Summit
+          year&apos;s Ogun Digital Summit
         </p>
       </div>
-      {/* <SpeakersSlder /> */}
+      <SpeakersSlder />
       <div className="flex justify-center items-center mt-12">
         <button
           className={`font- font-nunito border border-primary text-lg text-primary px-8 py-2 rounded-xl flex items-center gap-3`}

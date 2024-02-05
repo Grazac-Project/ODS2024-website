@@ -3,7 +3,7 @@ import React from "react";
 
 function ODG() {
   return (
-    <div className="container flex items-center gap-10 justify-between mt-20">
+    <div className="container flex items-center gap-10 justify-between mt-20 mb-7">
       <div className={`font-montserrat flex flex-col gap-3`}>
         <h3 className="font-semibold text-[56px] leading-[120%]">
           Unlocking Tech Innovations Without Boundaries

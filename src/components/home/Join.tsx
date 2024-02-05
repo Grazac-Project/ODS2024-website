@@ -10,11 +10,11 @@ export function JoinCard() {
   return (
     <>
       <div className={cn("w-full h-[473px] grid grid-cols-2")}>
-        <div className="bg-black loop flex flex-col gap-5 justify-center pl-10 relative">
+        <div className="bg-[#111111] loop flex flex-col gap-5 justify-center pl-10 relative">
           <h3 className="font-medium text-5xl text-white  font-montserrat leading-[120%]">
             Join as a Partner/ <br /> Sponsor/Exhibitors
           </h3>
-          <p className={`font-nunitotext-white`}>
+          <p className={`font-nunito text-white`}>
             Unlock Boundless Opportunities at ODS 24
           </p>
           <div className="flex items-center gap-5">
