@@ -7,21 +7,9 @@ import useInView from "@/hooks/useInView";
 import { cn } from "@/utils/twcx";
 
 export function JoinCard() {
-  const JoinRef = React.useRef<HTMLDivElement>(null);
-
-  const isInView = useInView(JoinRef);
-
   return (
     <>
-      <div
-        ref={JoinRef}
-        className={cn(
-          "w-full h-[473px] grid grid-cols-2",
-          isInView
-            ? "opacity-100 translate-y-0 md:delay-300 duration-500"
-            : " opacity-0 translate-y-36"
-        )}
-      >
+      <div className={cn("w-full h-[473px] grid grid-cols-2")}>
         <div className="bg-black loop flex flex-col gap-5 justify-center pl-10 relative">
           <h3 className="font-medium text-5xl text-white  font-montserrat leading-[120%]">
             Join as a Partner/ <br /> Sponsor/Exhibitors
@@ -60,8 +48,18 @@ export function JoinCard() {
 }
 
 function Join() {
+  const JoinRef = React.useRef<HTMLDivElement>(null);
+
+  const isInView = useInView(JoinRef);
   return (
-    <div className="">
+    <div
+      ref={JoinRef}
+      className={cn(
+        isInView
+          ? "opacity-100 translate-y-0 md:delay-300 duration-500"
+          : " opacity-0 translate-y-36"
+      )}
+    >
       <div className="flex justify-between">
         <div className="-mt-56 -z-10">
           <Image src="/images/loop1.svg" alt="loop" width={300} height={300} />
