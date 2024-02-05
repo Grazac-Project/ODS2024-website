@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import useWindowHeight from "@/hooks/useDimension";
+import Subscribe from "./Subscribe";
 
 const nunito = Nunito({
   subsets: ["latin"],
