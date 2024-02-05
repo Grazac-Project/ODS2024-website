@@ -1,132 +1,165 @@
-import React from "react";
+"use client";
+
+import { Montserrat, Nunito } from "next/font/google";
 import Image from "next/image";
-import Subscribe from "./Subscribe";
-import {
-  FacebookIcon,
-  InstagramIcon,
-  TwitterIcon,
-  LinkedinIcon,
-} from "./icons";
 import Link from "next/link";
-import { Location } from "iconsax-react";
+import React from "react";
+import useWindowHeight from "@/hooks/useDimension";
 
-const socials = [
-  {
-    href: "",
-    icon: FacebookIcon,
-  },
-  {
-    href: "",
-    icon: TwitterIcon,
-  },
-  {
-    href: "",
-    icon: InstagramIcon,
-  },
-  {
-    href: "",
-    icon: LinkedinIcon,
-  },
-];
+const nunito = Nunito({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-nunito",
+});
 
-const Footer = () => {
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
+
+function Footer() {
+  const scrollY = useWindowHeight();
+  const handleTop = () => {
+    if (!window) return;
+    window && window.scroll({ top: 0, behavior: "smooth" });
+  };
   return (
-    <footer className="w-full h-full  pt-5 lg:pt-10 border-t border-gray-300 bg-footer text-white">
-      <div className="w-full h-full max-container flex flex-col justify-between px-4 lg:px-8 min-[1490px]:px-0 pb-8">
-        <div className="flex flex-col gap-y-5 ">
-          <div className="w-full max-[550px]:flex-col flex justify-between lg:justify-start items-center max-[550px]:items-start max-[550px]:gap-y-5">
-            <div className="flex  max-[550px]:flex-col max-[550px]:gap-y-7 w-full justify-between items-start ">
-              <div className="w-full max-w-[380px] flex flex-col justify-between gap-[50px]">
+    <>
+      <div className="bg-primary1-900 mt-24 py-8">
+        <div className="container flex justify-between">
+          <div>
+            <div>
+              <Image
+                src={"/images/logo_white.svg"}
+                alt="logo"
+                width={156}
+                height={48}
+              />
+            </div>
+            <p className={`${nunito.className} text-white w-[55%] mt-6`}>
+              We are at the forefront of innovation, shaping the future and
+              hosting the largest digital summit in Ogun State with over 2,000
+              participants annually.
+            </p>
+            <div className={`${montserrat.className} mt-8`}>
+              <h3 className="text-xl font-semibold text-white">Follow us on</h3>
+              <div className="mt-5 flex items-center gap-4">
                 <Image
-                  src="/footer.svg"
-                  alt="logo"
-                  width={155}
-                  height={55}
-                  className="max-sm:w-[120px]"
+                  src={"/images/facebook.svg"}
+                  alt="facebook"
+                  width={24}
+                  height={24}
                 />
-                <p className="font-nunito">
-                  We are at the forefront of innovation, shaping the future and
-                  hosting the largest digital summit in Ogun State with over
-                  2,000 participants annually.
-                </p>
-                <div className="text-[28px] font-montserrat flex flex-col gap-2 font-semibold">
-                  <span>Follow us on</span>
-                  <div className="flex gap-4 lg:gap-6">
-                    {socials.map((social) => {
-                      return (
-                        <Link
-                          key={social.href}
-                          href={social.href}
-                          className="w-15 h-15 flex items-center justify-center rounded-full text-white"
-                        >
-                          <social.icon />
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-                <Subscribe />
+                <Image
+                  src={"/images/twitter.svg"}
+                  alt="twitter"
+                  width={24}
+                  height={24}
+                />
+                <Image
+                  src={"/images/instagram.svg"}
+                  alt="instagram"
+                  width={26}
+                  height={26}
+                />
+                <Image
+                  src={"/images/linkedin.svg"}
+                  alt="linkedin"
+                  width={24}
+                  height={24}
+                />
               </div>
-              <div className="w-[450px] flex justify-between gap-[30px]">
-                <div>
-                  <h3 className="font-semibold text-[28px] font-montserrat">
-                    Links
-                  </h3>
-                  <ul className="w-full flex flex-col gap-6 font-nunito text-[18px]">
-                    <li>
-                      <Link className="text-white" href="/">
-                        About ODS
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/" className="text-white">
-                        Speakers
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/" className="text-white">
-                        Gallery
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/">Highlights</Link>
-                    </li>
-                  </ul>
+            </div>
+          </div>
+          <div className="flex gap-24 shrink-0">
+            <div className={`${nunito.className}`}>
+              <h3
+                className={`${montserrat.className} text-2xl font-semibold text-white`}
+              >
+                Links
+              </h3>
+              <nav className="mt-5 flex flex-col gap-4">
+                <Link href="/about" className="text-white">
+                  About ODS
+                </Link>
+                <Link href="/about" className="text-white">
+                  Speakers
+                </Link>
+                <Link href="/about" className="text-white">
+                  Gallery
+                </Link>
+                <Link href="/about" className="text-white">
+                  Highlights
+                </Link>
+              </nav>
+            </div>
+            <div className={`${nunito.className}`}>
+              <h3
+                className={`${montserrat.className} text-2xl font-semibold text-white`}
+              >
+                Contact Us
+              </h3>
+              <div className="mt-5 flex flex-col gap-4">
+                <div className="flex items-center gap-3 text-white">
+                  <Image
+                    src={"/images/location.svg"}
+                    alt="location"
+                    width={24}
+                    height={24}
+                  />
+                  <p className="text-white">
+                    The Eagle (Top Floor), Providence <br /> Event Center, MKO
+                    Abiola <br />
+                    Way, Leme, Abeokuta, Ogun State
+                  </p>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-[28px] font-montserrat">
-                    Contact Us
-                  </h3>
-                  <div className="flex flex-col gap-2">
-                    <div className="md:max-w-[301px] flex  font-nunito text-[18px] items-center space-x-2">
-                      <Location size={150} />
-                      <p>
-                        The Eagle (Top Floor), Providence Event Center, MKO
-                        Abiola Way, Leme, Abeokuta, Ogun State
-                      </p>
-                    </div>
-                    <div className="max-w-[301px] flex font-nunito text-[18px] items-center space-x-2">
-                      <Location size={150} />
-                      <p>
-                        The Eagle (Top Floor), Providence Event Center, MKO
-                        Abiola Way, Leme, Abeokuta, Ogun State
-                      </p>
-                    </div>
-                  </div>
+                <div className="flex items-center gap-3 text-white">
+                  <Image
+                    src={"/images/email.svg"}
+                    alt="email"
+                    width={24}
+                    height={24}
+                  />
+                  <p className="text-white-500">hello@ogundigitalsummit.com</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div className="container flex justify-between items-center mt-14">
+          <div className={`${nunito.className}`}>
+            <p className="text-white">
+              Subscribe to get latest updates on our Summits
+            </p>
+            <div className="mt-4">
+              <input
+                type="email"
+                className="w-[362px] h-[55px] rounded-l-lg bg-gray-100 outline-none text-[#282828] px-4 text-base"
+                placeholder="Enter Email Address"
+              />
+              <button className="w-[160px] h-[55px] rounded-r-lg bg-primary text-base text-white">
+                Subscribe
+              </button>
+            </div>
+          </div>
+          <button
+            onClick={handleTop}
+            className="flex items-center gap-4 cursor-pointer"
+          >
+            <p className={`${nunito.className} text-white`}>Back to Top</p>
+            <Image src={"/images/top.svg"} alt="" width={32} height={32} />
+          </button>
+        </div>
       </div>
-      <div className="flex h-[50px] w-full justify-center items-center bg-black/90  text-white py-3 bottom-0">
-        <p>
-          Copyright &copy; {new Date().getFullYear()} Ogun Digital Summit. All
-          Rights Reserved
-        </p>
+      <div
+        className={`w-full h-[52px] bg-black ${nunito.className} text-base font-normal text-white text-center flex items-center justify-center`}
+      >
+        Copyright &copy; {new Date().getFullYear()} Ogun Digital Summit. All
+        Rights Reserved
       </div>
-    </footer>
+    </>
   );
-};
+}
 
 export default Footer;
