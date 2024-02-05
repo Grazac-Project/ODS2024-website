@@ -9,13 +9,15 @@ import ODG from "@/components/home/odg";
 const Home = () => {
   return (
     <>
-      <HeroSection />
-      <Sponsors />
-      <Attend />
-      <Join />
-      <HighLight />
-      <SpeakerSection />
-      <ODG />
+      <div className="hidden md:block">
+        <HeroSection />
+        <Sponsors />
+        <Attend />
+        <Join />
+        <HighLight />
+        <SpeakerSection />
+        <ODG />
+      </div>
     </>
   );
 };
