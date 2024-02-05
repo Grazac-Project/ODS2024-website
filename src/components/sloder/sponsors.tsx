@@ -54,7 +54,6 @@ const SponsorsSlider = () => {
       <Slider {...carouselSettings} className="justify-center items-center">
         <div>
           <Image src={one} alt={""} width={125} height={50} />
-          <span>happy face</span>
         </div>
         <div>
           <Image src="/sponsors/two.svg" alt={""} width={125} height={50} />

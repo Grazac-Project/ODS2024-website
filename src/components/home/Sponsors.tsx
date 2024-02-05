@@ -32,7 +32,7 @@ const Sponsors = () => {
         <div
           ref={whoWeareRef}
           className={cn(
-            "flex flex-col items-center pb-3.5 text-black max-w-[917px] mt-4",
+            "flex flex-col items-center pb-3.5 text-black max-w-[917px] mt-8",
             {
               "opacity-100 translate-y-0 delay-1000 duration-1000": isInView2,
               "opacity-0 translate-y-36": !isInView2,
@@ -59,7 +59,7 @@ const Sponsors = () => {
               </span>
               <ArrowRight2 />
             </Link>
-            <Image src="/arrow.png" alt={""} width={100} height={100}  />
+            <Image src="/arrow.png" alt={""} width={100} height={100} />
           </div>
         </div>
       </div>

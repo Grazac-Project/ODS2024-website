@@ -52,12 +52,13 @@ const HeroSection = () => {
               <Calendar />
               <div className="grow">{todayDate}</div>
             </div>
-            <h1 className="mt-5 text-6xl font-semibold text-white leading-[67px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
-              PATHWAY TO OUR NATION PROSPERITY
-            </h1>
             <h2 className="mt-5 text-5xl font-bold leading-9  text-white uppercase max-md:max-w-full max-md:text-4xl">
               Innovation:
             </h2>
+            <h1 className="mt-5 text-6xl font-semibold text-white leading-[67px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+              PATHWAY TO OUR NATION PROSPERITY
+            </h1>
+
             <div className="flex gap-5 justify-between self-start mt-10 text-lg leading-5 whitespace-nowrap">
               <Link
                 href="/"
