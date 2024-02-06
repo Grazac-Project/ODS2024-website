@@ -14,7 +14,7 @@ const TopContent = () => {
   const Gallery = "/gallery";
   return (
     <>
-      <div className="pt-[50px]">
+      <div className="mt-[50px]">
         <div className="fex w-full justify-start max-[500px]:py-2 px-4 sm:px-8 xl:px-10 2xl:px-20 ">
           <div className="flex w-full justify-start">
             <button
@@ -29,7 +29,7 @@ const TopContent = () => {
             </button>
           </div>
         </div>
-        <div className="flex items-center justify-center md:pt-[50px] pt-[40px]">
+        <div className="flex items-center justify-center md:my-[70px] my-[40px]">
           <div className="flex items-center max-w-[372px] max-h-[58px] min-h-[56px] min-w-[342px] gap-5 justify-between px-4 pb-4 text-lg leading-5 whitespace-nowrap rounded-xl border-b border-solid border-b-[color:var(--Foundation-stroke-stroke-600,#CDCDCD)] font-[18px]">
             <Link
               href="/highlight"

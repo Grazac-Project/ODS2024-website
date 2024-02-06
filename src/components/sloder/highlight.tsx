@@ -13,7 +13,7 @@ function HighlightsSlider() {
   const slideRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(slideRef);
   const carouselSettings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     arrows: false,
@@ -32,14 +32,14 @@ function HighlightsSlider() {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1.5,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1.2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
@@ -70,7 +70,7 @@ function HighlightsSlider() {
               {item?.title}
             </h3>
             <Link
-              href="/"
+              href={`/highlight/highlight?highlight_id=${item.id}`}
               className={`font-nunito text-2xl text-primary1-500 mt-5 flex items-center gap-2`}
             >
               Learn more

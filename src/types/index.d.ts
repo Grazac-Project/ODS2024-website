@@ -9,3 +9,12 @@ export type FooterLinkProps = {
   help: NavbarLinkProps[];
   emails: { id?: number; email: string }[];
 };
+
+export interface HighlightsProps {
+  id: number;
+  title: string;
+  img: string;
+  date: string;
+  speaker: string;
+  description: any;
+}
