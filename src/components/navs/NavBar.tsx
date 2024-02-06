@@ -5,7 +5,7 @@ import { cn } from "@/utils/twcx";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState, useRef } from "react";
 import { FaBars } from "react-icons/fa";
 import MobileNav from "./MobileNav";
 import { useStateCtx } from "@/context/StateCtx";
@@ -16,13 +16,21 @@ import SkeletonNavbar from "../skelton";
 import { usePathname } from "next/navigation";
 
 const Navbar = () => {
-  const { showMobileMenu, setShowMobileMenu } = useStateCtx();
+  const { setShowMobileMenu } = useStateCtx();
+  const [AboutPosition, setDAboutPosition] = useState({
+    top: 0,
+    left: 0,
+    width: 0,
+    height: 0,
+  });
+
+  const AboutRef = useRef<HTMLButtonElement>(null);
   const [openAbout, setopenAbout] = useState(false);
   const searchParams = useSearchParams().get("path");
   const scrollHeight = useWindowHeight();
   const pathname = usePathname();
 
-  const [isActive, setIsActive] = useState("");
+  const [isActive, setIsActive] = useState("/");
   useEffect(() => {
     if (searchParams) {
       setIsActive(searchParams);
@@ -31,6 +39,28 @@ const Navbar = () => {
   }, [searchParams]);
 
   const home = "/";
+
+  useEffect(() => {
+    const updatePosition = () => {
+      if (AboutRef.current) {
+        const { top, left, width, height } =
+          AboutRef.current.getBoundingClientRect();
+        setDAboutPosition({ top, left, width, height });
+      }
+    };
+
+    updatePosition();
+
+    window.addEventListener("resize", updatePosition);
+    return () => {
+      window.removeEventListener("resize", updatePosition);
+    };
+  }, []);
+
+  const middlePosition = {
+    top: AboutPosition.top + AboutPosition.height / 2,
+    left: AboutPosition.left + AboutPosition.width / 2,
+  };
 
   return (
     <nav
@@ -72,6 +102,7 @@ const Navbar = () => {
           Home
         </Link>
         <button
+          ref={AboutRef}
           type="button"
           aria-haspopup
           aria-label="Open About"
@@ -104,8 +135,14 @@ const Navbar = () => {
         )}
         <div
           role="dialog"
+          style={{
+            position: "absolute",
+            top: AboutPosition.top + 70,
+            left: middlePosition.left,
+            transform: "translate(-50%, -50%)",
+          }}
           className={cn(
-            " absolute border p-4 border-soft-light  w-[125px] top-16 z-[999]  self-center right-[760px] bg-white backdrop-blur-xl flex flex-col gap-y-2   justify-between  shadow-[0_10px_40px_rgba(0,0,0,0.23)] rounded-xl before:absolute before:content-[''] before:h-[20px] before:w-[20px] before:bg-gradient-to-tl  before:overflow-hidden before:-top-2 before:rotate-[45deg] before:right-4 before:z-[-1] transform-gpu transition-all ",
+            " absolute border p-4 border-soft-light  w-[125px]  z-[999]  self-center bg-white backdrop-blur-xl flex flex-col gap-y-2   justify-between  shadow-[0_10px_40px_rgba(0,0,0,0.23)] rounded-xl before:absolute before:content-[''] before:h-[20px] before:w-[20px] before:bg-gradient-to-tl  before:overflow-hidden before:-top-2 before:rotate-[45deg] before:right-4 before:z-[-1] transform-gpu transition-all ",
             openAbout
               ? "opacity-100 h-[90px] duration-500 "
               : "opacity-0 h-0 duration-200 overflow-hidden pointer-events-none"

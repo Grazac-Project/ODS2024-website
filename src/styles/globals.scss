@@ -129,7 +129,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .graphik {
-  background: linear-gradient(157.01deg, #00a651 14.89%, #ffe840 100%);
+  background: "-webkit-linear-gradient(270deg, #00A651, #FFE840)";
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text; 

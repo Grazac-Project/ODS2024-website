@@ -52,7 +52,17 @@ function Attend() {
               <Image src="/images/why-1.svg" alt="" width={540} height={440} />
             </div>
             <div className="w-[533px] space-y-4 mb:pl-4 lg:pl-0">
-              <h3 className="graphik">01</h3>
+              <h3
+                className="graphik"
+                style={{
+                  background:
+                    "-webkit-linear-gradient(270deg, #00A651, #FFE840)",
+                  WebkitBackgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
+                01
+              </h3>
               <h3 className="font-medium text-[40px] text-white leading-[120%]">
                 Access to <br /> Industry Experts
               </h3>
@@ -77,7 +87,17 @@ function Attend() {
             )}
           >
             <div className="w-[533px] space-y-4">
-              <h3 className="graphik">02</h3>
+              <h3
+                className="graphik"
+                style={{
+                  background:
+                    "-webkit-linear-gradient(270deg, #00A651, #FFE840)",
+                  WebkitBackgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
+                02
+              </h3>
               <h3 className="font-medium text-[40px] text-white leading-[120%]">
                 Networking <br /> Opportunities
               </h3>
@@ -106,7 +126,17 @@ function Attend() {
               <Image src="/images/why-3.svg" alt="" width={540} height={440} />
             </div>
             <div className="w-[533px] space-y-4">
-              <h3 className="graphik">03</h3>
+              <h3
+                className="graphik"
+                style={{
+                  background:
+                    "-webkit-linear-gradient(270deg, #00A651, #FFE840)",
+                  WebkitBackgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
+                03
+              </h3>
               <h3 className="font-medium text-[40px] text-white leading-[120%]">
                 Cutting Edge <br /> AI Exploration
               </h3>
@@ -132,7 +162,17 @@ function Attend() {
             )}
           >
             <div className="w-[533px] space-y-4">
-              <h3 className="graphik">04</h3>
+              <h3
+                className="graphik"
+                style={{
+                  background:
+                    "-webkit-linear-gradient(270deg, #00A651, #FFE840)",
+                  WebkitBackgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
+                04
+              </h3>
               <h3 className="font-medium text-[40px] text-white leading-[120%]">
                 Have Fun and <br /> Unwind
               </h3>
