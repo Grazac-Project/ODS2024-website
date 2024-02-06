@@ -18,7 +18,16 @@ const HighlightPage = ({
     (highlights) => highlights.id === Number(highlight_id)
   );
 
-  return <MAIN highlight={highlight} />;
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return <>{loading ? <PreviewSkeleton /> : <MAIN highlight={highlight} />}</>;
 };
 
 export default HighlightPage;
