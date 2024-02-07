@@ -7,6 +7,7 @@ import GotoTop from "@/components/GoToTop";
 import Navbar from "@/components/navs/NavBar";
 import "../styles/globals.scss";
 import SkeletonNavbar from "@/components/skelton";
+import MobileFooter from "@/components/footer/Mobile";
 
 export const metadata: Metadata = {
   title: "OGUN DIGITAL SUMMIT",
@@ -28,6 +29,7 @@ export default function RootLayout({
           </Suspense>
           {children}
           <GotoTop />
+          {/* <MobileFooter /> */}
           <Footer />
         </StateContextProvider>
       </body>

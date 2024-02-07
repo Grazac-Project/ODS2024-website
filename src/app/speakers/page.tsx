@@ -4,12 +4,19 @@ import { cn } from "@/utils/twcx";
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
+import useInView from "@/hooks/useInView";
 
 const Speakers = () => {
+  const AttendRef = React.useRef<HTMLDivElement>(null);
+  const isInView = useInView(AttendRef);
   return (
     <section
+      ref={AttendRef}
       className={cn(
-        " min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 sm:p-7 w-full h-full sm:border border-gray-200 dark:border-primary-light"
+        " min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 sm:p-7 w-full h-full sm:border border-gray-200 dark:border-primary-light",
+        isInView
+          ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
+          : " opacity-0 translate-y-36"
       )}
     >
       <div
