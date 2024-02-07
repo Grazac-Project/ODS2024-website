@@ -9,7 +9,7 @@ import ODG from "@/components/home/odg";
 const Home = () => {
   return (
     <>
-      <div className="hidden md:block">
+      <div className="">
         <HeroSection />
         <Sponsors />
         <Attend />
