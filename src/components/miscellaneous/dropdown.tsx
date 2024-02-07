@@ -22,7 +22,7 @@ const DropdownLink = ({
         " transition-opacity duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full flex items-center gap-x-3 text-header hover:opacity-70 hover:text-primary font-medium font-montserrat ",
         className
       )}
-      href={href}
+      href={`/${href}`}
     >
       {icon && icon}
       <span className="text-sm">{text}</span>

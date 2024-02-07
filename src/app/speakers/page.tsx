@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { speakers } from "@/libs";
 import { cn } from "@/utils/twcx";
