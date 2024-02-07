@@ -32,18 +32,150 @@ export const speakers = [
     title: "Affiliate Program Manager",
     title2: "Binance(Africa)",
     src: "/images/speaker1.svg",
+    description: {
+      bio: `Olubunmi Fabanwo is a seasoned professional in the field of
+            affiliate marketing and business development, currently serving as
+            the Affiliate Program Manager at Binance, one of the world's leading
+            cryptocurrency exchanges, with a specific focus on the African
+            region. <br /> <br /> With a background rooted in business
+            management and marketing, Olubunmi has demonstrated a keen
+            understanding of affiliate marketing dynamics and strategies that
+            drive growth and engagement. His role at Binance involves
+            spearheading the affiliate program initiatives tailored to the
+            African market, fostering relationships with partners, and
+            implementing innovative strategies to expand Binance's reach across
+            the continent. <br /> Olubunmi Fabanwo's expertise lies in
+            leveraging affiliate networks, strategic partnerships, and digital
+            marketing channels to optimize user acquisition and retention
+            efforts. He possesses a deep understanding of the cryptocurrency
+            ecosystem and its potential impact on emerging markets like Africa,
+            where financial inclusion and access to digital assets are
+            increasingly vital. <br /> <br /> Throughout his career, Olubunmi
+            has been dedicated to empowering individuals and businesses by
+            providing them with access to valuable resources and opportunities
+            in the cryptocurrency space. He is passionate about driving adoption
+            and awareness of blockchain technology and decentralized finance
+            (DeFi) solutions across Africa, contributing to the region's
+            economic empowerment and financial independence. <br /> As the
+            Affiliate Program Manager at Binance (Africa), Olubunmi Fabanwo
+            plays a pivotal role in shaping the company's strategic direction
+            and fostering collaborative partnerships that drive mutual growth
+            and success in the dynamic and rapidly evolving cryptocurrency
+            landscape. His commitment to innovation, integrity, and excellence
+            underscores his contributions to Binance's mission of making
+            cryptocurrency accessible to people around the world.`,
+    },
+    socials: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/olubunmifabanwo/",
+      },
+      { platform: "twitter", url: "https://twitter.com/OlubunmiFabanwo" },
+      {
+        platform: "instagram",
+        url: "https://www.instagram.com/olubunmifabanwo/",
+      },
+    ],
   },
   {
     id: 2,
     name: "Harrison Obiefule",
     title: "Co-Lead, SuperteamDAO (Nigeria)",
     src: "/images/speaker2.svg",
+    description: {
+      bio: `Olubunmi Fabanwo is a seasoned professional in the field of
+            affiliate marketing and business development, currently serving as
+            the Affiliate Program Manager at Binance, one of the world's leading
+            cryptocurrency exchanges, with a specific focus on the African
+            region. <br /> <br /> With a background rooted in business
+            management and marketing, Olubunmi has demonstrated a keen
+            understanding of affiliate marketing dynamics and strategies that
+            drive growth and engagement. His role at Binance involves
+            spearheading the affiliate program initiatives tailored to the
+            African market, fostering relationships with partners, and
+            implementing innovative strategies to expand Binance's reach across
+            the continent. <br /> Olubunmi Fabanwo's expertise lies in
+            leveraging affiliate networks, strategic partnerships, and digital
+            marketing channels to optimize user acquisition and retention
+            efforts. He possesses a deep understanding of the cryptocurrency
+            ecosystem and its potential impact on emerging markets like Africa,
+            where financial inclusion and access to digital assets are
+            increasingly vital. <br /> <br /> Throughout his career, Olubunmi
+            has been dedicated to empowering individuals and businesses by
+            providing them with access to valuable resources and opportunities
+            in the cryptocurrency space. He is passionate about driving adoption
+            and awareness of blockchain technology and decentralized finance
+            (DeFi) solutions across Africa, contributing to the region's
+            economic empowerment and financial independence. <br /> As the
+            Affiliate Program Manager at Binance (Africa), Olubunmi Fabanwo
+            plays a pivotal role in shaping the company's strategic direction
+            and fostering collaborative partnerships that drive mutual growth
+            and success in the dynamic and rapidly evolving cryptocurrency
+            landscape. His commitment to innovation, integrity, and excellence
+            underscores his contributions to Binance's mission of making
+            cryptocurrency accessible to people around the world.`,
+    },
+    socials: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/olubunmifabanwo/",
+      },
+      { platform: "twitter", url: "https://twitter.com/OlubunmiFabanwo" },
+      {
+        platform: "instagram",
+        url: "https://www.instagram.com/olubunmifabanwo/",
+      },
+    ],
   },
   {
     id: 3,
     name: "Joshua Chibueze",
     title: "Co-founder and CMO, Piggyvest",
     src: "/images/speaker3.svg",
+    description: {
+      bio: `Olubunmi Fabanwo is a seasoned professional in the field of
+            affiliate marketing and business development, currently serving as
+            the Affiliate Program Manager at Binance, one of the world's leading
+            cryptocurrency exchanges, with a specific focus on the African
+            region. <br /> <br /> With a background rooted in business
+            management and marketing, Olubunmi has demonstrated a keen
+            understanding of affiliate marketing dynamics and strategies that
+            drive growth and engagement. His role at Binance involves
+            spearheading the affiliate program initiatives tailored to the
+            African market, fostering relationships with partners, and
+            implementing innovative strategies to expand Binance's reach across
+            the continent. <br /> Olubunmi Fabanwo's expertise lies in
+            leveraging affiliate networks, strategic partnerships, and digital
+            marketing channels to optimize user acquisition and retention
+            efforts. He possesses a deep understanding of the cryptocurrency
+            ecosystem and its potential impact on emerging markets like Africa,
+            where financial inclusion and access to digital assets are
+            increasingly vital. <br /> <br /> Throughout his career, Olubunmi
+            has been dedicated to empowering individuals and businesses by
+            providing them with access to valuable resources and opportunities
+            in the cryptocurrency space. He is passionate about driving adoption
+            and awareness of blockchain technology and decentralized finance
+            (DeFi) solutions across Africa, contributing to the region's
+            economic empowerment and financial independence. <br /> As the
+            Affiliate Program Manager at Binance (Africa), Olubunmi Fabanwo
+            plays a pivotal role in shaping the company's strategic direction
+            and fostering collaborative partnerships that drive mutual growth
+            and success in the dynamic and rapidly evolving cryptocurrency
+            landscape. His commitment to innovation, integrity, and excellence
+            underscores his contributions to Binance's mission of making
+            cryptocurrency accessible to people around the world.`,
+    },
+    socials: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/olubunmifabanwo/",
+      },
+      { platform: "twitter", url: "https://twitter.com/OlubunmiFabanwo" },
+      {
+        platform: "instagram",
+        url: "https://www.instagram.com/olubunmifabanwo/",
+      },
+    ],
   },
   {
     id: 4,
@@ -51,18 +183,150 @@ export const speakers = [
     title: "Affiliate Program Manager",
     title2: "Binance(Africa)",
     src: "/images/speaker1.svg",
+    description: {
+      bio: `Olubunmi Fabanwo is a seasoned professional in the field of
+            affiliate marketing and business development, currently serving as
+            the Affiliate Program Manager at Binance, one of the world's leading
+            cryptocurrency exchanges, with a specific focus on the African
+            region. <br /> <br /> With a background rooted in business
+            management and marketing, Olubunmi has demonstrated a keen
+            understanding of affiliate marketing dynamics and strategies that
+            drive growth and engagement. His role at Binance involves
+            spearheading the affiliate program initiatives tailored to the
+            African market, fostering relationships with partners, and
+            implementing innovative strategies to expand Binance's reach across
+            the continent. <br /> Olubunmi Fabanwo's expertise lies in
+            leveraging affiliate networks, strategic partnerships, and digital
+            marketing channels to optimize user acquisition and retention
+            efforts. He possesses a deep understanding of the cryptocurrency
+            ecosystem and its potential impact on emerging markets like Africa,
+            where financial inclusion and access to digital assets are
+            increasingly vital. <br /> <br /> Throughout his career, Olubunmi
+            has been dedicated to empowering individuals and businesses by
+            providing them with access to valuable resources and opportunities
+            in the cryptocurrency space. He is passionate about driving adoption
+            and awareness of blockchain technology and decentralized finance
+            (DeFi) solutions across Africa, contributing to the region's
+            economic empowerment and financial independence. <br /> As the
+            Affiliate Program Manager at Binance (Africa), Olubunmi Fabanwo
+            plays a pivotal role in shaping the company's strategic direction
+            and fostering collaborative partnerships that drive mutual growth
+            and success in the dynamic and rapidly evolving cryptocurrency
+            landscape. His commitment to innovation, integrity, and excellence
+            underscores his contributions to Binance's mission of making
+            cryptocurrency accessible to people around the world.`,
+    },
+    socials: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/olubunmifabanwo/",
+      },
+      { platform: "twitter", url: "https://twitter.com/OlubunmiFabanwo" },
+      {
+        platform: "instagram",
+        url: "https://www.instagram.com/olubunmifabanwo/",
+      },
+    ],
   },
   {
     id: 5,
     name: "Harrison Obiefule",
     title: "Co-Lead, SuperteamDAO (Nigeria)",
     src: "/images/speaker2.svg",
+    description: {
+      bio: `Olubunmi Fabanwo is a seasoned professional in the field of
+            affiliate marketing and business development, currently serving as
+            the Affiliate Program Manager at Binance, one of the world's leading
+            cryptocurrency exchanges, with a specific focus on the African
+            region. <br /> <br /> With a background rooted in business
+            management and marketing, Olubunmi has demonstrated a keen
+            understanding of affiliate marketing dynamics and strategies that
+            drive growth and engagement. His role at Binance involves
+            spearheading the affiliate program initiatives tailored to the
+            African market, fostering relationships with partners, and
+            implementing innovative strategies to expand Binance's reach across
+            the continent. <br /> Olubunmi Fabanwo's expertise lies in
+            leveraging affiliate networks, strategic partnerships, and digital
+            marketing channels to optimize user acquisition and retention
+            efforts. He possesses a deep understanding of the cryptocurrency
+            ecosystem and its potential impact on emerging markets like Africa,
+            where financial inclusion and access to digital assets are
+            increasingly vital. <br /> <br /> Throughout his career, Olubunmi
+            has been dedicated to empowering individuals and businesses by
+            providing them with access to valuable resources and opportunities
+            in the cryptocurrency space. He is passionate about driving adoption
+            and awareness of blockchain technology and decentralized finance
+            (DeFi) solutions across Africa, contributing to the region's
+            economic empowerment and financial independence. <br /> As the
+            Affiliate Program Manager at Binance (Africa), Olubunmi Fabanwo
+            plays a pivotal role in shaping the company's strategic direction
+            and fostering collaborative partnerships that drive mutual growth
+            and success in the dynamic and rapidly evolving cryptocurrency
+            landscape. His commitment to innovation, integrity, and excellence
+            underscores his contributions to Binance's mission of making
+            cryptocurrency accessible to people around the world.`,
+    },
+    socials: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/olubunmifabanwo/",
+      },
+      { platform: "twitter", url: "https://twitter.com/OlubunmiFabanwo" },
+      {
+        platform: "instagram",
+        url: "https://www.instagram.com/olubunmifabanwo/",
+      },
+    ],
   },
   {
     id: 6,
     name: "Joshua Chibueze",
     title: "Co-founder and CMO, Piggyvest",
     src: "/images/speaker3.svg",
+    description: {
+      bio: `Olubunmi Fabanwo is a seasoned professional in the field of
+            affiliate marketing and business development, currently serving as
+            the Affiliate Program Manager at Binance, one of the world's leading
+            cryptocurrency exchanges, with a specific focus on the African
+            region. <br /> <br /> With a background rooted in business
+            management and marketing, Olubunmi has demonstrated a keen
+            understanding of affiliate marketing dynamics and strategies that
+            drive growth and engagement. His role at Binance involves
+            spearheading the affiliate program initiatives tailored to the
+            African market, fostering relationships with partners, and
+            implementing innovative strategies to expand Binance's reach across
+            the continent. <br /> Olubunmi Fabanwo's expertise lies in
+            leveraging affiliate networks, strategic partnerships, and digital
+            marketing channels to optimize user acquisition and retention
+            efforts. He possesses a deep understanding of the cryptocurrency
+            ecosystem and its potential impact on emerging markets like Africa,
+            where financial inclusion and access to digital assets are
+            increasingly vital. <br /> <br /> Throughout his career, Olubunmi
+            has been dedicated to empowering individuals and businesses by
+            providing them with access to valuable resources and opportunities
+            in the cryptocurrency space. He is passionate about driving adoption
+            and awareness of blockchain technology and decentralized finance
+            (DeFi) solutions across Africa, contributing to the region's
+            economic empowerment and financial independence. <br /> As the
+            Affiliate Program Manager at Binance (Africa), Olubunmi Fabanwo
+            plays a pivotal role in shaping the company's strategic direction
+            and fostering collaborative partnerships that drive mutual growth
+            and success in the dynamic and rapidly evolving cryptocurrency
+            landscape. His commitment to innovation, integrity, and excellence
+            underscores his contributions to Binance's mission of making
+            cryptocurrency accessible to people around the world.`,
+    },
+    socials: [
+      {
+        platform: "linkedin",
+        url: "https://www.linkedin.com/in/olubunmifabanwo/",
+      },
+      { platform: "twitter", url: "https://twitter.com/OlubunmiFabanwo" },
+      {
+        platform: "instagram",
+        url: "https://www.instagram.com/olubunmifabanwo/",
+      },
+    ],
   },
 ];
 

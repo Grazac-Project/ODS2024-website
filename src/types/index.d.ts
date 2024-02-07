@@ -18,3 +18,16 @@ export interface HighlightsProps {
   speaker: string;
   description: any;
 }
+
+export interface SpeakerProps {
+  id: number;
+  name: string;
+  title: string;
+  // title2: string;
+  src: string;
+  description: any;
+  socials: {
+    platform: string;
+    url: string;
+  }[];
+}

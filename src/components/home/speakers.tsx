@@ -16,7 +16,7 @@ const SpeakerSection = () => {
       className={cn(
         "container mt-20",
         isInView
-          ? "opacity-100 translate-y-0 md:delay-300 duration-500"
+          ? "opacity-100 translate-y-0 md:delay-300 duration-500 bg-white z-[20]"
           : " opacity-0 translate-y-36"
       )}
     >
@@ -32,7 +32,7 @@ const SpeakerSection = () => {
       <SpeakersSlder />
       <div className="flex justify-center items-center mt-12">
         <Link
-          href="/"
+          href="/speakers"
           className={`font- font-nunito border border-primary text-lg text-primary px-8 py-2 rounded-xl flex items-center gap-3`}
         >
           See all the Speakers{" "}

@@ -13,9 +13,9 @@ const Home = () => {
         <HeroSection />
         <Sponsors />
         <Attend />
+        <Join />
         <HighLight />
         <SpeakerSection />
-        <Join />
         <ODG />
       </div>
     </>
