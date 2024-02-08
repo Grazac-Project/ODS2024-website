@@ -130,7 +130,7 @@ const MobileNav = () => {
             )}
           >
             <Link
-              href=""
+              href="/about"
               onClick={() => {
                 setShowMobileMenu(false);
               }}
@@ -138,7 +138,7 @@ const MobileNav = () => {
               About ODS
             </Link>
             <Link
-              href=""
+              href="/speakers"
               onClick={() => {
                 setShowMobileMenu(false);
               }}
