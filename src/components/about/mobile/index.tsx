@@ -44,17 +44,8 @@ const ABOUTMOBILE = () => {
           <h2 className="font-bold text-[30px] text-header mb-4 font-montserrat">
             Our Sponsors
           </h2>
-          {/* <SponsorsSlider /> */}
-          <div>
-            <Image
-              src="/sponsors2.svg"
-              alt="hero image"
-              width={351}
-              height={94}
-              priority
-              className="w-full h-full object-cover"
-            />
-          </div>
+           <SponsorsSlider />
+      
         </div>
       </section>
       {/* sbout AboutRef */}
@@ -193,7 +184,7 @@ const ABOUTMOBILE = () => {
               <div>
                 <Link
                   href="/"
-                  className="flex gap-2.5 justify-center self-center px-8 py-2 mt-4 max-w-full text-green-600 whitespace-nowrap rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] w-[245px]"
+                  className="flex gap-2.5 justify-center self-center px-8 py-2 mt-4 max-w-full bg-white text-green-600 whitespace-nowrap rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] w-[245px]"
                 >
                   <span className="grow self-start mt-1">
                     Become an Exhibitor

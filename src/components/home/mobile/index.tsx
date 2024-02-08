@@ -144,7 +144,7 @@ const Mobile = () => {
                 </span>
                 <ArrowRight2 />
               </Link>
-              <Image src="/arrow-sm.svg" alt={""} width={53} height={47} />
+              <Image src="/Arrow-sm.svg" alt={""} width={53} height={47} />
             </div>
           </div>
         </div>
@@ -169,7 +169,7 @@ const Mobile = () => {
               hosting the largest digital summit.
             </p>
           </div>
-          <div>
+          <div className="flex flex-col items-centet justify-center">
             <div className="w-full h-full absolute top-0 left-0">
               <Image
                 src="/attend-mob.svg"

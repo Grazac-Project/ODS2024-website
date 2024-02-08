@@ -1,12 +1,43 @@
-import React from "react";
-import MAIN from "@/components/gallery/main";
+"use client"
 
-const page = () => {
+
+import LoadingSpinner from "@/components/loader";
+import React, { useEffect, useState } from 'react';
+
+const GalleryPage: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+      setError(true);
+    }, 20000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <>
-      {/* <MAIN /> */}
-    </>
+    <div>
+      {loading ? (
+       <div className="grid place-items-center min-h-[400px]">
+        <LoadingSpinner />
+   </div>
+      ) : error ? (
+        
+       <div className="grid place-items-center min-h-[400px]">
+            <div className="text-center ">
+                    <p>Error getting gallery images</p>
+              <p>⚒️ We are currently working on this ⚒️</p>
+            </div>
+          </div>
+      ) : (
+        <>
+          {/* Your gallery component goes here */}
+          <p> error </p>
+        </>
+      )}
+    </div>
   );
 };
 
-export default page;
+export default GalleryPage;
