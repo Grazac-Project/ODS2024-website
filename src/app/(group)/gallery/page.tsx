@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react";
+
 import MAIN from "@/components/loader";
 import React, { useEffect, useState } from 'react';
 
