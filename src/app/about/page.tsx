@@ -22,7 +22,7 @@ const About = () => {
         <Join />
         <ODG />
       </div>
-      <div className="flex flex-col items-center justify-center self-center md:hidden">
+      <div className="block md:hidden">
         <ABOUTMOBILE />
       </div>
     </>
