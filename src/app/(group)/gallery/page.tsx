@@ -21,10 +21,10 @@ const GalleryPage: React.FC = () => {
       {loading ? (
         <LoadingSpinner />
       ) : error ? (
-        <p>Error getting gallery images</p>
+        
        <div className="grid place-items-center min-h-[400px]">
             <div className="text-center ">
-            
+                    <p>Error getting gallery images</p>
               <p>⚒️ We are currently working on this ⚒️</p>
             </div>
           </div>
