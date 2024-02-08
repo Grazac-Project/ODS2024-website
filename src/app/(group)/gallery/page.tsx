@@ -1,7 +1,7 @@
 "use client"
 
 
-import MAIN from "@/components/loader";
+import LoadingSpinner from "@/components/loader";
 import React, { useEffect, useState } from 'react';
 
 const GalleryPage: React.FC = () => {
@@ -19,7 +19,7 @@ const GalleryPage: React.FC = () => {
   return (
     <div>
       {loading ? (
-        <Main />
+        <LoadingSpinner />
       ) : error ? (
         <p>Error getting gallery images</p>
       ) : (
