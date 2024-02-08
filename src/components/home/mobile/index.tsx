@@ -177,7 +177,7 @@ const Mobile = () => {
               <div
                 ref={ReaasonRef1}
                 className={cn(
-                  "flex flex-col justify-between items-center max-w-[343px] object-contain self-center",
+                  "flex flex-col justify-between items-center max-w-[343px] object-contain self-center max-w-[154]",
                   isInView4
                     ? "opacity-100 translate-y-0 md:delay-300 duration-500"
                     : " opacity-0 translate-y-36"
@@ -213,7 +213,7 @@ const Mobile = () => {
               <div
                 ref={ReasonRef2}
                 className={cn(
-                  "flex flex-col justify-between items-center max-w-[343px] object-contain self-center mt-8",
+                  "flex flex-col justify-between items-center max-w-[343px] object-contain self-center mt-8 max-w-[154]",
                   isInView5
                     ? "opacity-100 translate-y-0 md:delay-300 duration-500"
                     : " opacity-0 translate-y-36"
@@ -270,7 +270,7 @@ const Mobile = () => {
                   >
                     03
                   </h3>
-                  <h3 className="font-medium text-[40px] text-white leading-[120%]">
+                  <h3 className="font-medium text-[40px] text-white leading-[120%] max-w-[154]">
                     Cutting Edge <br /> AI Exploration
                   </h3>
                   <p className="text-xl text-white font-nunito">
@@ -307,7 +307,7 @@ const Mobile = () => {
                   >
                     04
                   </h3>
-                  <h3 className="font-medium text-[40px] text-white leading-[120%]">
+                  <h3 className="font-medium text-[40px] text-white leading-[120%] max-w-[154]">
                     Have Fun and <br /> Unwind
                   </h3>
                   <p className="text-xl text-white font-nunito">
