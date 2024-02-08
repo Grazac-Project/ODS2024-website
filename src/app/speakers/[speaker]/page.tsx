@@ -25,7 +25,7 @@ const SpeakerDetails = ({ searchParams: { speakers_id } }: SpeakerDetails) => {
     return () => clearTimeout(timer);
   }, []);
 
-  return <>{loading ? <PreviewSkeleton /> : <Speakers speaker={speaker} />}</>;
+  return <>{loading ? <PreviewSkeleton /> : <Speakers speaker={speaker} />} </>;
 };
 
 export default SpeakerDetails;
