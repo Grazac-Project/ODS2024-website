@@ -116,7 +116,7 @@ const Mobile = () => {
           <div
             ref={whoWeareRef}
             className={cn(
-              "flex flex-col items-center pb-3.5 text-black max-w-[917px] mt-[52px]",
+              "flex flex-col items-center pb-3.5 text-black max-w-[390px] mt-[52px]",
               {
                 "opacity-100 translate-y-0 delay-1000 duration-1000": isInView2,
                 "opacity-0 translate-y-36": !isInView2,
@@ -134,7 +134,7 @@ const Mobile = () => {
               significant challenges, thereby revolutionizing our digital
               economy.
             </p>
-            <div className="flex justify-end min-w-[272px] min-h-[74]">
+            <div className="flex justify-end max-w-[272px] min-h-[74]">
               <Link
                 href="/"
                 className=" max-w-[215px] max-h-[40px] py-4 px-9 flex gap-2.5 justify-center items-center mt-9 text-lg leading-5 text-green-600 whitespace-nowrap rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] max-md:px-5"

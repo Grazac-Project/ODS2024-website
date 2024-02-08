@@ -19,7 +19,7 @@ const Home = () => {
         <SpeakerSection />
         <ODG />
       </div>
-      <div className="block md:hidden">
+      <div className="flex flex-col items-center justify-center self-center md:hidden">
         <Mobile />
       </div>
     </>
