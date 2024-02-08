@@ -86,7 +86,7 @@ const Speakers = () => {
         <Join />
       </div>
       {/* almost under */}
-      <section>
+      <section className="block md:hidden">
         <div
           ref={JoinRef}
           className={cn(
