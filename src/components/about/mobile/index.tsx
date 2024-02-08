@@ -44,17 +44,8 @@ const ABOUTMOBILE = () => {
           <h2 className="font-bold text-[30px] text-header mb-4 font-montserrat">
             Our Sponsors
           </h2>
-          {/* <SponsorsSlider /> */}
-          <div>
-            <Image
-              src="/sponsors2.svg"
-              alt="hero image"
-              width={351}
-              height={94}
-              priority
-              className="w-full h-full object-cover"
-            />
-          </div>
+           <SponsorsSlider />
+      
         </div>
       </section>
       {/* sbout AboutRef */}
