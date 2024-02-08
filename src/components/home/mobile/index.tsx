@@ -144,7 +144,7 @@ const Mobile = () => {
                 </span>
                 <ArrowRight2 />
               </Link>
-              <Image src="/arrow-sm.svg" alt={""} width={53} height={47} />
+              <Image src="/Arrow-sm.svg" alt={""} width={53} height={47} />
             </div>
           </div>
         </div>
