@@ -169,7 +169,7 @@ const Mobile = () => {
               hosting the largest digital summit.
             </p>
           </div>
-          <div class name="flex flex-col items-centet justify-center">
+          <div className="flex flex-col items-centet justify-center">
             <div className="w-full h-full absolute top-0 left-0">
               <Image
                 src="/attend-mob.svg"
