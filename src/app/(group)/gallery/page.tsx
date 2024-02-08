@@ -19,7 +19,9 @@ const GalleryPage: React.FC = () => {
   return (
     <div>
       {loading ? (
+       <div className="grid place-items-center min-h-[400px]">
         <LoadingSpinner />
+   </div>
       ) : error ? (
         
        <div className="grid place-items-center min-h-[400px]">
