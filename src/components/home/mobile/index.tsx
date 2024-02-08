@@ -146,9 +146,9 @@ const Mobile = () => {
         <div
           ref={AttendRef}
           className={cn(
-            "font-montserrat mt-20 z-20",
+            "font-montserrat mt-20 z-20 pb-[40px]",
             isInView3
-              ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
+              ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative mb-[60px]"
               : " opacity-0 translate-y-36"
           )}
         >
@@ -177,7 +177,7 @@ const Mobile = () => {
               <div
                 ref={ReaasonRef1}
                 className={cn(
-                  "flex flex-col justify-between items-center max-w-[343px] object-contain self-center max-w-[154]",
+                  "flex flex-col justify-between items-center max-w-[343px] object-contain self-center",
                   isInView4
                     ? "opacity-100 translate-y-0 md:delay-300 duration-500"
                     : " opacity-0 translate-y-36"
@@ -198,7 +198,7 @@ const Mobile = () => {
                   >
                     01
                   </h3>
-                  <h3 className="font-medium text-[40px] text-white leading-[120%]">
+                  <h3 className="font-medium text-[40px] text-white leading-[120%]  max-w-[154]">
                     Access to <br /> Industry Experts
                   </h3>
                   <p className="text-xl text-white font-nunito">
@@ -213,7 +213,7 @@ const Mobile = () => {
               <div
                 ref={ReasonRef2}
                 className={cn(
-                  "flex flex-col justify-between items-center max-w-[343px] object-contain self-center mt-8 max-w-[154]",
+                  "flex flex-col justify-between items-center max-w-[343px] object-contain self-center mt-8",
                   isInView5
                     ? "opacity-100 translate-y-0 md:delay-300 duration-500"
                     : " opacity-0 translate-y-36"
@@ -234,7 +234,7 @@ const Mobile = () => {
                   >
                     02
                   </h3>
-                  <h3 className="font-medium text-[40px] text-white leading-[120%]">
+                  <h3 className="font-medium text-[40px] text-white leading-[120%]  max-w-[154]">
                     Networking <br /> Opportunities
                   </h3>
                   <p className="text-xl text-white font-nunito">
