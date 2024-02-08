@@ -4,7 +4,7 @@ import { speakers } from "@/libs";
 import { cn } from "@/utils/twcx";
 import Speakers from "@/components/speakers";
 import PreviewSkeleton from "@/components/highlightSkelton";
-import { SpeakerProps } from "@/types";
+
 
 interface SpeakerDetails {
   searchParams: {

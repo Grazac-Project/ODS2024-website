@@ -5,6 +5,7 @@ import Sponsors from "@/components/home/Sponsors";
 import Attend from "@/components/home/attend";
 import Join from "@/components/home/Join";
 import ODG from "@/components/home/odg";
+import Mobile from "@/components/home/mobile";
 
 const Home = () => {
   return (
@@ -17,6 +18,9 @@ const Home = () => {
         <HighLight />
         <SpeakerSection />
         <ODG />
+      </div>
+      <div className="block md:hidden">
+        <Mobile />
       </div>
     </>
   );
