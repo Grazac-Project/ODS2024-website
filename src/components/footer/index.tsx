@@ -139,9 +139,7 @@ function Footer() {
           Rights Reserved
         </div>
       </div>
-      <Suspense>
-        <MobileFooter />
-      </Suspense>
+      <MobileFooter />
     </>
   );
 }
