@@ -7,6 +7,7 @@ import Team from "@/components/about/desktop/Team";
 import Join from "@/components/home/Join";
 import Why from "@/components/about/desktop/Why";
 import ODG from "@/components/home/odg";
+import ABOUTMOBILE from "@/components/about/mobile";
 
 const About = () => {
   return (
@@ -20,6 +21,9 @@ const About = () => {
         <Team />
         <Join />
         <ODG />
+      </div>
+      <div className="flex flex-col items-center justify-center self-center md:hidden">
+        <ABOUTMOBILE />
       </div>
     </>
   );

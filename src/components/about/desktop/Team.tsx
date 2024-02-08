@@ -13,7 +13,7 @@ const Team = () => {
     <div
       ref={TeamRef}
       className={cn(
-        " font-nunito mt-20 z-20 container mt-24`",
+        " font-nunito mt-20 z-20 container relative",
         isInView
           ? "opacity-100 translate-y-0 md:delay-300 duration-500"
           : " opacity-0 translate-y-36"
@@ -22,7 +22,7 @@ const Team = () => {
       <h3 className="text-[40px] font-semibold text-black-100 font-montserrat">
         Meet our Team
       </h3>
-      <div className="grid grid-cols-3 gap-8 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
         {teams.map((team) => (
           <div key={team.id}>
             <Image

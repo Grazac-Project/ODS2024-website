@@ -45,7 +45,7 @@ const SponsorsSlider = () => {
     <div
       ref={slideRef}
       className={cn(
-        "w-full items-center justify-center p-8  text-black  py-4 pb-8",
+        "w-full items-center justify-center py-4 pb-8",
         isInView
           ? "opacity-100 translate-y-0 delay-300 duration-1000"
           : " opacity-0 translate-y-36"

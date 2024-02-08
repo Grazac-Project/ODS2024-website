@@ -39,8 +39,8 @@ const Why = () => {
               <Image
                 src={"/images/aboutWhy1.svg"}
                 alt=""
-                width={24}
-                height={24}
+                width={251}
+                height={190}
               />
             </div>
             <p
