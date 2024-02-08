@@ -1,8 +1,7 @@
-"use client"
-
+"use client";
 
 import LoadingSpinner from "@/components/loader";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 const GalleryPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -19,17 +18,16 @@ const GalleryPage: React.FC = () => {
   return (
     <div>
       {loading ? (
-       <div className="grid place-items-center min-h-[400px]">
-        <LoadingSpinner />
-   </div>
+        <div className="grid place-items-center min-h-[400px]">
+          <LoadingSpinner />
+        </div>
       ) : error ? (
-        
-       <div className="grid place-items-center min-h-[400px]">
-            <div className="text-center ">
-                    <p>Error getting gallery images</p>
-              <p>⚒️ We are currently working on this ⚒️</p>
-            </div>
+        <div className="grid place-items-center min-h-[400px]">
+          <div className="text-center ">
+            <p>Error getting gallery images</p>
+            <p>⚒️ We are currently working on this ⚒️</p>
           </div>
+        </div>
       ) : (
         <>
           {/* Your gallery component goes here */}
