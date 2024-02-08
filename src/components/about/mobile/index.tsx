@@ -20,6 +20,13 @@ const ABOUTMOBILE = () => {
   const WhyRef = React.useRef<HTMLDivElement>(null);
   const isInView3 = useInView(WhyRef);
 
+  const JoinRef = React.useRef<HTMLDivElement>(null);
+  const isInView8 = useInView(JoinRef);
+  const JoinRef2 = React.useRef<HTMLDivElement>(null);
+  const isInView9 = useInView(JoinRef2);
+  const FianlRef = React.useRef<HTMLDivElement>(null);
+  const isInView10 = useInView(FianlRef);
+
   return (
     <>
       <Hero />
@@ -28,7 +35,7 @@ const ABOUTMOBILE = () => {
         <div
           ref={SponsorsRef}
           className={cn(
-            "flex flex-col items-center w-full px-2 sm:px-4",
+            "flex flex-col items-center w-full px-4",
             isInView
               ? "opacity-100 translate-y-0 md:delay-300 duration-500"
               : " opacity-0 translate-y-36"
@@ -37,7 +44,17 @@ const ABOUTMOBILE = () => {
           <h2 className="font-bold text-[30px] text-header mb-4 font-montserrat">
             Our Sponsors
           </h2>
-          <SponsorsSlider />
+          {/* <SponsorsSlider /> */}
+          <div>
+            <Image
+              src="/sponsors2.svg"
+              alt="hero image"
+              width={351}
+              height={94}
+              priority
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </section>
       {/* sbout AboutRef */}
@@ -127,16 +144,136 @@ const ABOUTMOBILE = () => {
           ref={WhyRef}
           className={cn(
             "flex flex-col items-center justify-center text-center w-full px-4 mt-[60px]",
-            isInView
+            isInView3
               ? "opacity-100 translate-y-0 md:delay-300 duration-500"
               : " opacity-0 translate-y-36"
           )}
         >
-          <h2 className="text-black font-semibold text-[40px] font-montserrat">
+          <h2 className="text-black font-bold text-[24px] font-montserrat">
             Why attend ODS?
           </h2>
-          <div>
-            
+          <div className="mt-10 ">
+            <Image width={251} height={856} src="/whyattend.svg" alt="why" />
+          </div>
+        </div>
+      </section>
+      {/* TEAM  */}
+      <section className="mt-[60px]">
+        <Team />
+      </section>
+      {/* almost under */}
+      <section>
+        <div
+          ref={JoinRef}
+          className={cn(
+            "flex flex-col w-full justify-center mt-[60px] py-11 text-base leading-5 text-white bg-neutral-900 ",
+            isInView8
+              ? "opacity-100 translate-y-0 md:delay-300 duration-500"
+              : " opacity-0 translate-y-36"
+          )}
+        >
+          <div className="max-w-[328px] flex flex-col self-center items-center justify-center">
+            <header className="text-2xl font-semibold  text-center">
+              Join as a Partner/Sponsor/ <br /> Exhibitors
+            </header>
+            <div className="mt-4 capitalize whitespace-nowrap">
+              Unlock Boundless Opportunities at ODS 24
+            </div>
+            <div>
+              <div className="self-center flex">
+                <Link
+                  href="/"
+                  className="flex gap-2.5 justify-center self-center px-11 py-2 mt-8 max-w-full whitespace-nowrap bg-green-600 rounded-xl w-[245px]"
+                >
+                  <span className="grow self-start mt-1">Become a partner</span>
+
+                  <ArrowRight2 />
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/"
+                  className="flex gap-2.5 justify-center self-center px-8 py-2 mt-4 max-w-full text-green-600 whitespace-nowrap rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] w-[245px]"
+                >
+                  <span className="grow self-start mt-1">
+                    Become an Exhibitor
+                  </span>
+
+                  <ArrowRight2 />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          ref={JoinRef2}
+          className={cn(
+            "flex flex-col justify-center w-full",
+            isInView9
+              ? "opacity-100 translate-y-0 md:delay-300 duration-500"
+              : " opacity-0 translate-y-36"
+          )}
+        >
+          <Image
+            src="/under.svg"
+            alt="hero image"
+            width={390}
+            height={304}
+            priority
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </section>
+      {/* FinalSection */}
+      <section>
+        <div
+          ref={FianlRef}
+          className={cn(
+            "flex flex-col mt-[60px] px-5 ",
+            isInView10
+              ? "opacity-100 translate-y-0 md:delay-300 duration-500"
+              : " opacity-0 translate-y-36"
+          )}
+        >
+          <h2 className=" font-montserrat w-full text-3xl font-semibold leading-10 text-neutral-900">
+            Unlocking Tech Innovations Without Boundaries
+          </h2>
+          <span className="mt-4 w-full text-base leading-5 text-neutral-900 font-nunito">
+            The ODS 23 Mobile App is your all-in-one tool for an immersive tech
+            experience at your fingertip. Connect with like minds like never
+            before
+          </span>
+          <div className="flex flex-col gap-5 justify-between mt-9 w-full self-center">
+            <Image
+              src="/phone.svg"
+              alt="hero image"
+              width={342}
+              height={332}
+              priority
+              className="w-full h-full object-cover"
+            />
+            <div className="flex gap-4 mt-5">
+              <Link href="/">
+                <Image
+                  src="/apple.svg"
+                  alt="hero image"
+                  width={144}
+                  height={48}
+                  priority
+                  className="w-full h-full object-cover"
+                />
+              </Link>
+              <Link href="/">
+                <Image
+                  src="/google.svg"
+                  alt="hero image"
+                  width={162}
+                  height={48}
+                  priority
+                  className="w-full h-full object-cover"
+                />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
