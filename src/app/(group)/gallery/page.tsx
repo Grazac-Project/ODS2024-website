@@ -1,41 +1,31 @@
-"use client";
+import React from "react";
+import cloudinary from "cloudinary";
+import { CloudinaryImage } from "@/components/gallery/Image";
 
-import LoadingSpinner from "@/components/loader";
-import React, { useEffect, useState } from "react";
-
-const GalleryPage: React.FC = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-      setError(true);
-    }, 20000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  return (
-    <div>
-      {loading ? (
-        <div className="grid place-items-center min-h-[400px]">
-          <LoadingSpinner />
-        </div>
-      ) : error ? (
-        <div className="grid place-items-center min-h-[400px]">
-          <div className="text-center ">
-            <p>Error getting gallery images</p>
-            <p>⚒️ We are currently working on this ⚒️</p>
-          </div>
-        </div>
-      ) : (
-        <>
-          {/* Your gallery component goes here */}
-          <p> error </p>
-        </>
-      )}
-    </div>
-  );
+type SearchResult = {
+  public_id: string;
 };
 
-export default GalleryPage;
+export default async function Gallery() {
+  const results = (await cloudinary.v2.search
+    .expression("resource_type:image")
+    .sort_by("created_at", "desc")
+    .max_results(10)
+    .execute()) as { resources: SearchResult[] };
+
+  console.log(results);
+
+  return (
+    <div className="grid grid-cols-4 gap-4">
+      {results.resources.map((result) => (
+        <CloudinaryImage
+          key={result.public_id}
+          src={result.public_id}
+          width="400"
+          height="300"
+          alt="an image of something"
+        />
+      ))}
+    </div>
+  );
+}
