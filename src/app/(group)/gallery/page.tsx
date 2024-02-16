@@ -16,12 +16,14 @@ export default async function Gallery() {
   console.log(results);
 
   return (
- <>
+       <section
+     
+        className=" min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 p-7 w-full h-full sm:border border-gray-200 dark:border-primary-light",
       <div className="container mb-5">
         <h2 className="text-black-100 font-semibold text-[40px] ">
          ODS Gallery
         </h2>
-        <p className="font-nunito w-[40%]">
+        <p className="font-nunito">
         Explore the incredible journey of Ogun digital summit through these
             capitivating pictures, each frame tells a story of innovation and
             excitement.
@@ -38,6 +40,6 @@ export default async function Gallery() {
         />
       ))}
     </div>
-</>
+</section>
   );
 }
