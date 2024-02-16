@@ -16,6 +16,17 @@ export default async function Gallery() {
   console.log(results);
 
   return (
+ <>
+      <div className="container mb-5">
+        <h2 className="text-black-100 font-semibold text-[40px] ">
+         ODS Gallery
+        </h2>
+        <p className="font-nunito w-[40%]">
+        Explore the incredible journey of Ogun digital summit through these
+            capitivating pictures, each frame tells a story of innovation and
+            excitement.
+        </p>
+      </div>
     <div className="grid grid-cols-4 gap-4">
       {results.resources.map((result) => (
         <CloudinaryImage
@@ -27,5 +38,6 @@ export default async function Gallery() {
         />
       ))}
     </div>
+</>
   );
 }
