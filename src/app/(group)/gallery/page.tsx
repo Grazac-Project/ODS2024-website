@@ -17,8 +17,7 @@ export default async function Gallery() {
 
   return (
        <section
-     
-        className=" min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 p-7 w-full h-full sm:border border-gray-200 dark:border-primary-light",
+        className=" min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 p-7 w-full h-full sm:border border-gray-200 dark:border-primary-light">
       <div className="container mb-5">
         <h2 className="text-black-100 font-semibold text-[40px] ">
          ODS Gallery
