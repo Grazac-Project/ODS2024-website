@@ -1,6 +1,7 @@
 import React from "react";
 import cloudinary from "cloudinary";
 import { CloudinaryImage } from "@/components/gallery/Image";
+import { cn } from "@/utils/twcx";
 
 type SearchResult = {
   public_id: string;
