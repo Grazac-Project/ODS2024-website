@@ -42,6 +42,7 @@ const Mobile = () => {
       <section className="relative max-h-[911px] w-full py-[60px]">
         <div className="w-full h-full absolute top-0 left-0">
           <Image
+            loading="eager"
             src="/home-mobile.svg"
             alt="hero image"
             width={390}
@@ -68,16 +69,16 @@ const Mobile = () => {
                 PATHWAY TO OUR NATION PROSPERITY
               </h1>
 
-              <div className="flex gap-2 justify-between self-center mt-10 text-lg leading-5 whitespace-nowrap max-w-[342px] h-[40px] items-center">
+              <div className="flex gap-2 justify-between self-center mt-10 text-lg leading-5 whitespace-nowrap max-w-[342px] items-center">
                 <Link
                   href="/"
-                  className="flex justify-center items-center h-[40px] text-white bg-green-600 rounded-xl min-w-[153px]"
+                  className="flex justify-center items-center h-[40px] py-4 text-white bg-green-600 rounded-xl min-w-[153px]"
                 >
                   Attend
                 </Link>
                 <Link
                   href="/"
-                  className="flex gap-1 justify-between px-2 text-green-600 h-full items-center bg-white rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)]"
+                  className="flex gap-1 justify-between px-2 py-4 text-green-600 h-full items-center bg-white rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)]"
                 >
                   <div className="grow">Speak at ODS&apos;24</div>
                   <ArrowRight2 />
@@ -88,6 +89,7 @@ const Mobile = () => {
         </div>
         <div className="relative z-10 items-center justify-center-center mt-[40px] mx-auto max-w-[390px] min-h-[395px] object-contain">
           <Image
+            loading="eager"
             src="/home.svg"
             alt="hero image"
             width={390}
@@ -144,7 +146,13 @@ const Mobile = () => {
                 </span>
                 <ArrowRight2 />
               </Link>
-              <Image src="/Arrow-sm.svg" alt={""} width={53} height={47} />
+              <Image
+                loading="eager"
+                src="/Arrow-sm.svg"
+                alt={""}
+                width={53}
+                height={47}
+              />
             </div>
           </div>
         </div>
@@ -172,6 +180,7 @@ const Mobile = () => {
           <div className="flex flex-col items-centet justify-center">
             <div className="w-full h-full absolute top-0 left-0">
               <Image
+                loading="eager"
                 src="/attend-mob.svg"
                 alt="hero image"
                 width={401}
@@ -192,7 +201,13 @@ const Mobile = () => {
                 )}
               >
                 <div>
-                  <Image src="attend01.svg" alt="" width={343} height={284} />
+                  <Image
+                    loading="eager"
+                    src="attend01.svg"
+                    alt=""
+                    width={343}
+                    height={284}
+                  />
                 </div>
                 <div className="space-y-4 mb:pl-4 lg:pl-0">
                   <h3
@@ -228,7 +243,13 @@ const Mobile = () => {
                 )}
               >
                 <div>
-                  <Image src="attend02.svg" alt="" width={343} height={284} />
+                  <Image
+                    loading="eager"
+                    src="attend02.svg"
+                    alt=""
+                    width={343}
+                    height={284}
+                  />
                 </div>
                 <div className="space-y-4 mb:pl-4 lg:pl-0">
                   <h3
@@ -264,7 +285,13 @@ const Mobile = () => {
                 )}
               >
                 <div>
-                  <Image src="attend03.svg" alt="" width={343} height={284} />
+                  <Image
+                    loading="eager"
+                    src="attend03.svg"
+                    alt=""
+                    width={343}
+                    height={284}
+                  />
                 </div>
                 <div className="space-y-4 mb:pl-4 lg:pl-0">
                   <h3
@@ -301,7 +328,13 @@ const Mobile = () => {
                 )}
               >
                 <div>
-                  <Image src="attend04.svg" alt="" width={343} height={284} />
+                  <Image
+                    loading="eager"
+                    src="attend04.svg"
+                    alt=""
+                    width={343}
+                    height={284}
+                  />
                 </div>
                 <div className="space-y-4 mb:pl-4 lg:pl-0">
                   <h3
@@ -383,6 +416,7 @@ const Mobile = () => {
           )}
         >
           <Image
+            loading="eager"
             src="/under.svg"
             alt="hero image"
             width={390}
@@ -417,6 +451,7 @@ const Mobile = () => {
           </span>
           <div className="flex flex-col gap-5 justify-between mt-9 w-full self-center">
             <Image
+              loading="eager"
               src="/phone.svg"
               alt="hero image"
               width={342}
@@ -427,6 +462,7 @@ const Mobile = () => {
             <div className="flex gap-4 mt-5">
               <Link href="/">
                 <Image
+                  loading="eager"
                   src="/apple.svg"
                   alt="hero image"
                   width={144}
@@ -437,6 +473,7 @@ const Mobile = () => {
               </Link>
               <Link href="/">
                 <Image
+                  loading="eager"
                   src="/google.svg"
                   alt="hero image"
                   width={162}
