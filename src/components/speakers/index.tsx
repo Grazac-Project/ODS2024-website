@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Speakers = ({ speaker }: { speaker?: SpeakerProps }) => {
   return (
-    <div className="px-16 pt-6 pb-4 max-md:px-5">
+    <div className="px-16 pt-6 pb-4 max-md:px-5 z-20 bg-white relative">
       <div className="flex gap-5 max-md:flex-col max-md:gap-0 max-md:">
         <div
         // className="bg-green-300 max-w-[500px] max-h-[476px] rounded-[140px_0px_155px_211px]"

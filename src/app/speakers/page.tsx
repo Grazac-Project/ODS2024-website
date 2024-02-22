@@ -4,7 +4,7 @@ import React from "react";
 import { speakers } from "@/libs";
 import { cn } from "@/utils/twcx";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight2 } from "iconsax-react";
+import { ArrowLeft, ArrowRight2, ArrowSquareLeft } from "iconsax-react";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import { useRouter } from "next/navigation";
@@ -31,15 +31,15 @@ const Speakers = () => {
             type="button"
             className="flex font-medium items-center gap-x-1 text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black/20 pr-1 pt-4"
           >
-            <ArrowLeft aria-hidden />
-            <span>Back</span>
+            <ArrowSquareLeft aria-hidden size={30} />
+            <span className=" font-nunito">Back</span>
           </button>
         </div>
       </div>
       <section
         ref={AttendRef}
         className={cn(
-          " min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 p-7 w-full h-full sm:border border-gray-200 dark:border-primary-light",
+          " min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 p-7 w-full h-full sm:border bg-white relative z-20 border-gray-200 dark:border-primary-light",
           isInView
             ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
             : " opacity-0 translate-y-36"

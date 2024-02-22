@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { ArrowLeft } from "iconsax-react";
+import { ArrowLeft, ArrowSquareLeft } from "iconsax-react";
 import Link from "next/link";
 import { cn } from "@/utils/twcx";
 
@@ -25,7 +25,7 @@ const TopContent = () => {
               type="button"
               className="flex font-medium items-center gap-x-1 text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black/20 pr-1 pt-4"
             >
-              <ArrowLeft aria-hidden />
+              <ArrowSquareLeft size={30} aria-hidden />
               <span>Back</span>
             </button>
           </div>

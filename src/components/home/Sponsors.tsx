@@ -49,7 +49,7 @@ const Sponsors = () => {
             harness the power of technology in tackling significant challenges,
             thereby revolutionizing our digital economy.
           </p>
-          <div className="flex lg:h-[110px]">
+          <div className="flex ">
             <Link
               href="/"
               className="flex gap-2.5 justify-center items-center px-11 py-4 mt-9 text-lg leading-5 text-green-600 whitespace-nowrap rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] max-md:px-5"

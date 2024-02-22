@@ -51,21 +51,24 @@ const SponsorsSlider = () => {
           : " opacity-0 translate-y-36"
       )}
     >
-      <Slider {...carouselSettings} className="justify-center items-center ">
+      <Slider
+        {...carouselSettings}
+        className="justify-center items-center max-h-[64px] "
+      >
         <div>
-          <Image src={one} alt={""} width={125} height={50} />
+          <Image src={one} alt={""} width={151} height={64} />
         </div>
         <div>
-          <Image src="/sponsors/two.svg" alt={""} width={125} height={50} />
+          <Image src="/sponsors/two.svg" alt={""} width={127} height={64} />
         </div>
         <div>
-          <Image src="/sponsors/three.svg" alt={""} width={125} height={50} />
+          <Image src="/sponsors/three.svg" alt={""} width={64} height={64} />
         </div>
         <div>
-          <Image src="/sponsors/four.svg" alt={""} width={125} height={50} />
+          <Image src="/sponsors/four.svg" alt={""} width={215} height={64} />
         </div>
         <div>
-          <Image src="/sponsors/five.svg" alt={""} width={125} height={50} />
+          <Image src="/sponsors/five.svg" alt={""} width={141} height={64} />
         </div>
       </Slider>
     </div>

@@ -62,13 +62,13 @@ const HeroSection = () => {
             <div className="flex gap-5 justify-between self-start mt-10 text-lg leading-5 whitespace-nowrap">
               <Link
                 href="/"
-                className="grow justify-center text-center px-12 py-4 text-white bg-green-600 rounded-xl max-md:px-5"
+                className="flex items-center justify-center py-4 px-12 text-white bg-green-600 rounded-xl max-md:px-5"
               >
                 Attend
               </Link>
               <Link
                 href="/"
-                className="flex gap-2.5 justify-between px-5 py-4 text-green-600 bg-white rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] max-md:px-5"
+                className="flex gap-2.5 justify-center items-center bg-white px-11 py-4 text-lg leading-5 text-green-600 whitespace-nowrap rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] max-md:px-5"
               >
                 <div className="grow">Speak at ODS&apos;24</div>
                 <ArrowRight2 />

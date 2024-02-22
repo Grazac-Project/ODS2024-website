@@ -1,3 +1,5 @@
+const plugin = require("tailwindcss/plugin");
+
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -118,6 +120,28 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
+  plugins: [
+    // require("tailwindcss/container-queries"),
+    // require("tailwindcss/typography"),
+    // @ts-ignore
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          // @ts-ignore
+          "animation-delay": (value) => {
+            return {
+              "animation-delay": value,
+            };
+          },
+        },
+        {
+          values: theme("transitionDelay"),
+        }
+      );
+    }),
+  ],
 };
 export default config;

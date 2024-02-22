@@ -24,6 +24,7 @@
     "sass": "^1.70.0",
     "slick-carousel": "^1.8.1",
     "tailwind-merge": "^2.2.1",
+    "tailwindcss-container-query": "^1.1.0",
     "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
