@@ -27,6 +27,7 @@ const config: Config = {
         },
         border: {
           300: "#E1E1E1",
+          600: "#CDCDCD",
         },
         gray: {
           400: "#424644",

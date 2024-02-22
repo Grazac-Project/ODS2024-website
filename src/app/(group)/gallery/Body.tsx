@@ -83,25 +83,32 @@ const Body = ({ images }: BodyProps) => {
             onValueChange={handleFolderChange}
             defaultValue={selectedFolder}
           >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[154px] h-[53px] rounded-xl border flex items-center justify-between px-2 cursor-pointer bg-[#FDFDFD]">
               <SelectValue placeholder="ALL" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-[#FDFDFD] rounded-xl border border-border-600 flex flex-col items-center gap-6 max-w-[154px]">
               <SelectGroup>
                 {/* <SelectLabel>Years</SelectLabel> */}
                 <SelectItem
                   value={undefined}
-                  className="flex flex-row items-center justify-between px-2"
+                  // className=""
                 >
-                  <Calendar variant="Bold" />
-                  <span>All</span>
+                  <div className="flex items-center justify-between w-[100px]">
+                    <Calendar size={32} variant="Bold" />
+                    <span className="text-2xl text-text-500">All</span>
+                  </div>
                 </SelectItem>
                 <SelectItem value="ODS 22">
-                  <Calendar size="32" color="#111111" variant="Bold" /> 2022
+                  <div className="flex items-center justify-between w-[100px]">
+                    <Calendar size="32" color="#111111" variant="Bold" />
+                    <span className="text-2xl text-text-500">2022</span>
+                  </div>
                 </SelectItem>
                 <SelectItem value="ODS 2021">
-                  <Calendar size="32" color="#111111" variant="Bold" />
-                  2021
+                  <div className="flex items-center justify-between w-[100px]">
+                    <Calendar size="32" color="#111111" variant="Bold" />
+                    <span className="text-2xl text-text-500">2021</span>{" "}
+                  </div>
                 </SelectItem>
               </SelectGroup>
             </SelectContent>
@@ -113,26 +120,46 @@ const Body = ({ images }: BodyProps) => {
           excitement.
         </p>
       </div>
-      <div className="flex flex-col md:hidden max-w-[343px] px-5">
-        <div className="flex gap-5 justify-between  w-full text-neutral-900">
+      <div className="flex flex-col md:hidden px-5 mb-5">
+        <div className="flex justify-between  text-neutral-900 gap-10">
           <h1 className="flex-auto self-start mt-1.5 text-2xl font-semibold font-montserrat">
             ODS Gallery
           </h1>
-          {/* <div className="mb-4">
-            <label htmlFor="folderSelect" className="mr-2 font-semibold">
-              Folder
-            </label>
-            <select
-              id="folderSelect"
-              value={selectedFolder}
-              onChange={handleFolderChange}
-              className="p-2 border border-gray-300 rounded-md"
-            >
-              <option value="">All</option>
-              <option value="ODS 2021">ODS 2021</option>
-              <option value="ODS 22">ODS 22</option>
-            </select>
-          </div> */}
+
+          <Select
+            onValueChange={handleFolderChange}
+            defaultValue={selectedFolder}
+          >
+            <SelectTrigger className="w-[154px] h-[53px] rounded-xl border flex items-center justify-between px-2 cursor-pointer bg-[#FDFDFD]">
+              <SelectValue placeholder="ALL" />
+            </SelectTrigger>
+            <SelectContent className="bg-[#FDFDFD] rounded-xl border border-border-600 flex flex-col items-center gap-6 max-w-[154px]">
+              <SelectGroup>
+                {/* <SelectLabel>Years</SelectLabel> */}
+                <SelectItem
+                  value={undefined}
+                  // className=""
+                >
+                  <div className="flex items-center justify-between w-[100px]">
+                    <Calendar size={32} variant="Bold" />
+                    <span className="text-2xl text-text-500">All</span>
+                  </div>
+                </SelectItem>
+                <SelectItem value="ODS 22">
+                  <div className="flex items-center justify-between w-[100px]">
+                    <Calendar size="32" color="#111111" variant="Bold" />
+                    <span className="text-2xl text-text-500">2022</span>
+                  </div>
+                </SelectItem>
+                <SelectItem value="ODS 2021">
+                  <div className="flex items-center justify-between w-[100px]">
+                    <Calendar size="32" color="#111111" variant="Bold" />
+                    <span className="text-2xl text-text-500">2021</span>{" "}
+                  </div>
+                </SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </div>
         <p className="mt-4 w-full text-sm text-neutral-950 font-nunito">
           Explore the incredible journey of Ogun digital summit through these
