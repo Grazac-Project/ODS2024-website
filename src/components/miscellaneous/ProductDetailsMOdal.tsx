@@ -27,7 +27,7 @@ const ProductDetailsMOdal = () => {
         role="dialog"
         aria-labelledby="product-details"
         className={cn(
-          "py-6   flex flex-col w-[360px] h-[330px] min-[450px]:w-[400px] min-[550px]:w-[500px] md:w-[682px] md:h-[400px] justify-between items-center bg-white  backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ",
+          "py-6   flex flex-col w-[360px] h-[500px] min-[450px]:w-[400px] min-[550px]:w-[500px] md:w-[682px] md:h-[600px] overflow-y-auto overflow-x-hidden hide-scroll justify-between items-center bg-white  backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ",
           ShowProductModal
             ? "-translate-x-1/2 duration-700 opacity-100 rounded-xl md:rounded-2xl"
             : "-translate-x-full duration-300 pointer-events-none"
@@ -48,14 +48,14 @@ const ProductDetailsMOdal = () => {
             <CloseSquare size="32" />
           </button>
         </div>
-        <div className="self-stretch mx-6 mt-11">
+        <div className="self-stretch mx-6 mt-5">
           <div className="flex gap-5">
             <div className="flex flex-col w-[73%]">
               <div className="flex flex-col grow">
                 <Image
                   src={product?.image!}
                   alt="product"
-                  className="w-full aspect-[1.2]"
+                  className="max-w-[247px] aspect-[1.2]"
                   height={207}
                   width={247}
                 />
@@ -80,21 +80,24 @@ const ProductDetailsMOdal = () => {
         </div>
         <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
         <>
-          <div className="flex gap-5 justify-between px-5 mt-6 w-full text-base leading-6 text-zinc-800">
-            <div className="flex-auto font-semibold">Product Name:</div>
-            <h2 className="flex-auto font-medium">{product?.name}</h2>
+          <div className="flex flex-col max-h-[160px] gap-3 justify-between px-5 mt-3 w-full text-base leading-6 text-zinc-800">
+            <div className="flex items-center justify-between">
+              <div className="flex-auto font-semibold">Product Name:</div>
+              <h2 className="flex-auto font-medium">{product?.name}</h2>
+            </div>
+            <div className="self-stretch mt-2 w-full bg-neutral-200 min-h-[1px]" />
+            <div>
+              <h2 className="mt-2 text-base font-semibold leading-6 text-zinc-800">
+                Product Description:
+              </h2>
+              <p className="mt-2.5 text-base font-medium leading-6 text-zinc-800">
+                {product?.description}
+              </p>
+            </div>
           </div>
-          <section>
-            <h2 className="mt-5 text-base font-semibold leading-6 text-zinc-800">
-              Product Description:
-            </h2>
-            <p className="mt-2.5 text-base font-medium leading-6 text-zinc-800">
-              {product?.description}
-            </p>
-          </section>
         </>
         <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
-        <button className="justify-center items-center px-16 py-4 mt-6 w-full text-lg leading-5 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2">
+        <button className="justify-center items-center px-16 py-4 mt-3 w-[80%] text-lg leading-5 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2">
           Add to Cart
         </button>
       </div>
