@@ -7,10 +7,12 @@ const ShopCard = ({
   rating,
   name,
   price,
-  reviewsCount,
   discount,
   originalPrice,
+  reviews,
 }: ProductProps) => {
+  const totalReviews = reviews!.length;
+  const hasReviews = reviews!.length > 0;
   return (
     <>
       <div className="flex flex-col max-w-[305px] min-h-[390px] max-h-[400px] rounded-2xl bg-white border-solid border border-[color:var(--Foundation-stroke-stroke-300,#EBEBEB)]">
@@ -31,7 +33,8 @@ const ShopCard = ({
 
                 <Image src="/shop/star.svg" alt="star" width={18} height={16} />
                 <p>-</p>
-                <p>{reviewsCount} Reviews</p>
+                {/* <p> {totalReviews}</p> */}
+                {hasReviews && <p>{reviews!.length} Reviews</p>}
               </div>
             </div>
             <div className="justify-center self-start px-1.5 max-h-[28px] max-w-[58px] py-1 text-xs leading-5 text-gray-200 whitespace-nowrap rounded aspect-[2.07] bg-[#466850]">

@@ -41,4 +41,12 @@ export interface ProductProps {
   discount?: string;
   price?: string;
   originalPrice?: string;
+  sizes?: string[];
+  description?: string;
+  reviews?: Review[];
+}
+
+interface Review {
+  author: string;
+  content: string;
 }
