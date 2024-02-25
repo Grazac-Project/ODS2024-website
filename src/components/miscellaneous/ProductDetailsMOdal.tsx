@@ -5,6 +5,15 @@ import { cn } from "@/utils/twcx";
 import { useStateCtx } from "@/context/StateCtx";
 import Image from "next/image";
 import { products } from "@/libs";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/select";
 import { CloseSquare } from "iconsax-react";
 
 const ProductDetailsMOdal = () => {
@@ -70,7 +79,28 @@ const ProductDetailsMOdal = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col ml-5 w-[27%]">
+            <div className="flex flex-col ml-5 w-[200px]">
+              {product?.sizes && product.sizes.length > 0 && (
+                <>
+                  <h2 className="mt-2 text-base font-semibold leading-6 text-zinc-800">
+                    Sizes
+                  </h2>
+                  <div className="mt-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                    {product.sizes.map((size) => (
+                      <button
+                        key={size}
+                        className="px-4 py-2 bg-gray-200 rounded text-center"
+                        onClick={() => {
+                          // Handle size selection logic here
+                          console.log(`Selected size: ${size}`);
+                        }}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
               {/* <ProductSize
                 size="M-size"
                 iconsrc="https://cdn.builder.io/api/v1/image/assets/TEMP/7100ea7840c08766578d24a3e74d6b66b836a23539897c1a270cb984411e07e1?apiKey=252f8d5a726747838fcb04939a832fc3&"
