@@ -6,7 +6,7 @@ import { products } from "@/libs";
 import { ShoppingCart } from "iconsax-react";
 import useInView from "@/hooks/useInView";
 import { cn } from "@/utils/twcx";
-import CardSkelton from "@/components/cardskelyon.tsx"
+import CardSkelton from "@/components/cardskelton.tsx"
 import ProductDetailsMOdal from "@/components/miscellaneous/ProductDetailsMOdal";
 
 const Shop = () => {
