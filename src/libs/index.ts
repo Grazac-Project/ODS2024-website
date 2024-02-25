@@ -445,6 +445,7 @@ export const details = [
 
 export const products: ProductProps[] = [
   {
+    id: "1",
     image: "/shop/bag.svg",
     name: "ODS 2024 Bag ",
     rating: "3.9",
@@ -482,6 +483,7 @@ export const products: ProductProps[] = [
     ],
   },
   {
+    id: "2",
     image: "/shop/bag2.svg",
     name: "ODS 2024 Bag",
     rating: "3.9",
@@ -507,6 +509,7 @@ export const products: ProductProps[] = [
     ],
   },
   {
+    id: "3",
     image: "/shop/shirt.svg",
     name: "ODS 2024 T-Shirt",
     rating: "3.9",
@@ -533,6 +536,7 @@ export const products: ProductProps[] = [
     ],
   },
   {
+    id: "4",
     image: "/shop/shirt5.svg",
     name: "ODS 2024 T-Shirt",
     rating: "3.9",
@@ -559,6 +563,7 @@ export const products: ProductProps[] = [
     ],
   },
   {
+    id: "5",
     image: "/shop/shirt2.svg",
     name: "ODS 2024 T-Shirt",
     rating: "3.9",
@@ -579,6 +584,7 @@ export const products: ProductProps[] = [
     ],
   },
   {
+    id: "6",
     image: "/shop/shirt3.svg",
     name: "ODS 2024 T-Shirt",
     rating: "3.9",
@@ -619,6 +625,7 @@ export const products: ProductProps[] = [
   },
 
   {
+    id: "7",
     image: "/shop/shirt4.svg",
     name: "ODS 2024 T-Shirt",
     rating: "3.9",
@@ -639,6 +646,7 @@ export const products: ProductProps[] = [
     ],
   },
   {
+    id: "8",
     image: "/shop/shirt5.svg",
     name: "ODS 2024 T-Shirt",
     rating: "3.9",

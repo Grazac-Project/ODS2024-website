@@ -11,6 +11,8 @@ interface StateContextProps {
   setShowProductModal: React.Dispatch<React.SetStateAction<boolean>>;
   ShowCartModal: boolean;
   setShowCartModal: React.Dispatch<React.SetStateAction<boolean>>;
+  SelectedProductId: string;
+  setSelectedProductId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const StateContext = createContext({} as StateContextProps);
@@ -18,6 +20,8 @@ export const StateContext = createContext({} as StateContextProps);
 const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const [ShowProductModal, setShowProductModal] = React.useState(false);
+
+  const [SelectedProductId, setSelectedProductId] = React.useState<string>("");
 
   const [ShowCartModal, setShowCartModal] = React.useState(false);
 
@@ -85,8 +89,16 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setShowProductModal,
       ShowCartModal,
       setShowCartModal,
+      SelectedProductId,
+      setSelectedProductId,
     }),
-    [showMobileMenu, setShowMobileMenu, ShowProductModal, ShowCartModal]
+    [
+      showMobileMenu,
+      setShowMobileMenu,
+      ShowProductModal,
+      ShowCartModal,
+      SelectedProductId,
+    ]
   );
 
   return (

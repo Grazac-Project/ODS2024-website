@@ -33,6 +33,7 @@ export interface SpeakerProps {
 }
 
 export interface ProductProps {
+  id?: string;
   image?: string;
   ratingImageURL?: string;
   name?: string;

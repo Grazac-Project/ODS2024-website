@@ -1,8 +1,13 @@
+"use client";
+
 import React from "react";
 import { ProductProps } from "@/types";
 import Image from "next/image";
+import { useStateCtx } from "@/context/StateCtx";
+import ProductDetailsMOdal from "../miscellaneous/ProductDetailsMOdal";
 
 const ShopCard = ({
+  id,
   image,
   rating,
   name,
@@ -12,6 +17,7 @@ const ShopCard = ({
   reviews,
 }: ProductProps) => {
   const hasReviews = reviews!.length > 0;
+  const { setShowProductModal, setSelectedProductId } = useStateCtx();
   return (
     <>
       <div className="flex flex-col max-w-[305px] min-h-[390px] max-h-[400px] rounded-2xl bg-white border-solid border border-[color:var(--Foundation-stroke-stroke-300,#EBEBEB)]">
@@ -47,7 +53,13 @@ const ShopCard = ({
             </div>
             <span className="text-xs line-through">{originalPrice}</span>
           </div>
-          <button className="justify-center items-center px-16 py-3.5 mt-3 text-lg leading-5 text-green-600 whitespace-nowrap bg-white rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)]">
+          <button
+            onClick={() => {
+              setSelectedProductId(id!);
+              setShowProductModal(true);
+            }}
+            className="justify-center items-center px-16 py-3.5 mt-3 text-lg leading-5 text-green-600 whitespace-nowrap bg-white rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)]"
+          >
             View Product
           </button>
         </div>
