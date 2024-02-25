@@ -17,19 +17,21 @@ const page = () => {
     <section
       ref={ShopRef}
       className={cn(
-        " min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 sm:p-7 w-full h-full sm:border border-gray-200 dark:border-primary-light",
+        " min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 sm:p-7 w-full h-full sm:border px-4 sm:px-8 xl:px-10 2xl:px-20 border-gray-200 dark:border-primary-light",
         isInView
           ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
           : " opacity-0 translate-y-36"
       )}
     >
-      <div className="flex items-center justify-center place-items-center">
+      <div className="flex items-center justify-center place-items-center mb-6 mt-8">
         <div className="flex items-center justify-between w-full">
-          <h2 className="text-[40px] font-montserrat font-medium">HOT Deals</h2>
+          <h2 className="md:text-[40px] font-montserrat font-medium text-[30px]">
+            HOT Deals
+          </h2>
           <div>
             <figure className="flex flex-col text-xs leading-5 whitespace-nowrap">
-              <div className="bg-[#E6F6EE] rounded-full p-4">
-                <ShoppingCart size="32" color="#00A651" variant="Bold" />
+              <div className="bg-[#E6F6EE] rounded-full p-2 md:p-4 text-[20px] md:text-[32px]">
+                <ShoppingCart color="#00A651" variant="Bold" />
               </div>
               <figcaption className="self-center">Cart</figcaption>
             </figure>

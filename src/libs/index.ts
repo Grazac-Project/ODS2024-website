@@ -472,7 +472,7 @@ export const products: ProductProps[] = [
     originalPrice: "35,000",
   },
   {
-    image: "/shop/shirt1.svg",
+    image: "/shop/shirt5.svg",
     name: "ODS 2024 T-Shirt",
     rating: "3.9",
     reviewsCount: "4",
@@ -500,6 +500,15 @@ export const products: ProductProps[] = [
   },
   {
     image: "/shop/shirt4.svg",
+    name: "ODS 2024 T-Shirt",
+    rating: "3.9",
+    reviewsCount: "4",
+    discount: "20",
+    price: "25,000",
+    originalPrice: "35,000",
+  },
+  {
+    image: "/shop/shirt5.svg",
     name: "ODS 2024 T-Shirt",
     rating: "3.9",
     reviewsCount: "4",
