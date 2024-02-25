@@ -11,7 +11,6 @@ const ShopCard = ({
   originalPrice,
   reviews,
 }: ProductProps) => {
-  const totalReviews = reviews!.length;
   const hasReviews = reviews!.length > 0;
   return (
     <>
