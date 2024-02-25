@@ -31,3 +31,16 @@ export interface SpeakerProps {
     url: string;
   }[];
 }
+
+export interface ProductProps {
+  imageURL?: string;
+  imageDescription?: string;
+  ratingImageURL?: string;
+  title?: string;
+  rating?: string;
+  starImageURL?: string;
+  reviewsCount?: string;
+  discount?: string;
+  price?: string;
+  originalPrice?: string;
+}
