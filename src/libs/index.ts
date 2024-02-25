@@ -1,9 +1,14 @@
-import { FooterLinkProps, NavbarLinkProps, HighlightsProps } from "@/types";
+import {
+  FooterLinkProps,
+  NavbarLinkProps,
+  HighlightsProps,
+  ProductProps,
+} from "@/types";
 
 export const NAV_LINKS: NavbarLinkProps[] = [
   { id: 1, link: "/gallery", label: "gallery" },
   { id: 2, link: "/highlight", label: "highlights" },
-  { id: 3, link:  "/blog", label: "Blog" },
+  { id: 3, link: "/blog", label: "Blog" },
 ];
 
 export const FOOTER_LINKS: FooterLinkProps = {
@@ -435,5 +440,71 @@ export const details = [
     img: "/highlights/img1.svg",
     description:
       "In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy. In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy. In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy. In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy. In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy.",
+  },
+];
+
+export const products: ProductProps[] = [
+  {
+    image: "/shop/bag.svg",
+    name: "ODS 2024 Bag ",
+    rating: "3.9",
+    reviewsCount: "546",
+    discount: "20",
+    price: "10,000",
+    originalPrice: "14,000",
+  },
+  {
+    image: "/shop/bag2.svg",
+    name: "ODS 2024 Bag",
+    rating: "3.9",
+    reviewsCount: "4",
+    discount: "20",
+    price: "100,000",
+    originalPrice: "14,000",
+  },
+  {
+    image: "/shop/shirt.svg",
+    name: "ODS 2024 T-Shirt",
+    rating: "3.9",
+    reviewsCount: "4",
+    discount: "20",
+    price: "25,000",
+    originalPrice: "35,000",
+  },
+  {
+    image: "/shop/shirt1.svg",
+    name: "ODS 2024 T-Shirt",
+    rating: "3.9",
+    reviewsCount: "4",
+    discount: "20",
+    price: "25,000",
+    originalPrice: "35,000",
+  },
+  {
+    image: "/shop/shirt2.svg",
+    name: "ODS 2024 T-Shirt",
+    rating: "3.9",
+    reviewsCount: "4",
+    discount: "20",
+    price: "25,000",
+    originalPrice: "35,000",
+  },
+  {
+    image: "/shop/shirt3.svg",
+    name: "ODS 2024 T-Shirt",
+    rating: "3.9",
+    reviewsCount: "4",
+    discount: "20",
+    price: "25,000",
+    originalPrice: "35,000",
+  },
+  {
+    image: "/shop/shirt4.svg",
+    name: "ODS 2024 T-Shirt",
+    rating: "3.9",
+    reviewsCount: "4",
+    discount: "20",
+    price: "25,000",
+    originalPrice: "35,000",
   },
 ];

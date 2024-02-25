@@ -1,13 +1,11 @@
 import React from "react";
 import { ProductProps } from "@/types";
 import Image from "next/image";
-import { Star1 } from "iconsax-react";
 
 const ShopCard = ({
-  imageURL,
-  imageDescription,
+  image,
   rating,
-  title,
+  name,
   price,
   reviewsCount,
   discount,
@@ -18,16 +16,16 @@ const ShopCard = ({
       <div className="flex flex-col max-w-[305px] min-h-[390px] max-h-[400px] rounded-2xl bg-white">
         <Image
           loading="lazy"
-          src={imageURL!}
-          alt={imageDescription!}
+          src={image!}
+          alt="ods shop"
           width={305}
           height={215}
-          className="w-full border-t rounded-t-2xl max-w-[305px] max-h-[215px] border-r border-l border-solid aspect-[1.39] "
+          className="w-full border-t rounded-t-2xl max-w-[305px] max-h-[215px] object-cover aspect-[1.39] "
         />
         <div className="flex flex-col px-4 py-3 w-full shadow-sm min-h-[171px] gap-2">
           <div className="flex gap-2 justify-between">
             <div className="flex flex-col flex-1">
-              <h3 className="text-base font-semibold">{title}</h3>
+              <h3 className="text-base font-semibold">{name}</h3>
               <div className="flex items-center text-xs gap-1 max-w-[137px]">
                 <p className="">{rating}</p>
 

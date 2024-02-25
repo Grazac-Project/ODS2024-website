@@ -33,12 +33,10 @@ export interface SpeakerProps {
 }
 
 export interface ProductProps {
-  imageURL?: string;
-  imageDescription?: string;
+  image?: string;
   ratingImageURL?: string;
-  title?: string;
+  name?: string;
   rating?: string;
-  starImageURL?: string;
   reviewsCount?: string;
   discount?: string;
   price?: string;
