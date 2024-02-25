@@ -7,16 +7,32 @@ import { usePathname } from "next/navigation";
 interface StateContextProps {
   showMobileMenu: boolean;
   setShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  ShowProductModal: boolean;
+  setShowProductModal: React.Dispatch<React.SetStateAction<boolean>>;
+  ShowCartModal: boolean;
+  setShowCartModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const StateContext = createContext({} as StateContextProps);
 
 const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
+  const [ShowProductModal, setShowProductModal] = React.useState(false);
+
+  const [ShowCartModal, setShowCartModal] = React.useState(false);
+
   const pathname = usePathname();
 
+  // Modals State
+  const anyModalOpen = ShowProductModal || ShowCartModal;
+  const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator?.userAgent
+    );
+  };
+
   useEffect(() => {
-    if (showMobileMenu) {
+    if (showMobileMenu || anyModalOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -24,7 +40,9 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setShowMobileMenu(false);
+        setShowMobileMenu(false),
+          setShowProductModal(false),
+          setShowCartModal(false);
       }
     };
 
@@ -33,7 +51,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [showMobileMenu]);
+  }, [showMobileMenu, anyModalOpen]);
 
   useEffect(() => {
     if (pathname === "/") return;
@@ -60,8 +78,15 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   }, [pathname]);
 
   const value = useMemo(
-    () => ({ showMobileMenu, setShowMobileMenu }),
-    [showMobileMenu, setShowMobileMenu]
+    () => ({
+      showMobileMenu,
+      setShowMobileMenu,
+      ShowProductModal,
+      setShowProductModal,
+      ShowCartModal,
+      setShowCartModal,
+    }),
+    [showMobileMenu, setShowMobileMenu, ShowProductModal, ShowCartModal]
   );
 
   return (
