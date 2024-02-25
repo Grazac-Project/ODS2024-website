@@ -6,6 +6,7 @@ import { products } from "@/libs";
 import { ShoppingCart } from "iconsax-react";
 import useInView from "@/hooks/useInView";
 import { cn } from "@/utils/twcx";
+import CardSkelton from "@/components/cardskelyon.tsx"
 import ProductDetailsMOdal from "@/components/miscellaneous/ProductDetailsMOdal";
 
 const Shop = () => {
@@ -50,7 +51,7 @@ const Shop = () => {
           )}
         >
           {products.map((product, index) => (
-            <Suspense>
+        <Suspense key={product.id} fallback={<CardSkelton />}>        
               <ShopCard {...product} />
             </Suspense>
           ))}
