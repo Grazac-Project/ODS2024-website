@@ -64,7 +64,7 @@ const ProductDetailsMOdal = () => {
                 <Image
                   src={product?.image!}
                   alt="product"
-                  className="max-w-[247px] aspect-[1.2]"
+                  className="max-w-[247px] aspect-[1.2] border border-[color:var(--Foundation-stroke-stroke-300,#EBEBEB)] rounded-2xl object-cover"
                   height={207}
                   width={247}
                 />
