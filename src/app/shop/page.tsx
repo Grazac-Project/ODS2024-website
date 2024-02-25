@@ -8,7 +8,7 @@ import useInView from "@/hooks/useInView";
 import { cn } from "@/utils/twcx";
 import ProductDetailsMOdal from "@/components/miscellaneous/ProductDetailsMOdal";
 
-const page = () => {
+const Shop = () => {
   const ShopRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(ShopRef);
   const ProductRef = React.useRef<HTMLDivElement>(null);
@@ -61,4 +61,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Shop;
