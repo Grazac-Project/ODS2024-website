@@ -47,6 +47,14 @@ const config: Config = {
         "4xl": "1850px",
       },
       keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
         pulsing: {
           "50%": {
             opacity: "0.2",
@@ -124,25 +132,6 @@ const config: Config = {
   future: {
     hoverOnlyWhenSupported: true,
   },
-  plugins: [
-    // require("tailwindcss/container-queries"),
-    // require("tailwindcss/typography"),
-    // @ts-ignore
-    plugin(({ matchUtilities, theme }) => {
-      matchUtilities(
-        {
-          // @ts-ignore
-          "animation-delay": (value) => {
-            return {
-              "animation-delay": value,
-            };
-          },
-        },
-        {
-          values: theme("transitionDelay"),
-        }
-      );
-    }),
-  ],
+  plugins: [require("tailwindcss-animate")],
 };
 export default config;
