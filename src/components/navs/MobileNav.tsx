@@ -53,7 +53,7 @@ const MobileNav = () => {
   return (
     <nav
       className={cn(
-        "menu lg:hidden bg-white min-h-[100dvh] absolute top-0 left-0 right-0 transition-all opacity-0 z-[999]",
+        "menu lg:hidden bg-white min-h-[100dvh] absolute top-0 left-0 transition-all opacity-0 z-[999]",
         showMobileMenu
           ? "translate-x-0 duration-1000 opacity-100"
           : "translate-x-full duration-300"
