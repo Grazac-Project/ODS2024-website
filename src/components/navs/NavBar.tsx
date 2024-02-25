@@ -184,9 +184,7 @@ const Navbar = () => {
       >
         <FaBars className="text-header" />
       </div>
-      <Suspense fallback={<SkeletonNavbar />}>
-        <MobileNav />
-      </Suspense>
+      <MobileNav />
     </nav>
   );
 };
