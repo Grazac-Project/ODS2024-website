@@ -5,15 +5,6 @@ import { cn } from "@/utils/twcx";
 import { useStateCtx } from "@/context/StateCtx";
 import Image from "next/image";
 import { products } from "@/libs";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/select";
 import { CloseSquare } from "iconsax-react";
 
 const ProductDetailsMOdal = () => {
@@ -101,10 +92,6 @@ const ProductDetailsMOdal = () => {
                   </div>
                 </>
               )}
-              {/* <ProductSize
-                size="M-size"
-                iconsrc="https://cdn.builder.io/api/v1/image/assets/TEMP/7100ea7840c08766578d24a3e74d6b66b836a23539897c1a270cb984411e07e1?apiKey=252f8d5a726747838fcb04939a832fc3&"
-              /> */}
             </div>
           </div>
         </div>

@@ -14,7 +14,7 @@ import { useState } from "react";
 import { Addproduct } from "@/actions/addProduct";
 import { Add } from "iconsax-react";
 import { X } from "lucide-react";
-import { Product } from "@prisma/client";
+import { useTransition } from "react";
 
 const productInput = {
   name: "",
@@ -24,6 +24,14 @@ const productInput = {
   discount: 0,
   rating: 0,
 };
+
+interface Product {
+  name: string;
+  description: string;
+  discount: number;
+  image: string;
+  price: number;
+}
 
 interface UploadedAssetData {
   public_id: string;
@@ -45,18 +53,45 @@ export type UploadResult = {
 };
 
 const AddProductForm = () => {
-  const [formData, setFormData] = useState(productInput);
+  const [formData, setFormData] = useState<Product>({
+    name: "",
+    description: "",
+    image: "",
+    price: 0,
+    discount: 0,
+  });
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [result, setResult] = useState<UploadedAssetData | null>(null);
+  const [isLoading, startTransition] = useTransition();
 
   console.log(result);
+
+  const onSubmit = () => {
+    setError("");
+    setSuccess("");
+
+    startTransition(() => {
+      const formData = new FormData();
+      // formData.append("name", formData.name);
+      // formData.append("description", formData.description);
+      // formData.append("image", formData.image);
+      // formData.append("price", formData.price.toString());
+      // formData.append("discount", formData.discount.toString());
+
+      Addproduct(formData).then((data) => {
+        setSuccess(data?.success);
+        setError(data?.error);
+      });
+    });
+  };
 
   return (
     <>
       <form
         action=""
+        onSubmit={onSubmit}
         className="flex w-full flex-col md:flex-row gap-4 gap-y-8 md:gap-8  py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start"
       >
         <div
@@ -196,23 +231,7 @@ const AddProductForm = () => {
               }
             />
           </div>
-          <div className="flex flex-col  gap-y-2 w-full">
-            <Label htmlFor="Product Rating" className="font-medium">
-              Product Rating
-            </Label>
-            <Input
-              type="number"
-              name="rating"
-              value={formData.rating}
-              className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  [e.target.name]: e.target.value,
-                })
-              }
-            />
-          </div>
+
           <Formbtn />
         </div>
       </form>
@@ -221,3 +240,10 @@ const AddProductForm = () => {
 };
 
 export default AddProductForm;
+function setSuccess(success: any) {
+  throw new Error("Function not implemented.");
+}
+
+function setError(error: any) {
+  throw new Error("Function not implemented.");
+}

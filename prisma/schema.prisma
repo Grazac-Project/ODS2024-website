@@ -15,11 +15,10 @@ type ProductReviews {
 model Product {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   description String
-  discount    String
+  discount    Int
   image       String
   name        String
   price       Int
-  rating      String?
   sizes       String[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
