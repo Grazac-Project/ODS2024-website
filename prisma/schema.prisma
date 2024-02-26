@@ -13,17 +13,16 @@ type ProductReviews {
 }
 
 model Product {
-  id          String           @id @default(auto()) @map("_id") @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   description String
   discount    String
   image       String
   name        String
   price       Int
-  rating      String
-  reviews     ProductReviews[]
+  rating      String?
   sizes       String[]
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@map("products")
 }

@@ -6,8 +6,7 @@ import { products } from "@/libs";
 import { ShoppingCart } from "iconsax-react";
 import useInView from "@/hooks/useInView";
 import { cn } from "@/utils/twcx";
-import CardSkelton from "@/components/cardskelton"
-import ProductDetailsMOdal from "@/components/miscellaneous/ProductDetailsMOdal";
+import CardSkelton from "@/components/cardskelton";
 
 const Shop = () => {
   const ShopRef = React.useRef<HTMLDivElement>(null);
@@ -51,13 +50,12 @@ const Shop = () => {
           )}
         >
           {products.map((product, index) => (
-        <Suspense key={product.id} fallback={<CardSkelton />}>        
+            <Suspense key={product.id} fallback={<CardSkelton />}>
               <ShopCard {...product} />
             </Suspense>
           ))}
         </div>
       </section>
-      <ProductDetailsMOdal />
     </>
   );
 };
