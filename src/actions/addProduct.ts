@@ -52,3 +52,29 @@ export const Products = async () => {
     };
   }
 };
+
+export const getProductById = async (productId: string) => {
+  try {
+    const product = await prisma.product.findUnique({
+      where: { id: productId },
+    });
+
+    if (!product) {
+      return {
+        error: "Product not found",
+        status: 404,
+      };
+    }
+
+    return {
+      product,
+      success: "Product retrieved successfully",
+      status: 200,
+    };
+  } catch (error) {
+    return {
+      error: "Internal server error",
+      status: 500,
+    };
+  }
+};

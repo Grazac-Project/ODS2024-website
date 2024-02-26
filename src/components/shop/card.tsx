@@ -4,7 +4,6 @@ import React from "react";
 import { Product } from "@prisma/client";
 import Image from "next/image";
 import { useStateCtx } from "@/context/StateCtx";
-import { formatPrice } from "@/utils";
 
 const ShopCard = ({
   id,
