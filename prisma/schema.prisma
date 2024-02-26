@@ -8,31 +8,9 @@ datasource db {
 }
 
 type ProductReviews {
-  author  String
-  content String
+  author  String?
+  content String?
 }
-
-// model CartItem {
-//   id        String  @id @default(auto()) @map("_id") @db.ObjectId
-//   productId String  @db.ObjectId
-//   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-//   quantity  Int
-//   cartId    String  @db.ObjectId
-//   cart      Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
-
-//   @@map("cartitems")
-// }
-
-// model Cart {
-//   id        String     @id @default(auto()) @map("_id") @db.ObjectId
-//   items     CartItem[]
-//   userId    String?    @db.ObjectId
-//   user      User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
-//   createdAt DateTime   @default(now())
-//   updatedAt DateTime   @updatedAt
-
-//   @@map("carts")
-// }
 
 model Product {
   id          String           @id @default(auto()) @map("_id") @db.ObjectId
@@ -46,7 +24,6 @@ model Product {
   sizes       String[]
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
-  // CartItem    CartItem[]
 
   @@map("products")
 }
