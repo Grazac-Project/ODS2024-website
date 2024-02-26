@@ -8,22 +8,13 @@ import Formbtn from "./formbtn";
 import { Label } from "../ui/label";
 import Image from "next/image";
 import { CldUploadButton } from "next-cloudinary";
-import useInView from "@/hooks/useInView";
-import { prisma } from "@/utils/db/prisma";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useState } from "react";
 import { Addproduct } from "@/actions/addProduct";
-import { Add } from "iconsax-react";
-import { X } from "lucide-react";
 import { useTransition } from "react";
-
-const productInput = {
-  name: "",
-  description: "",
-  image: "",
-  price: 0,
-  discount: 0,
-  rating: 0,
-};
+import { X, CheckCircle } from "lucide-react";
+import { BsExclamationTriangle } from "react-icons/bs";
+import { Button } from "../ui/button";
 
 interface Product {
   name: string;
@@ -53,7 +44,7 @@ export type UploadResult = {
 };
 
 const AddProductForm = () => {
-  const [formData, setFormData] = useState<Product>({
+  const [formData, setformData] = useState<Product>({
     name: "",
     description: "",
     image: "",
@@ -65,24 +56,38 @@ const AddProductForm = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [result, setResult] = useState<UploadedAssetData | null>(null);
   const [isLoading, startTransition] = useTransition();
+  console.log(success);
+  console.log(error);
 
   console.log(result);
 
-  const onSubmit = () => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setError("");
     setSuccess("");
 
     startTransition(() => {
-      const formData = new FormData();
-      // formData.append("name", formData.name);
-      // formData.append("description", formData.description);
-      // formData.append("image", formData.image);
-      // formData.append("price", formData.price.toString());
-      // formData.append("discount", formData.discount.toString());
+      const form1Data = new FormData();
+      form1Data.append("name", formData.name);
+      form1Data.append("description", formData.description);
+      form1Data.append("image", formData.image);
+      form1Data.append("price", formData.price.toString());
+      form1Data.append("discount", formData.discount.toString());
 
-      Addproduct(formData).then((data) => {
+      console.log(form1Data);
+
+      Addproduct(form1Data).then((data) => {
         setSuccess(data?.success);
         setError(data?.error);
+        if (data?.success) {
+          setformData({
+            name: "",
+            description: "",
+            image: "",
+            price: 0,
+            discount: 0,
+          });
+        }
       });
     });
   };
@@ -96,7 +101,7 @@ const AddProductForm = () => {
       >
         <div
           ref={scrollRef}
-          className="flex w-[300px] h-[300px] max-md:w-full max-md:justify-center "
+          className="flex flex-col w-[300px] gap-5 max-md:w-full max-md:justify-center "
         >
           {formData.image ? (
             <div className="flex flex-col gap-y-2 h-full w-full relative overflow-hidden rounded-lg">
@@ -116,7 +121,7 @@ const AddProductForm = () => {
                 type="button"
                 tabIndex={0}
                 aria-label="Remove image"
-                onClick={() => setFormData({ ...formData, image: "" })}
+                onClick={() => setformData({ ...formData, image: "" })}
                 className="text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full bg-white/60 backdrop-blur-sm absolute top-1 right-1 w-8 h-8 flex items-center justify-center hover:text-red-500 hover:bg-white/80 hover:brightness-150 transition-all duration-700 hover:duration-200"
                 title="Remove image"
               >
@@ -135,7 +140,7 @@ const AddProductForm = () => {
               <CldUploadButton
                 onSuccess={(result) => {
                   setResult(result?.info as UploadedAssetData);
-                  setFormData({
+                  setformData({
                     ...formData,
                     // @ts-ignore
                     image: result?.info?.url,
@@ -144,6 +149,21 @@ const AddProductForm = () => {
                 uploadPreset="phoenix"
               />
             </div>
+          )}
+
+          {success && (
+            <Alert>
+              <CheckCircle className="h-4 w-4" />
+              <AlertTitle>Success</AlertTitle>
+              <AlertDescription>{success}</AlertDescription>
+            </Alert>
+          )}
+          {error && (
+            <Alert>
+              <BsExclamationTriangle className="h-4 w-4" />
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
           )}
         </div>
         <div className="flex w-full flex-col gap-y-4 sm:gap-y-6 pt-8 md:pt-0">
@@ -157,7 +177,7 @@ const AddProductForm = () => {
               value={formData.name}
               className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
               onChange={(e) =>
-                setFormData({
+                setformData({
                   ...formData,
                   [e.target.name]: e.target.value,
                 })
@@ -172,7 +192,7 @@ const AddProductForm = () => {
               name="description"
               value={formData.description}
               onChange={(e) =>
-                setFormData({
+                setformData({
                   ...formData,
                   [e.target.name]: e.target.value,
                 })
@@ -190,7 +210,7 @@ const AddProductForm = () => {
               disabled
               className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
               onChange={(e) =>
-                setFormData({
+                setformData({
                   ...formData,
                   [e.target.name]: e.target.value,
                 })
@@ -207,7 +227,7 @@ const AddProductForm = () => {
               value={formData.price}
               className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
               onChange={(e) =>
-                setFormData({
+                setformData({
                   ...formData,
                   [e.target.name]: e.target.value,
                 })
@@ -224,7 +244,7 @@ const AddProductForm = () => {
               value={formData.discount}
               className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
               onChange={(e) =>
-                setFormData({
+                setformData({
                   ...formData,
                   [e.target.name]: e.target.value,
                 })
@@ -232,7 +252,12 @@ const AddProductForm = () => {
             />
           </div>
 
-          <Formbtn />
+          <Button
+            className="justify-center items-center px-16 py-3.5 mt-3 text-lg leading-5 text-green-600 whitespace-nowrap bg-white rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)]"
+            type="submit"
+          >
+            {isLoading ? "Adding..." : "Add Product"}
+          </Button>
         </div>
       </form>
     </>
@@ -240,10 +265,3 @@ const AddProductForm = () => {
 };
 
 export default AddProductForm;
-function setSuccess(success: any) {
-  throw new Error("Function not implemented.");
-}
-
-function setError(error: any) {
-  throw new Error("Function not implemented.");
-}
