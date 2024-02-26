@@ -1,18 +1,41 @@
 "use client";
 
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import ShopCard from "@/components/shop/card";
-import { products } from "@/libs";
 import { ShoppingCart } from "iconsax-react";
 import useInView from "@/hooks/useInView";
 import { cn } from "@/utils/twcx";
 import CardSkelton from "@/components/cardskelton";
+import { Products } from "@/actions/addProduct";
+import { Product } from "@prisma/client";
 
 const Shop = () => {
   const ShopRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(ShopRef);
   const ProductRef = React.useRef<HTMLDivElement>(null);
   const isInView1 = useInView(ProductRef);
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [success, setSuccess] = useState("");
+  const [status, setStatus] = useState(0);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const result = await Products();
+
+      if (result.status === 200) {
+        setProducts(result.products!);
+        setSuccess(result.success);
+        setStatus(result.status);
+      } else {
+        setSuccess(result.success);
+        setStatus(result.status);
+      }
+    };
+
+    fetchProducts();
+  }, [products]);
+  console.log(products);
 
   return (
     <>

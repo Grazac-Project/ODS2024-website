@@ -33,3 +33,22 @@ export const Addproduct = async (formdata: FormData) => {
     status: 200,
   };
 };
+
+export const Products = async () => {
+  try {
+    const products = await prisma.product.findMany({
+      orderBy: { id: "desc" },
+    });
+
+    return {
+      products,
+      success: "Products Retrieved Successfully",
+      status: 200,
+    };
+  } catch (error) {
+    return {
+      success: "Error retrieving products",
+      status: 500,
+    };
+  }
+};

@@ -3,6 +3,7 @@
 import React from "react";
 import { Button } from "../ui/button";
 import { useFormStatus } from "react-dom";
+import { Product } from "@prisma/client";
 
 const Formbtn = () => {
   const { pending } = useFormStatus();
