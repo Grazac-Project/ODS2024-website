@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useTransition } from "react";
 import { cn } from "@/utils/twcx";
 import { useStateCtx } from "@/context/StateCtx";
 import Image from "next/image";
@@ -8,6 +8,7 @@ import { CloseSquare } from "iconsax-react";
 import { getProductById } from "@/actions/addProduct";
 import { Product } from "@prisma/client";
 import LoadingSpinner from "../loader";
+import { incrementProductQuantity } from "@/actions/cart";
 
 const ProductDetailsMOdal = () => {
   const { ShowProductModal, setShowProductModal, SelectedProductId } =
@@ -15,6 +16,8 @@ const ProductDetailsMOdal = () => {
 
   const [product, setProduct] = useState<Product | undefined>();
   const [loading, setLoading] = useState(false);
+  const [success, setsuccess] = useState(false);
+  const [isLoading, startTransition] = useTransition();
 
   const discountedAmount = product?.price! * (product?.discount! / 100);
   const discountedPrice = (product?.price! - discountedAmount).toFixed(2);
@@ -153,9 +156,26 @@ const ProductDetailsMOdal = () => {
               </div>
             </>
             <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
-            <button className="justify-center items-center px-16 py-4 mt-3 w-[80%] text-lg leading-5 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2">
-              Add to Cart
-            </button>
+            <>
+              <button
+                disabled={isLoading}
+                className="justify-center items-center px-16 py-4 mt-3 w-[80%] text-lg leading-5 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
+                onClick={() => {
+                  setsuccess(false);
+                  startTransition(async () => {
+                    await incrementProductQuantity(SelectedProductId);
+                    setsuccess(true);
+                  });
+                }}
+              >
+                {isLoading
+                  ? "Adding..."
+                  : success
+                  ? "Added to Cart"
+                  : "Add to Cart"}
+              </button>
+              {isLoading && <LoadingSpinner />}
+            </>
           </>
         )}
       </div>
