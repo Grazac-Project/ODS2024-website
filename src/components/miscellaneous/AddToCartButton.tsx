@@ -18,7 +18,7 @@ const AddToCartButton = ({ productId }: AddToCartButtonProps) => {
     <>
       <button
         disabled={isPending}
-        className="justify-center items-center px-16 py-4 mt-3 w-[80%] text-lg leading-5 disabled:bg-white/60 disabled:text-green-700 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
+        className="justify-center items-center px-16 py-4 mt-3 w-[80%] disabled:cursor-not-allowed text-lg leading-5 disabled:bg-white/60 disabled:text-green-700 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
         onClick={async () => {
           startTransition(() => {
             setSuccess(false);
@@ -26,7 +26,7 @@ const AddToCartButton = ({ productId }: AddToCartButtonProps) => {
               setSuccess(!!data?.success);
               if (data?.success) {
                 setTimeout(() => {
-                  setShowProductModal(false);
+                  // setShowProductModal(false);
                 }, 3000);
               }
             });
