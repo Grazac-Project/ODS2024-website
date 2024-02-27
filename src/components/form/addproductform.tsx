@@ -15,6 +15,9 @@ import { useTransition } from "react";
 import { X, CheckCircle } from "lucide-react";
 import { BsExclamationTriangle } from "react-icons/bs";
 import { Button } from "../ui/button";
+// import {car} from "prisma/prisma-client" 
+
+
 
 interface Product {
   name: string;

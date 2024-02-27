@@ -3,6 +3,7 @@
 import React from "react";
 import { useStateCtx } from "@/context/StateCtx";
 import { ShoppingCart } from "iconsax-react";
+import { Product, Cart, CartItem } from "@prisma/client";
 
 const CartButton = () => {
   const { setShowCartModal } = useStateCtx();
