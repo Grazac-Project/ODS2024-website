@@ -23,7 +23,7 @@ export const Addproduct = async (formdata: FormData) => {
     image: image,
     price,
     discount,
-    sizes,
+    // sizes,
   };
 
   console.log(productInput);
