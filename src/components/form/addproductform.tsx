@@ -15,9 +15,7 @@ import { useTransition } from "react";
 import { X, CheckCircle } from "lucide-react";
 import { BsExclamationTriangle } from "react-icons/bs";
 import { Button } from "../ui/button";
-// import {car} from "prisma/prisma-client" 
-
-
+// import {car} from "prisma/prisma-client"
 
 interface Product {
   name: string;
@@ -25,7 +23,7 @@ interface Product {
   discount: number;
   image: string;
   price: number;
-  sizes: string[];
+  // sizes: string[];
 }
 
 interface UploadedAssetData {
@@ -54,7 +52,6 @@ const AddProductForm = () => {
     image: "",
     price: 0,
     discount: 0,
-    sizes: [],
   });
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
@@ -79,12 +76,6 @@ const AddProductForm = () => {
       form1Data.append("price", formData.price.toString());
       form1Data.append("discount", formData.discount.toString());
 
-      if (formData.sizes && formData.sizes.length > 0) {
-        formData.sizes.forEach((size, index) => {
-          form1Data.append(`sizes[${index}]`, size);
-        });
-      }
-
       console.log(form1Data);
 
       Addproduct(form1Data).then((data) => {
@@ -97,7 +88,7 @@ const AddProductForm = () => {
             image: "",
             price: 0,
             discount: 0,
-            sizes: [],
+            // sizes: [],
           });
         }
       });
@@ -229,7 +220,7 @@ const AddProductForm = () => {
               }
             />
           </div>
-          <div className="flex flex-col gap-y-2 w-full">
+          {/* <div className="flex flex-col gap-y-2 w-full">
             <Label htmlFor="Product Sizes" className="font-medium">
               Product Sizes (this feild is optional)
             </Label>
@@ -246,7 +237,7 @@ const AddProductForm = () => {
                 })
               }
             />
-          </div>
+          </div> */}
           <div className="flex flex-col  gap-y-2 w-full">
             <Label htmlFor="Product Price" className="font-medium">
               Product Price
