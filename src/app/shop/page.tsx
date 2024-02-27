@@ -53,14 +53,6 @@ const Shop = () => {
             <h2 className="md:text-[40px] font-montserrat font-medium text-[30px]">
               HOT Deals
             </h2>
-            <div>
-              <figure className="flex flex-col text-xs leading-5 whitespace-nowrap">
-                <div className="bg-[#E6F6EE] rounded-full p-2 md:p-4 text-[20px] md:text-[32px]">
-                  <ShoppingCart color="#00A651" variant="Bold" />
-                </div>
-                <figcaption className="self-center">Cart</figcaption>
-              </figure>
-            </div>
           </div>
         </div>
         <div

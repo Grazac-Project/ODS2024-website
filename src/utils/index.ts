@@ -1,25 +1,20 @@
-export function formatPrice(price: number) {
-  return (price / 100).toLocaleString("en-US", {
-    style: "currency",
-    currency: "NGN",
-  });
-}
+/**
+ * Returns an Encrypted a string .
+ * @function encryptString - Encodes or encrypts a string using a base64 Buffer
+ * @returns A encoded string .
+ */
+export const encryptString = (str: string): string => {
+  const buffer = Buffer.from(str);
+  return buffer.toString("base64");
+};
 
+/**
+ * Decodes and Returns a string .
+ * @function decryptString - Decodes or decrypts an encrypted string Buffer
+ * @returns A decoded string .
+ */
 
-
-export function calculateDiscountedPrice(
-  originalPrice: number,
-  discountPercentage: number
-): number | { error: string } {
-  if (originalPrice < 0 || discountPercentage < 0 || discountPercentage > 100) {
-    return {
-      error:
-        "Invalid input values. Please provide non-negative values and a discount percentage between 0 and 100.",
-    };
-  }
-
-  const discountAmount = (discountPercentage / 100) * originalPrice;
-  const discountedPrice = originalPrice - discountAmount;
-
-  return discountedPrice;
-}
+export const decryptString = (str: string): string => {
+  const buffer = Buffer.from(str, "base64");
+  return buffer.toString();
+};
