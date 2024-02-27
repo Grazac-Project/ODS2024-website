@@ -110,7 +110,7 @@ const ProductDetailsMOdal = () => {
                   </div>
                 </div>
                 <div className="flex flex-col ml-5 w-[200px]">
-                  {product?.sizes && product.sizes.length > 0 && (
+                  {/* {product?.sizes && product.sizes.length > 0 && (
                     <>
                       <h2 className="mt-2 text-base font-semibold leading-6 text-zinc-800">
                         Sizes
@@ -130,7 +130,7 @@ const ProductDetailsMOdal = () => {
                         ))}
                       </div>
                     </>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>
