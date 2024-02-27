@@ -9,6 +9,7 @@ import { getProductById } from "@/actions/addProduct";
 import { Product } from "@prisma/client";
 import LoadingSpinner from "../loader";
 import { incrementProductQuantity } from "@/actions/cart";
+import AddToCartButton from "./AddToCartButton";
 
 const ProductDetailsMOdal = () => {
   const { ShowProductModal, setShowProductModal, SelectedProductId } =
@@ -40,6 +41,11 @@ const ProductDetailsMOdal = () => {
       fetchProduct();
     }
   }, [SelectedProductId, ShowProductModal]);
+
+  const trimmedName =
+    product?.name &&
+    product?.name.split(" ").slice(0, 3).join(" ") +
+      (product?.name.split(" ").length > 3 ? "..." : "");
 
   const closeModal = () => {
     setShowProductModal(false);
@@ -142,7 +148,7 @@ const ProductDetailsMOdal = () => {
               <div className="flex flex-col max-h-[160px] gap-3 justify-between px-5 mt-3 w-full text-base leading-6 text-zinc-800">
                 <div className="flex items-center justify-between">
                   <div className="flex-auto font-semibold">Product Name:</div>
-                  <h2 className="flex-auto font-medium">{product?.name}</h2>
+                  <h2 className="flex-auto font-medium">{trimmedName}</h2>
                 </div>
                 <div className="self-stretch mt-2 w-full bg-neutral-200 min-h-[1px]" />
                 <div>
@@ -156,26 +162,10 @@ const ProductDetailsMOdal = () => {
               </div>
             </>
             <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
-            <>
-              <button
-                disabled={isLoading}
-                className="justify-center items-center px-16 py-4 mt-3 w-[80%] text-lg leading-5 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
-                onClick={() => {
-                  setsuccess(false);
-                  startTransition(async () => {
-                    await incrementProductQuantity(SelectedProductId);
-                    setsuccess(true);
-                  });
-                }}
-              >
-                {isLoading
-                  ? "Adding..."
-                  : success
-                  ? "Added to Cart"
-                  : "Add to Cart"}
-              </button>
-              {isLoading && <LoadingSpinner />}
-            </>
+            <AddToCartButton
+              productId={product.id}
+              // incrementProductQuantity={incrementProductQuantity}
+            />
           </>
         )}
       </div>

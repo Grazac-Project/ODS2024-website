@@ -19,6 +19,11 @@ const ShopCard = ({
   const discountedAmount = price * (discount / 100);
   const discountedPrice = (price - discountedAmount).toFixed(2);
 
+  const trimmedName =
+    name &&
+    name.split(" ").slice(0, 3).join(" ") +
+      (name.split(" ").length > 3 ? "..." : "");
+
   return (
     <>
       <div className="flex flex-col max-w-[305px] min-h-[390px] max-h-[400px] rounded-2xl bg-white border-solid border border-[color:var(--Foundation-stroke-stroke-300,#EBEBEB)]">
@@ -33,7 +38,7 @@ const ShopCard = ({
         <div className="flex flex-col px-4 py-3 w-full shadow-sm min-h-[171px] gap-2">
           <div className="flex gap-2 justify-between">
             <div className="flex flex-col flex-1">
-              <h3 className="text-base font-semibold">{name}</h3>
+              <h3 className="text-base font-semibold">{trimmedName}</h3>
               <div className="flex items-center text-xs gap-1 max-w-[137px]">
                 {/* <p className="">{rating}</p> */}
 
