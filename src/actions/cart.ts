@@ -36,29 +36,4 @@ export const createCart = async () => {
   };
 };
 
-// export const getCart = async () => {
-//   const cartId = cookie.get("cartId")?.value;
-
-//   if (!cartId) {
-//     return null;
-//   }
-
-//   const decryptedId = decryptString(cartId);
-
-//   const cart = await prisma.cart.findUnique({
-//     where: {
-//       id: decryptedId,
-//     },
-//     include: { items: { include: { product: true } } },
-//   });
-
-//  return {
-//     ...cart,
-//     size: cart?.items.reduce((acc, item) => acc + item.quantity, 0),
-//     subtotal: cart?.items.reduce(
-//       (acc, item) => acc + item.quantity * item.product.price,
-//       0
-//     ),
-//   };
-// }
-
+it 
