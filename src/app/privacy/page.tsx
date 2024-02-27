@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import HeroSection from "@/components/privacy/privacy";
+import Privacy from "@/components/privacy/privacy";
 
 const privacy = [
     {
