@@ -16,6 +16,9 @@ const ProductDetailsMOdal = () => {
   const [product, setProduct] = useState<Product | undefined>();
   const [loading, setLoading] = useState(false);
 
+  const discountedAmount = product?.price! * (product?.discount! / 100);
+  const discountedPrice = (product?.price! - discountedAmount).toFixed(2);
+
   useEffect(() => {
     const fetchProduct = async () => {
       setLoading(true);
@@ -35,6 +38,13 @@ const ProductDetailsMOdal = () => {
     }
   }, [SelectedProductId, ShowProductModal]);
 
+  const closeModal = () => {
+    setShowProductModal(false);
+    setProduct(undefined);
+  };
+
+  console.log(product);
+
   return (
     <>
       <div
@@ -43,7 +53,7 @@ const ProductDetailsMOdal = () => {
           " fixed min-h-screen w-full bg-black/10 backdrop-blur-sm top-0 left-0  transition-all duration-300 z-[99]",
           ShowProductModal ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
-        onClick={() => setShowProductModal(false)}
+        onClick={closeModal}
       />
 
       <div
@@ -71,7 +81,7 @@ const ProductDetailsMOdal = () => {
                 type="button"
                 tabIndex={0}
                 aria-label="Close"
-                onClick={() => setShowProductModal(false)}
+                onClick={closeModal}
                 className="dark:text-[#e80000] rounded-full"
               >
                 <CloseSquare size="32" />
@@ -94,7 +104,7 @@ const ProductDetailsMOdal = () => {
                         In stock
                       </div>
                       <p className="flex-auto text-2xl font-semibold leading-7 text-neutral-900">
-                        ₦ {product?.price}
+                        ₦ {discountedPrice}
                       </p>
                     </div>
                   </div>
@@ -106,7 +116,7 @@ const ProductDetailsMOdal = () => {
                         Sizes
                       </h2>
                       <div className="mt-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                        {product.sizes.map((size) => (
+                        {product?.sizes.map((size) => (
                           <button
                             key={size}
                             className="px-4 py-2 bg-gray-200 rounded text-center"

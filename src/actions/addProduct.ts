@@ -8,6 +8,7 @@ export const Addproduct = async (formdata: FormData) => {
   const image = formdata.get("image")?.toString();
   const price = Number(formdata.get("price") || 0);
   const discount = Number(formdata.get("discount") || 10);
+  const sizes = formdata.getAll("sizes").map((size) => size.toString());
 
   if (!name || !description || !image || !price) {
     return {
@@ -22,7 +23,10 @@ export const Addproduct = async (formdata: FormData) => {
     image: image,
     price,
     discount,
+    sizes,
   };
+
+  console.log(productInput);
 
   await prisma.product.create({
     data: productInput,

@@ -22,6 +22,7 @@ interface Product {
   discount: number;
   image: string;
   price: number;
+  sizes: string[];
 }
 
 interface UploadedAssetData {
@@ -50,6 +51,7 @@ const AddProductForm = () => {
     image: "",
     price: 0,
     discount: 0,
+    sizes: [],
   });
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
@@ -74,6 +76,12 @@ const AddProductForm = () => {
       form1Data.append("price", formData.price.toString());
       form1Data.append("discount", formData.discount.toString());
 
+      if (formData.sizes && formData.sizes.length > 0) {
+        formData.sizes.forEach((size, index) => {
+          form1Data.append(`sizes[${index}]`, size);
+        });
+      }
+
       console.log(form1Data);
 
       Addproduct(form1Data).then((data) => {
@@ -86,6 +94,7 @@ const AddProductForm = () => {
             image: "",
             price: 0,
             discount: 0,
+            sizes: [],
           });
         }
       });
@@ -213,6 +222,24 @@ const AddProductForm = () => {
                 setformData({
                   ...formData,
                   [e.target.name]: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div className="flex flex-col gap-y-2 w-full">
+            <Label htmlFor="Product Sizes" className="font-medium">
+              Product Sizes (this feild is optional)
+            </Label>
+            <Input
+              type="text"
+              name="sizes"
+              value={formData.sizes.join(", ")}
+              placeholder="use commas to seprate the sizes perfably use sizes 'S', 'M', 'L' "
+              className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+              onChange={(e) =>
+                setformData({
+                  ...formData,
+                  sizes: e.target.value.split(",").map((size) => size.trim()),
                 })
               }
             />
