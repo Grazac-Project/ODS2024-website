@@ -23,7 +23,7 @@ const Shop = () => {
     const fetchProducts = async () => {
       const result = await Products();
 
-      if (result.status === 200) {
+      if (result?.status === 200) {
         setProducts(result.products!);
         setSuccess(result.success);
         setStatus(result.status);

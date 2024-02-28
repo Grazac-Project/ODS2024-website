@@ -6,26 +6,34 @@ import { cn } from "@/utils/twcx";
 import { CloseSquare } from "iconsax-react";
 import { ShoppingCartProps, getCart } from "@/actions/cart";
 import ProductCard from "./productCard";
+import LoadingSpinner from "./Loader";
 
 const CartModal = () => {
   const { setShowCartModal, ShowCartModal } = useStateCtx();
-
+  const [isLoading, setIsLoading] = useState(false);
   const [cart, setCart] = useState<ShoppingCartProps | undefined>(undefined);
 
   console.log(cart);
 
   useEffect(() => {
     const fetchCart = async () => {
-      const cartData = await getCart();
-      if (cartData) {
-        setCart({
-          size: cartData.size ?? 0,
-          subtotal: cartData.subtotal ?? 0,
-          items: cartData.items ?? [],
-          id: cartData.id ?? "",
-          createdAt: cartData.createdAt ?? new Date(),
-          updatedAt: cartData.updatedAt ?? new Date(),
-        });
+      try {
+        setIsLoading(true);
+        const cartData = await getCart();
+        if (cartData) {
+          setCart({
+            size: cartData.size ?? 0,
+            subtotal: cartData.subtotal ?? 0,
+            items: cartData.items ?? [],
+            id: cartData.id ?? "",
+            createdAt: cartData.createdAt ?? new Date(),
+            updatedAt: cartData.updatedAt ?? new Date(),
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching cart data:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -54,7 +62,7 @@ const CartModal = () => {
             : "-translate-x-full duration-300 pointer-events-none"
         )}
       >
-        <div className="flex fixed bg-white items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
+        <div className="flex bg-white items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
           <h3 className="sm:text-lg md:text-2xl font-medium text-header">
             <span className="lg:font-bold">Cart</span>
           </h3>
@@ -68,9 +76,36 @@ const CartModal = () => {
             <CloseSquare size="32" />
           </button>
         </div>
-        {cart?.items.map((item) => (
-          <ProductCard key={item.id} cartItem={item} />
-        ))}
+        {isLoading && (
+          <div className="flex items-center justify-center h-full">
+            <LoadingSpinner />
+          </div>
+        )}
+        {cart && (
+          <>
+            <div className="flex md:flex-col h-[326px] mt-3 items-center justify-between gap-y-2 overflow-y-auto overflow-x-hidden hide-scroll">
+              {cart?.items.map((item) => (
+                <ProductCard key={item.id} cartItem={item} />
+              ))}
+            </div>
+          </>
+        )}
+        <div className="self-stretch w-full bg-neutral-200 min-h-[1px]" />
+        <div className="flex flex-col pt-4 w-full px-5 bg-white">
+          <div className="flex items-center justify-between px-5 py-4 w-full font-semibold rounded-xl bg-neutral-200 bg-opacity-50 max-md:flex-wrap max-md:max-w-full">
+            <h3 className="flex-auto self-start mt-1 text-xl leading-6 text-zinc-800">
+              Total amount:
+            </h3>
+            <p className="flex-auto justify-end text-lg leading-7 text-green-600">
+              <span className="leading-7 text-green-600">₦</span>
+              <span className="leading-7 text-green-600">{cart?.subtotal}</span>
+            </p>
+          </div>
+          <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
+          <button className="justify-center items-center px-16 py-4 mt-6 w-full text-lg leading-5 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid border-[color:var(--Foundation-stroke-stroke-500,#E1E1E1)] max-md:px-5 max-md:max-w-full">
+            Proceed
+          </button>
+        </div>
       </div>
     </>
   );
