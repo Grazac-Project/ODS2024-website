@@ -7,12 +7,13 @@ import { Prisma } from "@prisma/client";
 
 const cookie = cookies();
 
-export type CartWithProducts = Prisma.CartGetPayload<{
-  include: { items: { include: { product: true } } };
-}>;
-
 export type CartItemWithProduct = Prisma.CartItemGetPayload<{
   include: { product: true };
+}>;
+
+
+export type CartWithProducts = Prisma.CartGetPayload<{
+  include: { items: { include: { product: true } } };
 }>;
 
 export type ShoppingCartProps = CartWithProducts & {

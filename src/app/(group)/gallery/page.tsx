@@ -9,7 +9,7 @@ export default async function Gallery() {
     .max_results(400)
     .execute();
 
-  console.log(results);
+  // console.log(results);
 
   return <Body images={results} />;
 }

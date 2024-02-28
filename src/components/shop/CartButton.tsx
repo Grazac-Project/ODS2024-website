@@ -4,6 +4,7 @@ import { useStateCtx } from "@/context/StateCtx";
 import { ShoppingCart } from "iconsax-react";
 import { ShoppingCartProps, getCart } from "@/actions/cart";
 import React, { useEffect, useState } from "react";
+import { cn } from "@/utils/twcx";
 
 const CartButton = () => {
   const [cart, setCart] = useState<number>();
@@ -31,7 +32,12 @@ const CartButton = () => {
       >
         <div className="relative py-2">
           <div className="t-0 absolute left-3">
-            <p className="flex h-1 w-1 items-center justify-center rounded-full  p-3 text-xs bg-red-200 text-green-600">
+            <p
+              className={cn(
+                "flex h-1 w-1 items-center justify-center rounded-full  p-3 text-xs bg-red-200 text-green-600",
+                cart === undefined ? "hidden" : ""
+              )}
+            >
               {cart}
             </p>
           </div>

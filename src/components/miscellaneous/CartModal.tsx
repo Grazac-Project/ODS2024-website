@@ -4,10 +4,35 @@ import React, { useEffect, useState } from "react";
 import { useStateCtx } from "@/context/StateCtx";
 import { cn } from "@/utils/twcx";
 import { CloseSquare } from "iconsax-react";
-import { getCart } from "@/actions/cart";
+import { ShoppingCartProps, CartWithProducts, getCart } from "@/actions/cart";
+import ProductCard from "./productCard";
 
 const CartModal = () => {
   const { setShowCartModal, ShowCartModal } = useStateCtx();
+
+  const [cart, setCart] = useState<ShoppingCartProps | undefined>(undefined);
+
+  console.log(cart);
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      const cartData = await getCart();
+      if (cartData) {
+        setCart({
+          size: cartData.size ?? 0,
+          subtotal: cartData.subtotal ?? 0,
+          items: cartData.items ?? [],
+          id: cartData.id ?? "",
+          createdAt: cartData.createdAt ?? new Date(),
+          updatedAt: cartData.updatedAt ?? new Date(),
+        });
+      }
+    };
+
+    if (ShowCartModal) {
+      fetchCart();
+    }
+  }, [ShowCartModal]);
 
   return (
     <>
@@ -43,6 +68,13 @@ const CartModal = () => {
             <CloseSquare size="32" />
           </button>
         </div>
+        {/* {cart!.items.map((item) => (
+          <ProductCard key={item.id} cartItem={item} />
+        ))} */}
+        {Array.isArray(cart?.items) &&
+          cart?.items.map((item) => (
+            <ProductCard key={item.id} cartItem={item} />
+          ))}
       </div>
     </>
   );
