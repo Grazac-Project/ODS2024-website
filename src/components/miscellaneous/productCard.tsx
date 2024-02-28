@@ -2,17 +2,35 @@ import React from "react";
 import Image from "next/image";
 import { CartItemWithProduct } from "@/actions/cart";
 import { AddCircle, MinusCirlce, Trash } from "iconsax-react";
+import {
+  increaseCartItemQuantity,
+  decreaseCartItemQuantity,
+} from "@/actions/cart";
 
 interface CartEntryProps {
   cartItem: CartItemWithProduct;
   handleDeleteItem: (productId: string) => Promise<void>;
-  //   setProductQuantity: (productId: string, quantity: number) => Promise<void>;
+  handleIncreaseQuantity: (productId: string) => Promise<void>;
+  handleDecreaseQuantity: (productId: string) => Promise<void>;
+
+  // setProductQuantity: (productId: string, quantity: number) => Promise<void>;
 }
 
 const productCard = ({
   cartItem: { product, quantity },
   handleDeleteItem,
+  handleIncreaseQuantity,
+  handleDecreaseQuantity,
 }: CartEntryProps) => {
+  const calculateDiscountedPrice = (
+    originalPrice: number,
+    discount: number
+  ): number => {
+    const discountedAmount = (originalPrice * discount) / 100;
+    const discountedPrice = originalPrice - discountedAmount;
+    return discountedPrice;
+  };
+
   return (
     <div>
       <section className="max-w-[538px]">
@@ -39,23 +57,31 @@ const productCard = ({
               </div>
               <div className="flex gap-5 justify-between max-w-[344px] max-h-[32px] mt-5">
                 <div className="max-w-[201px] flex items-center justify-between gap-4">
-                  <MinusCirlce
-                    size="21"
-                    className="bg-zinc-100 border-solid rounded-full"
-                  />
+                  <button onClick={() => handleIncreaseQuantity(product.id)}>
+                    <MinusCirlce
+                      size="21"
+                      className="bg-zinc-100 border-solid rounded-full"
+                    />
+                  </button>
                   <div className="flex gap-4 justify-between text-base whitespace-nowrap">
                     <div className="flex gap-1 justify-between max-w-[127px] max-h-[32px] font-nunito">
                       <span className="h-8 text-center rounded w-[31px] bg-zinc-100 text-neutral-600">
                         {quantity}
                       </span>
                       <span className="font-semibold leading-7 text-center self-center h-8 rounded font-nunito w-[92px] bg-zinc-100 text-zinc-800">
-                        ₦ {product.price}
+                        ₦{" "}
+                        {calculateDiscountedPrice(
+                          product.price,
+                          product.discount
+                        )}
                       </span>
                     </div>
-                    <AddCircle
-                      size="21"
-                      className="bg-zinc-100 border-solid rounded-full"
-                    />
+                    <button onClick={() => handleDecreaseQuantity(product.id)}>
+                      <AddCircle
+                        size="21"
+                        className="bg-zinc-100 border-solid rounded-full"
+                      />
+                    </button>
                   </div>
                 </div>
                 <button

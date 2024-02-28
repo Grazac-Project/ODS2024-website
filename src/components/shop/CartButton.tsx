@@ -19,7 +19,7 @@ const CartButton = () => {
     fetchCart();
     const intervalId = setInterval(() => {
       fetchCart();
-    }, 5000);
+    }, 2000);
 
     return () => clearInterval(intervalId);
   }, []);

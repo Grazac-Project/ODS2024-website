@@ -52,7 +52,7 @@ const ProductDetailsMOdal = () => {
     setProduct(undefined);
   };
 
-  // console.log(product);
+  console.log(product);
 
   return (
     <>

@@ -124,22 +124,89 @@ export const deleteCartItem = async (productId: string) => {
     return;
   }
 
-  // const updatedItems = cart.items.filter(
-  //   (item) => item.product.id !== productId
-  // );
+  const cartItemToDelete = cart.items.find(
+    (item) => item.product.id === productId
+  );
 
-  await prisma.cart.update({
+  if (!cartItemToDelete) {
+    return;
+  }
+
+  await prisma.cartItem.delete({
     where: {
-      id: cart.id,
-    },
-    data: {
-      items: {
-        deleteMany: { id: { in: cart.items.map((item) => item.id) } },
-      },
+      id: cartItemToDelete.id,
     },
   });
 
   const updatedCart = await getCart();
 
   return updatedCart;
+};
+
+export const increaseCartItemQuantity = async (productId: string) => {
+  try {
+    const updatedCart = await updateCartItemQuantity(productId, 1);
+    return updatedCart;
+  } catch (error) {
+    console.error("Error increasing item quantity:", error);
+    throw error;
+  }
+};
+
+export const decreaseCartItemQuantity = async (productId: string) => {
+  try {
+    const updatedCart = await updateCartItemQuantity(productId, -1);
+    return updatedCart;
+  } catch (error) {
+    console.error("Error decreasing item quantity:", error);
+    throw error;
+  }
+};
+
+const updateCartItemQuantity = async (
+  productId: string,
+  quantityChange: number
+) => {
+  const cartId = cookie.get("cartId")?.value;
+
+  if (!cartId) {
+    return;
+  }
+
+  const decryptedId = decryptString(cartId);
+
+  const cart = await prisma.cart.findUnique({
+    where: {
+      id: decryptedId,
+    },
+    include: { items: { include: { product: true } } },
+  });
+
+  if (!cart) {
+    return;
+  }
+
+  const cartItemToUpdate = cart.items.find(
+    (item) => item.product.id === productId
+  );
+
+  if (cartItemToUpdate) {
+    await prisma.cartItem.update({
+      where: {
+        id: cartItemToUpdate.id,
+      },
+      data: {
+        quantity: {
+          increment: quantityChange,
+        },
+      },
+    });
+
+    const updatedCart = await getCart();
+
+    return updatedCart;
+  } else {
+    console.error("Item not found in the cart");
+    return null;
+  }
 };

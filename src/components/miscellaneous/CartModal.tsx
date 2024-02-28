@@ -4,7 +4,13 @@ import React, { useEffect, useState } from "react";
 import { useStateCtx } from "@/context/StateCtx";
 import { cn } from "@/utils/twcx";
 import { CloseSquare } from "iconsax-react";
-import { ShoppingCartProps, getCart, deleteCartItem } from "@/actions/cart";
+import {
+  ShoppingCartProps,
+  getCart,
+  deleteCartItem,
+  increaseCartItemQuantity,
+  decreaseCartItemQuantity,
+} from "@/actions/cart";
 import ProductCard from "./productCard";
 import LoadingSpinner from "./Loader";
 
@@ -61,6 +67,47 @@ const CartModal = () => {
     }
   };
 
+  const handleIncreaseQuantity = async (productId: string) => {
+    try {
+      const updatedCart = await increaseCartItemQuantity(productId);
+      setCart({
+        size: updatedCart?.size ?? 0,
+        subtotal: updatedCart?.subtotal ?? 0,
+        items: updatedCart?.items ?? [],
+        id: updatedCart?.id ?? "",
+        createdAt: updatedCart?.createdAt ?? new Date(),
+        updatedAt: updatedCart?.updatedAt ?? new Date(),
+      });
+
+      console.log("Item quantity increased successfully!");
+    } catch (error) {
+      console.error("Error increasing item quantity:", error);
+    }
+  };
+
+  const handleDecreaseQuantity = async (productId: string) => {
+    try {
+      const updatedCart = await decreaseCartItemQuantity(productId);
+      setCart({
+        size: updatedCart?.size ?? 0,
+        subtotal: updatedCart?.subtotal ?? 0,
+        items: updatedCart?.items ?? [],
+        id: updatedCart?.id ?? "",
+        createdAt: updatedCart?.createdAt ?? new Date(),
+        updatedAt: updatedCart?.updatedAt ?? new Date(),
+      });
+
+      console.log("Item quantity decreased successfully!");
+    } catch (error) {
+      console.error("Error decreasing item quantity:", error);
+    }
+  };
+
+  const closeModal = () => {
+    setShowCartModal(false);
+    setCart(undefined);
+  };
+
   return (
     <>
       <div
@@ -69,7 +116,7 @@ const CartModal = () => {
           " fixed min-h-screen w-full bg-black/10 backdrop-blur-sm top-0 left-0  transition-all duration-300 z-[99]",
           ShowCartModal ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
-        onClick={() => setShowCartModal(false)}
+        onClick={closeModal}
       />
       <div
         role="dialog"
@@ -89,30 +136,39 @@ const CartModal = () => {
             type="button"
             tabIndex={0}
             aria-label="Close"
-            onClick={() => setShowCartModal(false)}
+            onClick={closeModal}
             className="dark:text-[#e80000] rounded-full"
           >
             <CloseSquare size="32" />
           </button>
         </div>
-        {isLoading && (
+        {isLoading ? (
           <div className="flex items-center justify-center h-full">
             <LoadingSpinner />
           </div>
-        )}
-        {cart && (
+        ) : (
           <>
-            <div className=" hidden md:flex md:flex-col h-[326px] mt-3 items-center justify-between gap-y-2 overflow-y-auto overflow-x-hidden hide-scroll">
-              {cart?.items.map((item) => (
-                <ProductCard
-                  key={item.id}
-                  cartItem={item}
-                  handleDeleteItem={handleDeleteItem}
-                />
-              ))}
-            </div>
+            {cart && cart.items.length > 0 ? (
+              <div className="hidden md:flex md:flex-col h-[326px] mt-3 items-center place-items-center justify-between gap-y-2 overflow-y-auto overflow-x-hidden hide-scroll">
+                {cart.items.map((item) => (
+                  <ProductCard
+                    key={item.id}
+                    cartItem={item}
+                    handleDeleteItem={handleDeleteItem}
+                    handleIncreaseQuantity={handleIncreaseQuantity}
+                    handleDecreaseQuantity={handleDecreaseQuantity}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center h-[326px] mt-3 text-lg font-nunito font-medium">
+                <p>Your cart is empty! 🛒</p>
+                <p>Start shopping now! 🛍️</p>
+              </div>
+            )}
           </>
         )}
+
         <div className="self-stretch w-full bg-neutral-200 min-h-[1px]" />
         <div className="flex flex-col pt-4 w-full px-5 bg-white">
           <div className="flex items-center justify-between px-5 py-4 font-semibold rounded-xl bg-neutral-200 bg-opacity-50 max-w-[646px] sm:flex-wrap">
