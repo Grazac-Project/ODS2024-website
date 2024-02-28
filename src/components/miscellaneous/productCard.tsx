@@ -60,16 +60,16 @@ const productCard = ({
                     />
                   </button>
                   <div className="flex gap-4 justify-between text-base whitespace-nowrap">
-                    <div className="flex gap-1 justify-between max-w-[127px] max-h-[32px] font-nunito">
+                    <div className="flex gap-1 justify-between max-w-[133px] max-h-[32px] font-nunito">
                       <span className="h-8 text-center rounded w-[31px] bg-zinc-100 text-neutral-600">
                         {quantity}
                       </span>
-                      <span className="font-semibold leading-7 text-center self-center h-8 rounded font-nunito w-[92px] bg-zinc-100 text-zinc-800">
+                      <span className="font-semibold leading-7 text-center self-center h-8 rounded font-nunito w-[100px] bg-zinc-100 text-zinc-800">
                         ₦{" "}
                         {calculateDiscountedPrice(
                           product.price,
                           product.discount
-                        )}
+                        ).toFixed(2)}
                       </span>
                     </div>
                     <button onClick={() => handleIncreaseQuantity(product.id)}>

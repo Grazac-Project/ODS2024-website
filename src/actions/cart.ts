@@ -120,7 +120,6 @@ export const deleteCartItem = async (productId: string) => {
   });
 
   if (!cart) {
-    // Handle the case when the cart is not found
     return;
   }
 
@@ -132,9 +131,16 @@ export const deleteCartItem = async (productId: string) => {
     return;
   }
 
-  await prisma.cartItem.delete({
+  await prisma.cart.update({
     where: {
-      id: cartItemToDelete.id,
+      id: decryptedId,
+    },
+    data: {
+      items: {
+        delete: {
+          id: cartItemToDelete.id,
+        },
+      },
     },
   });
 
@@ -191,13 +197,22 @@ const updateCartItemQuantity = async (
   );
 
   if (cartItemToUpdate) {
-    await prisma.cartItem.update({
+    await prisma.cart.update({
       where: {
-        id: cartItemToUpdate.id,
+        id: decryptedId,
       },
       data: {
-        quantity: {
-          increment: quantityChange,
+        items: {
+          update: {
+            where: {
+              id: cartItemToUpdate.id,
+            },
+            data: {
+              quantity: {
+                increment: quantityChange,
+              },
+            },
+          },
         },
       },
     });

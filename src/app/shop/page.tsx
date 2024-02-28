@@ -25,17 +25,16 @@ const Shop = () => {
 
       if (result?.status === 200) {
         setProducts(result.products!);
-        setSuccess(result.success);
-        setStatus(result.status);
+        setSuccess(result?.success);
+        setStatus(result?.status);
       } else {
-        setSuccess(result.success);
-        setStatus(result.status);
+        setSuccess(result?.success);
+        setStatus(result?.status);
       }
     };
 
     fetchProducts();
   }, [products]);
-  // console.log(products);
 
   return (
     <>
