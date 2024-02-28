@@ -83,7 +83,7 @@ const CartModal = () => {
         )}
         {cart && (
           <>
-            <div className="flex md:flex-col h-[326px] mt-3 items-center justify-between gap-y-2 overflow-y-auto overflow-x-hidden hide-scroll">
+            <div className=" hidden md:flex md:flex-col h-[326px] mt-3 items-center justify-between gap-y-2 overflow-y-auto overflow-x-hidden hide-scroll">
               {cart?.items.map((item) => (
                 <ProductCard key={item.id} cartItem={item} />
               ))}
