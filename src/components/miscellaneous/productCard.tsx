@@ -8,8 +8,6 @@ interface CartEntryProps {
   handleDeleteItem: (productId: string) => Promise<void>;
   handleIncreaseQuantity: (productId: string) => Promise<void>;
   handleDecreaseQuantity: (productId: string) => Promise<void>;
-
-  // setProductQuantity: (productId: string, quantity: number) => Promise<void>;
 }
 
 const productCard = ({
@@ -27,9 +25,14 @@ const productCard = ({
     return discountedPrice;
   };
 
+  const trimmedName =
+    product.name &&
+    product.name.split(" ").slice(0, 3).join(" ") +
+      (product.name.split(" ").length > 3 ? "..." : "");
+
   return (
     <div>
-      <section className="max-w-[538px]">
+      <section className="max-w-[538px] hidden md:inline">
         <div className="flex gap-5 flex-col md:flex-row">
           <div className="flex flex-col w-full md:w-[34%]">
             <Image
@@ -45,7 +48,7 @@ const productCard = ({
             <div className="flex flex-col mt-4">
               <div className="flex gap-0 justify-between whitespace-nowrap">
                 <div className="grow my-auto text-2xl font-semibold leading-6 text-zinc-800 font-montserrat">
-                  {product.name}
+                  {trimmedName}
                 </div>
                 {/* <div className="grow justify-center p-1 text-base leading-5 rounded bg-stone-100 text-neutral-600">
               {variant}

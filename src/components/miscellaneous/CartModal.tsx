@@ -11,8 +11,16 @@ import {
   increaseCartItemQuantity,
   decreaseCartItemQuantity,
 } from "@/actions/cart";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import ProductCard from "./productCard";
 import LoadingSpinner from "./Loader";
+import MobileCrd from "./mobilecard";
 
 const CartModal = () => {
   const { setShowCartModal, ShowCartModal } = useStateCtx();
@@ -122,7 +130,7 @@ const CartModal = () => {
         role="dialog"
         aria-labelledby="Cart-Modal"
         className={cn(
-          "py-6   flex flex-col w-[360px] h-[500px] min-[450px]:w-[400px] min-[550px]:w-[500px] md:w-[682px] md:h-[600px] overflow-y-auto overflow-x-hidden hide-scroll justify-between items-center bg-white  backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ",
+          "py-6   flex flex-col w-[360px] min-h-[80%] max-h-[90%] min-[450px]:w-[400px] min-[550px]:w-[500px] md:w-[682px] md:h-[600px] overflow-y-auto overflow-x-hidden hide-scroll justify-between items-center bg-white  backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ",
           ShowCartModal
             ? "-translate-x-1/2 duration-700 opacity-100 rounded-xl md:rounded-2xl"
             : "-translate-x-full duration-300 pointer-events-none"
@@ -149,17 +157,38 @@ const CartModal = () => {
         ) : (
           <>
             {cart && cart.items.length > 0 ? (
-              <div className="hidden md:flex md:flex-col h-[326px] mt-3 items-center place-items-center justify-between gap-y-2 overflow-y-auto overflow-x-hidden hide-scroll">
-                {cart.items.map((item) => (
-                  <ProductCard
-                    key={item.id}
-                    cartItem={item}
-                    handleDeleteItem={handleDeleteItem}
-                    handleIncreaseQuantity={handleIncreaseQuantity}
-                    handleDecreaseQuantity={handleDecreaseQuantity}
-                  />
-                ))}
-              </div>
+              <>
+                <div className="hidden md:flex md:flex-col max-w-[550px] h-[326px] mt-3 items-center place-items-center justify-between gap-y-2 overflow-y-auto overflow-x-hidden hide-scroll">
+                  {cart.items.map((item) => (
+                    <>
+                      <ProductCard
+                        key={item.id}
+                        cartItem={item}
+                        handleDeleteItem={handleDeleteItem}
+                        handleIncreaseQuantity={handleIncreaseQuantity}
+                        handleDecreaseQuantity={handleDecreaseQuantity}
+                      />
+                    </>
+                  ))}
+                </div>
+                <Carousel className="w-[350px] block md:hidden">
+                  <CarouselContent className="max-h-[200px]">
+                    {cart.items.map((item) => (
+                      <CarouselItem key={item.id}>
+                        <MobileCrd
+                          key={item.id}
+                          cartItem={item}
+                          handleDeleteItem={handleDeleteItem}
+                          handleIncreaseQuantity={handleIncreaseQuantity}
+                          handleDecreaseQuantity={handleDecreaseQuantity}
+                        />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+              </>
             ) : (
               <div className="flex flex-col items-center justify-center h-[326px] mt-3 text-lg font-nunito font-medium">
                 <p>Your cart is empty! 🛒</p>
