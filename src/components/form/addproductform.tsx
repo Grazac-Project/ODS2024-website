@@ -58,10 +58,10 @@ const AddProductForm = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [result, setResult] = useState<UploadedAssetData | null>(null);
   const [isLoading, startTransition] = useTransition();
-  console.log(success);
-  console.log(error);
+  // console.log(success);
+  // console.log(error);
 
-  console.log(result);
+  // console.log(result);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
