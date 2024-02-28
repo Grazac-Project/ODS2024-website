@@ -35,7 +35,7 @@ const CartButton = () => {
             <p
               className={cn(
                 "flex h-1 w-1 items-center justify-center rounded-full  p-3 text-xs bg-red-200 text-green-600",
-                cart === undefined ? "hidden" : ""
+                cart === undefined || 0 ? "hidden" : ""
               )}
             >
               {cart}

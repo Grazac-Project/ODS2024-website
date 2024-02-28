@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useStateCtx } from "@/context/StateCtx";
 import { cn } from "@/utils/twcx";
 import { CloseSquare } from "iconsax-react";
-import { ShoppingCartProps, getCart } from "@/actions/cart";
+import { ShoppingCartProps, getCart, deleteCartItem } from "@/actions/cart";
 import ProductCard from "./productCard";
 import LoadingSpinner from "./Loader";
 
@@ -41,6 +41,25 @@ const CartModal = () => {
       fetchCart();
     }
   }, [ShowCartModal]);
+
+  const handleDeleteItem = async (productId: string) => {
+    try {
+      const updatedCart = await deleteCartItem(productId);
+
+      setCart({
+        size: updatedCart?.size ?? 0,
+        subtotal: updatedCart?.subtotal ?? 0,
+        items: updatedCart?.items ?? [],
+        id: updatedCart?.id ?? "",
+        createdAt: updatedCart?.createdAt ?? new Date(),
+        updatedAt: updatedCart?.updatedAt ?? new Date(),
+      });
+
+      console.log("Item deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting item:", error);
+    }
+  };
 
   return (
     <>
@@ -85,21 +104,24 @@ const CartModal = () => {
           <>
             <div className=" hidden md:flex md:flex-col h-[326px] mt-3 items-center justify-between gap-y-2 overflow-y-auto overflow-x-hidden hide-scroll">
               {cart?.items.map((item) => (
-                <ProductCard key={item.id} cartItem={item} />
+                <ProductCard
+                  key={item.id}
+                  cartItem={item}
+                  handleDeleteItem={handleDeleteItem}
+                />
               ))}
             </div>
           </>
         )}
         <div className="self-stretch w-full bg-neutral-200 min-h-[1px]" />
         <div className="flex flex-col pt-4 w-full px-5 bg-white">
-          <div className="flex items-center justify-between px-5 py-4 w-full font-semibold rounded-xl bg-neutral-200 bg-opacity-50 max-md:flex-wrap max-md:max-w-full">
-            <h3 className="flex-auto self-start mt-1 text-xl leading-6 text-zinc-800">
+          <div className="flex items-center justify-between px-5 py-4 font-semibold rounded-xl bg-neutral-200 bg-opacity-50 max-w-[646px] sm:flex-wrap">
+            <h3 className="flex-auto self-start mt-1 text-xl leading-6 text-zinc-800 font-nunito">
               Total amount:
             </h3>
-            <p className="flex-auto justify-end text-lg leading-7 text-green-600">
-              <span className="leading-7 text-green-600">₦</span>
-              <span className="leading-7 text-green-600">{cart?.subtotal}</span>
-            </p>
+            <span className="leading-7 text-[#00A651] font-nunito">
+              ₦ {cart?.subtotal}
+            </span>
           </div>
           <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
           <button className="justify-center items-center px-16 py-4 mt-6 w-full text-lg leading-5 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid border-[color:var(--Foundation-stroke-stroke-500,#E1E1E1)] max-md:px-5 max-md:max-w-full">

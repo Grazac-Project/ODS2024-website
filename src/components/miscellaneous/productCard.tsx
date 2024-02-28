@@ -5,10 +5,14 @@ import { AddCircle, MinusCirlce, Trash } from "iconsax-react";
 
 interface CartEntryProps {
   cartItem: CartItemWithProduct;
+  handleDeleteItem: (productId: string) => Promise<void>;
   //   setProductQuantity: (productId: string, quantity: number) => Promise<void>;
 }
 
-const productCard = ({ cartItem: { product, quantity } }: CartEntryProps) => {
+const productCard = ({
+  cartItem: { product, quantity },
+  handleDeleteItem,
+}: CartEntryProps) => {
   return (
     <div>
       <section className="max-w-[538px]">
@@ -54,9 +58,12 @@ const productCard = ({ cartItem: { product, quantity } }: CartEntryProps) => {
                     />
                   </div>
                 </div>
-                <div className="flex justify-center items-center aspect-square">
+                <button
+                  className="flex justify-center items-center aspect-square"
+                  onClick={() => handleDeleteItem(product.id)}
+                >
                   <Trash size="21" color="#FF0000" />
-                </div>
+                </button>
               </div>
             </div>
           </div>

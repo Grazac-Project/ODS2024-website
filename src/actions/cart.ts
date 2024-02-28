@@ -11,7 +11,6 @@ export type CartItemWithProduct = Prisma.CartItemGetPayload<{
   include: { product: true };
 }>;
 
-
 export type CartWithProducts = Prisma.CartGetPayload<{
   include: { items: { include: { product: true } } };
 }>;
@@ -103,3 +102,44 @@ export async function incrementProductQuantity(
     return { success: false };
   }
 }
+
+export const deleteCartItem = async (productId: string) => {
+  const cartId = cookie.get("cartId")?.value;
+
+  if (!cartId) {
+    return;
+  }
+
+  const decryptedId = decryptString(cartId);
+
+  const cart = await prisma.cart.findUnique({
+    where: {
+      id: decryptedId,
+    },
+    include: { items: { include: { product: true } } },
+  });
+
+  if (!cart) {
+    // Handle the case when the cart is not found
+    return;
+  }
+
+  // const updatedItems = cart.items.filter(
+  //   (item) => item.product.id !== productId
+  // );
+
+  await prisma.cart.update({
+    where: {
+      id: cart.id,
+    },
+    data: {
+      items: {
+        deleteMany: { id: { in: cart.items.map((item) => item.id) } },
+      },
+    },
+  });
+
+  const updatedCart = await getCart();
+
+  return updatedCart;
+};
