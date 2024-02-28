@@ -31,6 +31,7 @@ model Cart {
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   items     CartItem[]
+  User      User[]
 
   @@map("carts")
 }
@@ -44,4 +45,17 @@ model CartItem {
   cart      Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
 
   @@map("cartitems")
+}
+
+model User {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  email         String
+  phoneNumber   Int
+  address       String
+  paymentStatus Boolean?
+  cartId        String   @db.ObjectId
+  cart          Cart     @relation(fields: [cartId], references: [id])
+
+  @@map("users")
 }
