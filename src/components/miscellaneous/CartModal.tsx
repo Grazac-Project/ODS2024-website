@@ -19,7 +19,7 @@ const CartModal = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [cart, setCart] = useState<ShoppingCartProps | undefined>(undefined);
 
-  console.log(cart);
+  // console.log(cart);
 
   useEffect(() => {
     const fetchCart = async () => {

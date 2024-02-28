@@ -2,10 +2,6 @@ import React from "react";
 import Image from "next/image";
 import { CartItemWithProduct } from "@/actions/cart";
 import { AddCircle, MinusCirlce, Trash } from "iconsax-react";
-import {
-  increaseCartItemQuantity,
-  decreaseCartItemQuantity,
-} from "@/actions/cart";
 
 interface CartEntryProps {
   cartItem: CartItemWithProduct;
@@ -57,7 +53,7 @@ const productCard = ({
               </div>
               <div className="flex gap-5 justify-between max-w-[344px] max-h-[32px] mt-5">
                 <div className="max-w-[201px] flex items-center justify-between gap-4">
-                  <button onClick={() => handleIncreaseQuantity(product.id)}>
+                  <button onClick={() => handleDecreaseQuantity(product.id)}>
                     <MinusCirlce
                       size="21"
                       className="bg-zinc-100 border-solid rounded-full"
@@ -76,7 +72,7 @@ const productCard = ({
                         )}
                       </span>
                     </div>
-                    <button onClick={() => handleDecreaseQuantity(product.id)}>
+                    <button onClick={() => handleIncreaseQuantity(product.id)}>
                       <AddCircle
                         size="21"
                         className="bg-zinc-100 border-solid rounded-full"
