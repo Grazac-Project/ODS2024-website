@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useStateCtx } from "@/context/StateCtx";
+import { useRouter } from "next/navigation";
 
 interface AddToCartButtonProps {
   productId: string;
@@ -12,7 +13,7 @@ import { incrementProductQuantity } from "@/actions/cart";
 const AddToCartButton = ({ productId }: AddToCartButtonProps) => {
   const [isPending, startTransition] = useTransition();
   const [success, setSuccess] = useState(false);
-  const { setShowProductModal } = useStateCtx();
+  const router = useRouter();
 
   return (
     <>
@@ -26,7 +27,7 @@ const AddToCartButton = ({ productId }: AddToCartButtonProps) => {
               setSuccess(!!data?.success);
               if (data?.success) {
                 setTimeout(() => {
-                  // setShowProductModal(false);
+                  router.refresh;
                 }, 3000);
               }
             });

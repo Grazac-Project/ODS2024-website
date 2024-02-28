@@ -1,11 +1,22 @@
 "use client";
 
-import React from "react";
 import { useStateCtx } from "@/context/StateCtx";
 import { ShoppingCart } from "iconsax-react";
+import { ShoppingCartProps, getCart } from "@/actions/cart";
+import React, { useEffect, useState } from "react";
 
 const CartButton = () => {
+  const [cart, setCart] = useState<ShoppingCartProps | null>(null);
   const { setShowCartModal } = useStateCtx();
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      const cartData = await getCart();
+      setCart(cartData);
+    };
+
+    fetchCart();
+  }, [cart]);
   return (
     <>
       <button

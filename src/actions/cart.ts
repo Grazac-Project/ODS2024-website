@@ -11,9 +11,9 @@ export type CartWithProducts = Prisma.CartGetPayload<{
   include: { items: { include: { product: true } } };
 }>;
 
-export type ShoppingCart = CartWithProducts & {
+export type ShoppingCartProps = CartWithProducts & {
   size: number;
-  subtotal: number;
+  subtotal?: number;
 };
 
 export const createCart = async () => {
@@ -55,6 +55,7 @@ export const getCart = async () => {
   });
 
   return {
+    success: "cart Item",
     ...cart,
     size: cart?.items.reduce((acc, item) => acc + item.quantity, 0),
     subtotal: cart?.items.reduce(
@@ -63,29 +64,6 @@ export const getCart = async () => {
     ),
   };
 };
-
-// export async function incrementProductQuantity(productId: string) {
-//   const cart = (await getCart()) ?? (await createCart());
-
-//   const articleInCart = cart.items?.find((item) => item.productId === productId);
-
-//   if (articleInCart) {
-//     await prisma.cartItem.update({
-//       where: { id: articleInCart.id },
-//       data: { quantity: { increment: 1 } },
-//     });
-//   } else {
-//     await prisma.cartItem.create({
-//       data: {
-//         cartId: cart.id!,
-//         productId,
-//         quantity: 1,
-//       },
-//     });
-//   }
-
-//   // revalidatePath("/products/[id]");
-// }
 
 export async function incrementProductQuantity(
   productId: string
