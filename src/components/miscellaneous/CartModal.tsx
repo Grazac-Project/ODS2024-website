@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useStateCtx } from "@/context/StateCtx";
 import { cn } from "@/utils/twcx";
 import { CloseSquare } from "iconsax-react";
-import { ShoppingCartProps, CartWithProducts, getCart } from "@/actions/cart";
+import { ShoppingCartProps, getCart } from "@/actions/cart";
 import ProductCard from "./productCard";
 
 const CartModal = () => {
@@ -54,7 +54,7 @@ const CartModal = () => {
             : "-translate-x-full duration-300 pointer-events-none"
         )}
       >
-        <div className="flex items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
+        <div className="flex fixed bg-white items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
           <h3 className="sm:text-lg md:text-2xl font-medium text-header">
             <span className="lg:font-bold">Cart</span>
           </h3>
@@ -68,13 +68,9 @@ const CartModal = () => {
             <CloseSquare size="32" />
           </button>
         </div>
-        {/* {cart!.items.map((item) => (
+        {cart?.items.map((item) => (
           <ProductCard key={item.id} cartItem={item} />
-        ))} */}
-        {Array.isArray(cart?.items) &&
-          cart?.items.map((item) => (
-            <ProductCard key={item.id} cartItem={item} />
-          ))}
+        ))}
       </div>
     </>
   );

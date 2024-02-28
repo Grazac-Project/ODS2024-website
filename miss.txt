@@ -159,3 +159,67 @@ function ShoppingCart() {
 }
 
 export default ShoppingCart;
+
+
+
+
+
+
+
+
+
+
+
+
+<section className="max-w-[538px]">
+      <header className="flex gap-5 flex-col md:flex-row">
+        <div className="flex flex-col w-full md:w-[34%]">
+          <Image 
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/06d86c08be1e7b1ff9304a19f71f3f0e83bcc2da4017bdcdb51dadfd17d158e9?apiKey=252f8d5a726747838fcb04939a832fc3&"
+            alt="ODS 2024 T-Shirt"
+            width={178}
+            height={150}
+            layout="responsive"
+          />
+        </div>
+        <div className="flex flex-col w-full md:w-[66%]">
+          <div className="flex flex-col mt-4">
+            <div className="flex gap-0 justify-between px-5 whitespace-nowrap">
+              <h2 className="grow my-auto text-2xl font-semibold leading-6 text-zinc-800"> ODS 2024 T-Shirt </h2>
+              <ProductDetail detailType="color" detailText="Green-Medium" />
+            </div>
+            <div className="flex gap-5 justify-between mt-4 w-full">
+              <div className="flex justify-center items-center my-auto aspect-square">
+                <Image 
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/159d857dbf8c4ccc8734a7e76a8ff6fd492a9ab0f359d65f5f25a75bca1b6998?apiKey=252f8d5a726747838fcb04939a832fc3&"
+                  alt="Minus icon"
+                  width={21}
+                  height={21}
+                />
+              </div>
+              <div className="flex gap-4 justify-between text-base whitespace-nowrap">
+                <ProductDetail detailType="quantity" detailText="1" />
+                <ProductDetail detailType="price" detailText="₦ 250,000" />
+              </div>
+              <div className="flex justify-center items-center aspect-square">
+                <Image 
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/27ce13f8f792201be711d818dedc079afa1221e4993434e76887d09b97d47dbf?apiKey=252f8d5a726747838fcb04939a832fc3&"
+                  alt="Plus icon"
+                  width={21}
+                  height={21}
+                />
+              </div>
+              <div className="flex justify-center items-center aspect-square">
+                <Image 
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/39504fa3b11187e5f7d77652f776abde38b35fda3a4be308b15da1da9b5c03cf?apiKey=252f8d5a726747838fcb04939a832fc3&"
+                  alt="Trash bin icon"
+                  width={32}
+                  height={32}
+                  className="bg-white rounded-full"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </section>

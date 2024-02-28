@@ -35,7 +35,7 @@ const Shop = () => {
 
     fetchProducts();
   }, [products]);
-  console.log(products);
+  // console.log(products);
 
   return (
     <>
