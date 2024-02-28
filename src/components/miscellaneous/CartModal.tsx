@@ -1,12 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useStateCtx } from "@/context/StateCtx";
 import { cn } from "@/utils/twcx";
 import { CloseSquare } from "iconsax-react";
+import { getCart } from "@/actions/cart";
 
 const CartModal = () => {
   const { setShowCartModal, ShowCartModal } = useStateCtx();
+
   return (
     <>
       <div

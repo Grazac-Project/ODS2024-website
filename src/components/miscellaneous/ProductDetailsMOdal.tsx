@@ -148,7 +148,7 @@ const ProductDetailsMOdal = () => {
               <div className="flex flex-col max-h-[160px] gap-3 justify-between px-5 mt-3 w-full text-base leading-6 text-zinc-800">
                 <div className="flex items-center justify-between">
                   <div className="flex-auto font-semibold">Product Name:</div>
-                  <h2 className="flex-auto font-medium">{trimmedName}</h2>
+                  <h2 className="flex-auto font-medium">{product.name}</h2>
                 </div>
                 <div className="self-stretch mt-2 w-full bg-neutral-200 min-h-[1px]" />
                 <div>

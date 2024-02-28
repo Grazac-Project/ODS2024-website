@@ -9,14 +9,19 @@ const CartButton = () => {
   const [cart, setCart] = useState<number>();
   const { setShowCartModal } = useStateCtx();
 
-  useEffect(() => {
-    const fetchCart = async () => {
-      const cartData = await getCart();
-      setCart(cartData?.size);
-    };
+  const fetchCart = async () => {
+    const cartData = await getCart();
+    setCart(cartData?.size);
+  };
 
+  useEffect(() => {
     fetchCart();
-  }, [cart]);
+    const intervalId = setInterval(() => {
+      fetchCart();
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <>
