@@ -8,7 +8,11 @@ import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { Flutterconfig } from "@/actions/payment";
 
 const PaymentForm = () => {
-  return <div>PaymentForm</div>;
+  return (
+    <>
+      <form></form>
+    </>
+  );
 };
 
 export default PaymentForm;

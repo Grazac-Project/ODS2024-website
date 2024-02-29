@@ -178,8 +178,8 @@ const CartModal = () => {
                 <Carousel className="w-[350px] block md:hidden">
                   <CarouselContent className="max-h-[200px]">
                     {cart.items.map((item) => (
-                      <CarouselItem>
-                        <Suspense key={item.id} fallback={<ShopCardSkelon />}>
+                      <Suspense key={item.id} fallback={<ShopCardSkelon />}>
+                        <CarouselItem key={item.id}>
                           <MobileCrd
                             key={item.id}
                             cartItem={item}
@@ -187,8 +187,8 @@ const CartModal = () => {
                             handleIncreaseQuantity={handleIncreaseQuantity}
                             handleDecreaseQuantity={handleDecreaseQuantity}
                           />
-                        </Suspense>
-                      </CarouselItem>
+                        </CarouselItem>
+                      </Suspense>
                     ))}
                   </CarouselContent>
                   <CarouselPrevious />
@@ -217,8 +217,9 @@ const CartModal = () => {
               </div>
               <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
               <Link
-                href={`/shop/payment?cartId=${cart?.id}`}
-                className="justify-center items-center px-16 py-4 mt-6 w-full text-lg leading-5 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid border-[color:var(--Foundation-stroke-stroke-500,#E1E1E1)] max-md:px-5 max-md:max-w-full"
+                href={`/shop/payment?cartId=${cart?.id}&price=${cart?.subtotal}`}
+                onClick={closeModal}
+                className="justify-center items-center text-center py-4 mt-6 w-full text-lg leading-5 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid border-[color:var(--Foundation-stroke-stroke-500,#E1E1E1)] max-md:px-5 max-md:max-w-full"
               >
                 Proceed
               </Link>

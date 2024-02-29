@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/utils/db/prisma";
-import { cookies } from "next/headers";
+import { cookies } from "next/dist/client/components/headers";
 import { encryptString, decryptString } from "@/utils";
 import { Prisma } from "@prisma/client";
 
