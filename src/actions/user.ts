@@ -3,32 +3,45 @@
 import { prisma } from "@/utils/db/prisma";
 import { cookies } from "next/headers";
 
-const cookie = cookies();
+export const createuser = async (formData: FormData, cartId: string) => {
+  const name = formData.get("name")?.toString();
+  const email = formData.get("email")?.toString();
+  const address = formData.get("address")?.toString();
+  const phoneNumber = Number(formData.get("phoneNumber") || 0);
 
-export const createuser = async (
-  name: string,
-  email: string,
-  phoneNumber: number,
-  address: string,
-  cartid: string
-) => {
-  const cartId = cookie.get("cartId")?.value;
+  const cartID = cookies().get("cartId")?.value;
 
-  if (!cartId) {
+  if (!cartID) {
     return null;
   }
 
-  const newUser = await prisma.user.create({
-    data: {
-      name,
-      email,
-      phoneNumber,
-      address,
-      cartId: cartid,
-    },
-  });
+  if (!name || !email || !address || !phoneNumber) {
+    return {
+      error: "All Fields are required",
+      status: 400,
+    };
+  }
 
-  console.log(newUser);
+  const productInput = {
+    name,
+    email,
+    phoneNumber,
+    address,
+    cartId,
+  };
 
-  return { success: true, newUser };
+  console.log(productInput);
+
+  try {
+    const newUser = await prisma.user.create({
+      data: productInput,
+    });
+
+    console.log(newUser);
+
+    return { success: true, newUser };
+  } catch (error) {
+    console.error("Error creating user:", error);
+    return { error: "Internal Server Error", status: 500 };
+  }
 };
