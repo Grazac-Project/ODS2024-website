@@ -54,6 +54,7 @@ model User {
   address       String
   paymentStatus Boolean?
   cartId        String
+  price         String
 
   @@map("users")
 }

@@ -2,7 +2,11 @@
 
 import { prisma } from "@/utils/db/prisma";
 
-export const createuser = async (formData: FormData, cartId: string) => {
+export const createuser = async (
+  formData: FormData,
+  cartId: string,
+  price: string
+) => {
   const name = formData.get("name")?.toString();
   const email = formData.get("email")?.toString();
   const address = formData.get("address")?.toString();
@@ -21,6 +25,7 @@ export const createuser = async (formData: FormData, cartId: string) => {
     phoneNumber,
     address,
     cartId,
+    price,
   };
 
   console.log(productInput);
@@ -38,3 +43,6 @@ export const createuser = async (formData: FormData, cartId: string) => {
     return { Error: "Internal Server Error", status: 500, error };
   }
 };
+
+
+// export const getuser = async

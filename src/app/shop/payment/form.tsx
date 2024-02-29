@@ -5,11 +5,12 @@ import { createuser } from "@/actions/user";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
-import { Flutterconfig } from "@/actions/payment";
-import { ShoppingCartProps, getCart } from "@/actions/cart";
+
+import { encryptString, decryptString } from "@/utils";
 import { Label } from "@/components/ui/label";
 import { useTransition } from "react";
 import { cn } from "@/utils/twcx";
+import { useStateCtx } from "@/context/StateCtx";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -20,19 +21,12 @@ interface user {
   address: string;
 }
 
-interface paymentderails {
-  amount: number;
-  phone_number: number;
-  email: string;
-  name: string;
-}
-
 const PaymentForm = ({
   cartId,
   price,
 }: {
   cartId?: string;
-  price?: number;
+  price?: string;
 }) => {
   const [formData, setformData] = useState<user>({
     name: "",
@@ -41,21 +35,10 @@ const PaymentForm = ({
     address: "",
   });
 
-  const [fluterdetails, setfluterdetails] = useState<paymentderails>({
-    amount: 0,
-    phone_number: 0,
-    email: "",
-    name: "",
-  });
+  const { setShowOptionModal } = useStateCtx();
 
   const [isLoading, startTransition] = useTransition();
   const router = useRouter();
-
-  const { amount, phone_number, email, name } = fluterdetails;
-
-  const config = Flutterconfig(amount, phone_number, email, name);
-
-  const handleFlutterPayment = useFlutterwave(config);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -68,7 +51,7 @@ const PaymentForm = ({
       form1Data.append("phoneNumber", formData.phoneNumber.toString());
 
       console.log(form1Data);
-      createuser(form1Data, cartId!).then((data) => {
+      createuser(form1Data, cartId!, price!).then((data) => {
         if (data?.success) {
           console.log(data?.success);
           setformData({
@@ -77,22 +60,18 @@ const PaymentForm = ({
             phoneNumber: 0,
             address: "",
           });
-          setfluterdetails({
-            amount: price!,
-            phone_number: data.User.phoneNumber,
-            email: data.User.email,
-            name: data.User.name,
-          });
-          handleFlutterPayment({
-            callback: (response) => {
-              console.log(response.status);
-              closePaymentModal();
-              if (response.status === "completed") {
-                router.push("/shop/success?paymentstatus=true");
-              }
-            },
-            onClose: () => {},
-          });
+
+          setTimeout(() => {
+            router.push(
+              `/shop/makepayment?paymentstatus='false'&id=${
+                data.User.id
+              }&price=${data.User.price}&name=${encryptString(
+                data.User.name
+              )}&email=${encryptString(data.User.email)}&phone=${encryptString(
+                data.User.phoneNumber.toString()
+              )}`
+            );
+          }, 1000);
         } else {
           console.log("error");
         }
@@ -102,7 +81,7 @@ const PaymentForm = ({
 
   return (
     <>
-      <div className="flex md:flex-col">
+      <div className="flex">
         <form
           action=""
           onSubmit={onSubmit}

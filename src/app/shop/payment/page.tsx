@@ -12,7 +12,7 @@ const Payment = ({ searchParams: { cartId, price } }: PageProps) => {
 
   return (
     <>
-      <PaymentForm cartId={cartId} price={priceNumber} />
+      <PaymentForm cartId={cartId} price={price} />
     </>
   );
 };
