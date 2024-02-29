@@ -86,7 +86,7 @@ const Navbar = () => {
             )}
           >
             <Image
-              src="/assets/logo.svg"
+              src="/logo.jpg"
               alt="logo"
               width={155}
               height={55}
