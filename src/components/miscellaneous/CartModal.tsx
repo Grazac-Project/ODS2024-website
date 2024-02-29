@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useStateCtx } from "@/context/StateCtx";
 import { cn } from "@/utils/twcx";
 import { CloseSquare } from "iconsax-react";
@@ -21,6 +21,8 @@ import {
 import ProductCard from "./productCard";
 import LoadingSpinner from "./Loader";
 import MobileCrd from "./mobilecard";
+import ShopCardSkelon from "../cardskelton";
+import Link from "next/link";
 
 const CartModal = () => {
   const { setShowCartModal, ShowCartModal } = useStateCtx();
@@ -161,27 +163,31 @@ const CartModal = () => {
                 <div className="hidden md:flex md:flex-col max-w-[550px] h-[326px] mt-3 items-center place-items-center justify-between gap-y-2 overflow-y-auto overflow-x-hidden hide-scroll">
                   {cart.items.map((item) => (
                     <>
-                      <ProductCard
-                        key={item.id}
-                        cartItem={item}
-                        handleDeleteItem={handleDeleteItem}
-                        handleIncreaseQuantity={handleIncreaseQuantity}
-                        handleDecreaseQuantity={handleDecreaseQuantity}
-                      />
-                    </>
-                  ))}
-                </div>
-                <Carousel className="w-[350px] block md:hidden">
-                  <CarouselContent className="max-h-[200px]">
-                    {cart.items.map((item) => (
-                      <CarouselItem key={item.id}>
-                        <MobileCrd
+                      <Suspense key={item.id} fallback={<ShopCardSkelon />}>
+                        <ProductCard
                           key={item.id}
                           cartItem={item}
                           handleDeleteItem={handleDeleteItem}
                           handleIncreaseQuantity={handleIncreaseQuantity}
                           handleDecreaseQuantity={handleDecreaseQuantity}
                         />
+                      </Suspense>
+                    </>
+                  ))}
+                </div>
+                <Carousel className="w-[350px] block md:hidden">
+                  <CarouselContent className="max-h-[200px]">
+                    {cart.items.map((item) => (
+                      <CarouselItem>
+                        <Suspense key={item.id} fallback={<ShopCardSkelon />}>
+                          <MobileCrd
+                            key={item.id}
+                            cartItem={item}
+                            handleDeleteItem={handleDeleteItem}
+                            handleIncreaseQuantity={handleIncreaseQuantity}
+                            handleDecreaseQuantity={handleDecreaseQuantity}
+                          />
+                        </Suspense>
                       </CarouselItem>
                     ))}
                   </CarouselContent>
@@ -197,22 +203,28 @@ const CartModal = () => {
             )}
           </>
         )}
-
-        <div className="self-stretch w-full bg-neutral-200 min-h-[1px]" />
-        <div className="flex flex-col pt-4 w-full px-5 bg-white">
-          <div className="flex items-center justify-between px-5 py-4 font-semibold rounded-xl bg-neutral-200 bg-opacity-50 max-w-[646px] sm:flex-wrap">
-            <h3 className="flex-auto self-start mt-1 text-xl leading-6 text-zinc-800 font-nunito">
-              Total amount:
-            </h3>
-            <span className="leading-7 text-[#00A651] font-nunito">
-              ₦ {cart?.subtotal}
-            </span>
-          </div>
-          <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
-          <button className="justify-center items-center px-16 py-4 mt-6 w-full text-lg leading-5 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid border-[color:var(--Foundation-stroke-stroke-500,#E1E1E1)] max-md:px-5 max-md:max-w-full">
-            Proceed
-          </button>
-        </div>
+        {cart && cart.items.length > 0 && (
+          <>
+            <div className="self-stretch w-full bg-neutral-200 min-h-[1px]" />
+            <div className="flex flex-col pt-4 w-full px-5 bg-white">
+              <div className="flex items-center justify-between px-5 py-4 font-semibold rounded-xl bg-neutral-200 bg-opacity-50 max-w-[646px] sm:flex-wrap">
+                <h3 className="flex-auto self-start mt-1 text-xl leading-6 text-zinc-800 font-nunito">
+                  Total amount:
+                </h3>
+                <span className="leading-7 text-[#00A651] font-nunito">
+                  ₦ {cart?.subtotal}
+                </span>
+              </div>
+              <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
+              <Link
+                href={`/shop/payment?cartId=${cart?.id}`}
+                className="justify-center items-center px-16 py-4 mt-6 w-full text-lg leading-5 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid border-[color:var(--Foundation-stroke-stroke-500,#E1E1E1)] max-md:px-5 max-md:max-w-full"
+              >
+                Proceed
+              </Link>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
