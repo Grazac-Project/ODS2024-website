@@ -10,6 +10,7 @@ import { ShoppingCartProps, getCart } from "@/actions/cart";
 import { Label } from "@/components/ui/label";
 import { useTransition } from "react";
 import { cn } from "@/utils/twcx";
+import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 
 interface user {
@@ -19,12 +20,19 @@ interface user {
   address: string;
 }
 
+interface paymentderails {
+  amount: number;
+  phone_number: number;
+  email: string;
+  name: string;
+}
+
 const PaymentForm = ({
   cartId,
   price,
 }: {
   cartId?: string;
-  price?: string;
+  price?: number;
 }) => {
   const [formData, setformData] = useState<user>({
     name: "",
@@ -33,8 +41,21 @@ const PaymentForm = ({
     address: "",
   });
 
-  console.log(formData);
+  const [fluterdetails, setfluterdetails] = useState<paymentderails>({
+    amount: 0,
+    phone_number: 0,
+    email: "",
+    name: "",
+  });
+
   const [isLoading, startTransition] = useTransition();
+  const router = useRouter();
+
+  const { amount, phone_number, email, name } = fluterdetails;
+
+  const config = Flutterconfig(amount, phone_number, email, name);
+
+  const handleFlutterPayment = useFlutterwave(config);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,6 +76,22 @@ const PaymentForm = ({
             email: "",
             phoneNumber: 0,
             address: "",
+          });
+          setfluterdetails({
+            amount: price!,
+            phone_number: data.User.phoneNumber,
+            email: data.User.email,
+            name: data.User.name,
+          });
+          handleFlutterPayment({
+            callback: (response) => {
+              console.log(response.status);
+              closePaymentModal();
+              if (response.status === "completed") {
+                router.push("/shop/success?paymentstatus=true");
+              }
+            },
+            onClose: () => {},
           });
         } else {
           console.log("error");
