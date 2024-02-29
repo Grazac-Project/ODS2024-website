@@ -1,19 +1,12 @@
 "use server";
 
 import { prisma } from "@/utils/db/prisma";
-import { cookies } from "next/headers";
 
 export const createuser = async (formData: FormData, cartId: string) => {
   const name = formData.get("name")?.toString();
   const email = formData.get("email")?.toString();
   const address = formData.get("address")?.toString();
   const phoneNumber = Number(formData.get("phoneNumber") || 0);
-
-  const cartID = cookies().get("cartId")?.value;
-
-  if (!cartID) {
-    return null;
-  }
 
   if (!name || !email || !address || !phoneNumber) {
     return {
@@ -38,10 +31,10 @@ export const createuser = async (formData: FormData, cartId: string) => {
     });
 
     console.log(newUser);
-
-    return { success: true, newUser };
+    return { success: true, User: newUser };
   } catch (error) {
     console.error("Error creating user:", error);
-    return { error: "Internal Server Error", status: 500 };
+
+    return { Error: "Internal Server Error", status: 500, error };
   }
 };

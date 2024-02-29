@@ -28,7 +28,6 @@ export const Addproduct = async (formdata: FormData) => {
   console.log(productInput);
 
   await prisma.product.create({
-    // @ts-ignore
     data: productInput,
   });
 

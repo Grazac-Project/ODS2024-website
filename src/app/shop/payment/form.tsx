@@ -12,6 +12,13 @@ import { useTransition } from "react";
 import { cn } from "@/utils/twcx";
 import { Textarea } from "@/components/ui/textarea";
 
+interface user {
+  name: string;
+  email: string;
+  phoneNumber: number;
+  address: string;
+}
+
 const PaymentForm = ({
   cartId,
   price,
@@ -19,12 +26,14 @@ const PaymentForm = ({
   cartId?: string;
   price?: string;
 }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setformData] = useState<user>({
     name: "",
     email: "",
     phoneNumber: 0,
     address: "",
   });
+
+  console.log(formData);
   const [isLoading, startTransition] = useTransition();
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,7 +42,7 @@ const PaymentForm = ({
     startTransition(() => {
       const form1Data = new FormData();
       form1Data.append("name", formData.name);
-      form1Data.append(" email", formData.email);
+      form1Data.append("email", formData.email);
       form1Data.append("address", formData.address);
       form1Data.append("phoneNumber", formData.phoneNumber.toString());
 
@@ -41,7 +50,7 @@ const PaymentForm = ({
       createuser(form1Data, cartId!).then((data) => {
         if (data?.success) {
           console.log(data?.success);
-          setFormData({
+          setformData({
             name: "",
             email: "",
             phoneNumber: 0,
@@ -74,7 +83,10 @@ const PaymentForm = ({
                 disabled={isLoading}
                 className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
                 onChange={(e) =>
-                  setFormData({ ...formData, [e.target.name]: e.target.value })
+                  setformData({
+                    ...formData,
+                    [e.target.name]: e.target.value,
+                  })
                 }
               />
             </div>
@@ -89,7 +101,10 @@ const PaymentForm = ({
                 disabled={isLoading}
                 className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
                 onChange={(e) =>
-                  setFormData({ ...formData, [e.target.name]: e.target.value })
+                  setformData({
+                    ...formData,
+                    [e.target.name]: e.target.value,
+                  })
                 }
               />
             </div>
@@ -104,7 +119,10 @@ const PaymentForm = ({
                 value={formData.phoneNumber}
                 className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
                 onChange={(e) =>
-                  setFormData({ ...formData, [e.target.name]: e.target.value })
+                  setformData({
+                    ...formData,
+                    [e.target.name]: e.target.value,
+                  })
                 }
               />
             </div>
@@ -119,7 +137,10 @@ const PaymentForm = ({
                 disabled={isLoading}
                 placeholder="Enter delivery address"
                 onChange={(e) =>
-                  setFormData({ ...formData, [e.target.name]: e.target.value })
+                  setformData({
+                    ...formData,
+                    [e.target.name]: e.target.value,
+                  })
                 }
                 className="resize-none h-[90px]"
               />
