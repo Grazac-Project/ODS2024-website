@@ -7,7 +7,7 @@ import GotoTop from "@/components/GoToTop";
 import Navbar from "@/components/navs/NavBar";
 import "../styles/globals.scss";
 import SkeletonNavbar from "@/components/skelton";
-import MobileFooter from "@/components/footer/Mobile";
+import Nav from "@/components/navs/Nav";
 
 export const metadata: Metadata = {
   title: "OGUN DIGITAL SUMMIT",
@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={`${montserrat.className} ${nunito.className}`}>
         <StateContextProvider>
           <Suspense fallback={<SkeletonNavbar />}>
-            <Navbar />
+            <Nav />
           </Suspense>
           {children}
           <GotoTop />
