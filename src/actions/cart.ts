@@ -26,22 +26,33 @@ export const createCart = async () => {
     data: {},
   });
 
-  const encryptedId = encryptString(newCart.id);
-  SetToSessionStorage("cartId", encryptedId);
+  if (newCart) {
+    const encryptedId = encryptString(newCart.id);
+    console.log(encryptedId);
 
-  cookie.set("cartId", encryptedId, {
-    maxAge: 60 * 60 * 24 * 1, // 1 day
-    httpOnly: true,
-    path: "/",
-    priority: "high",
-  });
+    // Store in session storage
+    SetToSessionStorage("cartId", encryptedId);
+    console.log("Stored to session");
 
-  return {
-    ...newCart,
-    items: [],
-    size: 0,
-    subtotal: 0,
-  };
+    cookie.set("cartId", encryptedId, {
+      maxAge: 60 * 60 * 24 * 1, // 1 day
+      httpOnly: true,
+      path: "/",
+      priority: "high",
+    });
+    console.log("Stored to cookie");
+
+    return {
+      ...newCart,
+      items: [],
+      size: 0,
+      subtotal: 0,
+    };
+  } else {
+    console.error("Failed to create a new cart");
+    // Handle the failure accordingly, you can return null or handle it based on your needs
+    return null;
+  }
 };
 
 export const getCart = async () => {
@@ -80,7 +91,7 @@ export async function incrementProductQuantity(
   try {
     const cart = (await getCart()) ?? (await createCart());
 
-    const articleInCart = cart.items?.find(
+    const articleInCart = cart?.items?.find(
       (item) => item.productId === productId
     );
 
@@ -92,7 +103,7 @@ export async function incrementProductQuantity(
     } else {
       await prisma.cartItem.create({
         data: {
-          cartId: cart.id!,
+          cartId: cart?.id!,
           productId,
           quantity: 1,
         },

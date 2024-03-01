@@ -21,18 +21,20 @@ export const decryptString = (str: string): string => {
 
 /**
  * Sets a key-value pair in the session storage.
- * @function SetToSessionStorage
- * @param {string} key
- * @param {any} value
+ * @param key - The key for the item.
+ * @param value - The value to be stored.
  */
-
 export const SetToSessionStorage = (key: string, value: any): void => {
-  if (typeof sessionStorage === "undefined") return;
+  if (typeof sessionStorage === "undefined") {
+    console.warn("Session storage is not available.");
+    return;
+  }
+
   try {
     const serializedValue = JSON.stringify(value);
     sessionStorage.setItem(key, serializedValue);
   } catch (error) {
-    //    console.error(`Error setting item to session storage: ${error}`);
+    console.error(`Error setting item to session storage: ${error}`);
   }
 };
 
