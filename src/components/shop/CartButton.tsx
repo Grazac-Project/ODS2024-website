@@ -22,7 +22,7 @@ const CartButton = () => {
     }, 2000);
 
     return () => clearInterval(intervalId);
-  }, [cart]);
+  }, [fetchCart]);
 
   return (
     <>

@@ -67,11 +67,11 @@ const PaymentForm = ({
                 data.User.id
               }&price=${data.User.price}&name=${encryptString(
                 data.User.name
-              )}&email=${encryptString(data.User.email)}&phone=${encryptString(
-                data.User.phoneNumber.toString()
-              )}`
+              )}&email=${encryptString(data.User.email)}&phone=${
+                data.User.phoneNumber
+              }&address=${encryptString(data.User.address)}`
             );
-          }, 1000);
+          }, 100);
         } else {
           console.log("error");
         }

@@ -10,7 +10,7 @@ export const createuser = async (
   const name = formData.get("name")?.toString();
   const email = formData.get("email")?.toString();
   const address = formData.get("address")?.toString();
-  const phoneNumber = Number(formData.get("phoneNumber") || 0);
+  const phoneNumber = (formData.get("phoneNumber") || 0).toString();
 
   if (!name || !email || !address || !phoneNumber) {
     return {
@@ -43,6 +43,3 @@ export const createuser = async (
     return { Error: "Internal Server Error", status: 500, error };
   }
 };
-
-
-// export const getuser = async

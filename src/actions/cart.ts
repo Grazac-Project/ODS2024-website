@@ -1,9 +1,10 @@
 "use server";
 
 import { prisma } from "@/utils/db/prisma";
-import { cookies } from "next/dist/client/components/headers";
+import { cookies } from "next/headers";
 import { encryptString, decryptString } from "@/utils";
 import { Prisma } from "@prisma/client";
+import { GetFromSessionStorage, SetToSessionStorage } from "@/utils";
 
 const cookie = cookies();
 
@@ -26,6 +27,7 @@ export const createCart = async () => {
   });
 
   const encryptedId = encryptString(newCart.id);
+  SetToSessionStorage("cartId", encryptedId);
 
   cookie.set("cartId", encryptedId, {
     maxAge: 60 * 60 * 24 * 1, // 1 day
@@ -105,12 +107,13 @@ export async function incrementProductQuantity(
 
 export const deleteCartItem = async (productId: string) => {
   const cartId = cookie.get("cartId")?.value;
+  const cartIdFromSession = GetFromSessionStorage("cartId");
 
-  if (!cartId) {
+  if (!cartId && !cartIdFromSession) {
     return;
   }
 
-  const decryptedId = decryptString(cartId);
+  const decryptedId = decryptString(cartId! || cartIdFromSession!);
 
   const cart = await prisma.cart.findUnique({
     where: {
@@ -174,12 +177,13 @@ const updateCartItemQuantity = async (
   quantityChange: number
 ) => {
   const cartId = cookie.get("cartId")?.value;
+  const cartIdFromSession = GetFromSessionStorage("cartId");
 
-  if (!cartId) {
+  if (!cartId && !cartIdFromSession) {
     return;
   }
 
-  const decryptedId = decryptString(cartId);
+  const decryptedId = decryptString(cartId! || cartIdFromSession!);
 
   const cart = await prisma.cart.findUnique({
     where: {
