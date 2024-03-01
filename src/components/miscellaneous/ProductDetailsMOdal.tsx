@@ -8,7 +8,6 @@ import { CloseSquare } from "iconsax-react";
 import { getProductById } from "@/actions/addProduct";
 import { Product } from "@prisma/client";
 import LoadingSpinner from "../loader";
-import { incrementProductQuantity } from "@/actions/cart";
 import AddToCartButton from "./AddToCartButton";
 
 const ProductDetailsMOdal = () => {
@@ -164,6 +163,7 @@ const ProductDetailsMOdal = () => {
             <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
             <AddToCartButton
               productId={product.id}
+
               // incrementProductQuantity={incrementProductQuantity}
             />
           </>

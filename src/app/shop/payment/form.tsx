@@ -4,10 +4,9 @@ import React, { useEffect, useState } from "react";
 import { createuser } from "@/actions/user";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
-
 import { encryptString, decryptString } from "@/utils";
 import { Label } from "@/components/ui/label";
+import { useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 import { cn } from "@/utils/twcx";
 import { useStateCtx } from "@/context/StateCtx";
@@ -21,13 +20,7 @@ interface user {
   address: string;
 }
 
-const PaymentForm = ({
-  cartId,
-  price,
-}: {
-  cartId?: string;
-  price?: string;
-}) => {
+const PaymentForm = () => {
   const [formData, setformData] = useState<user>({
     name: "",
     email: "",
@@ -35,10 +28,15 @@ const PaymentForm = ({
     address: "",
   });
 
-  const { setShowOptionModal } = useStateCtx();
-
   const [isLoading, startTransition] = useTransition();
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const cartID = searchParams.get("cartId");
+  const price = searchParams.get("price");
+
+  const decryptedId = decryptString(cartID!);
+  console.log(price);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,7 +49,7 @@ const PaymentForm = ({
       form1Data.append("phoneNumber", formData.phoneNumber.toString());
 
       console.log(form1Data);
-      createuser(form1Data, cartId!, price!).then((data) => {
+      createuser(form1Data, decryptedId, price!).then((data) => {
         if (data?.success) {
           console.log(data?.success);
           setformData({
@@ -66,10 +64,12 @@ const PaymentForm = ({
               `/shop/makepayment?paymentstatus='false'&id=${
                 data.User.id
               }&price=${data.User.price}&name=${encryptString(
-                data.User.name
-              )}&email=${encryptString(data.User.email)}&phone=${
+                data.User.name!
+              )}&email=${encryptString(data.User.email!)}&phone=${
                 data.User.phoneNumber
-              }&address=${encryptString(data.User.address)}&userId=${data.User.id}`
+              }&address=${encryptString(data.User.address!)}&userId=${
+                data.User.id
+              }`
             );
           }, 100);
         } else {

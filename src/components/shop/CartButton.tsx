@@ -2,16 +2,23 @@
 
 import { useStateCtx } from "@/context/StateCtx";
 import { ShoppingCart } from "iconsax-react";
-import { ShoppingCartProps, getCart } from "@/actions/cart";
+import { getCart } from "@/actions/cart";
 import React, { useEffect, useState } from "react";
 import { cn } from "@/utils/twcx";
+import { useSearchParams } from "next/navigation";
+import { decryptString } from "@/utils";
 
 const CartButton = () => {
   const [cart, setCart] = useState<number>();
   const { setShowCartModal } = useStateCtx();
+  const searchParams = useSearchParams();
+
+  const cartID = searchParams.get("cartid");
+
+  const decryptedId = decryptString(cartID!);
 
   const fetchCart = async () => {
-    const cartData = await getCart();
+    const cartData = await getCart(decryptedId);
     setCart(cartData?.size);
   };
 

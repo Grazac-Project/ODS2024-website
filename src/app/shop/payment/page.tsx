@@ -8,11 +8,9 @@ interface PageProps {
 }
 
 const Payment = ({ searchParams: { cartId, price } }: PageProps) => {
-  const priceNumber = price ? parseFloat(price) : undefined;
-
   return (
     <>
-      <PaymentForm cartId={cartId} price={price} />
+      <PaymentForm />
     </>
   );
 };

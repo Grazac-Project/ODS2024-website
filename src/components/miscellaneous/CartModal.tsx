@@ -18,6 +18,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useSearchParams } from "next/navigation";
+import { encryptString, decryptString } from "@/utils";
 import ProductCard from "./productCard";
 import LoadingSpinner from "./Loader";
 import MobileCrd from "./mobilecard";
@@ -28,14 +30,17 @@ const CartModal = () => {
   const { setShowCartModal, ShowCartModal } = useStateCtx();
   const [isLoading, setIsLoading] = useState(false);
   const [cart, setCart] = useState<ShoppingCartProps | undefined>(undefined);
+  const searchParams = useSearchParams();
 
-  // console.log(cart);
+  const cartID = searchParams.get("cartid");
+
+  const decryptedId = decryptString(cartID!);
 
   useEffect(() => {
     const fetchCart = async () => {
       try {
         setIsLoading(true);
-        const cartData = await getCart();
+        const cartData = await getCart(decryptedId);
         if (cartData) {
           setCart({
             size: cartData.size ?? 0,
@@ -60,7 +65,7 @@ const CartModal = () => {
 
   const handleDeleteItem = async (productId: string) => {
     try {
-      const updatedCart = await deleteCartItem(productId);
+      const updatedCart = await deleteCartItem(productId, decryptedId);
 
       setCart({
         size: updatedCart?.size ?? 0,
@@ -79,7 +84,10 @@ const CartModal = () => {
 
   const handleIncreaseQuantity = async (productId: string) => {
     try {
-      const updatedCart = await increaseCartItemQuantity(productId);
+      const updatedCart = await increaseCartItemQuantity(
+        productId,
+        decryptedId
+      );
       setCart({
         size: updatedCart?.size ?? 0,
         subtotal: updatedCart?.subtotal ?? 0,
@@ -97,7 +105,10 @@ const CartModal = () => {
 
   const handleDecreaseQuantity = async (productId: string) => {
     try {
-      const updatedCart = await decreaseCartItemQuantity(productId);
+      const updatedCart = await decreaseCartItemQuantity(
+        productId,
+        decryptedId
+      );
       setCart({
         size: updatedCart?.size ?? 0,
         subtotal: updatedCart?.subtotal ?? 0,
@@ -217,7 +228,9 @@ const CartModal = () => {
               </div>
               <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
               <Link
-                href={`/shop/payment?cartId=${cart?.id}&price=${cart?.subtotal}`}
+                href={`/shop/payment?cartId=${encryptString(cart?.id!)}&price=${
+                  cart?.subtotal
+                }`}
                 onClick={closeModal}
                 className="justify-center items-center text-center py-4 mt-6 w-full text-lg leading-5 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid border-[color:var(--Foundation-stroke-stroke-500,#E1E1E1)] max-md:px-5 max-md:max-w-full"
               >

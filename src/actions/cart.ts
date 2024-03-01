@@ -50,24 +50,25 @@ export const createCart = async () => {
     };
   } else {
     console.error("Failed to create a new cart");
-    // Handle the failure accordingly, you can return null or handle it based on your needs
+
     return null;
   }
 };
 
-export const getCart = async () => {
+export const getCart = async (cartID?: string) => {
   const cartId = cookie.get("cartId")?.value;
   const cartIdFromSession = GetFromSessionStorage("cartId");
 
   if (!cartId && !cartIdFromSession) {
     return;
   }
+  // console.log(cartID);
 
   const decryptedId = decryptString(cartId! || cartIdFromSession!);
 
   const cart = await prisma.cart.findUnique({
     where: {
-      id: decryptedId,
+      id: cartID,
     },
     include: { items: { include: { product: true } } },
   });
@@ -85,11 +86,44 @@ export const getCart = async () => {
   };
 };
 
+export const addTocart = async (productId: string, cartid?: string) => {
+  try {
+    const cart = (await getCart(cartid)) ?? (await createCart());
+
+    const articleInCart = cart?.items?.find(
+      (item) => item.productId === productId
+    );
+
+    if (articleInCart) {
+      await prisma.cartItem.update({
+        where: { id: articleInCart.id },
+        data: { quantity: { increment: 1 } },
+      });
+    } else {
+      await prisma.cartItem.create({
+        data: {
+          cartId: cart?.id!,
+          productId,
+          quantity: 1,
+        },
+      });
+    }
+
+    const updatedCart = await getCart(cartid);
+
+    return { success: true, updatedCart };
+  } catch (error) {
+    console.error("Error incrementing product quantity:", error);
+    return { success: false };
+  }
+};
+
 export async function incrementProductQuantity(
-  productId: string
+  productId: string,
+  cartid?: string
 ): Promise<{ success: boolean }> {
   try {
-    const cart = (await getCart()) ?? (await createCart());
+    const cart = (await getCart(cartid)) ?? (await createCart());
 
     const articleInCart = cart?.items?.find(
       (item) => item.productId === productId
@@ -117,7 +151,7 @@ export async function incrementProductQuantity(
   }
 }
 
-export const deleteCartItem = async (productId: string) => {
+export const deleteCartItem = async (productId: string, cartID?: string) => {
   const cartId = cookie.get("cartId")?.value;
   const cartIdFromSession = GetFromSessionStorage("cartId");
 
@@ -129,7 +163,7 @@ export const deleteCartItem = async (productId: string) => {
 
   const cart = await prisma.cart.findUnique({
     where: {
-      id: decryptedId,
+      id: cartID!,
     },
     include: { items: { include: { product: true } } },
   });
@@ -148,7 +182,7 @@ export const deleteCartItem = async (productId: string) => {
 
   await prisma.cart.update({
     where: {
-      id: decryptedId,
+      id: cartID,
     },
     data: {
       items: {
@@ -159,14 +193,17 @@ export const deleteCartItem = async (productId: string) => {
     },
   });
 
-  const updatedCart = await getCart();
+  const updatedCart = await getCart(cartID);
 
   return updatedCart;
 };
 
-export const increaseCartItemQuantity = async (productId: string) => {
+export const increaseCartItemQuantity = async (
+  productId: string,
+  cartId?: string
+) => {
   try {
-    const updatedCart = await updateCartItemQuantity(productId, 1);
+    const updatedCart = await updateCartItemQuantity(productId, 1, cartId);
     return updatedCart;
   } catch (error) {
     console.error("Error increasing item quantity:", error);
@@ -174,9 +211,12 @@ export const increaseCartItemQuantity = async (productId: string) => {
   }
 };
 
-export const decreaseCartItemQuantity = async (productId: string) => {
+export const decreaseCartItemQuantity = async (
+  productId: string,
+  cartId?: string
+) => {
   try {
-    const updatedCart = await updateCartItemQuantity(productId, -1);
+    const updatedCart = await updateCartItemQuantity(productId, -1, cartId);
     return updatedCart;
   } catch (error) {
     console.error("Error decreasing item quantity:", error);
@@ -186,7 +226,8 @@ export const decreaseCartItemQuantity = async (productId: string) => {
 
 const updateCartItemQuantity = async (
   productId: string,
-  quantityChange: number
+  quantityChange: number,
+  cartID?: string
 ) => {
   const cartId = cookie.get("cartId")?.value;
   const cartIdFromSession = GetFromSessionStorage("cartId");
@@ -195,11 +236,9 @@ const updateCartItemQuantity = async (
     return;
   }
 
-  const decryptedId = decryptString(cartId! || cartIdFromSession!);
-
   const cart = await prisma.cart.findUnique({
     where: {
-      id: decryptedId,
+      id: cartID,
     },
     include: { items: { include: { product: true } } },
   });
@@ -215,7 +254,7 @@ const updateCartItemQuantity = async (
   if (cartItemToUpdate) {
     await prisma.cart.update({
       where: {
-        id: decryptedId,
+        id: cartID,
       },
       data: {
         items: {
@@ -233,7 +272,7 @@ const updateCartItemQuantity = async (
       },
     });
 
-    const updatedCart = await getCart();
+    const updatedCart = await getCart(cartID);
 
     return updatedCart;
   } else {
