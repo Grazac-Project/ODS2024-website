@@ -1,3 +1,5 @@
+"use server";
+
 import nodemailer from "nodemailer";
 import * as handlebars from "handlebars";
 import { OrderMail } from "./emails/order";
@@ -43,11 +45,3 @@ export async function sendMail({
   }
 }
 
-export function compileOrder(name: string, url: string) {
-  const template = handlebars.compile(OrderMail);
-  const htmlBody = template({
-    name: name,
-    url: url,
-  });
-  return htmlBody;
-}

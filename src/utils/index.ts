@@ -1,3 +1,6 @@
+import * as handlebars from "handlebars";
+import { OrderMail } from "./emails/order";
+
 /**
  * Returns an Encrypted a string .
  * @function encryptString - Encodes or encrypts a string using a base64 Buffer
@@ -55,3 +58,12 @@ export const GetFromSessionStorage = (key: string): string | null => {
     return null;
   }
 };
+
+export function compileOrder(name: string, url: string) {
+  const template = handlebars.compile(OrderMail);
+  const htmlBody = template({
+    name: name,
+    url: url,
+  });
+  return htmlBody;
+}

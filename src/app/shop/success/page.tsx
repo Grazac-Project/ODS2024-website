@@ -5,7 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { cn } from "@/utils/twcx";
 import useInView from "@/hooks/useInView";
 import { updatePaymentStatus } from "@/actions/payment";
-import { compileOrder, sendMail } from "@/utils/mail";
+import { sendMail } from "@/utils/mail";
+import { compileOrder } from "@/utils";
 
 const PaymentSuccess = () => {
   const searchParams = useSearchParams();
@@ -25,6 +26,17 @@ const PaymentSuccess = () => {
           console.error(result.error);
         } else {
           console.log("Payment status updated successfully:", result.user);
+          const subject = "Order Confirmation";
+          const htmlBody = compileOrder(
+            result.user?.name!,
+            "https://ods-ogun.vercel.app/"
+          );
+          await sendMail({
+            to: result.user?.email!,
+            name: result.user?.name!,
+            subject,
+            body: htmlBody,
+          });
         }
       }
     };
