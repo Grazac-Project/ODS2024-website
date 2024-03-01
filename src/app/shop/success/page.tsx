@@ -62,7 +62,17 @@ const PaymentSuccess = () => {
           <p>Loading...</p>
         ) : (
           <>
-            <h2>Thank You for Shopping with Us!</h2>
+            <div className="flex items-center justify-center text-center bg-gray-100">
+              <div className="max-w-md p-8 bg-white rounded-lg shadow-md">
+                <h2 className="text-2xl font-semibold text-center text-gray-800 mb-4">
+                  Thank You for Shopping with Us!
+                </h2>
+                <p className="text-gray-600">
+                  We appreciate your business. Your order has been confirmed,
+                  and you will receive a confirmation email shortly.
+                </p>
+              </div>
+            </div>
           </>
         )}
       </section>
