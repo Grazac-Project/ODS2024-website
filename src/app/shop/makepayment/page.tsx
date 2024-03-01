@@ -12,7 +12,7 @@ import Image from "next/image";
 
 const Makepayment = () => {
   const searchParams = useSearchParams();
-  const payment = searchParams.get("paymentstatus");
+  const userId = searchParams.get("userId");
   const id = searchParams.get("id");
   const price = searchParams.get("price");
   const addresss = searchParams.get("address");
@@ -105,7 +105,9 @@ const Makepayment = () => {
                 console.log(response.status);
                 closePaymentModal();
                 if (response.status === "successful") {
-                  router.push("/shop/success?paymentstatus=true");
+                  router.push(
+                    `/shop/success?paymentstatus=true&userId=${userId}`
+                  );
                 }
               },
               onClose: () => {

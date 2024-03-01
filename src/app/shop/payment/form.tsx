@@ -69,7 +69,7 @@ const PaymentForm = ({
                 data.User.name
               )}&email=${encryptString(data.User.email)}&phone=${
                 data.User.phoneNumber
-              }&address=${encryptString(data.User.address)}`
+              }&address=${encryptString(data.User.address)}&userId=${data.User.id}`
             );
           }, 100);
         } else {

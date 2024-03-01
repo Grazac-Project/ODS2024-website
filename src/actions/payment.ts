@@ -1,3 +1,7 @@
+"use server";
+
+import { prisma } from "@/utils/db/prisma";
+
 export const Flutterconfig = (
   amount: number,
   phone_number: number,
@@ -14,3 +18,29 @@ export const Flutterconfig = (
     name,
   },
 });
+
+export const CompleteOrder = async () => {};
+
+export const updatePaymentStatus = async (
+  userId: string,
+  newPaymentStatus: boolean
+) => {
+  try {
+    const updatedUser = await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        paymentStatus: newPaymentStatus,
+      },
+    });
+
+    return { user: updatedUser, error: null };
+  } catch (error) {
+    console.error(`Error updating paymentStatus for user ${userId}: ${error}`);
+    return {
+      user: null,
+      error: `Error updating paymentStatus`,
+    };
+  }
+};
