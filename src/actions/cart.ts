@@ -46,12 +46,13 @@ export const createCart = async () => {
 
 export const getCart = async () => {
   const cartId = cookie.get("cartId")?.value;
+  const cartIdFromSession = GetFromSessionStorage("cartId");
 
-  if (!cartId) {
-    return null;
+  if (!cartId && !cartIdFromSession) {
+    return;
   }
 
-  const decryptedId = decryptString(cartId);
+  const decryptedId = decryptString(cartId! || cartIdFromSession!);
 
   const cart = await prisma.cart.findUnique({
     where: {
