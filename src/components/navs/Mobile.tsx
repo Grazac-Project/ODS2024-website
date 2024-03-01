@@ -55,7 +55,7 @@ const MobileNav = () => {
     <>
       <div
         className={cn(
-          "lg:hidden fixed min-h-screen w-full bg-black/50 top-0 left-0 z-20 transition-all duration-300",
+          "lg:hidden fixed min-h-screen w-full bg-black/50 top-0 left-0 z-99 transition-all duration-300",
           showMobileMenu ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
         onClick={() => setShowMobileMenu(false)}
@@ -125,6 +125,7 @@ const MobileNav = () => {
                 href="/about"
                 onClick={() => {
                   setShowMobileMenu(false);
+                  setopenAbout(!openAbout);
                 }}
               >
                 About ODS
@@ -133,6 +134,7 @@ const MobileNav = () => {
                 href="/speakers"
                 onClick={() => {
                   setShowMobileMenu(false);
+                  setopenAbout(!openAbout);
                 }}
               >
                 Speakers

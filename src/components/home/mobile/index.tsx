@@ -72,7 +72,7 @@ const Mobile = () => {
               <div className="flex gap-2 justify-between self-center mt-10 text-lg leading-5 whitespace-nowrap max-w-[342px] items-center">
                 <Link
                   href="/"
-                  className="flex justify-center items-center h-[40px] py-4 text-white bg-green-600 rounded-xl min-w-[153px]"
+                  className="flex justify-center items-center h-full py-4 text-white bg-green-600 rounded-xl min-w-[153px]"
                 >
                   Attend
                 </Link>
@@ -105,7 +105,7 @@ const Mobile = () => {
         <div
           ref={SponsorsRef}
           className={cn(
-            "flex flex-col items-center w-full px-2 sm:px-4",
+            "flex flex-col items-center w-full px-2 sm:px-2",
             isInView
               ? "opacity-100 translate-y-0 md:delay-300 duration-500"
               : " opacity-0 translate-y-36"
@@ -118,7 +118,7 @@ const Mobile = () => {
           <div
             ref={whoWeareRef}
             className={cn(
-              "flex flex-col items-center pb-3.5 text-black max-w-[390px] mt-[52px]",
+              "flex flex-col items-center pb-3.5 text-black mt-[52px]",
               {
                 "opacity-100 translate-y-0 delay-1000 duration-1000": isInView2,
                 "opacity-0 translate-y-36": !isInView2,
@@ -138,8 +138,8 @@ const Mobile = () => {
             </p>
             <div className="flex justify-end max-w-[272px] min-h-[74]">
               <Link
-                href="/"
-                className=" max-w-[215px] max-h-[40px] py-4 px-9 flex gap-2.5 justify-center items-center mt-9 text-lg leading-5 text-green-600 whitespace-nowrap rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] max-md:px-5"
+                href="/about"
+                className=" max-w-[215px] max-h-ful py-4 px-9 flex gap-2.5 justify-center items-center mt-9 text-lg leading-5 text-green-600 whitespace-nowrap rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] max-md:px-5"
               >
                 <span aria-label="Learn more" role="button" className="grow">
                   Learn more
@@ -158,11 +158,29 @@ const Mobile = () => {
         </div>
       </section>
       {/* attend  section 401 2369 */}
+
       <section>
         <div
           ref={AttendRef}
           className={cn(
-            "font-montserrat mt-20 z-20 pb-[40px]",
+            "font-montserrat mt-20 z-20 px-5",
+            isInView3
+              ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
+              : " opacity-0 translate-y-36"
+          )}
+        >
+          <h2 className="text-black font-semibold text-[24px] ">
+            WHY ATTEND ODS23?
+          </h2>
+          <p className="font-nunito">
+            We are at the forefront of innovation, shaping the future and
+            hosting the largest digital summit.
+          </p>
+        </div>
+        <div
+          ref={AttendRef}
+          className={cn(
+            "font-montserrat mt-5 z-20 pb-[40px]",
             isInView3
               ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative mb-[60px]"
               : " opacity-0 translate-y-36"
@@ -177,7 +195,7 @@ const Mobile = () => {
               hosting the largest digital summit.
             </p>
           </div>
-          <div className="flex flex-col items-centet justify-center">
+          <div className="flex flex-col items-center justify-center">
             <div className="w-full h-full absolute top-0 left-0">
               <Image
                 loading="eager"
@@ -189,7 +207,7 @@ const Mobile = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="relative z-10 px-5">
+            <div className="relative z-10 px-2">
               {/* first reason */}
               <div
                 ref={ReaasonRef1}

@@ -44,8 +44,7 @@ const ABOUTMOBILE = () => {
           <h2 className="font-bold text-[30px] text-header mb-4 font-montserrat">
             Our Sponsors
           </h2>
-           <SponsorsSlider />
-      
+          <SponsorsSlider />
         </div>
       </section>
       {/* sbout AboutRef */}
@@ -62,7 +61,7 @@ const ABOUTMOBILE = () => {
           <h2 className="font-bold text-[24px]  text-header mb-4 font-montserrat">
             About ODS
           </h2>
-          <p className="text-text-500 text-lg text-center font-nunito font-medium ">
+          <p className="text-text-500 text-lg text-center font-nunito ">
             Ogun Digital Summit is one of the largest digital summits in Nigeria
             with a strong goal to reiterate the need and importance of digital
             knowledge for youths in a bid to eradicate barriers in acquiring
@@ -76,7 +75,7 @@ const ABOUTMOBILE = () => {
             unprecedented surge in talent, with numbers quadrupling since the
             summits inception in 2020.
           </p>
-          <p className="text-text-500 text-lg text-center mt-5 font-medium">
+          <p className="text-text-500 text-lg text-center mt-5">
             But the impact extends far beyond statistics and figures. The Ogun
             Digital Summit has played a pivotal role in enhancing access to
             technology for communities in need. In the spirit of inclusivity and
