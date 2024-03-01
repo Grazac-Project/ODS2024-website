@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { cn } from "@/utils/twcx";
 import useInView from "@/hooks/useInView";
 import { updatePaymentStatus } from "@/actions/payment";
 import { sendMail } from "@/utils/mail";
 import { compileOrder } from "@/utils";
+import Image from "next/image";
+import React, { useState, useEffect } from "react";
 
 const PaymentSuccess = () => {
   const searchParams = useSearchParams();
@@ -14,13 +15,16 @@ const PaymentSuccess = () => {
   const userID = searchParams.get("userId");
   const PaymentRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(PaymentRef);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const handlePaymentSuccess = async () => {
       if (paymentStatus === "true") {
         const userId = userID;
 
+        setLoading(true);
         const result = await updatePaymentStatus(userId!, true);
+        setLoading(false);
 
         if (result.error) {
           console.error(result.error);
@@ -54,7 +58,13 @@ const PaymentSuccess = () => {
             : " opacity-0 translate-y-36"
         )}
       >
-        payment
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <h2>Thank You for Shopping with Us!</h2>
+          </>
+        )}
       </section>
     </>
   );
