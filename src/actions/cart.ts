@@ -56,16 +56,6 @@ export const createCart = async () => {
 };
 
 export const getCart = async (cartID?: string) => {
-  const cartId = cookie.get("cartId")?.value;
-  const cartIdFromSession = GetFromSessionStorage("cartId");
-
-  if (!cartId && !cartIdFromSession) {
-    return;
-  }
-  // console.log(cartID);
-
-  const decryptedId = decryptString(cartId! || cartIdFromSession!);
-
   const cart = await prisma.cart.findUnique({
     where: {
       id: cartID,
@@ -88,7 +78,14 @@ export const getCart = async (cartID?: string) => {
 
 export const addTocart = async (productId: string, cartid?: string) => {
   try {
-    const cart = (await getCart(cartid)) ?? (await createCart());
+    let cart;
+
+    if (cartid) {
+      cart = await getCart(cartid);
+    } else {
+      cart = await createCart();
+      cartid = cart?.id; 
+    }
 
     const articleInCart = cart?.items?.find(
       (item) => item.productId === productId
@@ -102,7 +99,7 @@ export const addTocart = async (productId: string, cartid?: string) => {
     } else {
       await prisma.cartItem.create({
         data: {
-          cartId: cart?.id!,
+          cartId: cartid!,
           productId,
           quantity: 1,
         },
@@ -152,15 +149,6 @@ export async function incrementProductQuantity(
 }
 
 export const deleteCartItem = async (productId: string, cartID?: string) => {
-  const cartId = cookie.get("cartId")?.value;
-  const cartIdFromSession = GetFromSessionStorage("cartId");
-
-  if (!cartId && !cartIdFromSession) {
-    return;
-  }
-
-  const decryptedId = decryptString(cartId! || cartIdFromSession!);
-
   const cart = await prisma.cart.findUnique({
     where: {
       id: cartID!,
@@ -229,13 +217,6 @@ const updateCartItemQuantity = async (
   quantityChange: number,
   cartID?: string
 ) => {
-  const cartId = cookie.get("cartId")?.value;
-  const cartIdFromSession = GetFromSessionStorage("cartId");
-
-  if (!cartId && !cartIdFromSession) {
-    return;
-  }
-
   const cart = await prisma.cart.findUnique({
     where: {
       id: cartID,

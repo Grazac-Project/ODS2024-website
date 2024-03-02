@@ -12,14 +12,16 @@ const CartButton = () => {
   const [cart, setCart] = useState<number>();
   const { setShowCartModal } = useStateCtx();
   const searchParams = useSearchParams();
-
   const cartID = searchParams.get("cartid");
+  console.log(cartID);
 
-  const decryptedId = decryptString(cartID!);
+  const decryptedId = cartID ? decryptString(cartID) : "";
 
   const fetchCart = async () => {
-    const cartData = await getCart(decryptedId);
-    setCart(cartData?.size);
+    if (decryptedId) {
+      const cartData = await getCart(decryptedId);
+      setCart(cartData?.size);
+    }
   };
 
   useEffect(() => {

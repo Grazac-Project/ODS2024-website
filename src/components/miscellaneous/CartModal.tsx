@@ -31,25 +31,29 @@ const CartModal = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [cart, setCart] = useState<ShoppingCartProps | undefined>(undefined);
   const searchParams = useSearchParams();
-
   const cartID = searchParams.get("cartid");
 
-  const decryptedId = decryptString(cartID!);
+  // Check if cartID is defined before decrypting
+  const decryptedId = cartID ? decryptString(cartID) : "";
 
   useEffect(() => {
     const fetchCart = async () => {
       try {
         setIsLoading(true);
-        const cartData = await getCart(decryptedId);
-        if (cartData) {
-          setCart({
-            size: cartData.size ?? 0,
-            subtotal: cartData.subtotal ?? 0,
-            items: cartData.items ?? [],
-            id: cartData.id ?? "",
-            createdAt: cartData.createdAt ?? new Date(),
-            updatedAt: cartData.updatedAt ?? new Date(),
-          });
+
+        // Ensure decryptedId is not an empty string before calling getCart
+        if (decryptedId) {
+          const cartData = await getCart(decryptedId);
+          if (cartData) {
+            setCart({
+              size: cartData.size ?? 0,
+              subtotal: cartData.subtotal ?? 0,
+              items: cartData.items ?? [],
+              id: cartData.id ?? "",
+              createdAt: cartData.createdAt ?? new Date(),
+              updatedAt: cartData.updatedAt ?? new Date(),
+            });
+          }
         }
       } catch (error) {
         console.error("Error fetching cart data:", error);
@@ -58,10 +62,10 @@ const CartModal = () => {
       }
     };
 
-    if (ShowCartModal) {
+    if (decryptedId && ShowCartModal) {
       fetchCart();
     }
-  }, [ShowCartModal]);
+  }, [ShowCartModal, decryptedId]);
 
   const handleDeleteItem = async (productId: string) => {
     try {

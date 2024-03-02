@@ -19,7 +19,7 @@ const AddToCartButton = ({ productId }: AddToCartButtonProps) => {
 
   const cartID = searchParams.get("cartid");
 
-  const decryptedId = decryptString(cartID!);
+  const decryptedId = cartID ? decryptString(cartID) : "";
 
   return (
     <>
@@ -29,17 +29,33 @@ const AddToCartButton = ({ productId }: AddToCartButtonProps) => {
         onClick={async () => {
           startTransition(() => {
             setSuccess(false);
-            addTocart(productId, decryptedId).then((data) => {
-              setSuccess(!!data?.success);
-              if (data?.success) {
-                replace(
-                  `${pathname}?cartid=${encryptString(data.updatedCart?.id!)}`
-                );
-                setTimeout(() => {
-                  router.refresh;
-                }, 100);
-              }
-            });
+            if (decryptedId) {
+              addTocart(productId, decryptedId).then((data) => {
+                setSuccess(!!data?.success);
+                if (data?.success) {
+                  console.log(data.updatedCart?.id);
+                  replace(
+                    `${pathname}?cartid=${encryptString(data.updatedCart?.id!)}`
+                  );
+                  setTimeout(() => {
+                    router.refresh();
+                  }, 100);
+                }
+              });
+            } else {
+              addTocart(productId).then((data) => {
+                setSuccess(!!data?.success);
+                if (data?.success) {
+                  console.log(data.updatedCart?.id);
+                  replace(
+                    `${pathname}?cartid=${encryptString(data.updatedCart?.id!)}`
+                  );
+                  setTimeout(() => {
+                    router.refresh();
+                  }, 100);
+                }
+              });
+            }
           });
         }}
       >

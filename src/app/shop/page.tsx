@@ -2,7 +2,6 @@
 
 import React, { Suspense, useEffect, useState } from "react";
 import ShopCard from "@/components/shop/card";
-import { ShoppingCart } from "iconsax-react";
 import useInView from "@/hooks/useInView";
 import { cn } from "@/utils/twcx";
 import CardSkelton from "@/components/cardskelton";
