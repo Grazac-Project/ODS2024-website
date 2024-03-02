@@ -15,7 +15,7 @@ export async function sendMail({
   subject: string;
   body: string;
 }) {
-  const { SMTP_EMAIL, SMTP_PASSWORD } = process.env;
+  const { SMTP_EMAIL, SMTP_PASSWORD, SMTP_SENDER_EMAIL } = process.env;
 
   const transport = nodemailer.createTransport({
     service: "gmail",
@@ -34,7 +34,7 @@ export async function sendMail({
 
   try {
     const sendResult = await transport.sendMail({
-      from: SMTP_EMAIL,
+      from: SMTP_SENDER_EMAIL,
       to,
       subject,
       html: body,
@@ -44,4 +44,3 @@ export async function sendMail({
     console.log(error);
   }
 }
-
