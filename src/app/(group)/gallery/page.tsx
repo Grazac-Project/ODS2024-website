@@ -4,35 +4,38 @@ import Body from "./Body";
 
 export type Folder = { name: string; path: string };
 
-export default async function Gallery({
-  params: { folderName },
-}: {
+interface GalleryProps {
   params: {
     folderName: string;
   };
-}) {
-  const results = await cloudinary.v2.search
-    .expression("resource_type:image")
-    .sort_by("created_at", "desc")
-    .max_results(400)
-    .execute();
+}
+
+const Gallery: React.FC<GalleryProps> = async ({ params: { folderName } }) => {
+  let images;
+
+  if (folderName) {
+    // Fetch filtered images based on the folderName
+    images = await cloudinary.v2.search
+      .expression(`resource_type:image AND folder=${folderName}`)
+      .sort_by("created_at", "desc")
+      .max_results(30)
+      .execute();
+  } else {
+    // Fetch all images if no folderName is provided
+    images = await cloudinary.v2.search
+      .expression("resource_type:image")
+      .sort_by("created_at", "asc")
+      .max_results(400)
+      .execute();
+  }
 
   const { folders } = (await cloudinary.v2.api.root_folders()) as {
     folders: Folder[];
   };
 
-  console.log(folderName!);
+  console.log(folderName);
 
-  // const results = (await cloudinary.v2.search
-  //   .expression(`resource_type:image AND folder=${name}`)
-  //   .sort_by("created_at", "desc")
-  //   .with_field("tags")
-  //   .max_results(30)
-  //   .execute()) as { resources: SearchResult[] };
+  return <Body images={images} folder={folders} />;
+};
 
-  console.log(folders);
-
-  // console.log(results);
-
-  return <Body images={results} />;
-}
+export default Gallery;

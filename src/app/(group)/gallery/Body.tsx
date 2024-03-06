@@ -17,8 +17,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/select";
+import { Folder } from "./page";
 
 interface BodyProps {
+  folder?: Folder[];
   images?: {
     total_count: number;
     time: number;
@@ -33,7 +35,7 @@ interface Resource {
   folder: string;
 }
 
-const Body = ({ images }: BodyProps) => {
+const Body = ({ images, folder }: BodyProps) => {
   const GalleryRef = React.useRef<HTMLDivElement>(null);
   const ImageRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(GalleryRef);
@@ -46,7 +48,7 @@ const Body = ({ images }: BodyProps) => {
     return resources.filter((resource) => resource.folder === folder);
   };
 
-  console.log(FilteredImages);
+  console.log(folder);
 
   React.useEffect(() => {
     if (images?.resources) {

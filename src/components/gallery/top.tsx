@@ -35,7 +35,7 @@ const TopContent = () => {
             <Link
               href="/highlight"
               className={cn(
-                "justify-center px-6 py-2.5  max-w-[150px]  border border-solid border-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] rounded-[100px]",
+                "justify-center px-6 py-2.5  max-w-[150px] text-center border border-solid border-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] rounded-[100px]",
                 pathname === HighLight
                   ? "text-white bg-primary"
                   : "text-primary bg-white"
@@ -46,7 +46,7 @@ const TopContent = () => {
             <Link
               href="/gallery"
               className={cn(
-                "justify-center px-6 py-2.5  min-w-[150px]  border border-solid border-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] rounded-[100px]",
+                "justify-center px-6 py-2.5 text-center  min-w-[150px]  border border-solid border-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] rounded-[100px]",
                 pathname === Gallery
                   ? "text-white bg-primary"
                   : "text-primary bg-white"
