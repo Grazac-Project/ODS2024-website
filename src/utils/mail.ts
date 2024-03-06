@@ -26,7 +26,6 @@ export async function sendMail({
   });
   try {
     const testResult = await transport.verify();
-    // console.log(testResult);
   } catch (error) {
     console.error({ error });
     return;
@@ -39,7 +38,6 @@ export async function sendMail({
       subject,
       html: body,
     });
-    // console.log(sendResult);
   } catch (error) {
     console.log(error);
   }
