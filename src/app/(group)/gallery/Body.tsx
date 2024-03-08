@@ -42,7 +42,6 @@ const Body = ({ images, folder }: BodyProps) => {
   const isInView1 = useInView(ImageRef);
   const [selectedFolder, setSelectedFolder] = React.useState("");
   const [FilteredImages, setFilteredImages] = React.useState([] as Resource[]);
-  const [filterVisibility, setFilterVisibility] = React.useState(false);
 
   const filterResourcesByFolder = (resources: Resource[], folder: string) => {
     return resources.filter((resource) => resource.folder === folder);
