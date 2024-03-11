@@ -5,11 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Location } from "iconsax-react";
 import Subscribe from "./Subscribe";
+import Mobile from "./Mobile";
 
 const Footer = () => {
   return (
     <>
-      <footer className="hidden xl:flex flex-col">
+      <footer className="hidden lg:flex flex-col">
         <div className="bg-primarytwo mt-24 py-24">
           <div className="container flex justify-between">
             <div>
@@ -111,6 +112,7 @@ const Footer = () => {
           Rights Reserved
         </div>
       </footer>
+      <Mobile />
     </>
   );
 };

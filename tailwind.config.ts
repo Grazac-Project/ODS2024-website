@@ -16,6 +16,15 @@ const config: Config = {
         primary: "#00A651",
         primarytwo: "#004622",
       },
+      screens: {
+        sm: "576px",
+        md: "768px",
+        lg: "992px",
+        xl: "1200px",
+        "2xl": "1320px",
+        "3xl": "1600px",
+        "4xl": "1850px",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

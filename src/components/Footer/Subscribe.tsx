@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowCircleUp2 } from "iconsax-react";
-import Image from "next/image";
 
 const Subscribe = () => {
   const scrollToTop = () => {
