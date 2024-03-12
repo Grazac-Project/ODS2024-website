@@ -59,7 +59,7 @@ model Buyer {
   @@map("buyers")
 }
 
-model Speakers {
+model Speaker {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   name       String
   title      String
@@ -67,12 +67,14 @@ model Speakers {
   image      String
   bio        String
   socials    Social[]
+
+  @@map("speakers")
 }
 
 model Social {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   platform   String
   url        String
-  Speakers   Speakers? @relation(fields: [speakersId], references: [id])
-  speakersId String?   @db.ObjectId
+  Speakers   Speaker? @relation(fields: [speakersId], references: [id])
+  speakersId String?  @db.ObjectId
 }
