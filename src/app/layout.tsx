@@ -1,5 +1,7 @@
 import "../styles/globals.scss";
 import type { Metadata } from "next";
+import {Suspense} from "react"
+import SkeletonNavbar from "@/components/skelton/Nav";
 import GoToTop from "@/components/GoToTop";
 import { nunito, montserrat } from "@/fonts";
 import NavBar from "@/components/Navs/NavBar";
@@ -21,7 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${montserrat.className} ${nunito.className}`}>
         <StateContextProvider>
+        <Suspense fallback={<SkeletonNavbar />}>
           <NavBar />
+          </Suspense>
           {children}
           <GoToTop />
           <Footer />
