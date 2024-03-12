@@ -24,7 +24,8 @@ export const WHY = [
   },
   {
     id: "03",
-    image: "/why-3.svg",
+    image:
+      "https://res.cloudinary.com/ddjt9wfuv/image/upload/c_limit,w_400/f_webp,fl_awebp/q_auto/v1708399577/ODS%202021/bmavupl1x0hnnc360yfl",
     title: "Cutting Edge AI Exploration",
     desc: ` This year’s event promises to delve deep into the explorative power of AI & WEB3 technologies, while also gaining access to latest trends and innovation in the tech industry.`,
   },

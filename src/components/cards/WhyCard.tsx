@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import { CloudinaryImage } from "../Image";
 
 interface WhyCard {
   image: string;
@@ -12,7 +12,7 @@ const WhyCard = ({ image, title, desc, id }: WhyCard) => {
   return (
     <>
       <div className="flex flex-col px-6 py-8 font-medium bg-white rounded-3xl border border-solid border-neutral-200 max-w-[588px] max-md:px-5">
-        <Image
+        <CloudinaryImage
           loading="lazy"
           src={image}
           alt="Feature image"
