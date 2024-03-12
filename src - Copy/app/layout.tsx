@@ -1,9 +1,9 @@
 import "../styles/globals.scss";
 import type { Metadata } from "next";
-import Footer from "@/components/Footer";
 import GoToTop from "@/components/GoToTop";
 import { nunito, montserrat } from "@/fonts";
 import NavBar from "@/components/Navs/NavBar";
+import Footer from "@/components/Footer";
 import StateContextProvider from "@/context/StateCtx";
 
 export const metadata: Metadata = {
