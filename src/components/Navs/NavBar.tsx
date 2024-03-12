@@ -80,7 +80,7 @@ const NavBar = () => {
         )}
       >
         <Image
-          src="/logo.webp"
+          src="/logo.svg"
           alt="logo"
           width={155}
           height={55}
