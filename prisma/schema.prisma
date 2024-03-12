@@ -56,5 +56,23 @@ model Buyer {
   cartId        String
   price         String
 
-  @@map("Buyer")
+  @@map("buyers")
+}
+
+model Speakers {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  title      String
+  occupation String
+  image      String
+  bio        String
+  socials    Social[]
+}
+
+model Social {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  platform   String
+  url        String
+  Speakers   Speakers? @relation(fields: [speakersId], references: [id])
+  speakersId String?   @db.ObjectId
 }
