@@ -1,10 +1,11 @@
+"use client"
 import React from "react";
 import Slider from "react-slick";
 import { cn } from "@/utils";
 import useInView from "@/hooks/useInView";
 import Image from "next/image";
 
-const sponspors = () => {
+const Sponspors = () => {
   const slideRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(slideRef);
   const carouselSettings = {
@@ -74,4 +75,4 @@ const sponspors = () => {
   );
 };
 
-export default sponspors;
+export default Sponspors;
