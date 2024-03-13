@@ -86,6 +86,7 @@ model Highlight {
   speaker     String
   description String
   year        String
+  img         String
 
   @@map("highlights")
 }
