@@ -15,6 +15,10 @@ const config: Config = {
       colors: {
         primary: "#00A651",
         primarytwo: "#004622",
+        text: {
+          300: "#131815",
+          500: "#131815",
+        },
       },
       screens: {
         sm: "576px",

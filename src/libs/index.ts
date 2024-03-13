@@ -95,3 +95,43 @@ export const highlights: HighlightsProps[] = [
       "In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy. In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy. In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy. In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy. In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy.  In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy. In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy.  In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy. In the last three years, the Ogun Digital Summit has ignited a fire within the hearts of more than 6,000 individuals, propelling them to not only forge careers in the digital technology sector but also to harness the power of technology in tackling significant challenges, thereby revolutionizing our digital economy.",
   },
 ];
+
+
+export const teams = [
+  {
+    id: 1,
+    name: "Harrison Obiefule",
+    title: "Program Cordinator",
+    src: "/speaker1.svg",
+  },
+  {
+    id: 2,
+    name: "Harrison Obiefule",
+    title: "Media Specialist",
+    src: "/speaker4.svg",
+  },
+  {
+    id: 3,
+    name: "Harrison Obiefule",
+    title: "Head of Design",
+    src: "/speaker5.svg",
+  },
+  {
+    id: 4,
+    name: "Harrison Obiefule",
+    title: "Software Developer",
+    src: "/speaker3.svg",
+  },
+  {
+    id: 5,
+    name: "Harrison Obiefule",
+    title: "Head of Publicity",
+    src: "/speaker2.svg",
+  },
+  {
+    id: 6,
+    name: "Harrison Obiefule",
+    title: "Social media manager",
+    src: "/speaker6.svg",
+  },
+];
