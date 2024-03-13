@@ -22,10 +22,12 @@ const SpeakerSection = () => {
     >
       <div className="font-montserrat mb-5 flex items-center justify-between">
         <div>
-          <h2 className="text-black font-semibold text-[40px]">
+          <h2 className="text-black font-semibold md:text-[40px] text-[24px]">
             Meet the Speakers
           </h2>
-          <p className={` font-nunito w-full  md:w-[30%] font-medium text-lg`}>
+          <p
+            className={` font-nunito w-[80%]  md:w-[30%]  font-medium text-[14px] md:text-lg`}
+          >
             Here are the amazing outstanding people who will be speaking at this
             year&apos;s Ogun Digital Summit
           </p>
@@ -33,7 +35,7 @@ const SpeakerSection = () => {
         <div>
           <Link
             href="/speakers"
-            className="font-nunito text-lg text-primary px-8 py-2 rounded-xl flex items-center"
+            className="font-nunito text-lg text-primary w-full flex items-center text-nowrap"
           >
             See All
             <div>
