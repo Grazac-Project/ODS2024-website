@@ -19,11 +19,11 @@ const Attend = () => {
           : " opacity-0 translate-y-36"
       )}
     >
-      <div className="container mb-5">
-        <h2 className="text-black-100 font-semibold text-[40px] ">
+      <div className="md:container mb-5">
+        <h2 className="text-black-100 font-semibold md:text-[40px] text-[24px]">
           ODS&apos;24 Featuring
         </h2>
-        <p className="font-nunito w-[40%]">
+        <p className="font-nunito md:w-[40%] w-full">
           We are at the forefront of innovation, shaping the future and hosting
           the largest digital summit.
         </p>

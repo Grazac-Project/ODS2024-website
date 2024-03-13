@@ -138,9 +138,9 @@ const Mobile = () => {
             <div className="flex justify-end max-w-[272px] min-h-[74]">
               <Link
                 href="/about"
-                className=" max-w-[215px] max-h-ful py-4 px-9 flex gap-2.5 justify-center items-center mt-9 text-lg leading-5 text-green-600 whitespace-nowrap rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] max-md:px-5"
+                className=" min-w-[215px] min-h-[46px]  flex  justify-center items-center mt-9 text-lg leading-5 text-green-600 whitespace-nowrap rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] max-md:px-5"
               >
-                <span aria-label="Learn more" role="button" className="grow">
+                <span aria-label="Learn more" role="button">
                   Learn more
                 </span>
                 <ArrowRight2 />
