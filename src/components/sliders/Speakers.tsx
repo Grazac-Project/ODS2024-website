@@ -59,7 +59,6 @@ function SpeakersSlder() {
     fetchSpeakers();
   }, []);
 
-//   console.log(speakersData);
   return (
     <div
       ref={slideRef}

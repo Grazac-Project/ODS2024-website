@@ -20,27 +20,29 @@ const SpeakerSection = () => {
           : " opacity-0 translate-y-36"
       )}
     >
-      <div className={` font-montserrat mb-5 `}>
-        <h2 className="text-black font-semibold text-[40px]">
-          Meet the Speakers
-        </h2>
-        <p className={` font-nunito w-full  md:w-[30%] font-medium text-lg`}>
-          Here are the amazing outstanding people who will be speaking at this
-          year&apos;s Ogun Digital Summit
-        </p>
+      <div className="font-montserrat mb-5 flex items-center justify-between">
+        <div>
+          <h2 className="text-black font-semibold text-[40px]">
+            Meet the Speakers
+          </h2>
+          <p className={` font-nunito w-full  md:w-[30%] font-medium text-lg`}>
+            Here are the amazing outstanding people who will be speaking at this
+            year&apos;s Ogun Digital Summit
+          </p>
+        </div>
+        <div>
+          <Link
+            href="/speakers"
+            className="font-nunito text-lg text-primary px-8 py-2 rounded-xl flex items-center"
+          >
+            See All
+            <div>
+              <IoIosArrowForward />
+            </div>
+          </Link>
+        </div>
       </div>
       <SpeakersSlder />
-      <div className="flex justify-center items-center mt-12">
-        <Link
-          href="/speakers"
-          className="font-nunito border border-primary text-lg text-primary px-8 py-2 rounded-xl flex items-center gap-3"
-        >
-          See all the Speakers{" "}
-          <div>
-            <IoIosArrowForward />
-          </div>
-        </Link>
-      </div>
     </div>
   );
 };
