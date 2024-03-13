@@ -7,25 +7,9 @@ import { cn } from "@/utils";
 import useInView from "@/hooks/useInView";
 import { FaArrowRight } from "react-icons/fa6";
 import Link from "next/link";
-import { Highlight } from "@prisma/client";
+import { highlights } from "@/libs";
 
 function HighlightsSlider() {
-  const [highlightsData, setHighlightsData] = useState<Highlight[]>([]);
-
-  useEffect(() => {
-    const fetchHighlights = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/highlights");
-        const data = await response.json();
-        setHighlightsData(data.highlights);
-      } catch (error) {
-        console.error("Error fetching highlights:", error);
-      }
-    };
-
-    fetchHighlights();
-  }, []);
-
   const slideRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(slideRef);
   const carouselSettings = {
@@ -75,7 +59,7 @@ function HighlightsSlider() {
         {...carouselSettings}
         className="justify-between items-center w-full"
       >
-        {highlightsData?.map((item) => (
+        {highlights?.map((item) => (
           <div key={item?.id} className="lg:max-w-[353px] md:w-[300px]">
             <div className="w-full max-h-[288px]">
               <Image src={item?.img} alt="" width={353} height={288} />

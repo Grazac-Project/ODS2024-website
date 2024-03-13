@@ -16,3 +16,13 @@ export type SearchResult = {
 };
 
 export type Folder = { name: string; path: string };
+
+
+export interface HighlightsProps {
+  id: number;
+  title: string;
+  img: string;
+  date: string;
+  speaker: string;
+  description: any;
+}
