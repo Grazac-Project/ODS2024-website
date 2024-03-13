@@ -136,3 +136,17 @@ svg circle {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.loop {
+  background-image: url('/loop3.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.join2 {
+  background-image: url('/join2.svg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

@@ -16,7 +16,7 @@ const SpeakerSection = () => {
       className={cn(
         "container mt-20",
         isInView
-          ? "opacity-100 translate-y-0 md:delay-300 duration-500 bg-white z-[20]"
+          ? "opacity-100 translate-y-0 md:delay-300 duration-500  z-[20] relative"
           : " opacity-0 translate-y-36"
       )}
     >
