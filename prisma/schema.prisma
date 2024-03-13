@@ -78,3 +78,14 @@ model Social {
   Speakers   Speaker? @relation(fields: [speakersId], references: [id])
   speakersId String?  @db.ObjectId
 }
+
+model Highlight {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  date        String
+  speaker     String
+  description String
+  year        String
+
+  @@map("highlights")
+}
