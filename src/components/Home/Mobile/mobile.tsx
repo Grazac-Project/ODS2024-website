@@ -7,6 +7,8 @@ import useInView from "@/hooks/useInView";
 import { cn } from "@/utils";
 import Sponspors from "@/components/sliders/sponspors";
 import Attend from "../Desktop/Attend";
+import HighLight from "../Desktop/Highlights";
+import SpeakerSection from "../Desktop/Speakers";
 
 const Mobile = () => {
   const SponsorsRef = React.useRef<HTMLDivElement>(null);
@@ -71,13 +73,13 @@ const Mobile = () => {
               <div className="flex gap-2 justify-between self-center mt-10 text-lg leading-5 whitespace-nowrap max-w-[342px] items-center">
                 <Link
                   href="/"
-                  className="flex justify-center items-center h-full py-4 text-white bg-green-600 rounded-xl min-w-[153px]"
+                  className="flex justify-center items-center h-[50px]  text-white bg-green-600 rounded-xl min-w-[153px]"
                 >
                   Attend
                 </Link>
                 <Link
                   href="/"
-                  className="flex gap-1 justify-between px-2 py-4 text-green-600 h-full items-center bg-white rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)]"
+                  className="flex gap-1 justify-between  text-green-600 h-[50px] px-3 items-center bg-white rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)]"
                 >
                   <div className="grow">Speak at ODS&apos;24</div>
                   <ArrowRight2 />
@@ -158,6 +160,128 @@ const Mobile = () => {
       </section>
       {/* attend  section 401 2369 */}
       <Attend />
+      <HighLight />
+      <SpeakerSection />
+      {/* almost under */}
+      <section>
+        <div
+          ref={JoinRef}
+          className={cn(
+            "flex flex-col justify-center px-8 py-11 text-base leading-5 text-white bg-neutral-900 ",
+            isInView8
+              ? "opacity-100 translate-y-0 md:delay-300 duration-500"
+              : " opacity-0 translate-y-36"
+          )}
+        >
+          <div className="max-w-[328px] flex flex-col self-center items-center justify-center">
+            <header className="text-2xl font-semibold  text-center">
+              Join as a Partner/Sponsor/ <br /> Exhibitors
+            </header>
+            <div className="mt-4 capitalize whitespace-nowrap">
+              Unlock Boundless Opportunities at ODS 24
+            </div>
+            <div>
+              <div className="self-center flex">
+                <Link
+                  href="/"
+                  className="flex gap-2.5 justify-center self-center px-11 py-2 mt-8 max-w-full whitespace-nowrap bg-green-600 rounded-xl w-[245px]"
+                >
+                  <span className="grow self-start mt-1">Become a partner</span>
+
+                  <ArrowRight2 />
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/"
+                  className="flex gap-2.5 justify-center self-center px-8 py-2 mt-4 max-w-full text-green-600 whitespace-nowrap rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] w-[245px]"
+                >
+                  <span className="grow self-start mt-1">
+                    Become an Exhibitor
+                  </span>
+
+                  <ArrowRight2 />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          ref={JoinRef2}
+          className={cn(
+            "flex flex-col justify-center",
+            isInView9
+              ? "opacity-100 translate-y-0 md:delay-300 duration-500"
+              : " opacity-0 translate-y-36"
+          )}
+        >
+          <Image
+            loading="eager"
+            src="/under.svg"
+            alt="hero image"
+            width={390}
+            height={304}
+            priority
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </section>
+      {/* FinalSection */}
+      <section>
+        <div
+          ref={FianlRef}
+          className={cn(
+            "flex flex-col mt-9 px-5 ",
+            isInView10
+              ? "opacity-100 translate-y-0 md:delay-300 duration-500"
+              : " opacity-0 translate-y-36"
+          )}
+        >
+          <h2 className=" font-montserrat w-full text-3xl font-semibold leading-10 text-neutral-900">
+            Unlocking Tech Innovations Without Boundaries
+          </h2>
+          <span className="mt-4 w-full text-base leading-5 text-neutral-900 font-nunito">
+            The ODS 23 Mobile App is your all-in-one tool for an immersive tech
+            experience at your fingertip. Connect with like minds like never
+            before
+          </span>
+          <div className="flex flex-col gap-5 items-center justify-between mt-9 w-full self-center">
+            <Image
+              loading="eager"
+              src="/phone.svg"
+              alt="hero image"
+              width={342}
+              height={332}
+              priority
+              className="w-full h-full object-cover"
+            />
+            <div className="flex gap-4 mt-5">
+              <Link href="/">
+                <Image
+                  loading="eager"
+                  src="/apple.svg"
+                  alt="hero image"
+                  width={144}
+                  height={48}
+                  priority
+                  className="w-full h-full object-cover"
+                />
+              </Link>
+              <Link href="/">
+                <Image
+                  loading="eager"
+                  src="/google.svg"
+                  alt="hero image"
+                  width={162}
+                  height={48}
+                  priority
+                  className="w-full h-full object-cover"
+                />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
