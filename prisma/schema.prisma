@@ -57,3 +57,10 @@ model user {
 
   @@map("users")
 }
+
+model subscribe {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  email String @unique
+
+  @@map("subcribers")
+}
