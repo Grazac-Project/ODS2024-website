@@ -1,8 +1,43 @@
 "use client";
 
+import React, { useState } from "react";
 import { ArrowCircleUp2 } from "iconsax-react";
 
 const Subscribe = () => {
+  const [email, setEmail] = useState("");
+  const [Status, setStatus] = useState("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      if (!email) {
+        setStatus("error");
+      }
+      setStatus("loading");
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          "Access-Control-Allow-Origin": "*",
+          credentials: "include",
+        },
+        body: JSON.stringify({
+          email,
+        }),
+      });
+      console.log(res?.status);
+
+      if (res.status === 201 || res.ok) {
+        setEmail("");
+        setStatus("sucess");
+      }
+    } catch (e: any) {
+      setStatus("error");
+    }
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -15,16 +50,21 @@ const Subscribe = () => {
         <p className="text-white text-sm lg:text-base">
           Subscribe to get latest updates on our Summits
         </p>
-        <div className="mt-4 flex w-full">
+        <form className="mt-4 flex w-full" onSubmit={handleSubmit}>
           <input
             type="email"
             className="w-[80%] lg:w-[362px] h-[55px] rounded-l-lg bg-gray-100 outline-none text-[#282828] px-4 text-base"
             placeholder="Enter Email Address"
           />
-          <button className="w-[160px] h-[55px] rounded-r-lg bg-[#00763A] text-base text-white">
+          <button
+            disabled={Status === "loading"}
+            className="w-[160px] h-[55px] rounded-r-lg bg-[#00763A] text-base text-white"
+            type="submit"
+          >
             Subscribe
           </button>
-        </div>
+          {Status === "ërror" && <p>error</p>}
+        </form>
       </div>
       <button
         onClick={scrollToTop}
