@@ -3,7 +3,7 @@ import { primsa } from "@/utils/connect";
 
 export const GET = async () => {
   try {
-    const speakers = await primsa.speaker.findMany();
+    const speakers = await primsa.speakers.findMany();
     return new NextResponse(
       JSON.stringify({
         speakers,
