@@ -7,6 +7,7 @@ import { nunito, montserrat } from "@/fonts";
 import NavBar from "@/components/Navs/NavBar";
 import StateContextProvider from "@/context/StateCtx";
 import SkeletonNavbar from "@/components/skelton/Nav";
+import AuthProvider from "./providers";
 
 export const metadata: Metadata = {
   title: "OGUN DIGITAL SUMMIT",
@@ -21,16 +22,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className} ${nunito.className}`}>
-        <StateContextProvider>
-          <Suspense fallback={<SkeletonNavbar />}>
-            <NavBar />
-          </Suspense>
-          {children}
-          <GoToTop />
-          <Footer />
-        </StateContextProvider>
-      </body>
+      <AuthProvider>
+        <body className={`${montserrat.className} ${nunito.className}`}>
+          <StateContextProvider>
+            <Suspense fallback={<SkeletonNavbar />}>
+              <NavBar />
+            </Suspense>
+            {children}
+            <GoToTop />
+            <Footer />
+          </StateContextProvider>
+        </body>
+      </AuthProvider>
     </html>
   );
 }

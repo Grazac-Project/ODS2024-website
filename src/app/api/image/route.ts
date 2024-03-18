@@ -8,7 +8,7 @@ type SearchResult = {
 export const GET = async () => {
   try {
     const results = (await cloudinary.v2.search
-      .expression(`resource_type:image AND folder="ODS CONTENT"`)
+      .expression(`resource_type:image AND folder="ODS CONTENT/ODS 2021"`)
       .sort_by("created_at", "desc")
       .with_field("tags")
       .max_results(500)

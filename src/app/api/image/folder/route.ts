@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import cloudinary from "cloudinary";
 import { Folder, SearchResult } from "@/types";
 
-export const GET = async (req: any, res: any) => {
+export const GET = async () => {
   try {
     const { folders } = (await cloudinary.v2.api.sub_folders(
       "ODS CONTENT"

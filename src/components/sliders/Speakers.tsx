@@ -50,7 +50,7 @@ function SpeakersSlder() {
       try {
         const response = await fetch("http://localhost:3000/api/speakers");
         const data = await response.json();
-        setSpeakersData(data.speakers);
+        setSpeakersData(data.speakers || []);
       } catch (error) {
         console.error("Error fetching speakers:", error);
       }
