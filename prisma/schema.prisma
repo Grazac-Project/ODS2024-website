@@ -66,28 +66,29 @@ model Highlight {
   speaker     String
   title       String
   year        String
+  image       String
 
   @@map("highlights")
 }
 
 model Speaker {
-  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   bio        String
   image      String
   name       String
   occupation String
   title      String
-  socials    Social @relation(fields: [socialId], references: [id])
-  socialId   String @db.ObjectId
+  socials    Social[]
 
   @@map("speakers")
 }
 
 model Social {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  platform String
-  url      String
-  Speaker  Speaker[]
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  platform  String
+  url       String
+  Speaker   Speaker? @relation(fields: [speakerId], references: [id])
+  speakerId String?  @db.ObjectId
 
   @@map("socials")
 }
