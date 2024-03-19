@@ -10,7 +10,7 @@ const TopContent = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const HighLight = "/highlight" ? "/highlight" : "/highlight/highlight";
+  const HighLight = "/highlight" ? "/highlight" : `/highlight/highlight:path`;
 
   const Gallery = "/gallery";
   return (

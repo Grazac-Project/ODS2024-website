@@ -22,6 +22,7 @@ const MAIN = ({ highlight_id }: { highlight_id?: string }) => {
 
   const url = `/api/highlights/${highlight_id}`;
   const { isLoading, data, error } = useFetch(url);
+  // console.log(data);
 
   useEffect(() => {
     if (data) {
