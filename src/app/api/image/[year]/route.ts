@@ -1,17 +1,19 @@
 import { NextResponse } from "next/server";
 import cloudinary from "cloudinary";
+import { SearchResult } from "@/types";
 
-type SearchResult = {
-  public_id: string;
+type Params = {
+  folderName: string;
 };
+export async function GET(req: Request, context: { params: Params }) {
+  const folderName = context.params.folderName;
 
-export const GET = async () => {
   try {
     const results = (await cloudinary.v2.search
-      .expression("resource_type:image")
+      .expression(`resource_type:image AND folder=${folderName}`)
       .sort_by("created_at", "desc")
       .with_field("tags")
-      .max_results(500)
+      .max_results(30)
       .execute()) as { resources: SearchResult[] };
 
     return new NextResponse(
@@ -22,4 +24,4 @@ export const GET = async () => {
       })
     );
   } catch (e: any) {}
-};
+}

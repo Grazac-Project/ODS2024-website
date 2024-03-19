@@ -11,7 +11,7 @@ import { ArrowRight2 } from "iconsax-react";
 import Image from "next/image";
 import Join from "@/components/General/Join";
 
-interface SpeakerDetails {
+export interface SpeakerDetails {
   searchParams: {
     [key: string]: string;
   };

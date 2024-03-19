@@ -23,6 +23,8 @@ const High = () => {
       setHighlights(data.highlights || []);
     }
   }, [data]);
+
+  const firstHighlight = highlights.length > 0 ? highlights[0] : null;
   return (
     <section
       ref={AttendRef}
@@ -33,16 +35,13 @@ const High = () => {
           : " opacity-0 translate-y-36"
       )}
     >
-      <div
-        className={cn(
-          "w-full min-h-[941px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 lg:gap-x-6  place-content-start place-items-center gap-y-16 max-[929px]:gap-y-8 mb-6 min-[1139px]:gap-x-1 min-[1220px]:gap-x-4",
-          {}
-        )}
-      >
+      <div>
         {isLoading ? (
-          <LoadingSpinner />
+          <div className="grid place-items-center min-h-[200px]">
+            <LoadingSpinner />
+          </div>
         ) : error ? (
-          <div className="grid place-items-center min-h-[400px]">
+          <div className="grid place-items-center min-h-[200px]">
             <div className="text-center ">
               <h3 className="text-2xl">{error.message}</h3>
               <p>⚒️ We are currently working on this ⚒️</p>
@@ -51,7 +50,12 @@ const High = () => {
         ) : (
           <>
             {highlights.length > 0 && (
-              <>
+              <div
+                className={cn(
+                  "w-full min-h-[941px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 lg:gap-x-6  place-content-start place-items-center gap-y-16 max-[929px]:gap-y-8 mb-6 min-[1139px]:gap-x-1 min-[1220px]:gap-x-4",
+                  {}
+                )}
+              >
                 {highlights?.map((highlights) => (
                   <div
                     key={highlights?.id}
@@ -84,7 +88,7 @@ const High = () => {
                     <p>No highlights available</p>
                   </div>
                 )}
-              </>
+              </div>
             )}
           </>
         )}
