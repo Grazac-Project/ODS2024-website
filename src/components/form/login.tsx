@@ -49,6 +49,9 @@ const LoginForm = () => {
 
   const router = useRouter();
 
+  const callbackUrl = searchParams.get("callbackUrl") ?? "/admin/dashboard";
+
+  // console.log(callbackUrl);
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("");
     setSuccess("");
@@ -63,7 +66,7 @@ const LoginForm = () => {
             setSuccess("Redirecting....");
           }, 1000);
           setTimeout(() => {
-            // router.push("/admin/dashboard");
+            router.push("/admin/dashboard");
           }, 2000);
         }
       });
@@ -177,8 +180,6 @@ const LoginForm = () => {
             </div>
           </form>
         </Form>
-
-
 
         <div className="seperator flex items-center space-x-2 my-2 md:my-10">
           <span className="seperate h-[1px] bg-[#C7C7C7] w-full" />
