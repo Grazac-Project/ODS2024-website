@@ -49,7 +49,7 @@ const config: Config = {
             transform: "rotate(360deg)",
           },
         },
-        
+
         slideUp: {
           "70%": {
             opacity: "0.7",
@@ -58,6 +58,11 @@ const config: Config = {
           "100%": {
             transform: "translateY(0)",
             opacity: "1",
+          },
+        },
+        shimmer: {
+          "100%": {
+            transform: "translateX(100%)",
           },
         },
         slideNavUp: {
@@ -72,7 +77,6 @@ const config: Config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         slideDown: "slideDown 1s 0.2s ease forwards",
         loadspin: "loadspin 1.2s linear infinite",
-
       },
       fontFamily: {
         montserrat: [`var(--font-montserrat)`, "sans-serif"],

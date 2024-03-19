@@ -27,6 +27,8 @@ import FormSuccess from "./FormSuccess";
 import { login } from "@/actions/login";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "@/auth";
+import { useFormState, useFormStatus } from "react-dom";
+import { authenticate } from "@/actions/authenticate";
 
 const LoginForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
@@ -47,8 +49,6 @@ const LoginForm = () => {
 
   const router = useRouter();
 
-  const callbackUrl = searchParams.get("callbackUrl");
-
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("");
     setSuccess("");
@@ -58,12 +58,12 @@ const LoginForm = () => {
         setSuccess(data?.success);
         setError(data?.error);
         if (data?.success) {
+          authenticate(values);
           setTimeout(() => {
             setSuccess("Redirecting....");
           }, 1000);
-          // signIn(data.user);
           setTimeout(() => {
-            // router.push(callbackUrl!);
+            // router.push("/admin/dashboard");
           }, 2000);
         }
       });
@@ -79,7 +79,7 @@ const LoginForm = () => {
         </span>
         <Form {...form}>
           <form
-            action=""
+            // action={dispatch}
             className="flex flex-col mt-4 z-10 gap-y-2 md:gap-y-6 "
             onSubmit={form.handleSubmit(onSubmit)}
           >
@@ -178,13 +178,13 @@ const LoginForm = () => {
           </form>
         </Form>
 
+
+
         <div className="seperator flex items-center space-x-2 my-2 md:my-10">
           <span className="seperate h-[1px] bg-[#C7C7C7] w-full" />
           <h4 className="text-gray/80"> Or</h4>
           <span className="seperate h-[1px] bg-[#C7C7C7] w-full" />
         </div>
-
-        {/* <SocialLogin /> */}
 
         <span className="  text-header  mt-5 md:mt-8 text-sm  relative block text-center md:text-black z-10">
           Don&apos;t have an account?

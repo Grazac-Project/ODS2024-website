@@ -30,7 +30,7 @@ export const POST = async (req: Request) => {
 
     const isAdmin = admin.password === password;
 
-    if (admin.password !== password) {
+    if (!isAdmin) {
       return new NextResponse(
         JSON.stringify({
           success: false,
@@ -40,15 +40,10 @@ export const POST = async (req: Request) => {
       );
     }
 
-    if (isAdmin) {
-      await signIn("credentials", {
-        email: email,
-        password: password,
-        redirect: true,
-      });
-    }
+    // const callback = await signIn(email);
+    // console.log(callback);
 
-    return NextResponse.json({ success: true, admin, status: 200 });
+    return NextResponse.json({ admin, status: 200 });
   } catch (e: any) {
     return new NextResponse(
       JSON.stringify({
