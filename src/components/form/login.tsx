@@ -51,7 +51,6 @@ const LoginForm = () => {
 
   const callbackUrl = searchParams.get("callbackUrl") ?? "/admin/dashboard";
 
-  // console.log(callbackUrl);
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("");
     setSuccess("");

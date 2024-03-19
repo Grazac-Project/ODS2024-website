@@ -2,6 +2,7 @@
 
 import { LoginSchema } from "@/schema";
 import * as z from "zod";
+import { baseUrl } from "./baseurl";
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
   const validatedFields = LoginSchema.safeParse(values);
@@ -14,7 +15,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
   const { email, password } = validatedFields.data;
 
   try {
-    const data = await fetch(`http://localhost:3000/api/admin/login`, {
+    const data = await fetch(`${baseUrl}/api/admin/login`, {
       method: "POST",
 
       headers: {

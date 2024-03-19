@@ -1,6 +1,7 @@
 import React from "react";
 import MAIN from "../content/Details";
-import { SpeakerDetails } from "@/app/speakers/[speaker]/page";
+import { SpeakerDetails } from "@/app/(home)/speakers/[speaker]/page";
+
 
 const page = ({ searchParams: { highlight_id } }: SpeakerDetails) => {
   return (

@@ -10,6 +10,7 @@ import Link from "next/link";
 import { ArrowRight2 } from "iconsax-react";
 import Image from "next/image";
 import Join from "@/components/General/Join";
+import { baseUrl } from "@/actions/baseurl";
 
 export interface SpeakerDetails {
   searchParams: {
@@ -26,9 +27,7 @@ const SpeakerDetails = ({ searchParams: { speakers_id } }: SpeakerDetails) => {
     const fetchSpeakerDetails = async () => {
       try {
         setStatus("loading");
-        const response = await fetch(
-          `http://localhost:3000/api/speakers/${speakers_id}`
-        );
+        const response = await fetch(`${baseUrl}/api/speakers/${speakers_id}`);
         const data = await response.json();
         setStatus("success");
         setSpeakerDetails(data.speaker);

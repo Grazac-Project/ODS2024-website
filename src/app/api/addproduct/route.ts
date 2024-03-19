@@ -29,7 +29,7 @@ export const POST = async (req: Request) => {
       },
     });
 
-    return NextResponse.json({ success: true, data: product });
+    return NextResponse.json({ success: true, data: product, status: 200 });
   } catch (e: any) {
     return new NextResponse(
       JSON.stringify({

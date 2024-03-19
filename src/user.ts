@@ -1,3 +1,5 @@
+import { baseUrl } from "./actions/baseurl";
+
 export const signinUser = async ({
   email,
   password,
@@ -6,7 +8,7 @@ export const signinUser = async ({
   password: string;
 }) => {
   try {
-    const data = await fetch(`http://localhost:3000/api/admin/login`, {
+    const data = await fetch(`${baseUrl}/api/admin/login`, {
       method: "POST",
 
       headers: {
