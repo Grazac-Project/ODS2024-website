@@ -1,4 +1,5 @@
-import { HighlightsProps, NavbarLinkProps } from "@/types";
+import { HighlightsProps, NavbarLinkProps, SidebarProps } from "@/types";
+import { type Icon, Category } from "iconsax-react";
 
 export const NAV_LINKS: NavbarLinkProps[] = [
   { id: 1, link: "/gallery", label: "gallery" },
@@ -37,7 +38,6 @@ export const WHY = [
     desc: `Build an enriching experience from ODS’ 23. Explore your interest, meet like-minded individuals, have fun and be a part of an evolving tech community.`,
   },
 ];
-
 
 export const highlights: HighlightsProps[] = [
   {
@@ -96,7 +96,6 @@ export const highlights: HighlightsProps[] = [
   },
 ];
 
-
 export const teams = [
   {
     id: 1,
@@ -133,5 +132,14 @@ export const teams = [
     name: "Harrison Obiefule",
     title: "Social media manager",
     src: "/speaker6.svg",
+  },
+];
+
+export const SIDEBARLINKS: SidebarProps[] = [
+  {
+    id: 1,
+    label: "Dashboard",
+    icon: Category,
+    link: "dashboard",
   },
 ];

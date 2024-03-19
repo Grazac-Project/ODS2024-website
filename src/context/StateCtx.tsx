@@ -3,10 +3,11 @@
 import React, { createContext, useContext, useEffect, useMemo } from "react";
 import { usePathname } from "next/navigation";
 
-
 interface StateContextProps {
   showMobileMenu: boolean;
   setShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  ShowAdminSidebar: boolean;
+  setShowAdminSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   ShowProductModal: boolean;
   setShowProductModal: React.Dispatch<React.SetStateAction<boolean>>;
   ShowCartModal: boolean;
@@ -21,6 +22,7 @@ export const StateContext = createContext({} as StateContextProps);
 
 const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
+  const [ShowAdminSidebar, setShowAdminSidebar] = React.useState(false);
   const [ShowProductModal, setShowProductModal] = React.useState(false);
 
   const [SelectedProductId, setSelectedProductId] = React.useState<string>("");
@@ -38,8 +40,39 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
     );
   };
 
+  const mobileSidebarOpen = ShowAdminSidebar;
+
   useEffect(() => {
-    if (showMobileMenu || anyModalOpen) {
+    if (!isMobileDevice()) return;
+    const isSwiped = localStorage.getItem("swiped");
+    if (isSwiped) {
+      // setSwipeIndicator(false);
+      return;
+    }
+    if (mobileSidebarOpen) {
+      // setSwipeIndicator(true);
+    } else {
+      // setSwipeIndicator(false);
+    }
+  }, [mobileSidebarOpen]);
+
+  useEffect(() => {
+    const t = "%c  Made By \ud83d\udc9a  - Pheonix ",
+      n = [
+        "font-size: 12px",
+        "color: #fffce1",
+        "font-family: monospace",
+        "background: #0e100f",
+        "display: inline-block",
+        "padding: 1rem 3rem",
+        "border: 1px solid #0ff",
+        "border-radius: 4px;",
+      ].join(";");
+    // console.log(t, n);
+  }, []);
+
+  useEffect(() => {
+    if (showMobileMenu || anyModalOpen || ShowAdminSidebar) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -47,9 +80,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setShowMobileMenu(false),
-          setShowProductModal(false),
-          setShowCartModal(false);
+        setShowMobileMenu(false), setShowAdminSidebar(false);
+        setShowProductModal(false), setShowCartModal(false);
         setShowOptionModal(false);
       }
     };
@@ -59,7 +91,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [showMobileMenu, anyModalOpen]);
+  }, [showMobileMenu, anyModalOpen, ShowAdminSidebar]);
 
   useEffect(() => {
     if (pathname === "/") return;
@@ -97,6 +129,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setSelectedProductId,
       ShowOptionModal,
       setShowOptionModal,
+      ShowAdminSidebar,
+      setShowAdminSidebar,
     }),
     [
       showMobileMenu,
@@ -105,6 +139,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       ShowCartModal,
       SelectedProductId,
       ShowOptionModal,
+      ShowAdminSidebar,
     ]
   );
 

@@ -17,7 +17,6 @@ export type SearchResult = {
 
 export type Folder = { name: string; path: string };
 
-
 export interface HighlightsProps {
   id: number;
   title: string;
@@ -26,3 +25,10 @@ export interface HighlightsProps {
   speaker: string;
   description: any;
 }
+
+export type SidebarProps = {
+  id?: number;
+  label: string;
+  icon: Icon;
+  link: string;
+};
