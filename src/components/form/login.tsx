@@ -27,7 +27,7 @@ import FormSuccess from "./FormSuccess";
 import { login } from "@/actions/login";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const loginFoprm = () => {
+const LoginForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
   const [error, setError] = useState<string | undefined>("");
   const [isLoading, startTransition] = useTransition();
@@ -197,4 +197,4 @@ const loginFoprm = () => {
   );
 };
 
-export default loginFoprm;
+export default LoginForm;

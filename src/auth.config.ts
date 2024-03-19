@@ -2,7 +2,6 @@ import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { LoginSchema } from "./schema";
 import { signinUser } from "./user";
-// import
 
 export default {
   providers: [
