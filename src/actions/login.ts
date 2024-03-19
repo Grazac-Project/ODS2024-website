@@ -15,7 +15,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
   const { email, password } = validatedFields.data;
 
   try {
-    const data = await fetch("/api/login", {
+    const data = await fetch(`http://localhost:3000/api/admin/login`, {
       method: "POST",
 
       headers: {
@@ -28,12 +28,13 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         password,
       }),
     });
-    console.log(data.status);
+    // console.log(data);
     const res = await data.json();
-    if (data.status === 201 || res.ok) {
-      console.log(res);
-      signIn(res.token);
-      const user = res.user;
+    if (data.status === 200 || res.ok) {
+      // console.log(res);
+      // const calllback = await signIn(res.admin);
+      const user = res.admin;
+      // console.log(calllback);
 
       return {
         success: "Login successfully",

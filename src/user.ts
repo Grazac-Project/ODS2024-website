@@ -6,7 +6,7 @@ export const signinUser = async ({
   password: string;
 }) => {
   try {
-    const data = await fetch("/api/login", {
+    const data = await fetch(`http://localhost:3000/api/admin/login`, {
       method: "POST",
 
       headers: {
@@ -21,13 +21,13 @@ export const signinUser = async ({
     });
     console.log(data.status);
     const res = await data.json();
+    const user = res.admin;
     if (data.status === 200 || res.ok) {
       console.log(res);
 
       return {
         success: "Login successful!",
-        res,
-        // redirect: DEFAULT_LOGIN_REDIRECT
+        user,
       };
     }
     if (data.status === 400) {

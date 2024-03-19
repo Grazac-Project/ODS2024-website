@@ -26,6 +26,7 @@ import FormError from "./FormError";
 import FormSuccess from "./FormSuccess";
 import { login } from "@/actions/login";
 import { useRouter, useSearchParams } from "next/navigation";
+import { signIn } from "@/auth";
 
 const LoginForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
@@ -46,7 +47,7 @@ const LoginForm = () => {
 
   const router = useRouter();
 
-  const callbackUrl = searchParams.get("callbackUrl") ?? "/home";
+  const callbackUrl = searchParams.get("callbackUrl");
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("");
@@ -60,12 +61,11 @@ const LoginForm = () => {
           setTimeout(() => {
             setSuccess("Redirecting....");
           }, 1000);
+          // signIn(data.user);
           setTimeout(() => {
-            // router.push(callbackUrl);
+            // router.push(callbackUrl!);
           }, 2000);
         }
-
-        console.log(data.user);
       });
     });
   };

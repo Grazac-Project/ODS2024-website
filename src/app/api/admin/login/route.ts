@@ -1,5 +1,7 @@
+"use server";
 import { NextResponse } from "next/server";
 import { primsa } from "@/utils/connect";
+import { signIn } from "@/auth";
 
 interface AdminData {
   email: string;
@@ -26,6 +28,8 @@ export const POST = async (req: Request) => {
       );
     }
 
+    const isAdmin = admin.password === password;
+
     if (admin.password !== password) {
       return new NextResponse(
         JSON.stringify({
@@ -36,7 +40,15 @@ export const POST = async (req: Request) => {
       );
     }
 
-    return NextResponse.json({ success: true, admin });
+    if (isAdmin) {
+      await signIn("credentials", {
+        email: email,
+        password: password,
+        redirect: true,
+      });
+    }
+
+    return NextResponse.json({ success: true, admin, status: 200 });
   } catch (e: any) {
     return new NextResponse(
       JSON.stringify({
