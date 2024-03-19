@@ -7,7 +7,6 @@ import { cn } from "@/utils";
 import Image from "next/image";
 import { Highlight } from "@prisma/client";
 import HighlightsSlider from "@/components/sliders/Highlights";
-import { SpeakerDetails } from "@/app/speakers/[speaker]/page";
 import { useFetch } from "@/hooks/useFetch";
 import PreviewSkeleton from "@/components/highlightSkelton";
 

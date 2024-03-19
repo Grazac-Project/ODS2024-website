@@ -48,7 +48,7 @@ const AddProduct = () => {
   const [success, setSuccess] = useState<string | undefined>("");
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [result, setResult] = useState<UploadedAssetData | null>(null);
-  const [isLoading, startTransition] = useTransition();
+  const [status, setStatus] = useState("idle");
 
   const [formData, setformData] = useState<Product>({
     name: "",
@@ -58,13 +58,14 @@ const AddProduct = () => {
     discount: 0,
   });
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     setSuccess("");
 
-    startTransition(async () => {
-      const res = await fetch(`${baseUrl}/api/addproducts`, {
+    try {
+      setStatus("loading");
+      const res = await fetch(`${baseUrl}/api/addproduct`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,6 +75,7 @@ const AddProduct = () => {
 
       if (res.status === 200 || res.ok) {
         setSuccess("sucess");
+        setStatus("sucess");
         setformData({
           name: "",
           description: "",
@@ -83,8 +85,13 @@ const AddProduct = () => {
           // sizes: [],
         });
       }
-    });
+    } catch (e: any) {
+      console.log(e);
+      setStatus("error");
+    }
   };
+
+  const isLoading = status === "loading";
 
   return (
     <form
@@ -139,7 +146,7 @@ const AddProduct = () => {
                   image: result?.info?.url,
                 });
               }}
-              uploadPreset="phoenix"
+              uploadPreset="ogundigital"
             />
           </div>
         )}
