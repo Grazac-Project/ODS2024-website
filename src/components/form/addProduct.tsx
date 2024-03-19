@@ -13,7 +13,6 @@ import { useTransition } from "react";
 import { X, CheckCircle } from "lucide-react";
 import { BsExclamationTriangle } from "react-icons/bs";
 import { Button } from "../ui/button";
-import { useSession } from "next-auth/react";
 import { baseUrl } from "@/actions/baseurl";
 
 interface UploadedAssetData {
@@ -44,12 +43,11 @@ interface Product {
   // sizes: string[];
 }
 
-const addProduct = () => {
+const AddProduct = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [result, setResult] = useState<UploadedAssetData | null>(null);
-  const { data: session, status } = useSession();
   const [isLoading, startTransition] = useTransition();
 
   const [formData, setformData] = useState<Product>({
@@ -276,4 +274,4 @@ const addProduct = () => {
   );
 };
 
-export default addProduct;
+export default AddProduct;
