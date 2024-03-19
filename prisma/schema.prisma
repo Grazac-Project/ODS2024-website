@@ -101,8 +101,9 @@ model subscribe {
 }
 
 model admin {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  email String @unique
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  email    String @unique
+  password String
 
   @@map("Admins")
 }
