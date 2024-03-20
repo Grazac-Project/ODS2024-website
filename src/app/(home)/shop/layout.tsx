@@ -1,6 +1,6 @@
-// import ProductDetailsMOdal from "@/components/miscellaneous/ProductDetailsMOdal";
+import CartButton from "./content/CartButton";
 import CartModal from "./content/CartModal";
-// import CartButton from "@/components/shop/CartButton";
+import ProductDetailsMOdal from "./content/ProductDetailsMOdal";
 import AreYouSureModal from "./content/areyousuremodal";
 
 export default function ShopLayout({
@@ -11,10 +11,10 @@ export default function ShopLayout({
   return (
     <>
       {children}
-      {/* <CartButton />
+      <CartButton />
       <CartModal />
       <ProductDetailsMOdal />
-  */}
+
       <AreYouSureModal />
     </>
   );
