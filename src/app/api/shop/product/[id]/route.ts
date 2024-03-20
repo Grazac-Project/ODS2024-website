@@ -6,7 +6,7 @@ type Params = {
 };
 export async function GET(req: Request, context: { params: Params }) {
   const id = context.params.id;
-  console.log(id);
+  // console.log(id);
 
   try {
     const product = await prisma.product.findUnique({

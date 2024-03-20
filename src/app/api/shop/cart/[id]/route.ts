@@ -6,7 +6,7 @@ type Params = {
 };
 
 // get cart items
-export async function GET(context: { params: Params }) {
+export async function GET(req: Request, context: { params: Params }) {
   const id = context.params.id;
 
   try {

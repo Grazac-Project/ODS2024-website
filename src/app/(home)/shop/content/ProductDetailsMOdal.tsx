@@ -161,9 +161,7 @@ const ProductDetailsMOdal = () => {
               </div>
             </>
             <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
-            <div className="w-full h-full bg-white justify-center items-center buttom-0">
-              <AddToCartButton productId={product.id} />
-            </div>
+            <AddToCartButton productId={product.id} />
           </>
         )}
       </div>
