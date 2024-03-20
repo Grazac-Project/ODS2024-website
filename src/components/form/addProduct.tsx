@@ -9,7 +9,6 @@ import Image from "next/image";
 import { CldUploadButton } from "next-cloudinary";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useState } from "react";
-import { useTransition } from "react";
 import { X, CheckCircle } from "lucide-react";
 import { BsExclamationTriangle } from "react-icons/bs";
 import { Button } from "../ui/button";
@@ -84,6 +83,10 @@ const AddProduct = () => {
           discount: 0,
           // sizes: [],
         });
+      }
+
+      if (res.status === 500) {
+        setError("something when wrong");
       }
     } catch (e: any) {
       console.log(e);

@@ -5,8 +5,8 @@ interface ProductData {
   name: string;
   description: string;
   image: string;
-  price: number;
-  discount?: number;
+  price: string;
+  discount?: string;
 }
 
 export const POST = async (req: Request) => {
@@ -16,25 +16,30 @@ export const POST = async (req: Request) => {
       description,
       image,
       price,
-      discount = 0,
+      discount = "0",
     }: ProductData = await req.json();
+
+    const parsedPrice = parseFloat(price);
+    const parsedDiscount = parseFloat(discount);
 
     const product = await prisma.product.create({
       data: {
         name,
         description,
         image,
-        price,
-        discount,
+        price: parsedPrice,
+        discount: parsedDiscount,
       },
     });
 
     return NextResponse.json({ success: true, data: product, status: 200 });
   } catch (e: any) {
+    console.log(e);
     return new NextResponse(
       JSON.stringify({
         message: "something went wrong",
         status: 500,
+        success: false,
       })
     );
   }

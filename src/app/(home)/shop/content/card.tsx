@@ -5,15 +5,7 @@ import { Product } from "@prisma/client";
 import Image from "next/image";
 import { useStateCtx } from "@/context/StateCtx";
 
-const ShopCard = ({
-  id,
-  image,
-  // rating,
-  // reviews,
-  name,
-  price,
-  discount,
-}: Product) => {
+const ShopCard = ({ id, image, name, price, discount }: Product) => {
   const { setShowProductModal, setSelectedProductId } = useStateCtx();
 
   const discountedAmount = price * (discount / 100);
@@ -42,7 +34,7 @@ const ShopCard = ({
               <div className="flex items-center text-xs gap-1 max-w-[137px]">
                 {/* <p className="">{rating}</p> */}
 
-                <Image src="/shop/star.svg" alt="star" width={18} height={16} />
+                <Image src="/star.svg" alt="star" width={18} height={16} />
                 <p>-</p>
                 {/* <p> {totalReviews}</p> */}
                 {/* {hasReviews && <p>{reviews!.length} Reviews</p>} */}

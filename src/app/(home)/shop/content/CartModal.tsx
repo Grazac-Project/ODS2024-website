@@ -98,9 +98,9 @@ const CartModal = () => {
         updatedAt: updatedCart?.updatedAt ?? new Date(),
       });
 
-      console.log("Item quantity increased successfully!");
+      // console.log("Item quantity increased successfully!");
     } catch (error) {
-      console.error("Error increasing item quantity:", error);
+      // console.error("Error increasing item quantity:", error);
     }
   };
 

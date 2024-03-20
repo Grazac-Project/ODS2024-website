@@ -14,46 +14,44 @@ const ProductDetailsMOdal = () => {
   const { ShowProductModal, setShowProductModal, SelectedProductId } =
     useStateCtx();
 
-  const url = `/api/shop/product/${SelectedProductId}`;
-  const { isLoading, data, error } = useFetch(url);
-
   const [product, setProduct] = useState<Product | undefined>();
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const discountedAmount = product?.price! * (product?.discount! / 100);
   const discountedPrice = (product?.price! - discountedAmount).toFixed(2);
 
-  // useEffect(() => {
-  //   const fetchProduct = async () => {
-  //     setLoading(true);
-
-  //     const result = await getProductById(SelectedProductId);
-
-  //     if (result.status === 200) {
-  //       setProduct(result.product);
-  //     } else {
-  //     }
-
-  //     setLoading(false);
-  //   };
-
-  //   if (ShowProductModal) {
-  //     fetchProduct();
-  //   }
-  // }, [SelectedProductId, ShowProductModal]);
+  const id = SelectedProductId;
 
   useEffect(() => {
-    if (data || ShowProductModal) {
-      setProduct(data.product || "");
+    const fetchProduct = async () => {
+      setLoading(true);
+
+      try {
+        const response = await fetch(`/api/shop/product/${id}`);
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch product");
+        }
+
+        const result = await response.json();
+        setProduct(result.product);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+        // Handle error if needed
+      }
+
+      setLoading(false);
+    };
+
+    if (ShowProductModal) {
+      fetchProduct();
     }
-  }, [data, ShowProductModal]);
+  }, [SelectedProductId, ShowProductModal]);
 
   const closeModal = () => {
     setShowProductModal(false);
     setProduct(undefined);
   };
-
-  console.log(product);
 
   return (
     <>
@@ -76,7 +74,7 @@ const ProductDetailsMOdal = () => {
             : "-translate-x-full duration-300 pointer-events-none"
         )}
       >
-        {isLoading && (
+        {loading && (
           <div className="flex items-center justify-center h-full">
             <LoadingSpinner />
           </div>
@@ -163,11 +161,9 @@ const ProductDetailsMOdal = () => {
               </div>
             </>
             <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
-            <AddToCartButton
-              productId={product.id}
-
-              // incrementProductQuantity={incrementProductQuantity}
-            />
+            <div className="w-full h-full bg-white justify-center items-center buttom-0">
+              <AddToCartButton productId={product.id} />
+            </div>
           </>
         )}
       </div>

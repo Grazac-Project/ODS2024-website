@@ -4,8 +4,9 @@ import { prisma } from "@/utils/db";
 type Params = {
   id: string;
 };
-export async function GET(context: { params: Params }) {
+export async function GET(req: Request, context: { params: Params }) {
   const id = context.params.id;
+  console.log(id);
 
   try {
     const product = await prisma.product.findUnique({
@@ -28,6 +29,7 @@ export async function GET(context: { params: Params }) {
       })
     );
   } catch (e: any) {
+    console.log(e);
     return new NextResponse(
       JSON.stringify({
         message: "something went wrong",
