@@ -7,27 +7,20 @@ import { Button } from "@/components/ui/button";
 import { encryptString, decryptString } from "@/utils";
 import { Label } from "@/components/ui/label";
 import { useSearchParams } from "next/navigation";
-import { useTransition } from "react";
+import { Buyer } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
+import { baseUrl } from "@/actions/baseurl";
 
 interface user {
   name: string;
   email: string;
   phoneNumber: number;
   address: string;
+  price: string;
 }
 
 const PaymentForm = () => {
-  const [formData, setformData] = useState<user>({
-    name: "",
-    email: "",
-    phoneNumber: 0,
-    address: "",
-  });
-
-  const [isLoading, startTransition] = useTransition();
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const cartID = searchParams.get("cartId");
@@ -36,8 +29,68 @@ const PaymentForm = () => {
   const decryptedId = decryptString(cartID!);
   console.log(price);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [formData, setformData] = useState<user>({
+    name: "",
+    email: "",
+    phoneNumber: 0,
+    address: "",
+    price: price!,
+  });
+
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+  const [status, setStatus] = useState("idle");
+  const isLoading = status === "loading";
+
+  const router = useRouter();
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    try {
+      setStatus("loading");
+      const res = await fetch(`${baseUrl}/api/shop/buyer/${decryptedId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.status === 200 || res.ok) {
+        setSuccess("sucess");
+        setStatus("sucess");
+        setformData({
+          name: "",
+          email: "",
+          phoneNumber: 0,
+          price: "",
+          address: "",
+        });
+        console.log(res);
+        const json = await res.json();
+        const data: Buyer = json.buyer();
+        setTimeout(() => {
+          router.push(
+            `/shop/makepayment?paymentstatus='false'&id=${data.cartId}&price=${
+              data.price
+            }&name=${encryptString(data.name!)}&email=${encryptString(
+              data.email!
+            )}&phone=${data.phoneNumber}&address=${encryptString(
+              data.address!
+            )}&userId=${data.id}`
+          );
+        }, 100);
+      }
+
+      if (res.status === 500) {
+        setError("something when wrong");
+        setStatus("error");
+      }
+    } catch (e: any) {
+      console.log(e);
+      setStatus("error");
+    }
 
     // startTransition(() => {
     //   const form1Data = new FormData();
@@ -60,13 +113,13 @@ const PaymentForm = () => {
     //       setTimeout(() => {
     //         router.push(
     //           `/shop/makepayment?paymentstatus='false'&id=${
-    //             data.User.id
-    //           }&price=${data.User.price}&name=${encryptString(
-    //             data.User.name!
-    //           )}&email=${encryptString(data.User.email!)}&phone=${
+    //             res.buyer.cartId
+    //           }&price=${res.buyer.price}&name=${encryptString(
+    //             data.buyer.name!
+    //           )}&email=${encryptString(data.buyer.email!)}&phone=${
     //             data.User.phoneNumber
-    //           }&address=${encryptString(data.User.address!)}&userId=${
-    //             data.User.id
+    //           }&address=${encryptString(data.buyer.address!)}&userId=${
+    //             data.buyer.id
     //           }`
     //         );
     //       }, 100);

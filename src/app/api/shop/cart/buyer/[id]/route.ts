@@ -36,11 +36,13 @@ export async function POST(req: Request, context: { params: Params }) {
       price,
     };
 
-    const newUser = await primsa.buyer.create({
+    const buyer = await primsa.buyer.create({
       data: productInput,
     });
 
-    return NextResponse.json({ success: true, data: newUser, status: 200 });
+    return new NextResponse(
+      JSON.stringify({ success: true, buyer, status: 200 })
+    );
   } catch (e: any) {
     return new NextResponse(
       JSON.stringify({
