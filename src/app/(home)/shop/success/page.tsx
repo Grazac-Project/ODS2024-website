@@ -3,11 +3,15 @@
 import { useSearchParams } from "next/navigation";
 import { cn } from "@/utils";
 import useInView from "@/hooks/useInView";
-// import { updatePaymentStatus } from "@/actions/payment";
-// import { sendMail } from "@/utils/mail";
-// import { compileOrder } from "@/utils";
+import { baseUrl } from "@/actions/baseurl";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import { decryptString } from "@/utils";
+
+interface BodyProps {
+  status: boolean;
+  paymentId: string;
+}
 
 const PaymentSuccess = () => {
   const searchParams = useSearchParams();
@@ -16,37 +20,38 @@ const PaymentSuccess = () => {
   const PaymentRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(PaymentRef);
   const [loading, setLoading] = useState(false);
+  const decryptedId = decryptString(userID!);
 
-  // useEffect(() => {
-  //   const handlePaymentSuccess = async () => {
-  //     if (paymentStatus === "true") {
-  //       const userId = userID;
+  useEffect(() => {
+    const postData = async () => {
+      if (paymentStatus === "true") {
+        const requestBody: BodyProps = {
+          status: true,
+          paymentId: decryptedId,
+        };
+        try {
+          setLoading(true);
+          const res = await fetch(
+            `${baseUrl}/api/shop/payment/${decryptedId}`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(requestBody),
+            }
+          );
 
-  //       setLoading(true);
-  //       const result = await updatePaymentStatus(userId!, true);
-  //       setLoading(false);
-
-  //       if (result.error) {
-  //         console.error(result.error);
-  //       } else {
-  //         console.log("Payment status updated successfully:", result.user);
-  //         const subject = "Order Confirmation";
-  //         const htmlBody = compileOrder(
-  //           result.user?.name!,
-  //           "https://ods-ogun.vercel.app/"
-  //         );
-  //         await sendMail({
-  //           to: result.user?.email!,
-  //           name: result.user?.name!,
-  //           subject,
-  //           body: htmlBody,
-  //         });
-  //       }
-  //     }
-  //   };
-
-  //   handlePaymentSuccess();
-  // }, [paymentStatus]);
+          if (res.ok || res.status === 200) {
+            setLoading(false);
+          }
+        } catch (e: any) {
+          setLoading(false);
+        }
+      }
+    };
+    postData();
+  });
   return (
     <>
       <section

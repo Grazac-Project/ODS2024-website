@@ -50,7 +50,7 @@ const Makepayment = () => {
     public_key:
       (process.env.NEXT_PUBLIC_FLUTER_PUBLIC_KEY as string) ||
       "FLWPUBK_TEST-b6c44d3213f2d2b3c0c3142f3ab81b72-X",
-    tx_ref: Date.now().toString(),
+    tx_ref: buyer?.id!,
     amount: cart?.subtotal!,
     currency: "NGN",
     payment_options: "card,mobilemoney,ussd",

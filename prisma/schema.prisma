@@ -55,6 +55,8 @@ model Buyer {
   paymentStatus Boolean?
   cartId        String
   price         String
+  paymentId     String?
+  updatedAt     DateTime @updatedAt
 
   @@map("buyers")
 }
@@ -108,5 +110,3 @@ model admin {
 
   @@map("Admins")
 }
-
-
