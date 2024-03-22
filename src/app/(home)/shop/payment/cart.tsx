@@ -122,12 +122,12 @@ const FORMCART = () => {
     return null;
   }
   return (
-    <div className="hidden md:block py-7 mt-[40px] ml-4">
-      <h2 className="capitalize font-montserrat ">here is your cart</h2>
+    <div className="hidden md:block py-7 mt-[40px] ml-[60px]">
+      <h2 className="capitalize font-montserrat mb-5">here is your cart</h2>
       <>
         {cart ? (
           <Carousel className="w-[350px]">
-            <CarouselContent className="max-h-[200px]">
+            <CarouselContent className="min-h-[200px]">
               {cart.items.map((item) => (
                 <Suspense key={item.id} fallback={<ShopCardSkelon />}>
                   <CarouselItem key={item.id}>
@@ -168,6 +168,15 @@ const FORMCART = () => {
           </>
         )}
       </>
+
+      <div className=" border-y-2 border-black mt-5">
+        <div className="flex justify-between">
+          <div className="flex items-center mt-2 justify-between w-full">
+            <span className="font-bold">Total Price</span>
+            <span className="font-bold">₦ {cart.subtotal}</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

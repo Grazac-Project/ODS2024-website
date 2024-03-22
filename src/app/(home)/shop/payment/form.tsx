@@ -11,6 +11,8 @@ import { Buyer } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 import { baseUrl } from "@/actions/baseurl";
+import { ShoppingCartProps } from "@/actions/cart";
+import { useFetch } from "@/hooks/useFetch";
 
 interface user {
   name: string;
@@ -24,23 +26,34 @@ const PaymentForm = () => {
   const searchParams = useSearchParams();
 
   const cartID = searchParams.get("cartId");
-  const price = searchParams.get("price");
 
   const decryptedId = decryptString(cartID!);
-  // console.log(price);
+
+  const [cart, setCart] = useState<ShoppingCartProps | undefined>(undefined);
+
+  const url = `/api/shop/cart/${decryptedId}`;
+  const { data, isLoading: loading } = useFetch(url);
+
+  useEffect(() => {
+    if (data) {
+      setCart(data || []);
+    }
+  }, [data]);
+
+  // console.log(cart?.subtotal);
 
   const [formData, setformData] = useState<user>({
     name: "",
     email: "",
     phoneNumber: 0,
     address: "",
-    price: price!,
+    price: cart?.subtotal ? cart.subtotal.toString() : "",
   });
 
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [status, setStatus] = useState("idle");
-  const isLoading = status === "loading";
+  const isLoading = status === "loading" || loading;
 
   const router = useRouter();
 
@@ -74,13 +87,9 @@ const PaymentForm = () => {
         // console.log(data);
         setTimeout(() => {
           router.push(
-            `/shop/makepayment?paymentstatus='false'&id=${data.cartId}&price=${
-              data.price
-            }&name=${encryptString(data.name!)}&email=${encryptString(
-              data.email!
-            )}&phone=${data.phoneNumber}&address=${encryptString(
-              data.address!
-            )}&userId=${data.id}`
+            `/shop/makepayment?paymentstatus='false'&cartId=${encryptString(
+              data.cartId
+            )}&buyerId=${encryptString(data.id)}`
           );
         }, 100);
       }
@@ -181,8 +190,7 @@ const PaymentForm = () => {
               className="justify-center items-center px-16 py-5 mt-3 text-lg leading-5 text-green-600 whitespace-nowrap bg-white rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)]"
               type="submit"
             >
-              {/* {isLoading ? "" : "Continue"} */}
-              Continue
+              {isLoading ? "Please Wait" : "Continue"}
             </Button>
           </div>
         </form>

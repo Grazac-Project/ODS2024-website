@@ -53,3 +53,28 @@ export async function POST(req: Request, context: { params: Params }) {
     );
   }
 }
+
+export async function GET(req: Request, context: { params: Params }) {
+  const id = context.params.id;
+
+  try {
+    const buyer = await primsa.buyer.findUnique({
+      where: { id },
+    });
+    return new NextResponse(
+      JSON.stringify({
+        buyer,
+        message: "sucess",
+        status: 200,
+      })
+    );
+  } catch (e: any) {
+    console.log(e);
+    return new NextResponse(
+      JSON.stringify({
+        message: "something went wrong",
+        status: 500,
+      })
+    );
+  }
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { decryptString } from "@/utils";
@@ -9,36 +9,55 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/utils";
 import useInView from "@/hooks/useInView";
 import Image from "next/image";
+import { ShoppingCartProps } from "@/actions/cart";
+import { useFetch } from "@/hooks/useFetch";
+import { Buyer } from "@prisma/client";
 
 const Makepayment = () => {
   const searchParams = useSearchParams();
-  const userId = searchParams.get("userId");
-  const id = searchParams.get("id");
-  const price = searchParams.get("price");
-  const addresss = searchParams.get("address");
-  const name = searchParams.get("name");
-  const email = searchParams.get("email");
-  const phone = searchParams.get("phone");
+  const userId = searchParams.get("buyerId");
+  const cartId = searchParams.get("cartId");
+
   const PaymentRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(PaymentRef);
 
-  const originalname = decryptString(name!);
-  const originalemail = decryptString(email!);
-  const originalphone = phone!;
-  const originaladdress = decryptString(addresss!);
+  const decryptedId = decryptString(cartId!);
+  const decryptedbuerId = decryptString(userId!);
+
+  const [cart, setCart] = useState<ShoppingCartProps | undefined>(undefined);
+
+  const url = `/api/shop/cart/${decryptedId}`;
+  const { data, isLoading } = useFetch(url);
+
+  const buyerUrl = `/api/shop/cart/buyer/${decryptedbuerId}`;
+
+  const [buyer, setBuyer] = useState<Buyer | undefined>(undefined);
+
+  const { data: data2, isLoading: loading } = useFetch(buyerUrl);
+
+  useEffect(() => {
+    if (data) {
+      setCart(data || []);
+    }
+    if (data2) {
+      setBuyer(data2.buyer || "");
+    }
+  }, [data]);
+
+  const isDisabled = isLoading || loading || !data || !data2;
 
   const config = {
     public_key:
       (process.env.NEXT_PUBLIC_FLUTER_PUBLIC_KEY as string) ||
       "FLWPUBK_TEST-b6c44d3213f2d2b3c0c3142f3ab81b72-X",
     tx_ref: Date.now().toString(),
-    amount: parseFloat(price!),
+    amount: cart?.subtotal!,
     currency: "NGN",
     payment_options: "card,mobilemoney,ussd",
     customer: {
-      email: originalemail,
-      phone_number: originalphone,
-      name: originalname,
+      email: buyer?.email!,
+      phone_number: buyer?.phoneNumber!,
+      name: buyer?.name!,
     },
     customizations: {
       title: "ODS SHOP",
@@ -51,7 +70,7 @@ const Makepayment = () => {
   const router = useRouter();
   const { setShowOptionModal } = useStateCtx();
 
-  const image = `https://ui-avatars.com/api/?name=${originalname}&background=random`;
+  const image = `https://ui-avatars.com/api/?name=${buyer?.name!}&background=random`;
 
   return (
     <section
@@ -67,38 +86,60 @@ const Makepayment = () => {
         <div className="w-full max-w-[799px] h-full flex flex-col md:flex-row items-start gap-x-2 sm:gap-x-4 md:gap-x-8 lg:gap-x-10 ">
           <div className="flex w-full h-full md:max-w-[300px] max-md:justify-center">
             <div className="w-full h-full max-h-[300px] max-w-[300px] relative ">
-              <Image
-                src={image}
-                alt={originalname}
-                width={300}
-                height={300}
-                className={cn("rounded-xl")}
-              />
+              {isDisabled ? (
+                <div
+                  className={cn(
+                    "w-full h-full  rounded-xl bg-gradient-to-r from-transparent via-black/10  to-transparent absolute  before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer  before:bg-gradient-to-r  before:from-transparent before:via-black/20 dark:before:via-white/20 before:to-transparent isolate overflow-hidden shadow-lg shadow-black/20 before:border-t-2 before:border-b-2 before:border-primary max-w-[305px] max-h-[215px] dark:before:border-color-dark"
+                  )}
+                />
+              ) : (
+                <Image
+                  src={image}
+                  alt={buyer?.name!}
+                  width={300}
+                  height={300}
+                  className={cn("rounded-xl")}
+                />
+              )}
             </div>
           </div>
-          <div className="flex flex-col gap-y-3 max-md:w-full max-md:py-6 max-md:mt-12 max-md:border-t border-[#e1e1e1]">
-            <h3 className="text-lg font-semibold text-headertracking-wide">
-              {originalname}
-            </h3>
-            <p className="font-medium">
-              Email: <span className="font-medium">{originalemail}</span>
-            </p>
-            <p className="font-medium">
-              Phone: <span className="font-medium">{originalphone}</span>
-            </p>
-            <p className="font-medium">
-              Address: <span className="font-medium">{originaladdress}</span>
-            </p>
-            <p className="font-medium">
-              CartId: <span className="font-medium">{id}</span>
-            </p>
-            <h3 className="text-lg font-semibold text-headertracking-wide">
-              Amount To Pay:{" "}
-              <span className="font-medium"> ₦ {parseFloat(price!)}</span>
-            </h3>
-          </div>
+
+          {isDisabled ? (
+            <>
+              <div className="w-full space-y-2">
+                <div className="animate-pulse [animation-delay:0.2s] bg-black/20 h-6 w-[90%] rounded-full" />
+                <div className="animate-pulse [animation-delay:0.3s] bg-black/20 h-6 w-[80%] rounded-full" />
+                <div className="animate-pulse [animation-delay:0.3s] bg-black/20 h-6 w-[80%] rounded-full" />
+                <div className="animate-pulse [animation-delay:0.3s] bg-black/20 h-6 w-[80%] rounded-full" />
+                <div className="animate-pulse [animation-delay:0.3s] bg-black/20 h-8  w-[40%] rounded-md" />
+              </div>
+            </>
+          ) : (
+            <div className="flex flex-col gap-y-3 max-md:w-full max-md:py-6 max-md:mt-12 max-md:border-t border-[#e1e1e1]">
+              <h3 className="text-lg font-semibold text-headertracking-wide">
+                {buyer?.name}
+              </h3>
+              <p className="font-medium">
+                Email: <span className="font-medium">{buyer?.email}</span>
+              </p>
+              <p className="font-medium">
+                Phone: <span className="font-medium">{buyer?.phoneNumber}</span>
+              </p>
+              <p className="font-medium">
+                Address: <span className="font-medium">{buyer?.address}</span>
+              </p>
+              <p className="font-medium">
+                CartId: <span className="font-medium">{decryptedId}</span>
+              </p>
+              <h3 className="text-lg font-semibold text-headertracking-wide">
+                Amount To Pay:{" "}
+                <span className="font-medium"> ₦ {cart?.subtotal}</span>
+              </h3>
+            </div>
+          )}
         </div>
         <button
+          disabled={isDisabled}
           onClick={() => {
             handleFlutterPayment({
               callback: (response) => {
@@ -115,7 +156,7 @@ const Makepayment = () => {
               },
             });
           }}
-          className="bg-green-600 w-full mt-5 rounded-md text-white py-4 font-nunito"
+          className="bg-green-600 w-full mt-5 rounded-md text-white py-4 font-nunito disabled:bg-white disabled:border-primary"
         >
           continue payment
         </button>

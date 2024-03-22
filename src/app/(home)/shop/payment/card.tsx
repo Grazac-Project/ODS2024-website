@@ -88,7 +88,20 @@ const MobileCrd = ({
       </CardContent>
       <CardFooter className="flex justify-between">
         <div>
-          <p>unit price: {product.price}</p>
+          <p>
+            price for item:
+            {(
+              calculateDiscountedPrice(product.price, product.discount) *
+              quantity
+            ).toFixed(1)}
+          </p>
+          <p>
+            {" "}
+            {calculateDiscountedPrice(product.price, product.discount).toFixed(
+              0
+            )}{" "}
+            * {quantity}
+          </p>
         </div>
       </CardFooter>
     </Card>

@@ -236,9 +236,7 @@ const CartModal = () => {
               </div>
               <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
               <Link
-                href={`/shop/payment?cartId=${encryptString(cart?.id!)}&price=${
-                  cart?.subtotal
-                }`}
+                href={`/shop/payment?cartId=${encryptString(cart?.id!)}`}
                 onClick={closeModal}
                 className="justify-center items-center text-center py-4 mt-6 w-full text-lg leading-5 text-white whitespace-nowrap bg-green-600 rounded-xl border border-solid border-[color:var(--Foundation-stroke-stroke-500,#E1E1E1)] max-md:px-5 max-md:max-w-full"
               >
