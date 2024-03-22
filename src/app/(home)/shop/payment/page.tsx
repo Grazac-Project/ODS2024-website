@@ -3,9 +3,9 @@ import PaymentForm from "./form";
 
 const Payment = () => {
   return (
-    <>
+    <div className="container">
       <PaymentForm />
-    </>
+    </div>
   );
 };
 

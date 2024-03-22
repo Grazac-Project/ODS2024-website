@@ -32,8 +32,15 @@ const CartModal = () => {
   const [cart, setCart] = useState<ShoppingCartProps | undefined>(undefined);
   const searchParams = useSearchParams();
   const cartID = searchParams.get("cartid");
+  const cartId = searchParams.get("cartId");
 
-  const decryptedId = cartID ? decryptString(cartID) : "";
+  const decryptedId = cartID
+    ? decryptString(cartID)
+    : cartId
+    ? decryptString(cartId)
+    : "";
+
+  // console.log(decryptedId);
 
   useEffect(() => {
     const fetchCart = async () => {

@@ -18,8 +18,13 @@ const AddToCartButton = ({ productId }: AddToCartButtonProps) => {
   const { replace } = useRouter();
 
   const cartID = searchParams.get("cartid");
+  const cartId = searchParams.get("cartId");
 
-  const decryptedId = cartID ? decryptString(cartID) : "";
+  const decryptedId = cartID
+    ? decryptString(cartID)
+    : cartId
+    ? decryptString(cartId)
+    : "";
 
   return (
     <>

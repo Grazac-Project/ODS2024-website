@@ -49,7 +49,7 @@ const PaymentForm = () => {
 
     try {
       setStatus("loading");
-      const res = await fetch(`${baseUrl}/api/shop/buyer/${decryptedId}`, {
+      const res = await fetch(`${baseUrl}/api/shop/cart/buyer/${decryptedId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +69,9 @@ const PaymentForm = () => {
         });
         console.log(res);
         const json = await res.json();
-        const data: Buyer = json.buyer();
+        console.log(json);
+        const data: Buyer = json.buyer;
+        console.log(data);
         setTimeout(() => {
           router.push(
             `/shop/makepayment?paymentstatus='false'&id=${data.cartId}&price=${

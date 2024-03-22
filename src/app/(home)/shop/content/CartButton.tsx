@@ -13,9 +13,15 @@ const CartButton = () => {
   const { setShowCartModal } = useStateCtx();
   const searchParams = useSearchParams();
   const cartID = searchParams.get("cartid");
-  console.log(cartID);
+  const cartId = searchParams.get("cartId");
 
-  const decryptedId = cartID ? decryptString(cartID) : "";
+  const decryptedId = cartID
+    ? decryptString(cartID)
+    : cartId
+    ? decryptString(cartId)
+    : "";
+
+  // console.log(decryptedId);
 
   const fetchCart = async () => {
     if (decryptedId) {
