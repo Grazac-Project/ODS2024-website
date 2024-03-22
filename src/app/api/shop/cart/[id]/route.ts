@@ -40,6 +40,7 @@ export async function GET(req: Request, context: { params: Params }) {
       })
     );
   } catch (e: any) {
+    console.log(e);
     return new NextResponse(
       JSON.stringify({
         message: "something went wrong",

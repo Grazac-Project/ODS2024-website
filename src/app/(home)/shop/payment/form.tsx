@@ -27,7 +27,7 @@ const PaymentForm = () => {
   const price = searchParams.get("price");
 
   const decryptedId = decryptString(cartID!);
-  console.log(price);
+  // console.log(price);
 
   const [formData, setformData] = useState<user>({
     name: "",
@@ -67,11 +67,11 @@ const PaymentForm = () => {
           price: "",
           address: "",
         });
-        console.log(res);
+        // console.log(res);
         const json = await res.json();
-        console.log(json);
+        // console.log(json);
         const data: Buyer = json.buyer;
-        console.log(data);
+        // console.log(data);
         setTimeout(() => {
           router.push(
             `/shop/makepayment?paymentstatus='false'&id=${data.cartId}&price=${
@@ -93,48 +93,11 @@ const PaymentForm = () => {
       console.log(e);
       setStatus("error");
     }
-
-    // startTransition(() => {
-    //   const form1Data = new FormData();
-    //   form1Data.append("name", formData.name);
-    //   form1Data.append("email", formData.email);
-    //   form1Data.append("address", formData.address);
-    //   form1Data.append("phoneNumber", formData.phoneNumber.toString());
-
-    //   console.log(form1Data);
-    //   createuser(form1Data, decryptedId, price!).then((data) => {
-    //     if (data?.success) {
-    //       console.log(data?.success);
-    //       setformData({
-    //         name: "",
-    //         email: "",
-    //         phoneNumber: 0,
-    //         address: "",
-    //       });
-
-    //       setTimeout(() => {
-    //         router.push(
-    //           `/shop/makepayment?paymentstatus='false'&id=${
-    //             res.buyer.cartId
-    //           }&price=${res.buyer.price}&name=${encryptString(
-    //             data.buyer.name!
-    //           )}&email=${encryptString(data.buyer.email!)}&phone=${
-    //             data.User.phoneNumber
-    //           }&address=${encryptString(data.buyer.address!)}&userId=${
-    //             data.buyer.id
-    //           }`
-    //         );
-    //       }, 100);
-    //     } else {
-    //       console.log("error");
-    //     }
-    //   });
-    // });
   };
 
   return (
     <>
-      <div className="flex">
+      <div className="flex w-full">
         <form
           action=""
           onSubmit={onSubmit}
