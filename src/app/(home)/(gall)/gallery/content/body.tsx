@@ -46,22 +46,23 @@ const Body = ({ folder }: BodyProps) => {
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const handleSelectChange = (value: string) => {
-    setSelectedFolder(encryptString(value));
+    setSelectedFolder(value);
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        setImages([]);
-        const apiUrl = selectedFolder
-          ? `/api/image/${selectedFolder}`
-          : "/api/image";
-        const response = await fetch(apiUrl);
+        const response = await fetch("/api/image");
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
         const data = await response.json();
+        console.log(data.results);
+        const uniqueFolders = Array.from(
+          new Set(data.results.resources.map((resource) => resource.folder))
+        );
+        console.log(uniqueFolders);
         setImages(data.results.resources || []);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -71,7 +72,7 @@ const Body = ({ folder }: BodyProps) => {
     };
 
     fetchData();
-  }, [selectedFolder]);
+  }, []);
 
   return (
     <section

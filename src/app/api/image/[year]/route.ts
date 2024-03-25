@@ -13,7 +13,7 @@ export async function GET(req: Request, context: { params: Params }) {
 
   try {
     const results = (await cloudinary.v2.search
-      .expression(`resource_type:image AND folder=${dec}`)
+      .expression(`resource_type:image AND folder=${dec!}`)
       .sort_by("created_at", "asc")
       .with_field("tags")
       .max_results(30)
@@ -26,5 +26,12 @@ export async function GET(req: Request, context: { params: Params }) {
         status: 200,
       })
     );
-  } catch (e: any) {}
-}
+  } catch (e: any) {
+    return new NextResponse(
+      JSON.stringify({
+        message: "something went wrong",
+        status: 500,
+      })
+    );
+  }
+};
