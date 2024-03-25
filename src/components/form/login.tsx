@@ -65,7 +65,7 @@ const LoginForm = () => {
             setSuccess("Redirecting....");
           }, 1000);
           setTimeout(() => {
-            router.push("/admin/dashboard");
+            router.push(callbackUrl);
           }, 2000);
         }
       });

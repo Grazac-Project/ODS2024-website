@@ -28,20 +28,18 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         password,
       }),
     });
-    // console.log(data);
+
     const res = await data.json();
-    if (data.status === 200 || res.ok) {
-      // console.log(res);
-      // const calllback = await signIn(res.admin);
+
+    if (res.status === 200 || res.ok) {
       const user = res.admin;
-      // console.log(calllback);
 
       return {
         success: "Login successfully",
         user,
       };
     }
-    if (data.status === 400) {
+    if (res.status === 400) {
       return {
         error: "Email or Phone number already exist",
       };
