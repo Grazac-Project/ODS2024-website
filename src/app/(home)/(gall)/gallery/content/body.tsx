@@ -60,7 +60,9 @@ const Body = ({ folder }: BodyProps) => {
         const data = await response.json();
         console.log(data.results);
         const uniqueFolders = Array.from(
-          new Set(data.results.resources.map((resource) => resource.folder))
+          new Set(
+            data.results.resources.map((resource: any) => resource.folder)
+          )
         );
         console.log(uniqueFolders);
         setImages(data.results.resources || []);
