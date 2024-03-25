@@ -63,10 +63,10 @@ const LoginForm = () => {
           authenticate(values);
           setTimeout(() => {
             setSuccess("Redirecting....");
-          }, 1000);
+          }, 100);
           setTimeout(() => {
-            router.push(callbackUrl);
-          }, 2000);
+            router.push("/admin/dashboard");
+          }, 100);
         }
       });
     });

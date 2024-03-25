@@ -1,5 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // reactStrictMode: true,
+    webpack: (config) => {
+        config.module.rules.push({
+            test: /\.handlebars$/,
+            use: {
+                loader: 'handlebars-loader',
+            },
+        });
+        return config;
+    },
 
     images: {
         remotePatterns: [
