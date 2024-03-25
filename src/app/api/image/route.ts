@@ -21,5 +21,12 @@ export const GET = async () => {
         status: 200,
       })
     );
-  } catch (e: any) {}
+  } catch (e: any) {
+    return new NextResponse(
+      JSON.stringify({
+        message: "something went wrong",
+        status: 500,
+      })
+    );
+  }
 };
