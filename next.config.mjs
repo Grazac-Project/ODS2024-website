@@ -3,7 +3,7 @@ const nextConfig = {
     // reactStrictMode: true,
     webpack: (config) => {
         config.module.rules.push({
-            test: /\.handlebars$/,
+            test: /\.handlebars/,
             use: {
                 loader: 'handlebars-loader',
             },
