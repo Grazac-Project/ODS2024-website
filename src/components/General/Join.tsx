@@ -33,12 +33,7 @@ export function JoinCard() {
             </button>
           </div>
           <div className="absolute bottom-0 left-0">
-            <Image
-              src="/stars1.svg"
-              alt="stars"
-              width={100}
-              height={100}
-            />
+            <Image src="/stars1.svg" alt="stars" width={100} height={100} />
           </div>
         </div>
         <div className="join2"></div>
@@ -60,23 +55,18 @@ function Join() {
           : " opacity-0 translate-y-36"
       )}
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between container">
         <div className="-mt-56 -z-10">
           <Image src="/loop1.svg" alt="loop" width={300} height={300} />
         </div>
         <div className="-mt-48 -z-10">
-          <Image
-            src="/pattern1.svg"
-            alt=""
-            width={432.06}
-            height={355.94}
-          />
+          <Image src="/pattern1.svg" alt="" width={432.06} height={355.94} />
         </div>
         <div className="-mt-56 -z-10">
           <Image src="/loop2.svg" alt="" width={200} height={200} />
         </div>
       </div>
-      <div className="-mt-52">
+      <div className="-mt-52 container">
         <JoinCard />
       </div>
     </div>

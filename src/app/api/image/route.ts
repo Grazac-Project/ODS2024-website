@@ -9,7 +9,7 @@ export const GET = async () => {
   try {
     const results = (await cloudinary.v2.search
       .expression("resource_type:image")
-      .sort_by("created_at", "desc")
+      .sort_by("created_at", "asc")
       .with_field("tags")
       .max_results(500)
       .execute()) as { resources: SearchResult[] };

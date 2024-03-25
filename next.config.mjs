@@ -3,13 +3,18 @@ const nextConfig = {
     // reactStrictMode: true,
     webpack: (config) => {
         config.module.rules.push({
-            test: /\.handlebars/,
-            use: {
-                loader: 'handlebars-loader',
+            test: /\.hbs$/,
+            loader: 'handlebars-loader',
+            options: {
+                precompileOptions: {
+                    knownHelpersOnly: false,
+                },
             },
         });
         return config;
     },
+
+
 
     images: {
         remotePatterns: [
