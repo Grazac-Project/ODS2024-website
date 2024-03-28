@@ -52,7 +52,7 @@ const SpeakerPage = () => {
       <section
         ref={AttendRef}
         className={cn(
-          " min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 p-7 w-full h-full sm:border bg-white relative z-20 border-gray-200 dark:border-primary-light",
+          " min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 p-7 w-full h-full bg-white relative z-20 ",
           isInView
             ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
             : " opacity-0 translate-y-36"

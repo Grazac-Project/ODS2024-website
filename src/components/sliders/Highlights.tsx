@@ -116,7 +116,7 @@ function HighlightsSlider() {
                   </h3>
                   <Link
                     href={`/highlight/highlight?highlight_id=${item.id}`}
-                    className={`font-nunito text-2xl text-[#00A651] mt-5 flex items-center gap-2`}
+                    className="font-nunito text-2xl text-[#00A651] mt-5 flex items-center gap-2"
                   >
                     Learn more
                     <div>

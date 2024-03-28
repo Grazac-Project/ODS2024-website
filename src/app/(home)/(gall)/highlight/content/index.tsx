@@ -9,6 +9,7 @@ import useInView from "@/hooks/useInView";
 import { Highlight } from "@prisma/client";
 import { useFetch } from "@/hooks/useFetch";
 import LoadingSpinner from "@/components/loader";
+import { SpeakerSkeletonCard } from "./SkeltonCard";
 
 const High = () => {
   const AttendRef = React.useRef<HTMLDivElement>(null);
@@ -29,7 +30,7 @@ const High = () => {
     <section
       ref={AttendRef}
       className={cn(
-        " min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 sm:p-7 w-full h-full sm:border border-gray-200 dark:border-primary-light",
+        " min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 sm:p-7 w-full h-full",
         isInView
           ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
           : " opacity-0 translate-y-36"
@@ -37,8 +38,17 @@ const High = () => {
     >
       <div>
         {isLoading ? (
-          <div className="grid place-items-center min-h-[200px]">
-            <LoadingSpinner />
+          <div
+            className={cn(
+              "w-full min-h-[941px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 lg:gap-x-6  place-content-start place-items-center gap-y-16 max-[929px]:gap-y-8 mb-6 min-[1139px]:gap-x-1 min-[1220px]:gap-x-4"
+            )}
+          >
+            <SpeakerSkeletonCard />
+            <SpeakerSkeletonCard />
+            <SpeakerSkeletonCard />
+            <SpeakerSkeletonCard />
+            <SpeakerSkeletonCard />
+            <SpeakerSkeletonCard />
           </div>
         ) : error ? (
           <div className="grid place-items-center min-h-[200px]">
