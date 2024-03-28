@@ -49,7 +49,14 @@ function Attend() {
             )}
           >
             <div>
-              <Image src="/why-1.svg" alt="" width={540} height={440} />
+              <Image
+                src="/why-1.svg"
+                alt=""
+                width={540}
+                height={440}
+                loading="eager"
+                priority
+              />
             </div>
             <div className="w-[533px] space-y-4 mb:pl-4 lg:pl-0">
               <h3
@@ -109,7 +116,14 @@ function Attend() {
               </p>
             </div>
             <div>
-              <Image src="/why-2.svg" alt="" width={540} height={440} />
+              <Image
+                src="/why-2.svg"
+                alt=""
+                width={540}
+                height={440}
+                loading="eager"
+                priority
+              />
             </div>
           </div>
           {/* Third Reason */}
@@ -123,7 +137,14 @@ function Attend() {
             )}
           >
             <div>
-              <Image src="/why-3.svg" alt="" width={540} height={440} />
+              <Image
+                src="/why-3.svg"
+                alt=""
+                width={540}
+                height={440}
+                loading="eager"
+                priority
+              />
             </div>
             <div className="w-[533px] space-y-4">
               <h3
@@ -183,7 +204,14 @@ function Attend() {
               </p>
             </div>
             <div>
-              <Image src="/why-4.svg" alt="" width={540} height={440} />
+              <Image
+                src="/why-4.svg"
+                alt=""
+                width={540}
+                height={440}
+                loading="eager"
+                priority
+              />
             </div>
           </div>
         </div>

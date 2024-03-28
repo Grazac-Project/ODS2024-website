@@ -170,14 +170,25 @@ const Mobile = () => {
               : " opacity-0 translate-y-36"
           )}
         >
-          <h2 className="text-black font-semibold text-[24px] ">
-            WHY ATTEND ODS23?
-          </h2>
-          <p className="font-nunito">
-            We are at the forefront of innovation, shaping the future and
-            hosting the largest digital summit.
-          </p>
+          <div className="mb-5 max-w-[342px]">
+            <h2 className="text-black font-semibold text-[24px] ">
+              WHY ATTEND ODS23?
+            </h2>
+            <p className="font-nunito">
+              We are at the forefront of innovation, shaping the future and
+              hosting the largest digital summit.
+            </p>
+          </div>
         </div>
+        <div
+          ref={AttendRef}
+          className={cn(
+            "font-montserrat z-20 pb-[40px]",
+            isInView3
+              ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative mb-[60px] py-5"
+              : " opacity-0 translate-y-36"
+          )}
+        >
           <div className="flex flex-col items-center justify-center">
             <div className="w-full h-full absolute top-0 left-0">
               <Image
@@ -207,6 +218,7 @@ const Mobile = () => {
                     src="/attend01.svg"
                     alt=""
                     width={343}
+                    priority
                     height={284}
                   />
                 </div>
@@ -231,7 +243,7 @@ const Mobile = () => {
                     access can be invaluable in gaining deeper insights into
                     your areas of interest.
                   </p>
-             
+                </div>
               </div>
               {/* second reason */}
               <div
@@ -249,6 +261,7 @@ const Mobile = () => {
                     src="/attend02.svg"
                     alt=""
                     width={343}
+                    priority
                     height={284}
                   />
                 </div>
@@ -291,6 +304,7 @@ const Mobile = () => {
                     src="/attend03.svg"
                     alt=""
                     width={343}
+                    priority
                     height={284}
                   />
                 </div>
@@ -334,6 +348,7 @@ const Mobile = () => {
                     src="/attend04.svg"
                     alt=""
                     width={343}
+                    priority
                     height={284}
                   />
                 </div>

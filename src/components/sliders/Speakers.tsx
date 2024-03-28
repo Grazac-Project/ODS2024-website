@@ -51,10 +51,9 @@ function SpeakersSlder() {
 
   useEffect(() => {
     if (data) {
-     setSpeakersData(data.speakers || []);
+      setSpeakersData(data.speakers || []);
     }
   }, [data]);
-
 
   return (
     <div
@@ -72,9 +71,14 @@ function SpeakersSlder() {
       >
         {speakersData?.map((speaker) => (
           <div key={speaker?.id} className={`relative`}>
-            <Image src={speaker?.image} alt="" width={420} height={360} />
+            <Image
+              src={speaker?.image || "/speaker1.svg"}
+              alt=""
+              width={420}
+              height={360}
+            />
             <div className="absolute bottom-3 left-8">
-              <h3 className={`font-semibold text-xl text-white`}>
+              <h3 className="font-semibold text-xl text-white">
                 {speaker?.name}
               </h3>
               <p className="font-medium text-white">{speaker?.title}</p>
