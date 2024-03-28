@@ -7,7 +7,7 @@ import useInView from "@/hooks/useInView";
 import { Product } from "@prisma/client";
 import CardSkelton from "./cardskelton";
 import { cn } from "@/utils";
-import CardSKel from "./shopcardSKel";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Shop = () => {
   const ShopRef = React.useRef<HTMLDivElement>(null);
@@ -44,26 +44,46 @@ const Shop = () => {
             </h2>
           </div>
         </div>
+        {isLoading && (
+          <div
+            className={cn(
+              "w-full min-h-[941px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 lg:gap-x-6  place-content-start place-items-center gap-y-16 max-[929px]:gap-y-8 mb-6 min-[1139px]:gap-x-1 min-[1220px]:gap-x-4"
+            )}
+          >
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+            <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          </div>
+        )}
         <div
           ref={ProductRef}
           className={cn(
-            "w-full min-h-[941px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 lg:gap-x-6  place-content-start place-items-center gap-y-16 max-[929px]:gap-y-8 mb-6 min-[1139px]:gap-x-1 min-[1220px]:gap-x-4",
+            "w-full min-h-[941px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 lg:gap-x-6  place-content-start place-items-center gap-y-16 max-[929px]:gap-y-8 mb-6 min-[1139px]:gap-x-1 min-[1220px]:gap-x-4",
             isInView1
               ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
               : " opacity-0 translate-y-36"
           )}
         >
-          {isLoading
-            ? skeletonArray.map((_, index) => (
-                <Suspense key={index} fallback={<CardSkelton />}>
-                  <CardSKel />
-                </Suspense>
-              ))
-            : products.map((product) => (
-                <Suspense key={product.id} fallback={<CardSkelton />}>
-                  <ShopCard {...product} />
-                </Suspense>
-              ))}
+          {products.map((product) => (
+            <Suspense key={product.id} fallback={<CardSkelton />}>
+              <ShopCard {...product} />
+            </Suspense>
+          ))}
         </div>
       </div>
     </section>

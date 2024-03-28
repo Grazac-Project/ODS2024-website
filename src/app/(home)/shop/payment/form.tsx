@@ -24,10 +24,14 @@ interface user {
 
 const PaymentForm = () => {
   const searchParams = useSearchParams();
+  const cartID = searchParams.get("cartid");
+  const cartId = searchParams.get("cartId");
 
-  const cartID = searchParams.get("cartId");
-
-  const decryptedId = decryptString(cartID!);
+  const decryptedId = cartID
+    ? decryptString(cartID)
+    : cartId
+    ? decryptString(cartId)
+    : "";
 
   const [cart, setCart] = useState<ShoppingCartProps | undefined>(undefined);
 
@@ -99,7 +103,6 @@ const PaymentForm = () => {
         setStatus("error");
       }
     } catch (e: any) {
-      console.log(e);
       setStatus("error");
     }
   };

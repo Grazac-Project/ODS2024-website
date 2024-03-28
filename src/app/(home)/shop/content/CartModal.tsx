@@ -40,7 +40,6 @@ const CartModal = () => {
     ? decryptString(cartId)
     : "";
 
-  // console.log(decryptedId);
 
   useEffect(() => {
     const fetchCart = async () => {

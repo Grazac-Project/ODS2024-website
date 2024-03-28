@@ -19,6 +19,7 @@ import {
   ShoppingCartProps,
 } from "@/actions/cart";
 import MobileCrd from "./card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Product {
   id: string;
@@ -123,6 +124,9 @@ const FORMCART = () => {
   }
   return (
     <div className="hidden md:block py-7 mt-[40px] ml-[60px]">
+      {isLoading && (
+        <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+      )}
       <h2 className="capitalize font-montserrat mb-5">here is your cart</h2>
       <>
         {cart ? (

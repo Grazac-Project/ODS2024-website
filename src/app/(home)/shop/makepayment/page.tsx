@@ -12,6 +12,7 @@ import Image from "next/image";
 import { ShoppingCartProps } from "@/actions/cart";
 import { useFetch } from "@/hooks/useFetch";
 import { Buyer } from "@prisma/client";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Makepayment = () => {
   const searchParams = useSearchParams();
@@ -107,11 +108,7 @@ const Makepayment = () => {
           {isDisabled ? (
             <>
               <div className="w-full space-y-2">
-                <div className="animate-pulse [animation-delay:0.2s] bg-black/20 h-6 w-[90%] rounded-full" />
-                <div className="animate-pulse [animation-delay:0.3s] bg-black/20 h-6 w-[80%] rounded-full" />
-                <div className="animate-pulse [animation-delay:0.3s] bg-black/20 h-6 w-[80%] rounded-full" />
-                <div className="animate-pulse [animation-delay:0.3s] bg-black/20 h-6 w-[80%] rounded-full" />
-                <div className="animate-pulse [animation-delay:0.3s] bg-black/20 h-8  w-[40%] rounded-md" />
+                <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
               </div>
             </>
           ) : (

@@ -18,7 +18,7 @@ const ShopCard = ({ id, image, name, price, discount }: Product) => {
 
   return (
     <>
-      <div className="flex flex-col max-w-[305px] min-h-[390px] max-h-[400px] rounded-2xl bg-white border-solid border border-[color:var(--Foundation-stroke-stroke-300,#EBEBEB)]">
+      <div className="flex flex-col max-w-[400px] min-h-[390px] max-h-[400px] rounded-2xl bg-white border-solid border border-[color:var(--Foundation-stroke-stroke-300,#EBEBEB)]">
         <Image
           src={image!}
           alt="ods shop"
