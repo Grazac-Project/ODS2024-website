@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import useInView from "@/hooks/useInView";
 import Join from "@/components/General/Join";
 import { useFetch } from "@/hooks/useFetch";
+import { SpeakerSkeletonCard } from "@/components/sliders/SpeakerCard";
 
 import React, { useEffect, useState } from "react";
 import { Speaker } from "@prisma/client";
@@ -31,7 +32,6 @@ const SpeakerPage = () => {
       setSpeakersData(data.speakers || []);
     }
   }, [data]);
-
 
   return (
     <>
@@ -66,6 +66,16 @@ const SpeakerPage = () => {
             }
           )}
         >
+          {isLoading && (
+            <>
+              <SpeakerSkeletonCard />
+              <SpeakerSkeletonCard />
+              <SpeakerSkeletonCard />
+              <SpeakerSkeletonCard />
+              <SpeakerSkeletonCard />
+              <SpeakerSkeletonCard />
+            </>
+          )}
           {speakersData?.map((speaker) => (
             <div
               key={speaker?.id}
