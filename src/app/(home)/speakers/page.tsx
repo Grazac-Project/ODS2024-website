@@ -8,6 +8,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import useInView from "@/hooks/useInView";
 import Join from "@/components/General/Join";
+import { useFetch } from "@/hooks/useFetch";
 
 import React, { useEffect, useState } from "react";
 import { Speaker } from "@prisma/client";
@@ -21,19 +22,17 @@ const SpeakerPage = () => {
   const isInView8 = useInView(JoinRef);
   const JoinRef2 = React.useRef<HTMLDivElement>(null);
   const isInView9 = useInView(JoinRef2);
-  useEffect(() => {
-    const fetchSpeakers = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/speakers");
-        const data = await response.json();
-        setSpeakersData(data.speakers);
-      } catch (error) {
-        console.error("Error fetching speakers:", error);
-      }
-    };
 
-    fetchSpeakers();
-  }, []);
+  const url = "/api/speakers";
+  const { isLoading, data, error } = useFetch(url);
+
+  useEffect(() => {
+    if (data) {
+      setSpeakersData(data.speakers || []);
+    }
+  }, [data]);
+
+
   return (
     <>
       <div className="fex w-full justify-start max-[500px]:py-2 px-4 sm:px-8 xl:px-10 2xl:px-20 my-[60px]">
