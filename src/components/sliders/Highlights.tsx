@@ -7,9 +7,9 @@ import { cn } from "@/utils";
 import useInView from "@/hooks/useInView";
 import { FaArrowRight } from "react-icons/fa6";
 import Link from "next/link";
-import LoadingSpinner from "../loader";
 import { useFetch } from "@/hooks/useFetch";
 import { Highlight } from "@prisma/client";
+import { SpeakerSkeletonCard } from "./SpeakerCard";
 
 function HighlightsSlider() {
   const slideRef = React.useRef<HTMLDivElement>(null);
@@ -29,6 +29,13 @@ function HighlightsSlider() {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 850,
+        settings: {
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
@@ -69,7 +76,20 @@ function HighlightsSlider() {
       )}
     >
       {isLoading ? (
-        <LoadingSpinner />
+        <div className="items-center justify-center h-full w-full">
+          <div className="md:hidden">
+            <SpeakerSkeletonCard />
+          </div>
+          <div className="hidden lg:hidden md:flex w-full items-center justify-between gap-x-1">
+            <SpeakerSkeletonCard />
+            <SpeakerSkeletonCard />
+          </div>
+          <div className="hidden lg:flex w-full items-center justify-between gap-x-1">
+            <SpeakerSkeletonCard />
+            <SpeakerSkeletonCard />
+            <SpeakerSkeletonCard />
+          </div>
+        </div>
       ) : error ? (
         <div className="grid place-items-center min-h-[400px]">
           <div className="text-center ">

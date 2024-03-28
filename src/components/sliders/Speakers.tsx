@@ -7,6 +7,7 @@ import { Speaker } from "@prisma/client";
 import { cn } from "@/utils";
 import useInView from "@/hooks/useInView";
 import { useFetch } from "@/hooks/useFetch";
+import { SpeakerSkeletonCard } from "./SpeakerCard";
 
 function SpeakersSlder() {
   const slideRef = React.useRef<HTMLDivElement>(null);
@@ -26,6 +27,13 @@ function SpeakersSlder() {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 850,
+        settings: {
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
@@ -65,30 +73,65 @@ function SpeakersSlder() {
           : " opacity-0 translate-y-36"
       )}
     >
-      <Slider
-        {...carouselSettings}
-        className="justify-between items-center w-full"
-      >
-        {speakersData?.map((speaker) => (
-          <div key={speaker?.id} className={`relative`}>
-            <Image
-              src={speaker?.image || "/speaker1.svg"}
-              alt=""
-              width={420}
-              height={360}
-            />
-            <div className="absolute bottom-3 left-8">
-              <h3 className="font-semibold text-xl text-white">
-                {speaker?.name}
-              </h3>
-              <p className="font-medium text-white">{speaker?.title}</p>
-              {speaker?.occupation && (
-                <p className="font-medium text-white">{speaker?.occupation}</p>
-              )}
-            </div>
+      {isLoading ? (
+        <div className="items-center justify-center h-full w-full">
+          <div className="md:hidden">
+            <SpeakerSkeletonCard />
           </div>
-        ))}
-      </Slider>
+          <div className="hidden lg:hidden md:flex w-full items-center justify-between gap-x-1">
+            <SpeakerSkeletonCard />
+            <SpeakerSkeletonCard />
+          </div>
+          <div className="hidden lg:flex w-full items-center justify-between gap-x-1">
+            <SpeakerSkeletonCard />
+            <SpeakerSkeletonCard />
+            <SpeakerSkeletonCard />
+          </div>
+        </div>
+      ) : error ? (
+        <div className="grid place-items-center min-h-[400px]">
+          <div className="text-center ">
+            <h3 className="text-2xl">{error.message}</h3>
+            <p>⚒️ We are currently working on this ⚒️</p>
+          </div>
+        </div>
+      ) : (
+        <>
+          {speakersData.length > 0 && (
+            <Slider
+              {...carouselSettings}
+              className="justify-between items-center w-full"
+            >
+              {speakersData?.map((speaker) => (
+                <div key={speaker?.id} className={`relative`}>
+                  <Image
+                    src={speaker?.image || "/speaker1.svg"}
+                    alt=""
+                    width={420}
+                    height={360}
+                  />
+                  <div className="absolute bottom-3 left-8">
+                    <h3 className="font-semibold text-xl text-white">
+                      {speaker?.name}
+                    </h3>
+                    <p className="font-medium text-white">{speaker?.title}</p>
+                    {speaker?.occupation && (
+                      <p className="font-medium text-white">
+                        {speaker?.occupation}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          )}
+          {speakersData.length === 0 && (
+            <div className="text-center">
+              <p>No highlights available</p>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }
