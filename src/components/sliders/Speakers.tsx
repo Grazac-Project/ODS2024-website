@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Speaker } from "@prisma/client";
 import { cn } from "@/utils";
 import useInView from "@/hooks/useInView";
+import { useFetch } from "@/hooks/useFetch";
 
 function SpeakersSlder() {
   const slideRef = React.useRef<HTMLDivElement>(null);
@@ -45,19 +46,15 @@ function SpeakersSlder() {
     ],
   };
 
-  useEffect(() => {
-    const fetchSpeakers = async () => {
-      try {
-        const response = await fetch("/api/speakers");
-        const data = await response.json();
-        setSpeakersData(data.speakers || []);
-      } catch (error) {
-        console.error("Error fetching speakers:", error);
-      }
-    };
+  const url = "/api/speakers";
+  const { isLoading, data, error } = useFetch(url);
 
-    fetchSpeakers();
-  }, []);
+  useEffect(() => {
+    if (data) {
+     setSpeakersData(data.speakers || []);
+    }
+  }, [data]);
+
 
   return (
     <div
