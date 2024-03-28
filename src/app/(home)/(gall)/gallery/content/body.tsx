@@ -15,11 +15,8 @@ import useInView from "@/hooks/useInView";
 import { Calendar } from "iconsax-react";
 import { Folder } from "../page";
 import { cn } from "@/utils";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import { useFetch } from "@/hooks/useFetch";
-import { encryptString, decryptString } from "@/utils";
 import { CloudinaryImage } from "./Image";
-import LoadingSpinner from "@/components/loader";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface BodyProps {
   folder?: Folder[];
@@ -149,15 +146,32 @@ const Body = ({ folder }: BodyProps) => {
         </p>
       </div>
       {isLoading && (
-        <div className="flex items-center justify-center w-full h-full text-gray-400">
-          <LoadingSpinner />
+        <div
+          className={cn(
+            "w-full min-h-[941px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 lg:gap-x-6  place-content-start place-items-center gap-y-16 max-[929px]:gap-y-8 mb-6 min-[1139px]:gap-x-1 min-[1220px]:gap-x-4"
+          )}
+        >
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
+          <Skeleton className="h-80 w-[400px] max-w-full rounded-xl" />
         </div>
       )}
-      {images && images.length === 0 && (
-        <div className="flex items-center justify-center w-full h-full text-gray-400">
-          😞 No images found
-        </div>
-      )}
+
       <div
         ref={ImageRef}
         className={cn(
@@ -172,17 +186,12 @@ const Body = ({ folder }: BodyProps) => {
             key={image.public_id}
             publicId={image.public_id}
             src={image.public_id}
+            className="h-80 w-full object-cover object-left-top rounded-lg gap-10 !m-0 !p-0"
+            height="400"
             width="400"
-            height="300"
-            alt="ODS IMAGES"
-            className="w-full rounded-lg"
+            alt="thumbnail"
           />
         ))}
-        {/* {images && images.length === 0 && (
-          <div className="flex items-center justify-center w-full h-full text-gray-400">
-            😞 No images found
-          </div>
-        )} */}
       </div>
     </section>
   );
