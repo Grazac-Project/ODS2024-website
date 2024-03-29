@@ -36,16 +36,37 @@ const privacy = [
   },
 
   {
+    id: "Sharing-Your-Information    ",
+    title: "Sharing Your Information    ",
+    content:
+      "We may share your information with third-party service providers who help us operate the website or deliver our services, such as email marketing services and website analytics providers. These service providers will only use your information for the purpose of providing the services they are contracted to perform, and we will take steps to ensure they adhere to this Privacy Policy. We may also share your information with event partners or sponsors, but only if you explicitly opt-in to such sharing. For example, you may be given the option to opt-in to having your contact information displayed in a directory of attendees. This allows attendees to connect with each other if they choose to do so. We may disclose your information if we are required to do so by law or in the good faith belief that such disclosure is necessary to comply with a court order or other legal process. We may also disclose your information to protect the rights, property, or safety of ourselves or others.",
+  },
+
+  {
+    id: "Data-Security",
+    title: "Data Security",
+    content:
+      "We take reasonable steps to protect your information from unauthorized access, disclosure, alteration, or destruction. However, no website or internet transmission is completely secure. We cannot guarantee the security of your information.      ",
+  },
+
+  {
     id: "third-party-disclosure",
     title: "Third-Party Disclosure",
     content:
       "We do not sell, trade, or otherwise transfer your personally identifiable information to third parties without your explicit consent.",
   },
+
   {
     id: "cookie-usage",
     title: "Cookie Usage",
     content:
       "The Ogun Digital Summit app (ODS24) may use cookies to enhance user experience. You can manage cookie preferences through your device settings.",
+  },
+  {
+    id: "Changes-to-This-Policy    ",
+    title: "Changes to This Policy    ",
+    content:
+      "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new privacy policy on the website. You are advised to review this privacy policy periodically for any changes.",
   },
 ];
 
