@@ -13,58 +13,40 @@ import { X, CheckCircle } from "lucide-react";
 import { BsExclamationTriangle } from "react-icons/bs";
 import { Button } from "../ui/button";
 import { baseUrl } from "@/actions/baseurl";
+import { UploadedAssetData } from "./addProduct";
+import SocialsModal from "./SocialsModal";
 
-export interface UploadedAssetData {
-  public_id: string;
-  width: number;
-  height: number;
-  id: string;
-  info: Record<string, unknown>;
-  original_filename: string;
-  url: string;
-  [key: string]: unknown;
-}
-
-export type UploadResult = {
-  info: {
-    public_id: string;
-    original_filename: string;
-  };
-  event: "success";
+type Data = {
+  image: string;
+  bio: string;
+  occupation: string;
+  title: string;
+  name: string;
 };
 
-interface Product {
-  name: string;
-  description: string;
-  discount: number;
-  image: string;
-  price: number;
-  // sizes: string[];
-}
-
-const AddProduct = () => {
+const CreateSpeaker = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [result, setResult] = useState<UploadedAssetData | null>(null);
   const [status, setStatus] = useState("idle");
+  const [speakerId, setspeakerId] = useState("");
 
-  const [formData, setformData] = useState<Product>({
-    name: "",
-    description: "",
+  const [formData, setformData] = useState<Data>({
     image: "",
-    price: 0,
-    discount: 0,
+    bio: "",
+    name: "",
+    occupation: "",
+    title: "",
   });
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     setSuccess("");
-
     try {
       setStatus("loading");
-      const res = await fetch(`${baseUrl}/api/addproduct`, {
+      const res = await fetch(`${baseUrl}/api/speakers`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,13 +57,15 @@ const AddProduct = () => {
       if (res.status === 200 || res.ok) {
         setSuccess("sucess");
         setStatus("sucess");
+        const data = await res.json();
+
+        setspeakerId(data.speaker.id);
         setformData({
-          name: "",
-          description: "",
           image: "",
-          price: 0,
-          discount: 0,
-          // sizes: [],
+          bio: "",
+          name: "",
+          occupation: "",
+          title: "",
         });
       }
 
@@ -149,7 +133,7 @@ const AddProduct = () => {
                   image: result?.info?.url,
                 });
               }}
-              uploadPreset="ogundigital"
+              uploadPreset="speakers"
             />
           </div>
         )}
@@ -172,7 +156,7 @@ const AddProduct = () => {
       <div className="flex w-full flex-col gap-y-4 sm:gap-y-6 pt-8 md:pt-0">
         <div className="flex flex-col  gap-y-2 w-full">
           <Label htmlFor="Product Name" className="font-medium">
-            ProductName
+            Speakers Name
           </Label>
           <Input
             type="text"
@@ -188,64 +172,13 @@ const AddProduct = () => {
           />
         </div>
         <div className="flex flex-col  gap-y-2 w-full">
-          <Label htmlFor="Product Description" className="font-medium">
-            Product Description
-          </Label>
-          <Textarea
-            name="description"
-            value={formData.description}
-            onChange={(e) =>
-              setformData({
-                ...formData,
-                [e.target.name]: e.target.value,
-              })
-            }
-          />
-        </div>
-        <div className="flex flex-col  gap-y-2 w-full">
-          <Label htmlFor="Product Image" className="font-medium">
-            Product Image
+          <Label htmlFor="Product Name" className="font-medium">
+            Speakers Position
           </Label>
           <Input
             type="text"
-            name="image"
-            value={formData.image}
-            disabled
-            className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
-            onChange={(e) =>
-              setformData({
-                ...formData,
-                [e.target.name]: e.target.value,
-              })
-            }
-          />
-        </div>
-        {/* <div className="flex flex-col gap-y-2 w-full">
-            <Label htmlFor="Product Sizes" className="font-medium">
-              Product Sizes (this feild is optional)
-            </Label>
-            <Input
-              type="text"
-              name="sizes"
-              value={formData.sizes.join(", ")}
-              placeholder="use commas to seprate the sizes perfably use sizes 'S', 'M', 'L' "
-              className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
-              onChange={(e) =>
-                setformData({
-                  ...formData,
-                  sizes: e.target.value.split(",").map((size) => size.trim()),
-                })
-              }
-            />
-          </div> */}
-        <div className="flex flex-col  gap-y-2 w-full">
-          <Label htmlFor="Product Price" className="font-medium">
-            Product Price
-          </Label>
-          <Input
-            type="number"
-            name="price"
-            value={formData.price}
+            name="title"
+            value={formData.title}
             className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
             onChange={(e) =>
               setformData({
@@ -256,13 +189,13 @@ const AddProduct = () => {
           />
         </div>
         <div className="flex flex-col  gap-y-2 w-full">
-          <Label htmlFor="Product Discount" className="font-medium">
-            Product Discount
+          <Label htmlFor="Product Name" className="font-medium">
+            Speakers occupation
           </Label>
           <Input
-            type="number"
-            name="discount"
-            value={formData.discount}
+            type="text"
+            name="occupation"
+            value={formData.occupation}
             className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
             onChange={(e) =>
               setformData({
@@ -272,7 +205,22 @@ const AddProduct = () => {
             }
           />
         </div>
-
+        <div className="flex flex-col  gap-y-2 w-full">
+          <Label htmlFor="Product Name" className="font-medium">
+            Speakers Bio
+          </Label>
+          <Textarea
+            name="bio"
+            value={formData.bio}
+            className="w-full rounded-md border resize-none h-40 border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+            onChange={(e) =>
+              setformData({
+                ...formData,
+                [e.target.name]: e.target.value,
+              })
+            }
+          />
+        </div>
         <Button
           className="justify-center items-center px-16 py-3.5 mt-3 text-lg leading-5 text-green-600 whitespace-nowrap bg-white rounded-xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-l-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-r-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)] border-t-[color:var(--Foundation-Primary-color-primary-color-500,#00A651)]"
           type="submit"
@@ -280,8 +228,9 @@ const AddProduct = () => {
           {isLoading ? "Adding..." : "Add Product"}
         </Button>
       </div>
+      <SocialsModal speakerId={speakerId} />
     </form>
   );
 };
 
-export default AddProduct;
+export default CreateSpeaker;

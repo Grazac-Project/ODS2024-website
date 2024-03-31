@@ -14,6 +14,8 @@ interface StateContextProps {
   setShowCartModal: React.Dispatch<React.SetStateAction<boolean>>;
   ShowOptionModal: boolean;
   setShowOptionModal: React.Dispatch<React.SetStateAction<boolean>>;
+  ShowSocialModal: boolean;
+  setShowSocialModal: React.Dispatch<React.SetStateAction<boolean>>;
   SelectedProductId: string;
   setSelectedProductId: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -24,6 +26,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const [ShowAdminSidebar, setShowAdminSidebar] = React.useState(false);
   const [ShowProductModal, setShowProductModal] = React.useState(false);
+  const [ShowSocialModal, setShowSocialModal] = React.useState(false);
 
   const [SelectedProductId, setSelectedProductId] = React.useState<string>("");
 
@@ -33,7 +36,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
 
   // Modals State
-  const anyModalOpen = ShowProductModal || ShowCartModal || ShowOptionModal;
+  const anyModalOpen =
+    ShowProductModal || ShowCartModal || ShowOptionModal || ShowSocialModal;
   const isMobileDevice = () => {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator?.userAgent
@@ -131,6 +135,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setShowOptionModal,
       ShowAdminSidebar,
       setShowAdminSidebar,
+      ShowSocialModal,
+      setShowSocialModal,
     }),
     [
       showMobileMenu,
@@ -140,6 +146,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       SelectedProductId,
       ShowOptionModal,
       ShowAdminSidebar,
+      ShowSocialModal,
     ]
   );
 
