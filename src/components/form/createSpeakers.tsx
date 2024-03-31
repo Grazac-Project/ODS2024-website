@@ -15,6 +15,8 @@ import { Button } from "../ui/button";
 import { baseUrl } from "@/actions/baseurl";
 import { UploadedAssetData } from "./addProduct";
 import SocialsModal from "./SocialsModal";
+import { useStateCtx } from "@/context/StateCtx";
+import { Speaker } from "@prisma/client";
 
 type Data = {
   image: string;
@@ -25,12 +27,13 @@ type Data = {
 };
 
 const CreateSpeaker = () => {
+  const { setShowSocialModal } = useStateCtx();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [result, setResult] = useState<UploadedAssetData | null>(null);
   const [status, setStatus] = useState("idle");
-  const [speakerId, setspeakerId] = useState("");
+  const [speakerDetails, setspeakerDetails] = useState<Speaker>();
 
   const [formData, setformData] = useState<Data>({
     image: "",
@@ -59,7 +62,14 @@ const CreateSpeaker = () => {
         setStatus("sucess");
         const data = await res.json();
 
-        setspeakerId(data.speaker.id);
+        setspeakerDetails({
+          id: data.speaker.id,
+          image: data.speaker.image,
+          bio: data.speaker.bio,
+          name: data.speaker.name,
+          occupation: data.speaker.occupation,
+          title: data.speaker.title,
+        });
         setformData({
           image: "",
           bio: "",
@@ -153,6 +163,14 @@ const CreateSpeaker = () => {
           </Alert>
         )}
       </div>
+
+      <button
+        onClick={() => {
+          setShowSocialModal(true);
+        }}
+      >
+        open
+      </button>
       <div className="flex w-full flex-col gap-y-4 sm:gap-y-6 pt-8 md:pt-0">
         <div className="flex flex-col  gap-y-2 w-full">
           <Label htmlFor="Product Name" className="font-medium">
@@ -228,7 +246,7 @@ const CreateSpeaker = () => {
           {isLoading ? "Adding..." : "Add Product"}
         </Button>
       </div>
-      <SocialsModal speakerId={speakerId} />
+      <SocialsModal {...speakerDetails} />
     </form>
   );
 };
