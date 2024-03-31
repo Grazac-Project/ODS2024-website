@@ -70,6 +70,9 @@ const Footer = () => {
                   <Link href="/about" className="text-white">
                     Highlights
                   </Link>
+                  <Link href="/privacy" className="text-white">
+                    Privacy Policy
+                  </Link>
                 </div>
               </div>
               <div className="font-nunito">
