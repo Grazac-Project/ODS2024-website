@@ -28,3 +28,43 @@ export async function GET(req: Request, context: { params: Params }) {
     );
   }
 }
+
+type SocialData = {
+  platform: string;
+  url: string;
+};
+
+export async function POST(req: Request, context: { params: Params }) {
+  const id = context.params.id;
+
+  const { platform, url }: SocialData = await req.json();
+
+  
+
+  try {
+    await primsa.speaker.update({
+      where: { id },
+      data: {
+        socials: {
+          create: {
+            platform,
+            url,
+          },
+        },
+      },
+    });
+    return new NextResponse(
+      JSON.stringify({
+        message: "sucess",
+        status: 200,
+      })
+    );
+  } catch (e: any) {
+    return new NextResponse(
+      JSON.stringify({
+        message: "something went wrong",
+        status: 500,
+      })
+    );
+  }
+}

@@ -1,18 +1,65 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useStateCtx } from "@/context/StateCtx";
 import { cn } from "@/utils";
 import { X } from "lucide-react";
 import Image from "next/image";
+import { baseUrl } from "@/actions/baseurl";
 
 interface Social {
   id?: string;
   image?: string;
   name?: string;
 }
+
+type Data = {
+  platform: string;
+  url: string;
+};
 const SocialsModal = ({ id, image, name }: Social) => {
   const { ShowSocialModal, setShowSocialModal } = useStateCtx();
+  const [status, setStatus] = useState("idle");
+  const [showInstagramInput, setShowInstagramInput] = useState(false);
+  const [showLinkedinInput, setShowLinkedinInput] = useState(false);
+  const [showTwitterInput, setShowTwitterInput] = useState(false);
+  const [instagramLink, setInstagramLink] = useState<Data>({
+    platform: "instagram",
+    url: "",
+  });
+  const [linkedinLink, setLinkedinLink] = useState<Data>({
+    platform: "linkedin",
+    url: "",
+  });
+  const [twitterLink, setTwitterLink] = useState<Data>({
+    platform: "twitter",
+    url: "",
+  });
+
+  const handleTwitterSubmit = async () => {
+    try {
+      setStatus("loading");
+      const res = await fetch(`${baseUrl}/api/speakers/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(twitterLink),
+      });
+
+      if (res.status === 200 || res.ok) {
+        setStatus("sucess");
+      }
+      if (res.status === 500) {
+        setStatus("error");
+      }
+    } catch (e: any) {
+      setStatus("error");
+    }
+  };
+
+  const isLoading = status === "loading";
+
   return (
     <>
       <div
@@ -48,6 +95,101 @@ const SocialsModal = ({ id, image, name }: Social) => {
           >
             <X size={24} />
           </button>
+        </div>
+        <div className="flex h-full p-6 md:px-12 w-full">
+          <div className="flex flex-col w-full items-center justify-between">
+            <button
+              type="button"
+              onClick={() => setShowInstagramInput(!showInstagramInput)}
+            >
+              <Image
+                src="/socials/instagram.svg"
+                alt="Instagram"
+                width={60}
+                height={60}
+                loading="eager"
+              />
+            </button>
+            {showInstagramInput && (
+              <form>
+                <input
+                  type="text"
+                  name="url"
+                  value={instagramLink.url}
+                  onChange={(e) =>
+                    setInstagramLink({
+                      ...instagramLink,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  placeholder="Enter Instagram link"
+                />
+                <button type="submit">Submit</button>
+              </form>
+            )}
+          </div>
+          <div className="flex flex-col w-full items-center justify-between">
+            <button
+              type="button"
+              onClick={() => setShowLinkedinInput(!showLinkedinInput)}
+            >
+              <Image
+                src="/socials/linkedin.svg"
+                alt="Socials"
+                width={60}
+                height={60}
+                loading="eager"
+              />
+            </button>
+            {showLinkedinInput && (
+              <form>
+                <input
+                  type="text"
+                  name="url"
+                  value={linkedinLink.url}
+                  onChange={(e) =>
+                    setLinkedinLink({
+                      ...linkedinLink,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  placeholder="Enter LinkedIn link"
+                />
+                <button type="submit">Submit</button>
+              </form>
+            )}
+          </div>
+          <div className="flex flex-col w-full items-center justify-between">
+            <button
+              type="button"
+              onClick={() => setShowTwitterInput(!showTwitterInput)}
+            >
+              <Image
+                src="/socials/twitter.svg"
+                alt="Socials"
+                width={60}
+                height={60}
+                loading="eager"
+              />
+            </button>
+            {showTwitterInput && (
+              <>
+                <input
+                  type="text"
+                  name="url"
+                  value={twitterLink.url}
+                  onChange={(e) =>
+                    setTwitterLink({
+                      ...twitterLink,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
+                  placeholder="Enter Twitter link"
+                />
+                <button onClick={handleTwitterSubmit}>Submit</button>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </>

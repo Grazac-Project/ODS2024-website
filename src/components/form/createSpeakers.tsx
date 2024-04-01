@@ -191,7 +191,7 @@ const CreateSpeaker = () => {
         </div>
         <div className="flex flex-col  gap-y-2 w-full">
           <Label htmlFor="Product Name" className="font-medium">
-            Speakers Position
+            Speakers Place of work
           </Label>
           <Input
             type="text"

@@ -40,7 +40,7 @@ const NavBar = () => {
           {ShowAdminSidebar ? <Add size={60} /> : <HambergerMenu size={32} />}
         </button>
         <div className="flex gap-x-2 sm:gap-x-4 items-center">
-          <h2 className="max-[370px]:text-base max-[500px]:text-lg text-xl md:hidden capitalize font-medium text-header  ">
+          <h2 className="max-[370px]:text-base max-[500px]:text-lg text-xl capitalize font-medium text-header  ">
             {pathName}
           </h2>
         </div>
