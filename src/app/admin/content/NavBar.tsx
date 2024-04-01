@@ -7,7 +7,8 @@ import { Add, HambergerMenu } from "iconsax-react";
 import ModMobileSidebar from "./mobilesodebar";
 
 const NavBar = () => {
-  const { ShowAdminSidebar, setShowAdminSidebar } = useStateCtx();
+  const { ShowAdminSidebar, setShowAdminSidebar, currentPath } = useStateCtx();
+  const pathName = currentPath.replace("admin/", "").replace("-", " ");
   return (
     <header
       className={cn(
@@ -38,6 +39,11 @@ const NavBar = () => {
         >
           {ShowAdminSidebar ? <Add size={60} /> : <HambergerMenu size={32} />}
         </button>
+        <div className="flex gap-x-2 sm:gap-x-4 items-center">
+          <h2 className="max-[370px]:text-base max-[500px]:text-lg text-xl md:hidden capitalize font-medium text-header  ">
+            {pathName}
+          </h2>
+        </div>
       </div>
       <ModMobileSidebar />
     </header>

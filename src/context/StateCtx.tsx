@@ -1,9 +1,16 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useMemo } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { usePathname } from "next/navigation";
 
 interface StateContextProps {
+  currentPath: string;
   showMobileMenu: boolean;
   setShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
   ShowAdminSidebar: boolean;
@@ -121,6 +128,18 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, [pathname]);
 
+  const [currentPath, setCurrentPath] = useState("");
+  useEffect(() => {
+    if (pathname.startsWith("/admin-")) {
+      setCurrentPath(pathname.replace(/^\/([^\/]+).*$/, "$1"));
+      return;
+    }
+    if (pathname.startsWith("/")) {
+      setCurrentPath(pathname.replace("/", ""));
+      return;
+    }
+  }, [pathname]);
+
   const value = useMemo(
     () => ({
       showMobileMenu,
@@ -137,6 +156,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setShowAdminSidebar,
       ShowSocialModal,
       setShowSocialModal,
+      currentPath,
     }),
     [
       showMobileMenu,
@@ -147,6 +167,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       ShowOptionModal,
       ShowAdminSidebar,
       ShowSocialModal,
+      currentPath,
     ]
   );
 
