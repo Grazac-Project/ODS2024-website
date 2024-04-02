@@ -1,9 +1,16 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useMemo } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { usePathname } from "next/navigation";
 
 interface StateContextProps {
+  currentPath: string;
   showMobileMenu: boolean;
   setShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
   ShowAdminSidebar: boolean;
@@ -14,6 +21,8 @@ interface StateContextProps {
   setShowCartModal: React.Dispatch<React.SetStateAction<boolean>>;
   ShowOptionModal: boolean;
   setShowOptionModal: React.Dispatch<React.SetStateAction<boolean>>;
+  ShowSocialModal: boolean;
+  setShowSocialModal: React.Dispatch<React.SetStateAction<boolean>>;
   SelectedProductId: string;
   setSelectedProductId: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -24,6 +33,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const [ShowAdminSidebar, setShowAdminSidebar] = React.useState(false);
   const [ShowProductModal, setShowProductModal] = React.useState(false);
+  const [ShowSocialModal, setShowSocialModal] = React.useState(false);
 
   const [SelectedProductId, setSelectedProductId] = React.useState<string>("");
 
@@ -33,7 +43,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
 
   // Modals State
-  const anyModalOpen = ShowProductModal || ShowCartModal || ShowOptionModal;
+  const anyModalOpen =
+    ShowProductModal || ShowCartModal || ShowOptionModal || ShowSocialModal;
   const isMobileDevice = () => {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator?.userAgent
@@ -117,6 +128,18 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, [pathname]);
 
+  const [currentPath, setCurrentPath] = useState("");
+  useEffect(() => {
+    if (pathname.startsWith("/admin-")) {
+      setCurrentPath(pathname.replace(/^\/([^\/]+).*$/, "$1"));
+      return;
+    }
+    if (pathname.startsWith("/")) {
+      setCurrentPath(pathname.replace("/", ""));
+      return;
+    }
+  }, [pathname]);
+
   const value = useMemo(
     () => ({
       showMobileMenu,
@@ -131,6 +154,9 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setShowOptionModal,
       ShowAdminSidebar,
       setShowAdminSidebar,
+      ShowSocialModal,
+      setShowSocialModal,
+      currentPath,
     }),
     [
       showMobileMenu,
@@ -140,6 +166,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       SelectedProductId,
       ShowOptionModal,
       ShowAdminSidebar,
+      ShowSocialModal,
+      currentPath,
     ]
   );
 

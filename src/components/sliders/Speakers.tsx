@@ -109,6 +109,7 @@ function SpeakersSlder() {
                     alt=""
                     width={420}
                     height={360}
+                    className="w-full aspect-[1.05] object-cover rounded-xl max-md:max-w-full"
                   />
                   <div className="absolute bottom-3 left-8">
                     <h3 className="font-semibold text-xl text-white">

@@ -20,7 +20,7 @@ const Speakers = ({
             width={540}
             height={477}
             loading="eager"
-            className="w-full aspect-[1.05] max-md:mt-10 max-md:max-w-full"
+            className="w-full aspect-[1.05] object-cover duration-300 hover:duration-700 hover:scale-150 max-md:mt-10 max-md:max-w-full"
           />
         </div>
         <div className="flex flex-col ml-5 w-3/5 max-md:ml-0 max-md:w-full">
