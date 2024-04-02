@@ -70,13 +70,15 @@ const CreateSpeaker = () => {
           occupation: data.speaker.occupation,
           title: data.speaker.title,
         });
-        setformData({
-          image: "",
-          bio: "",
-          name: "",
-          occupation: "",
-          title: "",
-        });
+
+        setShowSocialModal(true);
+        // setformData({
+        //   image: "",
+        //   bio: "",
+        //   name: "",
+        //   occupation: "",
+        //   title: "",
+        // });
       }
 
       if (res.status === 500) {
@@ -165,6 +167,7 @@ const CreateSpeaker = () => {
       </div>
 
       <button
+        type="button"
         onClick={() => {
           setShowSocialModal(true);
         }}

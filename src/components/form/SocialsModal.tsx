@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useStateCtx } from "@/context/StateCtx";
 import { cn } from "@/utils";
-import { X } from "lucide-react";
+import { CheckCircle, X } from "lucide-react";
 import Image from "next/image";
 import { baseUrl } from "@/actions/baseurl";
 
@@ -47,8 +47,9 @@ const SocialsModal = ({ id, image, name }: Social) => {
         body: JSON.stringify(twitterLink),
       });
 
-      if (res.status === 200 || res.ok) {
-        setStatus("sucess");
+      if (res.status === 200) {
+        setStatus("success3");
+        setShowTwitterInput(!showTwitterInput);
       }
       if (res.status === 500) {
         setStatus("error");
@@ -58,8 +59,56 @@ const SocialsModal = ({ id, image, name }: Social) => {
     }
   };
 
-  const isLoading = status === "loading";
+  const handleInstagramSubmit = async () => {
+    try {
+      setStatus("loading");
+      const res = await fetch(`${baseUrl}/api/speakers/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(instagramLink),
+      });
 
+      if (res.status === 200) {
+        setStatus("success1");
+        setShowInstagramInput(!showInstagramInput);
+      }
+      if (res.status === 500) {
+        setStatus("error");
+      }
+    } catch (e: any) {
+      setStatus("error");
+    }
+  };
+
+  const handleLinkedinSubmit = async () => {
+    try {
+      setStatus("loading");
+      const res = await fetch(`${baseUrl}/api/speakers/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(linkedinLink),
+      });
+
+      if (res.status === 200) {
+        setStatus("success2");
+        setShowLinkedinInput(!showLinkedinInput);
+      }
+      if (res.status === 500) {
+        setStatus("error");
+      }
+    } catch (e: any) {
+      setStatus("error");
+    }
+  };
+  const Success = status === "success1";
+
+  const Success2 = status === "success2";
+
+  const Success3 = status === "success3";
   return (
     <>
       <div
@@ -110,12 +159,19 @@ const SocialsModal = ({ id, image, name }: Social) => {
                 loading="eager"
               />
             </button>
+            {Success && (
+              <div className="bg-emerald-700/10 p-3 rounded-md flex  items-center gap-x-2 text-sm text-emerald-700">
+                <CheckCircle className="h-4 w-4" />
+                <p className="text-center">Added</p>
+              </div>
+            )}
             {showInstagramInput && (
-              <form>
+              <>
                 <input
                   type="text"
                   name="url"
                   value={instagramLink.url}
+                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
                   onChange={(e) =>
                     setInstagramLink({
                       ...instagramLink,
@@ -124,8 +180,17 @@ const SocialsModal = ({ id, image, name }: Social) => {
                   }
                   placeholder="Enter Instagram link"
                 />
-                <button type="submit">Submit</button>
-              </form>
+
+                <button
+                  type="button"
+                  className={cn(
+                    "rounded-lg bg-primary text-white min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-600"
+                  )}
+                  onClick={handleInstagramSubmit}
+                >
+                  Submit
+                </button>
+              </>
             )}
           </div>
           <div className="flex flex-col w-full items-center justify-between">
@@ -141,11 +206,18 @@ const SocialsModal = ({ id, image, name }: Social) => {
                 loading="eager"
               />
             </button>
+            {Success2 && (
+              <div className="bg-emerald-700/10 p-3 rounded-md flex  items-center gap-x-2 text-sm text-emerald-700">
+                <CheckCircle className="h-4 w-4" />
+                <p className="text-center">Added</p>
+              </div>
+            )}
             {showLinkedinInput && (
-              <form>
+              <>
                 <input
                   type="text"
                   name="url"
+                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
                   value={linkedinLink.url}
                   onChange={(e) =>
                     setLinkedinLink({
@@ -155,8 +227,17 @@ const SocialsModal = ({ id, image, name }: Social) => {
                   }
                   placeholder="Enter LinkedIn link"
                 />
-                <button type="submit">Submit</button>
-              </form>
+
+                <button
+                  type="button"
+                  className={cn(
+                    "rounded-lg bg-primary text-white min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-600"
+                  )}
+                  onClick={handleLinkedinSubmit}
+                >
+                  Submit
+                </button>
+              </>
             )}
           </div>
           <div className="flex flex-col w-full items-center justify-between">
@@ -172,12 +253,19 @@ const SocialsModal = ({ id, image, name }: Social) => {
                 loading="eager"
               />
             </button>
+            {Success3 && (
+              <div className="bg-emerald-700/10 p-3 rounded-md flex  items-center gap-x-2 text-sm text-emerald-700">
+                <CheckCircle className="h-4 w-4" />
+                <p className="text-center">Added</p>
+              </div>
+            )}
             {showTwitterInput && (
               <>
                 <input
                   type="text"
                   name="url"
                   value={twitterLink.url}
+                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
                   onChange={(e) =>
                     setTwitterLink({
                       ...twitterLink,
@@ -186,7 +274,16 @@ const SocialsModal = ({ id, image, name }: Social) => {
                   }
                   placeholder="Enter Twitter link"
                 />
-                <button onClick={handleTwitterSubmit}>Submit</button>
+
+                <button
+                  type="button"
+                  onClick={handleTwitterSubmit}
+                  className={cn(
+                    "rounded-lg bg-primary text-white min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-600"
+                  )}
+                >
+                  Submit
+                </button>
               </>
             )}
           </div>
