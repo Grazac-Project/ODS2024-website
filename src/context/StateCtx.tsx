@@ -17,12 +17,16 @@ interface StateContextProps {
   setShowAdminSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   ShowProductModal: boolean;
   setShowProductModal: React.Dispatch<React.SetStateAction<boolean>>;
+  DeleteSpeakerModal: boolean;
+  setDeleteSpeakerModal: React.Dispatch<React.SetStateAction<boolean>>;
   ShowCartModal: boolean;
   setShowCartModal: React.Dispatch<React.SetStateAction<boolean>>;
   ShowOptionModal: boolean;
   setShowOptionModal: React.Dispatch<React.SetStateAction<boolean>>;
   ShowSocialModal: boolean;
   setShowSocialModal: React.Dispatch<React.SetStateAction<boolean>>;
+  Update: boolean;
+  setUpdate: React.Dispatch<React.SetStateAction<boolean>>;
   SelectedProductId: string;
   setSelectedProductId: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -34,6 +38,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [ShowAdminSidebar, setShowAdminSidebar] = React.useState(false);
   const [ShowProductModal, setShowProductModal] = React.useState(false);
   const [ShowSocialModal, setShowSocialModal] = React.useState(false);
+  const [DeleteSpeakerModal, setDeleteSpeakerModal] = React.useState(false);
+  const [Update, setUpdate] = React.useState(false);
 
   const [SelectedProductId, setSelectedProductId] = React.useState<string>("");
 
@@ -44,7 +50,11 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Modals State
   const anyModalOpen =
-    ShowProductModal || ShowCartModal || ShowOptionModal || ShowSocialModal;
+    ShowProductModal ||
+    ShowCartModal ||
+    ShowOptionModal ||
+    ShowSocialModal ||
+    DeleteSpeakerModal;
   const isMobileDevice = () => {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator?.userAgent
@@ -68,7 +78,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   }, [mobileSidebarOpen]);
 
   useEffect(() => {
-    const t = "%c  Made By \ud83d\udc9a  - Pheonix ",
+    const t = "%c  Made By \ud83d\udc9a  - Phoenix ",
       n = [
         "font-size: 12px",
         "color: #fffce1",
@@ -79,7 +89,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
         "border: 1px solid #0ff",
         "border-radius: 4px;",
       ].join(";");
-    // console.log(t, n);
+    console.log(t, n);
   }, []);
 
   useEffect(() => {
@@ -157,6 +167,10 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       ShowSocialModal,
       setShowSocialModal,
       currentPath,
+      DeleteSpeakerModal,
+      setDeleteSpeakerModal,
+      Update,
+      setUpdate,
     }),
     [
       showMobileMenu,
@@ -168,6 +182,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       ShowAdminSidebar,
       ShowSocialModal,
       currentPath,
+      DeleteSpeakerModal,
+      Update,
     ]
   );
 
