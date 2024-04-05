@@ -1,6 +1,7 @@
 import React from "react";
 import SideBar from "./content/sidebar";
 import NavBar from "./content/NavBar";
+import DeleteSpeaker from "./content/DeleteSpeakerModal";
 export default function AdminLayout({
   children,
 }: {
@@ -13,6 +14,7 @@ export default function AdminLayout({
         <NavBar />
         <div className="flex w-full flex-col h-full relative max-container pt-12 md:pt-0">
           {children}
+          <DeleteSpeaker />
         </div>
       </section>
     </>

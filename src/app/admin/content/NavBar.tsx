@@ -5,10 +5,15 @@ import { cn } from "@/utils";
 import { useStateCtx } from "@/context/StateCtx";
 import { Add, HambergerMenu } from "iconsax-react";
 import ModMobileSidebar from "./mobilesodebar";
+import Link from "next/link";
 
 const NavBar = () => {
   const { ShowAdminSidebar, setShowAdminSidebar, currentPath } = useStateCtx();
-  const pathName = currentPath.replace("admin/", "").replace("-", " ");
+  const pathName = currentPath
+    .replace("admin/", "")
+    .replace("-", " ")
+    .replace("speakers/", " ");
+
   return (
     <header
       className={cn(
@@ -44,6 +49,16 @@ const NavBar = () => {
             {pathName}
           </h2>
         </div>
+        {pathName === "speakers" && (
+          <div className="flex gap-x-2 sm:gap-x-4 items-center">
+            <Link
+              href={`/${currentPath}/view`}
+              className="justify-center px-5 py-3 text-base font-semibold leading-6 text-white whitespace-nowrap bg-[#33059F] rounded-lg border border-solid shadow-sm border-[color:var(--purple-secondary-900,#33059F)]"
+            >
+              View All Speakers
+            </Link>
+          </div>
+        )}
       </div>
       <ModMobileSidebar />
     </header>
