@@ -11,7 +11,9 @@ export default function AdminLayout({
       <SideBar />
       <section className="w-full md:pl-[96px] min-[1140px]:pl-[270px]">
         <NavBar />
-        {children}
+        <div className="flex w-full flex-col h-full relative max-container pt-12 md:pt-0">
+          {children}
+        </div>
       </section>
     </>
   );

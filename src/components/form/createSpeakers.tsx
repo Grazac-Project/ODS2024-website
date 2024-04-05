@@ -35,6 +35,7 @@ const CreateSpeaker = () => {
   const [status, setStatus] = useState("idle");
   const [speakerDetails, setspeakerDetails] = useState<Speaker>();
 
+
   const [formData, setformData] = useState<Data>({
     image: "",
     bio: "",
@@ -70,13 +71,15 @@ const CreateSpeaker = () => {
           occupation: data.speaker.occupation,
           title: data.speaker.title,
         });
-        setformData({
-          image: "",
-          bio: "",
-          name: "",
-          occupation: "",
-          title: "",
-        });
+
+        setShowSocialModal(true);
+        // setformData({
+        //   image: "",
+        //   bio: "",
+        //   name: "",
+        //   occupation: "",
+        //   title: "",
+        // });
       }
 
       if (res.status === 500) {
@@ -164,13 +167,6 @@ const CreateSpeaker = () => {
         )}
       </div>
 
-      <button
-        onClick={() => {
-          setShowSocialModal(true);
-        }}
-      >
-        open
-      </button>
       <div className="flex w-full flex-col gap-y-4 sm:gap-y-6 pt-8 md:pt-0">
         <div className="flex flex-col  gap-y-2 w-full">
           <Label htmlFor="Product Name" className="font-medium">

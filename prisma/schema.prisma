@@ -56,7 +56,7 @@ model Buyer {
   cartId        String
   price         String
   paymentId     String?
-  updatedAt     DateTime @updatedAt
+  updatedAt     DateTime? @updatedAt
   delivered     Boolean?
 
   @@map("buyers")

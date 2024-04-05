@@ -1,5 +1,11 @@
 import { HighlightsProps, NavbarLinkProps, SidebarProps } from "@/types";
-import { type Icon, Category, AddSquare, People } from "iconsax-react";
+import {
+  type Icon,
+  Category,
+  AddSquare,
+  People,
+  ShoppingCart,
+} from "iconsax-react";
 
 export const NAV_LINKS: NavbarLinkProps[] = [
   { id: 1, link: "/gallery", label: "gallery" },
@@ -153,5 +159,11 @@ export const SIDEBARLINKS: SidebarProps[] = [
     label: "Speakers",
     icon: People,
     link: "admin/speakers",
+  },
+  {
+    id: 4,
+    label: "Carts",
+    icon: ShoppingCart,
+    link: "admin/carts",
   },
 ];
