@@ -26,8 +26,7 @@ const SpeakerSection = () => {
             Meet the Speakers
           </h2>
           <p className="font-nunito w-[60%] font-medium text-[14px] md:text-lg">
-            Here are the amazing outstanding people who will be speaking at this
-            year&apos;s Ogun Digital Summit
+            Here are the amazing outstanding people who have graced &apos;s Ogun Digital Summit
           </p>
         </div>
         <div>
