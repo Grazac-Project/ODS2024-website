@@ -140,7 +140,7 @@ const Makepayment = () => {
           onClick={() => {
             handleFlutterPayment({
               callback: (response) => {
-                console.log(response.status);
+                // console.log(response);
                 closePaymentModal();
                 if (response.status === "successful") {
                   router.push(

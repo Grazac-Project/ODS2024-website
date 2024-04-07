@@ -12,9 +12,7 @@ import PreviewSkeleton from "@/components/highlightSkelton";
 
 const MAIN = ({ highlight_id }: { highlight_id?: string }) => {
   const MainRef = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView(MainRef);
   const TextRef = React.useRef<HTMLDivElement>(null);
-  const isInView1 = useInView(TextRef);
   const HighlightRef = React.useRef<HTMLDivElement>(null);
   const isInView2 = useInView(HighlightRef);
   const [highlight, setHighlight] = React.useState<Highlight>();
@@ -38,10 +36,7 @@ const MAIN = ({ highlight_id }: { highlight_id?: string }) => {
           <section
             ref={MainRef}
             className={cn(
-              "justify-between md:mt-[50px] mx-auto items-center flex flex-col md:flex-row md:px-[30px] px-[10px]",
-              isInView
-                ? "opacity-100 translate-y-0 md:delay-300 duration-500"
-                : " opacity-0 translate-y-36"
+              "justify-between md:mt-[50px] mx-auto items-center flex flex-col md:flex-row md:px-[30px] px-[10px]"
             )}
           >
             <div className="flex flex-col md:w-[571px] max-md:ml-0 max-md:w-full mb-[40px] md:mb-0">
@@ -77,10 +72,7 @@ const MAIN = ({ highlight_id }: { highlight_id?: string }) => {
           <div
             ref={TextRef}
             className={cn(
-              " font-nunito mt-20 md:px-[30px] px-[10px] text-start flex flex-col gap-9",
-              isInView1
-                ? "opacity-100 translate-y-0 md:delay-300 duration-500"
-                : " opacity-0 translate-y-36"
+              " font-nunito mt-20 md:px-[30px] px-[10px] text-start flex flex-col gap-9"
             )}
           >
             <p>{highlight?.description}</p>
