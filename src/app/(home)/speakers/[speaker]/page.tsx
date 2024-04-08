@@ -9,7 +9,7 @@ export interface SpeakerDetails {
 }
 
 export async function generateMetadata({
-  params: { speakers_id }
+  searchParams: { speakers_id },
 }: SpeakerDetails): Promise<Metadata> {
   const response = await fetch(`https://dummyjson.com/posts/${speakers_id}`);
   const post: Speaker = await response.json();
