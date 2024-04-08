@@ -34,7 +34,6 @@ const MAIN = ({ highlight_id }: { highlight_id?: string }) => {
       ) : (
         <>
           <section
-            ref={MainRef}
             className={cn(
               "justify-between md:mt-[50px] mx-auto items-center flex flex-col md:flex-row md:px-[30px] px-[10px]"
             )}
@@ -70,7 +69,6 @@ const MAIN = ({ highlight_id }: { highlight_id?: string }) => {
           </section>
 
           <div
-            ref={TextRef}
             className={cn(
               " font-nunito mt-20 md:px-[30px] px-[10px] text-start flex flex-col gap-9"
             )}

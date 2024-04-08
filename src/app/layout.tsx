@@ -4,10 +4,17 @@ import { nunito, montserrat } from "@/fonts";
 import StateContextProvider from "@/context/StateCtx";
 import AuthProvider from "./providers";
 
+const currentYear = new Date().getFullYear().toString().slice(-2);
+console.log(currentYear);
 export const metadata: Metadata = {
-  title: "OGUN DIGITAL SUMMIT",
+  title: {
+    default: "OGUN DIGITAL SUMMIT",
+    template: `%s - ODS${currentYear}`,
+  },
   description: "Pathway to our nation's prosperity",
-  // image: ""
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
