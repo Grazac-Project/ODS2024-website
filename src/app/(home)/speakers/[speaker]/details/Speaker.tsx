@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Speaker, Social } from "@prisma/client";
@@ -7,6 +9,7 @@ import { useInView } from "framer-motion";
 import Join from "@/components/General/Join";
 import { cn } from "@/utils";
 import { ArrowRight2 } from "iconsax-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Speakers = ({ speakers_id }: { speakers_id?: string }) => {
   const [speakerDetails, setSpeakerDetails] = useState<Speaker>();
@@ -36,30 +39,52 @@ const Speakers = ({ speakers_id }: { speakers_id?: string }) => {
   const isInView8 = useInView(JoinRef);
   const JoinRef2 = React.useRef<HTMLDivElement>(null);
   const isInView9 = useInView(JoinRef2);
+
+  const isLoading = Status === "loading";
+
   return (
     <>
       <div className="px-16 pt-6 pb-4 max-md:px-5 z-20 bg-white relative container">
         <div className="flex gap-5 max-md:flex-col max-md:gap-0 max-md:">
-          <div>
-            <Image
-              src={speakerDetails?.image!}
-              alt="speaker"
-              width={540}
-              height={477}
-              loading="eager"
-              className="w-full aspect-[1.05] object-cover duration-300 hover:duration-700 hover:scale-150 max-md:mt-10 max-md:max-w-full"
-            />
-          </div>
+          {isLoading ? (
+            <Skeleton className="h-[330px] w-[320px] max-w-full rounded-xl" />
+          ) : (
+            <div>
+              <Image
+                src={speakerDetails?.image!}
+                alt="speaker"
+                width={540}
+                height={477}
+                loading="eager"
+                className="w-full aspect-[1.05] object-cover duration-300 max-md:mt-10 max-md:max-w-full"
+              />
+            </div>
+          )}
+
           <div className="flex flex-col ml-5 w-3/5 max-md:ml-0 max-md:w-full">
-            <h2 className="text-5xl font-semibold text-green-700 max-md:max-w-full max-md:text-4xl">
-              {speakerDetails?.name}
-            </h2>
-            <div className="mt-4 text-2xl font-semibold leading-7 text-zinc-950 max-md:max-w-full">
-              {speakerDetails?.title}
-            </div>
-            <div className="mt-8 text-lg leading-6 text-neutral-950 max-md:max-w-full">
-              {speakerDetails?.bio}
-            </div>
+            {isLoading ? (
+              <Skeleton className="h-4 max-w-full" />
+            ) : (
+              <h2 className="text-5xl font-semibold text-green-700 max-md:max-w-full max-md:text-4xl">
+                {speakerDetails?.name}
+              </h2>
+            )}
+
+            {isLoading ? (
+              <Skeleton className="h-4 max-w-full" />
+            ) : (
+              <div className="mt-4 text-2xl font-semibold leading-7 text-zinc-950 max-md:max-w-full">
+                {speakerDetails?.title}
+              </div>
+            )}
+            {isLoading ? (
+              <Skeleton className="h-4 max-w-full" />
+            ) : (
+              <div className="mt-8 text-lg leading-6 text-neutral-950 max-md:max-w-full">
+                {speakerDetails?.bio}
+              </div>
+            )}
+
             <div className="flex gap-4 self-start mt-6">
               {socials?.map((social) => (
                 <Link
