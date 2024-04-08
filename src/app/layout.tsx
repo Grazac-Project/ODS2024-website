@@ -5,7 +5,6 @@ import StateContextProvider from "@/context/StateCtx";
 import AuthProvider from "./providers";
 
 const currentYear = new Date().getFullYear().toString().slice(-2);
-console.log(currentYear);
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASEURL as string),
   title: {

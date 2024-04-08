@@ -2,10 +2,10 @@ import { Speaker, Highlight } from "@prisma/client";
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const res = await fetch("/api/speakers");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/speakers`);
   const speakers: Speaker[] = await res.json();
 
-  const high = await fetch("/api/highlights");
+  const high = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/highlights`);
   const highlights: Highlight[] = await high.json();
 
   const highlightEntries: MetadataRoute.Sitemap = highlights.map(({ id }) => ({

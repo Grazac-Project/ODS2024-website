@@ -12,9 +12,9 @@ export async function GET(req: NextRequest) {
   const postTitle = searchParams.get("title");
 
 
-  const interSemiBold = fetch(
-    new URL("./Inter-SemiBold.ttf", import.meta.url)
-  ).then((res) => res.arrayBuffer());
+  // const interSemiBold = fetch(
+  //   new URL("./Inter-SemiBold.ttf", import.meta.url)
+  // ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
     (
@@ -49,14 +49,14 @@ export async function GET(req: NextRequest) {
     ),
     {
       ...size,
-      fonts: [
-        {
-          name: "Inter",
-          data: await interSemiBold,
-          style: "normal",
-          weight: 400,
-        },
-      ],
+      // fonts: [
+      //   {
+      //     name: "Inter",
+      //     data: await interSemiBold,
+      //     style: "normal",
+      //     weight: 400,
+      //   },
+      // ],
     }
   );
 }
