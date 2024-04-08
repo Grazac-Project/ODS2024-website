@@ -43,7 +43,7 @@ const Makepayment = () => {
     if (data2) {
       setBuyer(data2.buyer || "");
     }
-  }, [data]);
+  }, [data, data2]);
 
   const isDisabled = isLoading || loading || !data || !data2;
 

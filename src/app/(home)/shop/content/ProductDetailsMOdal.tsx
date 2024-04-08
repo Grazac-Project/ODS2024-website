@@ -46,7 +46,7 @@ const ProductDetailsMOdal = () => {
     if (ShowProductModal) {
       fetchProduct();
     }
-  }, [SelectedProductId, ShowProductModal]);
+  }, [SelectedProductId, ShowProductModal, id]);
 
   const closeModal = () => {
     setShowProductModal(false);

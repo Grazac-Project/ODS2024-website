@@ -21,7 +21,7 @@ export const useFetch = (url: string) => {
 
   useEffect(() => {
     fetchData();
-  }, [url]);
+  }, [url, fetchData]);
 
   const refetch = () => {
     fetchData();
