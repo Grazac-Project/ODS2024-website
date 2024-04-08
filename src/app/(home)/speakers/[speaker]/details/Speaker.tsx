@@ -56,12 +56,17 @@ const Speakers = ({ speakers_id }: { speakers_id?: string }) => {
                 width={540}
                 height={477}
                 loading="eager"
-                className="w-full aspect-[1.05] object-cover duration-300 max-md:mt-10 max-md:max-w-full"
+                className="w-full aspect-[1.05] object-cover duration-300 max-md:mt-10 max-md:max-w-full rounded-[20px]"
               />
             </div>
           )}
 
-          <div className="flex flex-col ml-5 w-3/5 max-md:ml-0 max-md:w-full">
+          <div
+            className={cn(
+              "flex flex-col ml-5 w-3/5 max-md:ml-0 max-md:w-full",
+              isLoading && "gap-y-5"
+            )}
+          >
             {isLoading ? (
               <Skeleton className="h-4 max-w-full" />
             ) : (
