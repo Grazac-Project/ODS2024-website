@@ -63,9 +63,9 @@ const NavBar = () => {
     <nav
       onMouseLeave={() => setopenAbout(false)}
       className={cn(
-        " max-[500px]:py-2 px-4 sm:px-8 xl:px-16 2xl:px-24 flex w-full justify-between items-center  transition-colors duration-500",
+        " max-[500px]:py-2 px-4 sm:px-8 xl:px-16 2xl:px-24 flex w-full justify-between items-center fixed top-0 left-0 z-[99] transition-colors duration-500",
         scrollHeight > 200
-          ? " fixed backdrop-blur-xl top-0 left-0  z-50 -translate-y-28 opacity-0 animate-slideDown py-2 shadow-md"
+          ? " fixed backdrop-blur-xl top-0 left-0  z-50 -translate-y-28 bg-white/90 opacity-0 animate-slideDown py-2 shadow-md"
           : "sm:py-6 py-4",
         {
           "bg-white/60 ": scrollHeight > 800 && scrollHeight < 4300,
@@ -112,7 +112,10 @@ const NavBar = () => {
           onClick={() => setopenAbout((prev) => !prev)}
           onMouseOver={() => setopenAbout((prev) => !prev)}
           tabIndex={0}
-          className="flex items-center justify-center gap-x-2 text-black text-base font-medium"
+          className={cn(
+            "flex items-center justify-center gap-x-2  text-base font-medium",
+            scrollHeight > 200 ? "text-black" : "text-white"
+          )}
         >
           About
           <ArrowDown2
@@ -156,7 +159,8 @@ const NavBar = () => {
             }}
             className={cn(
               " w-full text-black  flex justify-center capitalize text-base relative font-medium  before:bg-primary before:w-[0%] before:h-1 before:absolute before:-bottom-2 before:left-0 before:transition-all before:duration-500 ",
-              isActive === link.link ? "before:w-full text-primary" : ""
+              isActive === link.link ? "before:w-full text-primary" : "",
+              scrollHeight > 200 ? "text-black" : "text-white"
             )}
           >
             <span>{link.label}</span>

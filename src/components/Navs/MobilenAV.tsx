@@ -51,14 +51,14 @@ const MobileNav = () => {
     <>
       <div
         className={cn(
-          "lg:hidden fixed min-h-screen w-full bg-black/50 top-0 left-0 z-[999] transition-all duration-300",
+          "lg:hidden fixed min-h-screen w-full bg-black/50 top-0 left-0 z-[500] transition-all duration-300",
           showMobileMenu ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
         onClick={() => setShowMobileMenu(false)}
       />
       <nav
         className={cn(
-          "pt-20 lg:hidden  px-4 sm:px-8 xl:px-16 2xl:px-24 flex w-full max-w-[450px] sm:max-w-[90%] md:max-w-[70%] justify-between items-center bg-white/90 backdrop-blur-lg fixed right-0 top-0 z-50 h-screen transition-all opacity-0",
+          "pt-20 lg:hidden  px-4 sm:px-8 xl:px-16 2xl:px-24  flex w-full max-w-[450px] sm:max-w-[90%] md:max-w-[70%] justify-between items-center bg-white/90 backdrop-blur-lg fixed right-0 top-0 z-[999] h-screen transition-all opacity-0",
           showMobileMenu
             ? "translate-x-0 duration-1000 opacity-100"
             : "translate-x-full duration-300"
