@@ -95,8 +95,25 @@ const MAIN = ({ highlight_id }: { highlight_id?: string }) => {
             " font-nunito mt-20 md:px-[30px] px-[10px] text-start flex flex-col gap-9"
           )}
         >
-          <p>{highlight?.description}</p>
-          <p>{highlight?.description}</p>
+          {isLoading ? (
+            <div className="gap-y-3">
+              <Skeleton className="h-4 w-full max-w-full" />
+              <Skeleton className="h-4 w-full max-w-full" />
+              <Skeleton className="h-4 w-full max-w-full" />
+              <Skeleton className="h-4 w-full max-w-full" />
+              <Skeleton className="h-4 w-full max-w-full" />
+              <Skeleton className="h-4 w-full max-w-full" />
+              <Skeleton className="h-4 w-full max-w-full" />{" "}
+              <Skeleton className="h-4 w-full max-w-full" />{" "}
+              <Skeleton className="h-4 w-full max-w-full" />{" "}
+              <Skeleton className="h-4 w-full max-w-full" />
+            </div>
+          ) : (
+            <div>
+              <p>{highlight?.description}</p>
+              <p>{highlight?.description}</p>
+            </div>
+          )}
         </div>
       </>
 
