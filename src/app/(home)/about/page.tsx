@@ -10,7 +10,7 @@ import ABOUTMOBILE from "@/components/about/mob";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "ABOUT OGUN DIGITAL",
 };
 
 const About = () => {
