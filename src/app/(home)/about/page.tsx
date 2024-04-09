@@ -7,6 +7,11 @@ import Team from "@/components/about/desk/Team";
 import Join from "@/components/General/Join";
 import ODG from "@/components/General/ODG";
 import ABOUTMOBILE from "@/components/about/mob";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+};
 
 const About = () => {
   return (

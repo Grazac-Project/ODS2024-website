@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Speakers from "./details/Speaker";
 import { Speaker } from "@prisma/client";
+import { baseUrl } from "@/actions/baseurl";
 
 export interface SpeakerDetails {
   searchParams: {
@@ -11,19 +12,21 @@ export interface SpeakerDetails {
 export async function generateMetadata({
   searchParams: { speakers_id },
 }: SpeakerDetails): Promise<Metadata> {
-  const response = await fetch(`https://dummyjson.com/posts/${speakers_id}`);
-  const post: Speaker = await response.json();
+  const response = await fetch(`${baseUrl}/api/speakers/${speakers_id}`);
+
+  const data = await response.json();
+  const post: Speaker = data.speaker;
 
   return {
-    title: post.title,
+    title: post.name,
     description: post.bio,
-    // openGraph: {
-    //   images: [
-    //     {
-    //       url: post.imageUrl
-    //     }
-    //   ]
-    // }
+    openGraph: {
+      images: [
+        {
+          url: post.image,
+        },
+      ],
+    },
   };
 }
 
