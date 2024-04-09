@@ -1,10 +1,10 @@
 import Sponsors from "./Sponsors";
-import Hero from "./Hero";
 import Attend from "./Attend";
 import AlmostUnder from "./AlmostUnder";
 import Final from "./Final";
 import HighLight from "../Desktop/Highlights";
 import SpeakerSection from "../Desktop/Speakers";
+import Hero from "./NewheroMobile";
 
 const Mobile = () => {
   return (

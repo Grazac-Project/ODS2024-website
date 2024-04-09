@@ -77,8 +77,6 @@
   opacity: 1;
 }
 
-
-
 @keyframes scaleUp {
   0%,
   80%,
@@ -129,7 +127,6 @@ svg circle {
   }
 }
 
-
 .attend {
   background-image: url("/logo_green.svg");
   background-size: contain;
@@ -138,14 +135,14 @@ svg circle {
 }
 
 .loop {
-  background-image: url('/loop3.svg');
+  background-image: url("/loop3.svg");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 .join2 {
-  background-image: url('/join2.svg');
+  background-image: url("/join2.svg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -156,4 +153,46 @@ svg circle {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.benefits {
+  height: 0.75em;
+  font-size: calc(1em + 10px);
+}
+
+.benefits span {
+  animation: auto-scrool 15s infinite;
+}
+
+@keyframes auto-scrool {
+  0% {
+    transform: translateY(0);
+  }
+  5% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(-1em);
+  }
+  30% {
+    transform: translateY(-1em);
+  }
+  35% {
+    transform: translateY(-2em);
+  }
+  55% {
+    transform: translateY(-2em);
+  }
+  60% {
+    transform: translateY(-3em);
+  }
+  80% {
+    transform: translateY(-3em);
+  }
+  85% {
+    transform: translateY(-4em);
+  }
+  100% {
+    transform: translateY(-4em);
+  }
 }
