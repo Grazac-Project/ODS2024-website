@@ -1,25 +1,16 @@
 import { NextResponse } from "next/server";
 import cloudinary from "cloudinary";
 import { SearchResult } from "@/types";
-import { decryptString } from "@/utils";
 
-type Params = {
-  folderName: string;
-};
-export async function GET(req: Request, context: { params: Params }) {
-  const folderName = context.params.folderName;
-  const dec = decryptString(folderName);
-  console.log(dec);
-
+export async function GET(req: Request) {
   try {
     const results = (await cloudinary.v2.search
-      .expression(`resource_type:image AND folder=${dec!}`)
+      .expression(`resource_type:image AND folder=${"hero"}`)
       .sort_by("created_at", "asc")
       .with_field("tags")
       .max_results(30)
       .execute()) as { resources: SearchResult[] };
 
-    console.log(results);
 
     return new NextResponse(
       JSON.stringify({

@@ -1,7 +1,14 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, ArrowRight2 } from "iconsax-react";
+import { useFetch } from "@/hooks/useFetch";
+
+interface Resource {
+  public_id: string;
+}
 
 const HeroSection = () => {
   const todayDate = new Date().toLocaleDateString("en-US", {
@@ -10,6 +17,21 @@ const HeroSection = () => {
     month: "long",
     year: "numeric",
   });
+
+  const [images, setImages] = useState<Resource[]>([]);
+
+  console.log(images);
+
+  const url = `/api/heroImage`;
+  const { isLoading, data, error } = useFetch(url);
+
+  console.log(data.results.resources);
+
+  useEffect(() => {
+    if (data) {
+      setImages(data.results.resources || []);
+    }
+  }, [data]);
   return (
     <section className="relative h-[500px] sm:h-[720px] w-full">
       <div className="w-full h-full max-h-[600px] hidden md:block absolute top-0 left-0">
