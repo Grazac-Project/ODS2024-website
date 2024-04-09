@@ -27,7 +27,7 @@ const Hero = () => {
   };
   return (
     <section className="relative max-h-[911px] w-full py-[60px]">
-      <div className="w-full h-full absolute top-0 left-0">
+      <div className="w-full h-full absolute top-0 left-0 object-cover">
         <Slider {...settings}>
           {HeroImage.map((image) => (
             <div key={image.id}>
@@ -38,7 +38,7 @@ const Hero = () => {
                 height={600}
                 priority
                 loading="eager"
-                className="w-full min-h-[400px] object-cover"
+                className="w-full min-h-[500px] object-cover"
               />
             </div>
           ))}
