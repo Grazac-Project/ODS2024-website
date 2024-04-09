@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
   description: "Pathway to our nation's prosperity",
   openGraph: {
-    title: "Wiscaksono",
+    title: "OGUN DIGITAL SUMMIT",
     description: "Pathway to our nation's prosperity",
     url: process.env.NEXT_PUBLIC_BASEURL,
     siteName: "ODS",
