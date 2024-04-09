@@ -43,7 +43,7 @@ const Makepayment = () => {
     if (data2) {
       setBuyer(data2.buyer || "");
     }
-  }, [data]);
+  }, [data, data2]);
 
   const isDisabled = isLoading || loading || !data || !data2;
 
@@ -140,7 +140,7 @@ const Makepayment = () => {
           onClick={() => {
             handleFlutterPayment({
               callback: (response) => {
-                console.log(response.status);
+                // console.log(response);
                 closePaymentModal();
                 if (response.status === "successful") {
                   router.push(

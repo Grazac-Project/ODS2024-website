@@ -1,6 +1,5 @@
 import React from "react";
 import NavBar from "@/components/Navs/NavBar";
-import StateContextProvider from "@/context/StateCtx";
 import SkeletonNavbar from "@/components/skelton/Nav";
 import { Suspense } from "react";
 import Footer from "@/components/Footer";
