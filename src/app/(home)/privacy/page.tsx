@@ -1,6 +1,11 @@
 import Link from "next/link";
 import React from "react";
 import Privacy from "@/components/privacy/privacy";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy",
+};
 
 const privacy = [
   {
