@@ -1,37 +1,49 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, ArrowRight2 } from "iconsax-react";
+import { HeroImage } from "@/libs";
+import Slider from "react-slick";
 
-const HeroSection = () => {
+const NewHeroSection = () => {
   const todayDate = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     day: "numeric",
     month: "long",
     year: "numeric",
   });
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplaySpeed: 3000,
+    pauseOnHover: false,
+  };
+
   return (
-    <section className="relative h-[500px] sm:h-[720px] w-full">
+    <section className="relative max-h-[500px] sm:h-[720px] w-full z-[999]">
       <div className="w-full h-full max-h-[600px] hidden md:block absolute top-0 left-0">
-        <Image
-          src="/hero.svg"
-          alt="hero image"
-          width={1440}
-          height={600}
-          priority
-          className="w-full h-full object-cover"
-        />
+        <Slider {...settings}>
+          {HeroImage.map((image) => (
+            <div key={image.id}>
+              <Image
+                src={image.image}
+                alt="heroImage"
+                width={1240}
+                height={500}
+                className="h-[100vdh] w-full object-cover object-left-top !m-0 !p-0"
+              />
+            </div>
+          ))}
+        </Slider>
       </div>
-      <div className="w-full h-full max-h-[911px] md:hidden block absolute top-0 left-0">
-        <Image
-          src="/hero-mobile.svg"
-          alt="hero image"
-          width={911}
-          height={911}
-          priority
-          className="w-full h-full object-cover"
-        />
-      </div>
+
       <div className="flex top-0 relative z-10 text-white h-full w-full justify-center px-2 sm:px-4 lg:px-8 transition-colors duration-500">
         <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
           <div className="flex flex-col self-stretch my-auto max-md:mt-10 max-md:max-w-full">
@@ -67,12 +79,9 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-        <div className="shrink-0">
-          <Image src="/hero_img.svg" alt="" width={618} height={632} />
-        </div>
       </div>
     </section>
   );
 };
 
-export default HeroSection;
+export default NewHeroSection;

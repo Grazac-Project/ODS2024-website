@@ -167,3 +167,39 @@ export const SIDEBARLINKS: SidebarProps[] = [
     link: "admin/carts",
   },
 ];
+
+interface image {
+  image: string;
+  id: number;
+}
+
+export const HeroImage: image[] = [
+  {
+    id: 1,
+    image: "/hero/hero1.jpg",
+  },
+  {
+    id: 2,
+    image: "/hero/hero2.jpg",
+  },
+  {
+    id: 3,
+    image: "/hero/hero3.jpg",
+  },
+  {
+    id: 4,
+    image: "/hero/hero4.jpg",
+  },
+  {
+    id: 5,
+    image: "/hero/hero5.jpg",
+  },
+  {
+    id: 6,
+    image: "/hero/hero6.jpg",
+  },
+  {
+    id: 7,
+    image: "/hero/hero7.jpg",
+  },
+];
