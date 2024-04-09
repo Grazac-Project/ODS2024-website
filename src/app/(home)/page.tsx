@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <>
       <div className="hidden md:block">
-        <HeroSection />
+        {/* <HeroSection /> */}
         <NewHeroSection />
         <Sponsors />
         <Attend />

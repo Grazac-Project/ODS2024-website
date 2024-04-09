@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, ArrowRight2 } from "iconsax-react";
@@ -16,7 +16,7 @@ const NewHeroSection = () => {
   });
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     autoplay: true,
@@ -27,25 +27,27 @@ const NewHeroSection = () => {
   };
 
   return (
-    <section className="relative max-h-[500px] sm:h-[720px] w-full z-[999]">
-      <div className="w-full h-full max-h-[600px] hidden md:block absolute top-0 left-0">
+    <section className="w-full relative min-h-full">
+      <div className="w-full h-full max-h-[600px] hidden md:block top-0 left-0 absolute">
         <Slider {...settings}>
           {HeroImage.map((image) => (
             <div key={image.id}>
               <Image
                 src={image.image}
                 alt="heroImage"
-                width={1240}
-                height={500}
-                className="h-[100vdh] w-full object-cover object-left-top !m-0 !p-0"
+                width={1440}
+                height={600}
+                priority
+                loading="eager"
+                className="w-full max-h-[600px] object-cover"
               />
             </div>
           ))}
         </Slider>
       </div>
 
-      <div className="flex top-0 relative z-10 text-white h-full w-full justify-center px-2 sm:px-4 lg:px-8 transition-colors duration-500">
-        <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+      <div className="flex relative z-10 text-white min-h-[600px] w-full justify-center items-center px-2 sm:px-4 lg:px-8 transition-colors duration-500">
+        <div className="flex flex-col items-center justify-center h-full w-8/12">
           <div className="flex flex-col self-stretch my-auto max-md:mt-10 max-md:max-w-full">
             <div
               className="flex gap-1.5 self-start p-2 text-sm justify-center items-center font-medium leading-5 text-black whitespace-nowrap rounded-2xl bg-neutral-200"
@@ -59,7 +61,18 @@ const NewHeroSection = () => {
               Innovation:
             </h2>
             <h1 className="mt-5 text-6xl font-semibold text-white leading-[67px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
-              PATHWAY TO OUR NATION PROSPERITY
+              PATHWAY TO OUR NATION{" "}
+              <span
+                className="graphik"
+                style={{
+                  background:
+                    "-webkit-linear-gradient(270deg, #00A651, #FFE840)",
+                  WebkitBackgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
+                PROSPERITY
+              </span>
             </h1>
 
             <div className="flex gap-5 justify-between self-start mt-10 text-lg leading-5 whitespace-nowrap">
