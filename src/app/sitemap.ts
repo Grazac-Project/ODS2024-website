@@ -1,38 +1,42 @@
 import { Speaker, Highlight } from "@prisma/client";
 import { MetadataRoute } from "next";
+import { baseUrl } from "@/actions/baseurl";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/speakers`);
-    const speakers: Speaker[] = await res.json();
+    const res = await fetch(`${baseUrl}/api/speakers`);
+    const speakerData = await res.json();
+    const speakers: Speaker[] = speakerData.speakers;
 
-    const high = await fetch(
-      `${process.env.NEXT_PUBLIC_BASEURL}/api/highlights`
-    );
-    const highlights: Highlight[] = await high.json();
+    const high = await fetch(`${baseUrl}/api/highlights`);
+    const highLightData = await high.json();
+    const highlights: Highlight[] = highLightData.highlights;
 
     const highlightEntries: MetadataRoute.Sitemap = highlights.map(
       ({ id }) => ({
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}/highlight/highlight?highlight_id=${id}`,
+        url: `${baseUrl}/highlight/highlight?highlight_id=${id}`,
       })
     );
 
     const speakerEntries: MetadataRoute.Sitemap = speakers.map(({ id }) => ({
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/speakers/speaker?speakers_id=${id}`,
+      url: `${baseUrl}/speakers/speaker?speakers_id=${id}`,
     }));
 
     return [
       {
-        url: `${process.env.NEXT_PUBLIC_BASEURL}`,
+        url: `${baseUrl}`,
       },
       {
-        url: `${process.env.NEXT_PUBLIC_BASEURL}/about`,
+        url: `${baseUrl}/privacy`,
       },
       {
-        url: `${process.env.NEXT_PUBLIC_BASEURL}/gallery`,
+        url: `${baseUrl}/about`,
       },
       {
-        url: `${process.env.NEXT_PUBLIC_BASEURL}/shop`,
+        url: `${baseUrl}/gallery`,
+      },
+      {
+        url: `${baseUrl}/shop`,
       },
       ...speakerEntries,
       ...highlightEntries,
@@ -42,16 +46,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     return [
       {
-        url: `${process.env.NEXT_PUBLIC_BASEURL}`,
+        url: `${baseUrl}`,
       },
       {
-        url: `${process.env.NEXT_PUBLIC_BASEURL}/about`,
+        url: `${baseUrl}/privacy`,
       },
       {
-        url: `${process.env.NEXT_PUBLIC_BASEURL}/gallery`,
+        url: `${baseUrl}/about`,
       },
       {
-        url: `${process.env.NEXT_PUBLIC_BASEURL}/shop`,
+        url: `${baseUrl}/gallery`,
+      },
+      {
+        url: `${baseUrl}/shop`,
       },
     ];
   }

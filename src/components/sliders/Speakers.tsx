@@ -103,13 +103,13 @@ function SpeakersSlder() {
               className="justify-between items-center w-full"
             >
               {speakersData?.map((speaker) => (
-                <div key={speaker?.id} className={`relative`}>
+                <div key={speaker?.id} className={`relative max-w-[400px]`}>
                   <Image
                     src={speaker?.image || "/speaker1.svg"}
                     alt=""
                     width={420}
                     height={360}
-                    className="w-full aspect-[1.05] object-cover rounded-xl max-md:max-w-full"
+                    className="w-full aspect-[1.05] object-cover rounded-xl"
                   />
                   <div className="absolute bottom-3 left-8">
                     <h3 className="font-semibold text-xl text-white">

@@ -2,6 +2,12 @@ import React from "react";
 import cloudinary from "cloudinary";
 import Body from "./content/body";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ODS Gallery",
+};
+
 export type Folder = { name: string; path: string };
 
 interface GalleryProps {
@@ -15,7 +21,7 @@ const Gallery: React.FC<GalleryProps> = async ({ params: { folderName } }) => {
     folders: Folder[];
   };
 
-  // console.log(folders);
+
 
   return (
     <>

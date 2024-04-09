@@ -50,18 +50,15 @@ const Body = ({ folder }: BodyProps) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch("/api/image");
+        let url = "/api/image";
+        if (selectedFolder) {
+          url += `/${selectedFolder}`;
+        }
+        const response = await fetch(url);
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
         const data = await response.json();
-        console.log(data.results);
-        const uniqueFolders = Array.from(
-          new Set(
-            data.results.resources.map((resource: any) => resource.folder)
-          )
-        );
-        console.log(uniqueFolders);
         setImages(data.results.resources || []);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -71,7 +68,7 @@ const Body = ({ folder }: BodyProps) => {
     };
 
     fetchData();
-  }, []);
+  }, [selectedFolder]);
 
   return (
     <section
