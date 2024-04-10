@@ -38,7 +38,7 @@ function Attend() {
       </div>
 
       <div className="bg-[#111111] mt-4 attend pb-20 relative">
-        <div className="container">
+        <div className="container px-4 sm:px-8 xl:px-16 2xl:px-24">
           {/* First Reason */}
           <div
             ref={ReaasonRef1}

@@ -14,20 +14,10 @@ const HeroSection = () => {
     <section className="relative h-[500px] sm:h-[720px] w-full">
       <div className="w-full h-full max-h-[600px] hidden md:block absolute top-0 left-0">
         <Image
-          src="/hero.svg"
+          src="/hero/hero3.webp"
           alt="hero image"
           width={1440}
           height={600}
-          priority
-          className="w-full h-full object-cover"
-        />
-      </div>
-      <div className="w-full h-full max-h-[911px] md:hidden block absolute top-0 left-0">
-        <Image
-          src="/hero-mobile.svg"
-          alt="hero image"
-          width={911}
-          height={911}
           priority
           className="w-full h-full object-cover"
         />
