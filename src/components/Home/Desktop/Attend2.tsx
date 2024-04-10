@@ -36,6 +36,7 @@ function Attend() {
           the largest digital summit.
         </p>
       </div>
+
       <div className="bg-[#111111] mt-4 attend pb-20 relative">
         <div className="container">
           {/* First Reason */}
@@ -50,7 +51,7 @@ function Attend() {
           >
             <div>
               <Image
-                src="/why-1.svg"
+                src="/att.webp"
                 alt=""
                 width={540}
                 height={440}
@@ -117,7 +118,7 @@ function Attend() {
             </div>
             <div>
               <Image
-                src="/why-2.svg"
+                src="/att2.webp"
                 alt=""
                 width={540}
                 height={440}
@@ -138,7 +139,7 @@ function Attend() {
           >
             <div>
               <Image
-                src="/why-3.svg"
+                src="/att3.webp"
                 alt=""
                 width={540}
                 height={440}
@@ -205,7 +206,7 @@ function Attend() {
             </div>
             <div>
               <Image
-                src="/why-4.svg"
+                src="/att4.webp"
                 alt=""
                 width={540}
                 height={440}

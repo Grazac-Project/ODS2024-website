@@ -176,30 +176,30 @@ interface image {
 export const HeroImage: image[] = [
   {
     id: 1,
-    image: "/hero/hero1.jpg",
+    image: "/hero/hero1.webp",
   },
   {
     id: 2,
-    image: "/hero/hero2.jpg",
+    image: "/hero/hero2.webp",
   },
   {
     id: 3,
-    image: "/hero/hero3.jpg",
+    image: "/hero/hero3.webp",
   },
   {
     id: 4,
-    image: "/hero/hero4.jpg",
+    image: "/hero/hero4.webp",
   },
   {
     id: 5,
-    image: "/hero/hero5.jpg",
+    image: "/hero/hero5.webp",
   },
   {
     id: 6,
-    image: "/hero/hero6.jpg",
+    image: "/hero/hero6.webp",
   },
   {
     id: 7,
-    image: "/hero/hero7.jpg",
+    image: "/hero/hero7.webp",
   },
 ];

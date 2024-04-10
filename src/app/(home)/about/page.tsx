@@ -18,7 +18,6 @@ const About = () => {
     <>
       <div className="hidden md:block">
         <Hero />
-
         <AboutSec />
         <MIssion />
         <Why />

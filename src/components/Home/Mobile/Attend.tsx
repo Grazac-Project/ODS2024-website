@@ -72,7 +72,7 @@ const Attend = () => {
               <div>
                 <Image
                   loading="eager"
-                  src="/attend01.svg"
+                  src="/att-sm.webp"
                   alt=""
                   width={343}
                   priority
@@ -115,7 +115,7 @@ const Attend = () => {
               <div>
                 <Image
                   loading="eager"
-                  src="/attend02.svg"
+                  src="/att-sm2.webp"
                   alt=""
                   width={343}
                   priority
@@ -158,7 +158,7 @@ const Attend = () => {
               <div>
                 <Image
                   loading="eager"
-                  src="/attend03.svg"
+                  src="/att-sm3.webp"
                   alt=""
                   width={343}
                   priority
@@ -202,7 +202,7 @@ const Attend = () => {
               <div>
                 <Image
                   loading="eager"
-                  src="/attend04.svg"
+                  src="/att-sm4.webp"
                   alt=""
                   width={343}
                   priority
