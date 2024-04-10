@@ -14,7 +14,7 @@ const HighLight = () => {
     <div
       ref={HighlightRef}
       className={cn(
-        "container mt-20",
+        "container mt-20 px-4 sm:px-8 xl:px-16 2xl:px-24",
         isInView
           ? "opacity-100 translate-y-0 md:delay-300 duration-500"
           : " opacity-0 translate-y-36"
@@ -28,7 +28,7 @@ const HighLight = () => {
         </h3>
         <Link
           href="/highlights"
-          className={` font-nunito text-lg text-[#00A651] px-8 py-2 rounded-xl flex items-center gap-3`}
+          className={` font-nunito text-lg text-[#00A651] py-2 rounded-xl flex items-center gap-3`}
         >
           See All
           <div>
@@ -37,17 +37,6 @@ const HighLight = () => {
         </Link>
       </div>
       <HighlightsSlider />
-      {/* <div className="flex justify-center items-center mt-12">
-        <Link
-          href="/"
-          className={` font-nunito border border-[#00A651] text-lg text-[#00A651] px-8 py-2 rounded-xl flex items-center gap-3`}
-        >
-          See all highlights{" "}
-          <div>
-            <IoIosArrowForward />
-          </div>
-        </Link>
-      </div> */}
     </div>
   );
 };

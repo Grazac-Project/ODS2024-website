@@ -21,24 +21,23 @@ function Attend() {
     <div
       ref={AttendRef}
       className={cn(
-        "font-montserrat mt-20 z-20",
+        "font-montserrat mt-20 z-20 ",
         isInView
           ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
           : " opacity-0 translate-y-36"
       )}
     >
-      <div className="container mb-5">
-        <h2 className="text-black-100 font-semibold text-[40px] ">
-          WHY ATTEND ODS23?
-        </h2>
-        <p className="font-nunito w-[40%]">
-          We are at the forefront of innovation, shaping the future and hosting
-          the largest digital summit.
-        </p>
-      </div>
-
-      <div className="bg-[#111111] mt-4 attend pb-20 relative">
-        <div className="container px-4 sm:px-8 xl:px-16 2xl:px-24">
+      <div className="bg-[#111111] mt-4 attend pb-20 relative px-4 sm:px-8 xl:px-16 2xl:px-24 pt-6 container">
+        <div className="text-white">
+          <h2 className="text-black-100 font-semibold text-[40px] ">
+            WHY ATTEND ODS23?
+          </h2>
+          <p className="font-nunito w-[40%]">
+            We are at the forefront of innovation, shaping the future and
+            hosting the largest digital summit.
+          </p>
+        </div>
+        <div className="">
           {/* First Reason */}
           <div
             ref={ReaasonRef1}
@@ -51,7 +50,7 @@ function Attend() {
           >
             <div>
               <Image
-                src="/att.webp"
+                src="/why-1.svg"
                 alt=""
                 width={540}
                 height={440}
@@ -118,7 +117,7 @@ function Attend() {
             </div>
             <div>
               <Image
-                src="/att2.webp"
+                src="/why-2.svg"
                 alt=""
                 width={540}
                 height={440}
@@ -139,7 +138,7 @@ function Attend() {
           >
             <div>
               <Image
-                src="/att3.webp"
+                src="/why-3.svg"
                 alt=""
                 width={540}
                 height={440}
@@ -206,7 +205,7 @@ function Attend() {
             </div>
             <div>
               <Image
-                src="/att4.webp"
+                src="/why-4.svg"
                 alt=""
                 width={540}
                 height={440}
