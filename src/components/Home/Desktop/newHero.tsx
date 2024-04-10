@@ -46,7 +46,7 @@ const NewHeroSection = () => {
         </Slider>
       </div>
 
-      <div className="flex relative z-10 text-white min-h-[650px] w-full justify-center items-center px-2 sm:px-4 lg:px-8 transition-colors duration-500">
+      <div className="flex relative z-10 text-white min-h-[650px] w-full justify-start items-center px-4 sm:px-8 xl:px-16 2xl:px-24 transition-colors duration-500">
         <div className="flex flex-col items-center justify-center h-full w-8/12">
           <div className="flex flex-col self-stretch my-auto max-md:mt-10 max-md:max-w-full">
             <div

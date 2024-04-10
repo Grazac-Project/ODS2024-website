@@ -14,7 +14,7 @@ const SpeakerSection = () => {
     <div
       ref={SpeakersRef}
       className={cn(
-        "container mt-20",
+        "container mt-20 px-4 sm:px-8 xl:px-16 2xl:px-24",
         isInView
           ? "opacity-100 translate-y-0 md:delay-300 duration-500  z-[20] relative"
           : " opacity-0 translate-y-36"
@@ -26,7 +26,8 @@ const SpeakerSection = () => {
             Meet the Speakers
           </h2>
           <p className="font-nunito w-[60%] font-medium text-[14px] md:text-lg">
-            Here are the amazing outstanding people who have graced &apos;s Ogun Digital Summit
+            Here are the amazing outstanding people who have graced &apos;s Ogun
+            Digital Summit
           </p>
         </div>
         <div>

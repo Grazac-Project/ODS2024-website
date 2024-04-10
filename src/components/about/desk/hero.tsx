@@ -1,17 +1,18 @@
 "use client";
 
 import dynamic from "next/dynamic";
-
+import LoadingSpinner from "@/components/loader";
 import React from "react";
 
 const TypewriterComponent = dynamic(() => import("typewriter-effect"), {
   ssr: false,
+  loading: () => <LoadingSpinner color="border-white" />,
 });
 
 function Hero() {
   return (
     <div className="w-full h-[384px] hero flex flex-col gap-3 items-center justify-center">
-      <h2 className="max-[400px]:text-base max-[500px]:text-lg text-xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl text-white font-semibold sm:font-bold scale-y-110 mb-4 lg:mb-8 font-montserrat">
+      <h2 className="max-[400px]:text-base max-[500px]:text-lg text-xl sm:text-3xl text-center md:text-4xl xl:text-5xl 2xl:text-6xl text-white font-semibold sm:font-bold scale-y-110 mb-4 lg:mb-8 font-montserrat">
         <TypewriterComponent
           component="p"
           options={{

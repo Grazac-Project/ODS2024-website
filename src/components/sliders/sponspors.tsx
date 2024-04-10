@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import Slider from "react-slick";
 import { cn } from "@/utils";
@@ -53,7 +53,7 @@ const Sponspors = () => {
     >
       <Slider
         {...carouselSettings}
-        className="justify-center items-center max-h-[64px] "
+        className="justify-center items-center max-h-[64px] px-4 sm:px-8 xl:px-16 2xl:px-24"
       >
         <div>
           <Image src="/one.svg" alt={""} width={151} height={64} />
