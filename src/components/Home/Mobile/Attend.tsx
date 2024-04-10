@@ -26,17 +26,7 @@ const Attend = () => {
             ? "opacity-100 translate-y-0 md:delay-300 duration-500 relative"
             : " opacity-0 translate-y-36"
         )}
-      >
-        <div className="mb-5 max-w-[342px]">
-          <h2 className="text-black font-semibold text-[24px] ">
-            WHY ATTEND ODS23?
-          </h2>
-          <p className="font-nunito">
-            We are at the forefront of innovation, shaping the future and
-            hosting the largest digital summit.
-          </p>
-        </div>
-      </div>
+      ></div>
       <div
         ref={AttendRef}
         className={cn(
@@ -58,6 +48,15 @@ const Attend = () => {
               className="w-full h-full object-cover"
             />
           </div>
+          <div className="mb-5 max-w-[342px]">
+            <h2 className="text-white font-semibold text-[24px] ">
+              WHY ATTEND ODS23?
+            </h2>
+            <p className="font-nunito">
+              We are at the forefront of innovation, shaping the future and
+              hosting the largest digital summit.
+            </p>
+          </div>
           <div className="relative z-10 px-2">
             {/* first reason */}
             <div
@@ -69,10 +68,10 @@ const Attend = () => {
                   : " opacity-0 translate-y-36"
               )}
             >
-              <div>
+              <div className="">
                 <Image
                   loading="eager"
-                  src="/att-sm.webp"
+                  src="/attend01.svg"
                   alt=""
                   width={343}
                   priority
@@ -115,7 +114,7 @@ const Attend = () => {
               <div>
                 <Image
                   loading="eager"
-                  src="/att-sm2.webp"
+                  src="/attend02.svg"
                   alt=""
                   width={343}
                   priority
@@ -158,7 +157,7 @@ const Attend = () => {
               <div>
                 <Image
                   loading="eager"
-                  src="/att-sm3.webp"
+                  src="/attend03.svg"
                   alt=""
                   width={343}
                   priority
@@ -202,7 +201,7 @@ const Attend = () => {
               <div>
                 <Image
                   loading="eager"
-                  src="/att-sm4.webp"
+                  src="/attend04.svg"
                   alt=""
                   width={343}
                   priority
