@@ -13,7 +13,7 @@ const Hero = () => {
     year: "numeric",
   });
   return (
-    <section className="relative max-h-[911px] w-full py-[60px]">
+    <section className="relative max-h-[911px] w-full py-[60px] overflow-x-hidden">
       <div className="w-full h-full absolute top-0 left-0">
         <Image
           loading="eager"
