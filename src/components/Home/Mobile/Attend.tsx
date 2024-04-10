@@ -48,16 +48,16 @@ const Attend = () => {
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="mb-5 max-w-[342px]">
-            <h2 className="text-white font-semibold text-[24px] ">
-              WHY ATTEND ODS23?
-            </h2>
-            <p className="font-nunito">
-              We are at the forefront of innovation, shaping the future and
-              hosting the largest digital summit.
-            </p>
-          </div>
           <div className="relative z-10 px-2">
+            <div className="my-8 max-w-[342px]">
+              <h2 className="text-white font-semibold text-[24px] ">
+                WHY ATTEND ODS23?
+              </h2>
+              <p className="font-nunito text-white">
+                We are at the forefront of innovation, shaping the future and
+                hosting the largest digital summit.
+              </p>
+            </div>
             {/* first reason */}
             <div
               ref={ReaasonRef1}
@@ -80,13 +80,14 @@ const Attend = () => {
               </div>
               <div className="space-y-4 mb:pl-4 lg:pl-0">
                 <h3
-                  className="graphik"
+                  className="graphik mt-4"
                   style={{
                     background:
                       "-webkit-linear-gradient(270deg, #00A651, #FFE840)",
                     WebkitBackgroundClip: "text",
                     color: "transparent",
                   }}
+          
                 >
                   01
                 </h3>
@@ -123,13 +124,14 @@ const Attend = () => {
               </div>
               <div className="space-y-4 mb:pl-4 lg:pl-0">
                 <h3
-                  className="graphik"
+                  className="graphik mt-4"
                   style={{
                     background:
                       "-webkit-linear-gradient(270deg, #00A651, #FFE840)",
                     WebkitBackgroundClip: "text",
                     color: "transparent",
                   }}
+       
                 >
                   02
                 </h3>
@@ -166,7 +168,7 @@ const Attend = () => {
               </div>
               <div className="space-y-4 mb:pl-4 lg:pl-0">
                 <h3
-                  className="graphik"
+                  className="graphik mt-4"
                   style={{
                     background:
                       "-webkit-linear-gradient(270deg, #00A651, #FFE840)",
@@ -210,7 +212,7 @@ const Attend = () => {
               </div>
               <div className="space-y-4 mb:pl-4 lg:pl-0">
                 <h3
-                  className="graphik"
+                  className="graphik mt-4"
                   style={{
                     background:
                       "-webkit-linear-gradient(270deg, #00A651, #FFE840)",
