@@ -69,14 +69,14 @@ const High = () => {
                 {highlights?.map((highlights) => (
                   <div
                     key={highlights?.id}
-                    className="flex flex-col text-lg leading-5 max-w-[420px]"
+                    className="flex flex-col text-lg leading-5 max-w-[380px] min-w-[380px]"
                   >
                     <Image
                       src={highlights?.image}
                       alt=""
                       width={420}
                       height={360}
-                      // className="w-full border-t border-r-4 border-b-4 border-l border-solid aspect-[1.16] border-b-[color:var(--Foundation-black-black-500,#111)] border-l-[color:var(--Foundation-black-black-500,#111)] border-r-[color:var(--Foundation-black-black-500,#111)] border-t-[color:var(--Foundation-black-black-500,#111)]"
+                      className="w-full aspect-[1.05] object-cover rounded-[20px]"
                     />
                     {/* <h3 className="font-semibold text-2xl text-text-500 text-center mt-3">
               {highlights?.name}

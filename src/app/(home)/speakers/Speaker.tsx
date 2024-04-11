@@ -79,7 +79,7 @@ const SpeakerPage = () => {
           {speakersData?.map((speaker) => (
             <div
               key={speaker?.id}
-              className="flex flex-col text-lg leading-5 max-w-[420px]"
+              className="flex flex-col text-lg leading-5 max-w-[380px] min-w-[380px]"
             >
               <Image
                 src={speaker?.image}
