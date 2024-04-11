@@ -8,19 +8,15 @@ import Image from "next/image";
 import { Highlight } from "@prisma/client";
 import HighlightsSlider from "@/components/sliders/Highlights";
 import { useFetch } from "@/hooks/useFetch";
-import PreviewSkeleton from "@/components/highlightSkelton";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const MAIN = ({ highlight_id }: { highlight_id?: string }) => {
-  const MainRef = React.useRef<HTMLDivElement>(null);
-  const TextRef = React.useRef<HTMLDivElement>(null);
   const HighlightRef = React.useRef<HTMLDivElement>(null);
   const isInView2 = useInView(HighlightRef);
   const [highlight, setHighlight] = React.useState<Highlight>();
 
   const url = `/api/highlights/${highlight_id}`;
   const { isLoading, data, error } = useFetch(url);
-  // console.log(data);
 
   useEffect(() => {
     if (data) {
@@ -42,7 +38,12 @@ const MAIN = ({ highlight_id }: { highlight_id?: string }) => {
               isLoading && "gap-y-4"
             )}
           >
-            <div className="flex flex-col self-stretch px-5 my-auto text-neutral-900 max-md:mt-10 max-md:max-w-full">
+            <div
+              className={cn(
+                "flex flex-col self-stretch px-5 my-auto text-neutral-900 max-md:mt-10 max-md:max-w-full ",
+                isLoading && "gap-y-6"
+              )}
+            >
               <div
                 aria-label="Date"
                 role="img"
@@ -66,7 +67,7 @@ const MAIN = ({ highlight_id }: { highlight_id?: string }) => {
                 <Skeleton className="h-4 w-full max-w-full" />
               ) : (
                 <div className="mt-6 text-xl leading-6 max-md:max-w-full font-nunito items-center justify-center">
-                  <span className="font-bold text-black text-[40px]">.</span>{" "}
+                  <span className="font-bold text-black text-[40px]">.</span>
                   {highlight?.speaker}
                 </div>
               )}
@@ -74,16 +75,17 @@ const MAIN = ({ highlight_id }: { highlight_id?: string }) => {
           </div>
 
           {isLoading ? (
-            <Skeleton className="h-[447px] w-[320px] lg:min-w-[540px] max-w-full rounded-xl" />
+            <Skeleton className="h-[447px] w-[320px] lg:min-w-[540px] max-w-full rounded-[20px]" />
           ) : (
             <div>
-              <div className="flex flex-col ml-5 lg:min-w-[540px] max-w-[342px] max-md:ml-0 max-md:w-full bg-black rounded-xl md:max-h-[447px] max-h-[284px] items-center justify-center">
+              <div className="flex flex-col ml-5 object-cover lg:min-w-[540px] max-w-[342px] max-md:ml-0 max-md:w-full bg-black md:max-h-[447px] max-h-[284px] items-center justify-center rounded-[20px]">
                 <Image
                   src={highlight?.image!}
                   alt="speaker"
                   width={540}
                   height={477}
                   loading="eager"
+                  className="aspect-[1.05] object-cover rounded-[20px] h-[447px] w-[320px] lg:min-w-[540px] max-w-full"
                 />
               </div>
             </div>
@@ -96,7 +98,7 @@ const MAIN = ({ highlight_id }: { highlight_id?: string }) => {
           )}
         >
           {isLoading ? (
-            <div className="gap-y-3">
+            <div className="flex flex-col gap-y-3">
               <Skeleton className="h-4 w-full max-w-full" />
               <Skeleton className="h-4 w-full max-w-full" />
               <Skeleton className="h-4 w-full max-w-full" />
@@ -111,7 +113,8 @@ const MAIN = ({ highlight_id }: { highlight_id?: string }) => {
           ) : (
             <div>
               <p>{highlight?.description}</p>
-              <p>{highlight?.description}</p>
+
+              {/* <p>{highlight?.description}</pre> */}
             </div>
           )}
         </div>
