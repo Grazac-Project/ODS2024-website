@@ -46,7 +46,7 @@ const NewHeroSection = () => {
         </Slider>
       </div>
 
-      <div className="flex relative z-10 text-white min-h-[650px] w-full justify-start items-center px-4 sm:px-8 xl:px-16 2xl:px-24 transition-colors duration-500">
+      <div className="flex relative z-10 text-white min-h-[650px] w-full justify-start items-center px-4 sm:px-8 xl:px-16 2xl:px-24 transition-colors duration-500 bg-black bg-opacity-[60%]">
         <div className="flex flex-col items-center justify-center h-full w-8/12">
           <div className="flex flex-col self-stretch my-auto max-md:mt-10 max-md:max-w-full">
             <div
@@ -58,13 +58,6 @@ const NewHeroSection = () => {
               <div className="grow">{todayDate}</div>
             </div>
             <h2 className="mt-5 text-5xl font-bold leading-9  text-white uppercase max-md:max-w-full max-md:text-4xl">
-              {/* <div className="benefits overflow-hidden flex flex-col min-h-[1em]">
-                <span>Innovation:</span>
-                <span>Advancement:</span>
-                <span>Progressive:</span>
-                <span>Development:</span>
-                <span>Innovation:</span>
-              </div> */}
               <span>Innovation:</span>
             </h2>
             <h1 className="mt-5 text-6xl font-semibold text-white leading-[67px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">

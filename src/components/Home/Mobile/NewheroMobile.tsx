@@ -26,7 +26,7 @@ const Hero = () => {
     pauseOnHover: false,
   };
   return (
-    <section className="relative max-h-[911px] w-full py-[60px]">
+    <section className="relative max-h-[911px] w-full">
       <div className="w-full h-full absolute top-0 left-0 object-cover">
         <Slider {...settings}>
           {HeroImage.map((image) => (
@@ -45,7 +45,7 @@ const Hero = () => {
         </Slider>
       </div>
 
-      <div className="flex top-0 relative z-10 text-white h-full items-center w-full sm:bg-black/50 lg:bg-black/70 justify-center px-2 sm:px-4 lg:px-8 transition-colors duration-500">
+      <div className="flex top-0 relative z-10 text-white items-center w-full bg-black bg-opacity-[60%] justify-center px-2 sm:px-4 lg:px-8 transition-colors duration-500 h-[500px]">
         <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
           <div className="flex flex-col self-stretch my-auto max-md:mt-10 max-md:max-w-full">
             <div
