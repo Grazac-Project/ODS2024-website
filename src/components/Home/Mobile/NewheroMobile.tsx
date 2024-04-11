@@ -34,8 +34,8 @@ const Hero = () => {
               <Image
                 src={image.image}
                 alt="heroImage"
-                width={1440}
-                height={600}
+                width={380}
+                height={500}
                 priority
                 loading="eager"
                 className="w-full min-h-[500px] object-cover"
@@ -44,6 +44,7 @@ const Hero = () => {
           ))}
         </Slider>
       </div>
+
       <div className="flex top-0 relative z-10 text-white h-full items-center w-full sm:bg-black/50 lg:bg-black/70 justify-center px-2 sm:px-4 lg:px-8 transition-colors duration-500">
         <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
           <div className="flex flex-col self-stretch my-auto max-md:mt-10 max-md:max-w-full">
