@@ -157,10 +157,10 @@ const MobileNav = () => {
             </Link>
           ))}
           <div>
-            <div className="flex flex-col px-6 w-full text-lg leading-5 whitespace-nowrap">
+            <div className="flex flex-col w-full items-center justify-center self-center">
               <Link
                 href="/"
-                className="justify-center text-center py-4 w-[300px] mt-4 text-white bg-primary rounded-2xl border-2 border-solid border-[color:var(--Attend-stroke,rgba(95,95,95,0.75))]"
+                className="justify-center text-center py-4 min-w-[350px] w-full mt-4 text-white bg-primary rounded-2xl border-2 border-solid border-[color:var(--Attend-stroke,rgba(95,95,95,0.75))]"
               >
                 Attend
               </Link>
