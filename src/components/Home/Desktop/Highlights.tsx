@@ -20,8 +20,8 @@ const HighLight = () => {
           : " opacity-0 translate-y-36"
       )}
     >
-      <div className="flex items-center justify-between">
-        <h3 className="text-black font-semibold md:text-[40px] text-[24px]">
+      <div className="flex items-center justify-between mb-5">
+        <h3 className="text-black font-semibold md:text-[40px] text-[24px] ">
           Highlights
         </h3>
       </div>

@@ -106,9 +106,14 @@ function HighlightsSlider() {
             >
               {highlights?.map((item) => (
                 <div key={item?.id} className="lg:max-w-[353px] md:w-[300px]">
-                  <div className="w-full max-h-[288px]">
-                    <Image src={item?.image} alt="" width={353} height={288} />
-                  </div>
+                  <Image
+                    src={item?.image}
+                    alt=""
+                    width={353}
+                    height={288}
+                    className="w-full object-cover rounded-xl min-h-full"
+                  />
+
                   <h3
                     className={`font-nunito font-medium text-[30px] text-gray-400 leading-[120%] mt-1`}
                   >

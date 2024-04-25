@@ -98,7 +98,7 @@ const Mobile = () => {
       </div>
       <div className="text-base font-normal text-white text-center flex items-center justify-center w-full px-10 bg-black font-nunito">
         {" "}
-        Copyright &copy; {new Date().getFullYear()} Ogun Digital Summit. All
+        Copyright &copy; {new Date().getFullYear()} ODS. All
         Rights Reserved
       </div>
     </footer>
