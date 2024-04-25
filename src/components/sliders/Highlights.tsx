@@ -111,7 +111,7 @@ function HighlightsSlider() {
                     alt=""
                     width={353}
                     height={288}
-                    className="w-full object-cover rounded-xl min-h-full"
+                    className="w-full object-cover rounded-xl"
                   />
 
                   <h3
