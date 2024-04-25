@@ -26,7 +26,28 @@ const Sponsors = () => {
         <h2 className="font-bold text-[30px] text-header mb-4 font-montserrat">
           Our Sponsors
         </h2>
-        <Sponspors />
+        {/* <Sponspors /> */}
+        <div
+          className={cn(
+            "w-full grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 justify-center items-center  place-content-start place-items-center"
+          )}
+        >
+          <div>
+            <Image src="/one.svg" alt={""} width={151} height={64} />
+          </div>
+          <div>
+            <Image src="/two.svg" alt={""} width={127} height={64} />
+          </div>
+          <div>
+            <Image src="/three.svg" alt={""} width={64} height={64} />
+          </div>
+          <div>
+            <Image src="/four.svg" alt={""} width={215} height={64} />
+          </div>
+          <div>
+            <Image src="/five.svg" alt={""} width={141} height={64} />
+          </div>
+        </div>
         <div
           ref={whoWeareRef}
           className={cn(
