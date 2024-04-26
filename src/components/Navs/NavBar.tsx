@@ -158,7 +158,7 @@ const NavBar = () => {
             href={
               link.link === "home"
                 ? "/?path=home"
-                : `/${link.link}?path=${link.link}`
+                : `${link.link}?path=${link.link}`
             }
             key={link.id}
             onClick={() => {
