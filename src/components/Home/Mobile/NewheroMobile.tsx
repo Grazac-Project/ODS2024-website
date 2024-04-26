@@ -74,10 +74,10 @@ const Hero = () => {
               </span>
             </h1>
 
-            <div className="flex gap-2 justify-between self-center mt-10 text-lg leading-5 whitespace-nowrap max-w-[342px] items-center">
+            <div className="flex gap-2 justify-between mt-10 text-lg leading-5 whitespace-nowrap w-full items-center">
               <Link
                 href="/"
-                className="flex justify-center items-center h-[50px]  text-white bg-green-600 rounded-xl min-w-[153px]"
+                className="flex justify-center items-center h-[50px]  text-white bg-green-600 rounded-xl w-[160px]"
               >
                 Attend
               </Link>

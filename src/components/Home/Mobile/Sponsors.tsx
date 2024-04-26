@@ -26,7 +26,36 @@ const Sponsors = () => {
         <h2 className="font-bold text-[30px] text-header mb-4 font-montserrat">
           Our Sponsors
         </h2>
-        <Sponspors />
+        <div className="items-center justify-center flex flex-col h-full w-full mx-auto px-5">
+          <div
+            className={cn(
+              "w-full grid grid-cols-3 gap-x-4 justify-center items-center"
+            )}
+          >
+            <div className="flex justify-center items-center">
+              <Image src="/three.svg" alt={""} width={64} height={64} />
+            </div>
+            <div className="flex justify-center items-center">
+              <Image src="/two.svg" alt={""} width={127} height={64} />
+            </div>
+            <div className="flex justify-center items-center">
+              <Image src="/five.svg" alt={""} width={141} height={64} />
+            </div>
+          </div>
+          <div
+            className={cn(
+              "w-full flex mt-5 gap-x-4 justify-center items-center"
+            )}
+          >
+            <div className="flex justify-center items-center">
+              <Image src="/four.svg" alt={""} width={215} height={64} />
+            </div>
+            <div className="flex justify-center items-center">
+              <Image src="/one.svg" alt={""} width={151} height={64} />
+            </div>
+          </div>
+        </div>
+
         <div
           ref={whoWeareRef}
           className={cn(

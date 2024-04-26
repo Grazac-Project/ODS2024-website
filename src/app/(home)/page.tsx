@@ -1,11 +1,11 @@
+import dynamic from "next/dynamic";
 import SplashScreen from "@/components/SplashScreen";
-import dynamic from 'next/dynamic';
 
-export const runtime = 'edge';
+export const runtime = "edge";
 
-const LandingPage = dynamic(() => import('./home'), {
+const LandingPage = dynamic(() => import("./home"), {
   ssr: false,
-  loading: () => <SplashScreen />
+  loading: () => <SplashScreen />,
 });
 
 export default async function Home() {

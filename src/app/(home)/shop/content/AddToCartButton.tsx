@@ -38,7 +38,6 @@ const AddToCartButton = ({ productId }: AddToCartButtonProps) => {
               addTocart(productId, decryptedId).then((data) => {
                 setSuccess(!!data?.success);
                 if (data?.success) {
-                  console.log(data.updatedCart?.id);
                   replace(
                     `${pathname}?cartid=${encryptString(data.updatedCart?.id!)}`
                   );
@@ -51,7 +50,6 @@ const AddToCartButton = ({ productId }: AddToCartButtonProps) => {
               addTocart(productId).then((data) => {
                 setSuccess(!!data?.success);
                 if (data?.success) {
-                  // console.log(data.updatedCart?.id);
                   replace(
                     `${pathname}?cartid=${encryptString(data.updatedCart?.id!)}`
                   );

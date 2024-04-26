@@ -1,6 +1,8 @@
 import CartButton from "./content/CartButton";
 import CartModal from "./content/CartModal";
-import ProductDetailsMOdal from "./content/ProductDetailsMOdal";
+import ProductDetailsMOdal, {
+  NewProductDetailsMOdal,
+} from "./content/ProductDetailsMOdal";
 import AreYouSureModal from "./content/areyousuremodal";
 
 export default function ShopLayout({
@@ -13,7 +15,7 @@ export default function ShopLayout({
       {children}
       <CartButton />
       <CartModal />
-      <ProductDetailsMOdal />
+      <NewProductDetailsMOdal />
 
       <AreYouSureModal />
     </>

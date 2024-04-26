@@ -28,7 +28,7 @@ const NewHeroSection = () => {
 
   return (
     <section className="w-full relative min-h-full">
-      <div className="w-full h-full max-h-[600px] hidden md:block top-0 left-0 absolute">
+      <div className="w-full h-full max-h-[600px] hidden md:block top-0 left-0 absolute object-cover">
         <Slider {...settings}>
           {HeroImage.map((image) => (
             <div key={image.id}>

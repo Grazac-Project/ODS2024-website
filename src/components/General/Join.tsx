@@ -36,7 +36,7 @@ export function JoinCard() {
             <Image src="/stars1.svg" alt="stars" width={100} height={100} />
           </div>
         </div>
-        <div className="join2"></div>
+        <div className="join2" />
       </div>
     </>
   );

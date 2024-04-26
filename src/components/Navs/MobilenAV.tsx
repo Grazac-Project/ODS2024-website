@@ -99,7 +99,7 @@ const MobileNav = () => {
               setopenAbout(!openAbout);
             }}
             className={cn(
-              "flex capitalize relative text-lg font-medium text-header gap-2"
+              "flex capitalize relative text-lg font-medium text-header gap-x-2"
             )}
           >
             <span>About</span>
@@ -113,7 +113,7 @@ const MobileNav = () => {
           {openAbout && (
             <div
               className={cn(
-                "about transition-opacity duration-300 ease-in-out flex flex-col space-y-3",
+                "about transition-opacity duration-300 ease-in-out flex flex-col space-y-1",
                 openAbout ? "opacity-100" : "opacity-0"
               )}
             >
@@ -156,21 +156,23 @@ const MobileNav = () => {
               <span>{link.label}</span>
             </Link>
           ))}
-          <div>
-            <div className="flex flex-col px-6 w-full text-lg leading-5 whitespace-nowrap">
-              <Link
-                href="/"
-                className="justify-center text-center px-20 py-4 w-[100%] mt-4 text-white bg-primary rounded-2xl border-2 border-solid border-[color:var(--Attend-stroke,rgba(95,95,95,0.75))]"
-              >
-                Attend
-              </Link>
-              <Link
-                className="flex gap-2.5 justify-between px-20 w-[100%] py-4 mt-6 rounded-2xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--speaker-stroke-1,#00A651)] border-l-[color:var(--speaker-stroke-1,#00A651)] border-r-[color:var(--speaker-stroke-1,#00A651)] border-t-[color:var(--speaker-stroke-1,#00A651)] text-header"
-                href={""}
-              >
-                <div className="grow">Speak at ODS&apos;24</div>
-                <ArrowRight2 />
-              </Link>
+          <div className="items-center justify-center self-center flex flex-col w-full">
+            <div>
+              <div className="flex flex-col w-full items-center justify-center self-center">
+                <Link
+                  href="/"
+                  className="justify-center text-center py-4 min-w-[350px] w-full mt-4 text-white bg-primary rounded-2xl border-2 border-solid border-[color:var(--Attend-stroke,rgba(95,95,95,0.75))]"
+                >
+                  Attend
+                </Link>
+                <Link
+                  className="flex justify-center gap-x-3.5 w-full text-center py-4 mt-6 rounded-2xl border-t border-r-4 border-b-4 border-l border-solid border-b-[color:var(--speaker-stroke-1,#00A651)] border-l-[color:var(--speaker-stroke-1,#00A651)] border-r-[color:var(--speaker-stroke-1,#00A651)] border-t-[color:var(--speaker-stroke-1,#00A651)] text-header"
+                  href={""}
+                >
+                  <div>Speak at ODS&apos;24</div>
+                  <ArrowRight2 />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -28,7 +28,7 @@ const Home = () => {
         <Join />
         <ODG />
       </div>
-      <div className="block md:hidden overflow-x-hidden">
+      <div className="block md:hidden">
         <Mobile />
       </div>
     </>

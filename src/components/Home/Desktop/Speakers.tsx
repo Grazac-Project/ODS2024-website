@@ -14,7 +14,7 @@ const SpeakerSection = () => {
     <div
       ref={SpeakersRef}
       className={cn(
-        "container mt-20 px-4 sm:px-8 xl:px-16 2xl:px-24",
+        "container mt-20 px-4 sm:px-8 xl:px-16 2xl:px-24 items-center justify-center w-full",
         isInView
           ? "opacity-100 translate-y-0 md:delay-300 duration-500  z-[20] relative"
           : " opacity-0 translate-y-36"
@@ -25,12 +25,12 @@ const SpeakerSection = () => {
           <h2 className="text-black font-semibold md:text-[40px] text-[24px]">
             Meet the Speakers
           </h2>
-          <p className="font-nunito w-[60%] font-medium text-[14px] md:text-lg">
+          <p className="font-nunito md:w-[60%] font-medium text-xs md:text-[14px] md:text-lg">
             Here are the amazing outstanding people who have graced &apos;s Ogun
             Digital Summit
           </p>
         </div>
-        <div>
+        {/* <div>
           <Link
             href="/speakers"
             className="font-nunito text-lg text-primary w-full flex items-center text-nowrap"
@@ -40,7 +40,7 @@ const SpeakerSection = () => {
               <IoIosArrowForward />
             </div>
           </Link>
-        </div>
+        </div> */}
       </div>
       <SpeakersSlder />
     </div>

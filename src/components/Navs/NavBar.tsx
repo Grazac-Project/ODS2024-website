@@ -90,7 +90,7 @@ const NavBar = () => {
       </Link>
       <div className="hidden lg:flex items-center gap-x-5 lg:gap-x-7 2xl:gap-x-10 w-full justify-center max-w-[50%] 2xl:max-w-[40%]">
         <Link
-          href="/"
+          href="/?path=home"
           className={cn(
             " w-full   flex justify-center capitalize text-base relative font-medium before:bg-primary before:w-[0%] before:h-1 before:absolute before:-bottom-2 before:left-0 before:transition-all before:duration-500 ",
             pathname === home ? "before:w-full text-primary" : "text-header"
@@ -155,7 +155,11 @@ const NavBar = () => {
         </div>
         {NAV_LINKS.map((link) => (
           <Link
-            href={link.link}
+            href={
+              link.link === "home"
+                ? "/?path=home"
+                : `/${link.link}?path=${link.link}`
+            }
             key={link.id}
             onClick={() => {
               setIsActive(link.link);
