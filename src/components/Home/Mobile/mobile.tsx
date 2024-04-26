@@ -5,12 +5,13 @@ import Final from "./Final";
 import HighLight from "../Desktop/Highlights";
 import SpeakerSection from "../Desktop/Speakers";
 import Hero from "./NewheroMobile";
+import { MobileHero } from "./Hero";
 
 const Mobile = () => {
   return (
     <>
       {/* hero  section */}
-      {/* <Hero /> */}
+      <MobileHero />
       {/* Sponsors */}
       <Sponsors />
       {/* attend  section 401 2369 */}
