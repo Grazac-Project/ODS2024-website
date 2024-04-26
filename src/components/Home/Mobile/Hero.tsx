@@ -77,3 +77,7 @@ const Hero = () => {
 };
 
 export default Hero;
+
+export const MobileHero = () => {
+  return <div>Hero</div>;
+};

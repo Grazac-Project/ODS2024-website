@@ -27,7 +27,7 @@ function Attend() {
           : " opacity-0 translate-y-36"
       )}
     >
-      <div className="bg-[#111111] mt-4 attend pb-20 relative px-4 sm:px-8 xl:px-16 2xl:px-24 pt-6 container">
+      <div className="bg-[#111111] mt-4 attend pb-20 relative px-4 sm:px-8 xl:px-16 2xl:px-24 pt-6">
         <div className="text-white">
           <h2 className="text-black-100 font-semibold text-[40px] ">
             WHY ATTEND ODS23?

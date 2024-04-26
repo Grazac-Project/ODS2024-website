@@ -1,6 +1,3 @@
-
-
-
 import Sponsors from "./Sponsors";
 import Attend from "./Attend";
 import AlmostUnder from "./AlmostUnder";
@@ -13,7 +10,7 @@ const Mobile = () => {
   return (
     <>
       {/* hero  section */}
-      <Hero />
+      {/* <Hero /> */}
       {/* Sponsors */}
       <Sponsors />
       {/* attend  section 401 2369 */}
