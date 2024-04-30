@@ -26,3 +26,11 @@ export const decryptString = (str: string): string => {
   return buffer.toString();
 };
 
+/**
+ * Returns a string representing the ID.
+ * @function generateId - generates a unique ID for each transaction
+ * @returns A unique ID when it invokes.
+ */
+export const generateId = () => {
+  return Math.random().toString(36).substring(2, 9);
+};

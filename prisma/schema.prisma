@@ -47,7 +47,7 @@ model CartItem {
 }
 
 model Buyer {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String
   email         String
   phoneNumber   String
@@ -55,6 +55,7 @@ model Buyer {
   paymentStatus Boolean?
   cartId        String
   price         String
+  tx_ref        String?
   paymentId     String?
   updatedAt     DateTime? @updatedAt
   delivered     Boolean?

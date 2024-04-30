@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
-import { decryptString } from "@/utils";
+import { decryptString, generateId } from "@/utils";
 import { useStateCtx } from "@/context/StateCtx";
 import { useRouter } from "next/navigation";
 import { cn } from "@/utils";
@@ -47,11 +47,14 @@ const Makepayment = () => {
 
   const isDisabled = isLoading || loading || !data || !data2;
 
+  const transsactionId = generateId();
+
+
   const config = {
     public_key:
       (process.env.NEXT_PUBLIC_FLUTER_PUBLIC_KEY as string) ||
       "FLWPUBK_TEST-b6c44d3213f2d2b3c0c3142f3ab81b72-X",
-    tx_ref: buyer?.id!,
+    tx_ref: transsactionId,
     amount: cart?.subtotal!,
     currency: "NGN",
     payment_options: "card,mobilemoney,ussd",
@@ -142,9 +145,9 @@ const Makepayment = () => {
               callback: (response) => {
                 // console.log(response);
                 closePaymentModal();
-                if (response.status === "successful") {
+                if (response.status === "completed") {
                   router.push(
-                    `/shop/success?paymentstatus=true&userId=${userId}`
+                    `/shop/success?paymentstatus=true&userId=${userId}&tx_ref=${transsactionId}`
                   );
                 }
               },
