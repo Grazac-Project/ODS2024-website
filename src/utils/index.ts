@@ -1,7 +1,5 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import * as handlebars from "handlebars";
-import { OrderMail } from "./emails/order";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -28,18 +26,3 @@ export const decryptString = (str: string): string => {
   return buffer.toString();
 };
 
-/**
- * Compiles an order email template with provided data.
- * @param name The name of the recipient.
- * @param url The URL associated with the order.
- * @returns The compiled HTML body of the order email.
- */
-
-export function compileOrder(name: string, url: string) {
-  const template = handlebars.compile(OrderMail);
-  const htmlBody = template({
-    name: name,
-    url: url,
-  });
-  return htmlBody;
-}
