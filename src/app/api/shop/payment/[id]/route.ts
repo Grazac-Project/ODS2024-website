@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/utils/db";
-import { sendMail } from "@/utils/mail";
-import { compileOrder } from "@/utils";
 
 type Params = {
   id: string;
@@ -17,9 +15,6 @@ export async function POST(req: Request, context: { params: Params }) {
   try {
     const { status, paymentId }: RequestBody = await req.json();
 
-    let retryCount = 0;
-    const maxRetries = 3;
-
     const updatedbuyer = await prisma.buyer.update({
       where: { id },
       data: {
@@ -28,18 +23,30 @@ export async function POST(req: Request, context: { params: Params }) {
       },
     });
 
-    if (updatedbuyer) {
-      const subject = "Order Confirmation";
-      const htmlBody = compileOrder(
-        updatedbuyer?.name!,
-        "https://ods-ogun.vercel.app/"
+    if (updatedbuyer && updatedbuyer.email && updatedbuyer.name) {
+      const response = await fetch(
+        "https://mail-service-1omd.onrender.com/api/ods/sendorder",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: updatedbuyer.email,
+            name: updatedbuyer.name,
+          }),
+        }
       );
-      await sendMail({
-        to: updatedbuyer?.email!,
-        name: updatedbuyer?.name!,
-        subject,
-        body: htmlBody,
-      });
+
+      if (!response.ok) {
+        return new NextResponse(
+          JSON.stringify({
+            message: "something went wrong",
+            status: 402,
+            success: false,
+          })
+        );
+      }
     }
 
     return new NextResponse(

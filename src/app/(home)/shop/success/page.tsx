@@ -17,6 +17,7 @@ const PaymentSuccess = () => {
   const searchParams = useSearchParams();
   const paymentStatus = searchParams.get("paymentstatus");
   const userID = searchParams.get("userId");
+  const tx_ref = searchParams.get("tx_ref");
   const PaymentRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(PaymentRef);
   const [loading, setLoading] = useState(false);
@@ -27,7 +28,7 @@ const PaymentSuccess = () => {
       if (paymentStatus === "true") {
         const requestBody: BodyProps = {
           status: true,
-          paymentId: decryptedId,
+          paymentId: tx_ref!,
         };
         try {
           setLoading(true);
@@ -64,7 +65,20 @@ const PaymentSuccess = () => {
         )}
       >
         {loading ? (
-          <p>Loading...</p>
+          <>
+            <h2 className="text-2xl font-semibold text-center text-gray-800 mb-8">
+              Please Wait while we process your transaction
+            </h2>
+            <div className="items-center justify-center w-full flex space-x-4 max-h-[120px] max-w-[160px]">
+              <Image
+                src="/pleasewait.gif"
+                alt="pleasewait"
+                height={600}
+                width={800}
+                className="rounded-xl w-full h-full max-h-[120px] max-w-[160px] object-cover"
+              />
+            </div>
+          </>
         ) : (
           <>
             <div className="flex items-center justify-center text-center bg-gray-100">

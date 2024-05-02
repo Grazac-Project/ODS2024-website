@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useTransition, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { cn } from "@/utils";
 import { useStateCtx } from "@/context/StateCtx";
 import Image from "next/image";
 import { CloseSquare } from "iconsax-react";
-import { useFetch } from "@/hooks/useFetch";
 import { Product } from "@prisma/client";
 import LoadingSpinner from "@/components/loader";
 import AddToCartButton from "./AddToCartButton";
@@ -194,9 +193,6 @@ export const NewProductDetailsMOdal = () => {
     setShowProductModal(false);
     setProduct(undefined);
   };
-  if (!product) {
-    return null;
-  }
 
   return (
     <>
@@ -235,50 +231,56 @@ export const NewProductDetailsMOdal = () => {
             <CloseSquare size="32" />
           </button>
         </div>
-        <section className="w-full h-full overflow-x-hidden overflow-y-auto hide-scroll pt-2 sm:pt-4">
-          <div className="flex w-full flex-col md:flex-row gap-4 gap-y-8 md:gap-8  py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start">
-            <div className="flex flex-col w-[350px] h-[300px] max-md:w-full max-md:justify-center ">
-              <div className="flex flex-col gap-y-2 h-full w-full relative overflow-hidden rounded-lg">
-                <Image
-                  src={product.image}
-                  alt="product"
-                  className="w-full h-full object-cover rounded-lg transition-all duration-300 hover:duration-700 hover:scale-150"
-                  height={207}
-                  width={247}
-                />
-                <span className="absolute bottom-1 left-0 bg-gradient-to-r from-white via-white/50 to-white/5 px-2 w-full text-left font-medium">
-                  {product.name}
-                </span>
-              </div>
-              <div className="flex w-full justify-between mt-6 space-x-2">
-                <div className="justify-center w-[100px] text-center text-base text-green-600 whitespace-nowrap rounded bg-zinc-100">
-                  In stock
+        <section className="w-full h-full  pt-2 sm:pt-4">
+          {loading ? (
+            <div className="w-full items-center justify-center h-full flex">
+              <LoadingSpinner />
+            </div>
+          ) : (
+            <div className="flex w-full flex-col md:flex-row gap-4 gap-y-8 md:gap-8  py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start">
+              <div className="flex flex-col w-[350px] h-[300px] max-md:w-full max-md:justify-center ">
+                <div className="flex flex-col gap-y-2 h-full w-full relative overflow-hidden rounded-lg">
+                  <Image
+                    src={product?.image!}
+                    alt="product"
+                    className="w-full h-full object-cover rounded-lg transition-all duration-300 hover:duration-700 hover:scale-150"
+                    height={207}
+                    width={247}
+                  />
+                  <span className="absolute bottom-1 left-0 bg-gradient-to-r from-white via-white/50 to-white/5 px-2 w-full text-left font-medium">
+                    {product?.name!}
+                  </span>
                 </div>
-                <p className="flex text-lg font-semibold text-neutral-900">
-                  ₦{discountedPrice}
-                </p>
+                <div className="flex w-full justify-between mt-6 space-x-2">
+                  <div className="justify-center w-[100px] text-center text-base text-green-600 whitespace-nowrap rounded bg-zinc-100">
+                    In stock
+                  </div>
+                  <p className="flex text-lg font-semibold text-neutral-900">
+                    ₦{discountedPrice}
+                  </p>
+                </div>
+              </div>
+              <div className="flex w-full flex-col gap-y-4 sm:gap-y-6 pt-8 md:pt-0 hide-scroll overflow-y-auto overflow-x-hidden h-full">
+                <div className="flex gap-x-2 w-full">
+                  <div className="font-semibold">Product Name:</div>
+                  <h2 className="font-medium">{product?.name}</h2>
+                </div>
+                <div className="self-stretch mt-2 w-full bg-neutral-200 min-h-[1px]" />
+                <div>
+                  <h2 className="mt-2 text-base font-semibold leading-6 text-zinc-800">
+                    Product Description:
+                  </h2>
+                  <p className="mt-2.5 text-base font-medium leading-6 text-zinc-800">
+                    {product?.description}
+                  </p>
+                </div>
+                <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
+                <div className="flex items-center w-full justify-center self-center">
+                  <AddToCartButton productId={product?.id!} />
+                </div>
               </div>
             </div>
-            <div className="flex w-full flex-col gap-y-4 sm:gap-y-6 pt-8 md:pt-0">
-              <div className="flex gap-x-2 w-full">
-                <div className="font-semibold">Product Name:</div>
-                <h2 className="font-medium">{product.name}</h2>
-              </div>
-              <div className="self-stretch mt-2 w-full bg-neutral-200 min-h-[1px]" />
-              <div>
-                <h2 className="mt-2 text-base font-semibold leading-6 text-zinc-800">
-                  Product Description:
-                </h2>
-                <p className="mt-2.5 text-base font-medium leading-6 text-zinc-800">
-                  {product?.description}
-                </p>
-              </div>
-              <div className="self-stretch mt-4 w-full bg-neutral-200 min-h-[1px]" />
-              <div className="flex items-center w-full justify-center self-center">
-                <AddToCartButton productId={product.id} />
-              </div>
-            </div>
-          </div>
+          )}
         </section>
       </div>
     </>
