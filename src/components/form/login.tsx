@@ -26,9 +26,6 @@ import FormError from "./FormError";
 import FormSuccess from "./FormSuccess";
 import { login } from "@/actions/login";
 import { useRouter, useSearchParams } from "next/navigation";
-import { signIn } from "@/auth";
-import { useFormState, useFormStatus } from "react-dom";
-import { authenticate } from "@/actions/authenticate";
 
 const LoginForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
@@ -49,7 +46,6 @@ const LoginForm = () => {
 
   const router = useRouter();
 
-  const callbackUrl = searchParams.get("callbackUrl") ?? "/admin/dashboard";
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("");
@@ -60,7 +56,8 @@ const LoginForm = () => {
         setSuccess(data?.success);
         setError(data?.error);
         if (data?.success) {
-          authenticate(values);
+          localStorage.setItem("admin", data.user);
+          // authenticate(values);
           setTimeout(() => {
             setSuccess("Redirecting....");
           }, 100);
