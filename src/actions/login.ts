@@ -15,7 +15,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
   const { email, password } = validatedFields.data;
 
   try {
-    const data = await fetch(`${baseUrl}/api/admin/login`, {
+    const data = await fetch(`https://staging.ogundigitalsummit.com/api/admin/login`, {
       method: "POST",
 
       headers: {
