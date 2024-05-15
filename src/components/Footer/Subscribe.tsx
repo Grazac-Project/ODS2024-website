@@ -2,10 +2,16 @@
 
 import React, { useState } from "react";
 import { ArrowCircleUp2 } from "iconsax-react";
+import { useToast } from "../ui/use-toast";
+
+interface body {
+  email: string;
+}
 
 const Subscribe = () => {
   const [email, setEmail] = useState("");
   const [Status, setStatus] = useState("idle");
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,11 +33,23 @@ const Subscribe = () => {
           email,
         }),
       });
-      console.log(res?.status);
 
-      if (res.status === 201 || res.ok) {
+      const data = await res.json();
+
+      if (data.status === 201) {
         setEmail("");
+        toast({
+          title: "successfull",
+          description: `Thanks ${email}`,
+        });
         setStatus("sucess");
+      }
+      if (data.status === 400) {
+        setStatus("error");
+        toast({
+          title: "Error",
+          description: `${email} already exists`,
+        });
       }
     } catch (e: any) {
       setStatus("error");
@@ -55,6 +73,8 @@ const Subscribe = () => {
             type="email"
             className="w-[80%] lg:w-[362px] h-[55px] rounded-l-lg bg-gray-100 outline-none text-[#282828] px-4 text-base"
             placeholder="Enter Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <button
             disabled={Status === "loading"}
@@ -63,12 +83,11 @@ const Subscribe = () => {
           >
             Subscribe
           </button>
-          {Status === "ërror" && <p>error</p>}
         </form>
       </div>
       <button
         onClick={scrollToTop}
-        className="hidden xl:flex items-center gap-4 cursor-pointer"
+        className="hidden xl:flex items-center gap-4"
       >
         <p className="text-white font-nunito">Back to Top</p>
         <ArrowCircleUp2 size="32" color="#00A651" />

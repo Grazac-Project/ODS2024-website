@@ -84,7 +84,7 @@ export const CartPage = () => {
   const { isLoading, data, error } = useFetch(url);
   const [buyers, setBuyers] = useState<Buyer[]>();
 
-  console.log(buyers);
+  
 
   useEffect(() => {
     if (data) {
