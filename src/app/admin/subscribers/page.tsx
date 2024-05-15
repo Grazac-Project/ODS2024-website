@@ -1,10 +1,10 @@
 import React from "react";
-import { ProducPage } from "../content";
+import { Subpage } from "../content";
 
 const page = () => {
   return (
     <>
-      <ProducPage />
+      <Subpage />
     </>
   );
 };

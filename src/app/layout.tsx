@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { nunito, montserrat } from "@/fonts";
 import StateContextProvider from "@/context/StateCtx";
 import AuthProvider from "./providers";
+import { Toaster } from "@/components/ui/toaster";
 
 const currentYear = new Date().getFullYear().toString().slice(-2);
 export const metadata: Metadata = {
@@ -46,7 +47,10 @@ export default function RootLayout({
     <html lang="en">
       <AuthProvider>
         <body className={`${montserrat.className} ${nunito.className}`}>
-          <StateContextProvider>{children}</StateContextProvider>
+          <StateContextProvider>
+            {children}
+            <Toaster />
+          </StateContextProvider>
         </body>
       </AuthProvider>
     </html>

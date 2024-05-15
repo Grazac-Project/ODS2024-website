@@ -166,6 +166,12 @@ export const SIDEBARLINKS: SidebarProps[] = [
     icon: ShoppingCart,
     link: "admin/carts",
   },
+  {
+    id: 4,
+    label: "Subscribers",
+    icon: People,
+    link: "admin/subscribers",
+  },
 ];
 
 interface image {

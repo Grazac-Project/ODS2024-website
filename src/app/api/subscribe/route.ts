@@ -38,3 +38,23 @@ export async function POST(req: Request) {
     );
   }
 }
+
+export const GET = async () => {
+  try {
+    const subcribers = await primsa.subscribe.findMany();
+    return new NextResponse(
+      JSON.stringify({
+        subcribers,
+        message: "sucess",
+        status: 200,
+      })
+    );
+  } catch (e: any) {
+    return new NextResponse(
+      JSON.stringify({
+        message: "something went wrong",
+        status: 500,
+      })
+    );
+  }
+};
