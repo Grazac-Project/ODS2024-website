@@ -24,8 +24,6 @@ const Shop = () => {
     }
   }, [data]);
 
-  const skeletonArray = Array.from({ length: 10 }, (_, index) => index);
-
   return (
     <section
       ref={ShopRef}

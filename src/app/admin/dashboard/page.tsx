@@ -1,8 +1,12 @@
 import React from "react";
-// import 
+import { ProducPage } from "../content";
 
 const page = () => {
-  return <div>page</div>;
+  return (
+    <>
+      <ProducPage />
+    </>
+  );
 };
 
 export default page;
