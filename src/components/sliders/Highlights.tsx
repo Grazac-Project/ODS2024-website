@@ -102,20 +102,25 @@ function HighlightsSlider() {
           {highlights.length > 0 && (
             <Slider
               {...carouselSettings}
-              className="justify-between items-center w-full"
+              className="justify-between items-center w-full self-center"
             >
               {highlights?.map((item) => (
-                <div key={item?.id} className="lg:max-w-[353px] md:w-[300px]">
-                  <Image
-                    src={item?.image}
-                    alt=""
-                    width={353}
-                    height={288}
-                    className="w-full object-cover rounded-xl"
-                  />
+                <div
+                  key={item?.id}
+                  className="lg:max-w-[353px] md:w-[300px] w-full"
+                >
+                  <div className="max-h-[288px] md:max-w-[300px] object-cover w-full">
+                    <Image
+                      src={item?.image}
+                      alt=""
+                      width={353}
+                      height={288}
+                      className="w-full object-cover rounded-xl h-full min-h-[288px]"
+                    />
+                  </div>
 
                   <h3
-                    className={`font-nunito font-medium text-[30px] text-gray-400 leading-[120%] mt-1`}
+                    className={`font-nunito font-medium text-[30px] text-gray-400 leading-[120%] mt-1 line-clamp-2`}
                   >
                     {item?.title}
                   </h3>
