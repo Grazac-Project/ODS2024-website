@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { cn } from "@/utils";
 import { useSearchParams } from "next/navigation";
 import { decryptString } from "@/utils";
+import Link from "next/link";
 
 const CartButton = () => {
   const [cart, setCart] = useState<number>();
@@ -14,6 +15,8 @@ const CartButton = () => {
   const searchParams = useSearchParams();
   const cartID = searchParams.get("cartid");
   const cartId = searchParams.get("cartId");
+
+  const cartOP = cartId !== null ? cartId : cartID;
 
   const decryptedId = cartID
     ? decryptString(cartID)
@@ -41,8 +44,8 @@ const CartButton = () => {
 
   return (
     <>
-      <button
-        onClick={() => setShowCartModal(true)}
+      <Link
+        href={`/shop/cart/cart?cartid=${cartOP}`}
         className="border-px bg-[#E6F6EE] fixed bottom-[30px] right-[35px] !z-[99] h-[60px] w-[60px] flex items-center justify-center rounded-full p-0"
       >
         <div className="relative py-2 items-center justify-center">
@@ -62,7 +65,7 @@ const CartButton = () => {
             className="mt-4 h-6 w-6 self-center"
           />
         </div>
-      </button>
+      </Link>
     </>
   );
 };

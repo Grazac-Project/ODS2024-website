@@ -75,7 +75,9 @@ const productCard = ({
                         ).toFixed(2)}
                       </span>
                     </div>
-                    <button onClick={() => handleIncreaseQuantity(product.id)}>
+                    <button 
+                    onClick={() => handleIncreaseQuantity(product.id)}
+                    >
                       <AddCircle
                         size="21"
                         className="bg-zinc-100 border-solid rounded-full"
@@ -99,3 +101,6 @@ const productCard = ({
 };
 
 export default productCard;
+
+
+
