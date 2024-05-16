@@ -9,7 +9,8 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Admin>
+    <>
+      {/* <Admin> */}
       <SideBar />
       <section className="w-full md:pl-[96px] min-[1140px]:pl-[270px]">
         <NavBar />
@@ -18,6 +19,7 @@ export default function AdminLayout({
           <DeleteSpeaker />
         </div>
       </section>
-    </Admin>
+      {/* </Admin> */}
+    </>
   );
 }

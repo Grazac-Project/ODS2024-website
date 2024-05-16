@@ -13,15 +13,20 @@ type ProductReviews {
 }
 
 model Product {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
-  description String
-  discount    Int
-  image       String
-  name        String
-  price       Int
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  cartItem    CartItem[]
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  description   String
+  discount      Int
+  image         String
+  name          String
+  price         Int
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  cartItem      CartItem[]
+  categories    categories[]
+  reviews       reviews[]
+  feature       feature[]
+  colorVariants colorVariants[]
+  sizes         sizes[]
 
   @@map("products")
 }
@@ -111,4 +116,45 @@ model admin {
   name     String
 
   @@map("Admins")
+}
+
+model sizes {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  s         Boolean?
+  m         Boolean?
+  l         Boolean?
+  xl        Boolean?
+  xxl       Boolean?
+  sizes     String?
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String   @db.ObjectId
+}
+
+model categories {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  category  String
+  product   Product @relation(fields: [productId], references: [id])
+  productId String  @db.ObjectId
+}
+
+model reviews {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  review     String
+  product    Product @relation(fields: [productId], references: [id])
+  productId  String  @db.ObjectId
+  starrating Float
+}
+
+model feature {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  product   Product @relation(fields: [productId], references: [id])
+  productId String  @db.ObjectId
+  feature   String
+}
+
+model colorVariants {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  product   Product @relation(fields: [productId], references: [id])
+  productId String  @db.ObjectId
+  colors    String
 }

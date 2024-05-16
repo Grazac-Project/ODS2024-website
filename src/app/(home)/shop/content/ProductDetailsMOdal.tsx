@@ -21,6 +21,8 @@ const ProductDetailsMOdal = () => {
 
   const id = SelectedProductId;
 
+  console.log(id);
+
   useEffect(() => {
     const fetchProduct = async () => {
       setLoading(true);

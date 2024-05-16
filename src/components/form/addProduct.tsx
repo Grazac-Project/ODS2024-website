@@ -57,6 +57,7 @@ const AddProduct = () => {
     discount: 0,
   });
 
+  console.log(formData.image);
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");

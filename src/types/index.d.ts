@@ -1,3 +1,5 @@
+import { Prisma } from "@prisma/client";
+
 export type NavbarLinkProps = {
   id?: number;
   link: string;
@@ -32,3 +34,16 @@ export type SidebarProps = {
   icon: Icon;
   link: string;
 };
+
+export type CartWithProducts = Prisma.CartGetPayload<{
+  include: { items: { include: { product: true } } };
+}>;
+
+export type Fullproduct = Prisma.ProductGetPayload<{
+  include: {
+    reviews: true;
+    feature: true;
+    categories: true;
+    sizes: true;
+  };
+}>;
