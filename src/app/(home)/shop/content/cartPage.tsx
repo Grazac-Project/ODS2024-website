@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ShoppingCartProps,
   getCart,
@@ -10,6 +10,9 @@ import {
 } from "@/actions/cart";
 import { Minus, Add, ArrowLeft2, ArrowRight2 } from "iconsax-react";
 import Image from "next/image";
+import { Skeleton } from "@/components/ui/skeleton";
+import Link from "next/link";
+import { encryptString } from "@/utils";
 
 interface CartTotals {
   totalDiscount: number;
@@ -18,7 +21,6 @@ interface CartTotals {
 }
 
 const CartPage = ({ Cart_id }: { Cart_id?: string }) => {
-  console.log(Cart_id);
   const [isLoading, setIsLoading] = useState(false);
   const [cart, setCart] = useState<ShoppingCartProps | undefined>(undefined);
 
@@ -115,7 +117,7 @@ const CartPage = ({ Cart_id }: { Cart_id?: string }) => {
   const calculateCartTotals = (cart: ShoppingCartProps): CartTotals => {
     let totalDiscount = 0;
     let totalPriceWithoutDiscount = 0;
-    let totalDiscountedPrice = 0; // Initialize totalDiscountedPrice
+    let totalDiscountedPrice = 0;
 
     for (const item of cart.items) {
       const discountedPrice = calculateDiscountedPrice(
@@ -155,10 +157,63 @@ const CartPage = ({ Cart_id }: { Cart_id?: string }) => {
           </p>
         </div>
 
+        {isLoading && (
+          <>
+            <div className="flex flex-col items-center justify-between w-full gap-4">
+              <div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 min-[550px]:gap-6 border-t border-gray-200 py-6">
+                  <div className="flex items-center flex-col min-[550px]:flex-row gap-3 min-[550px]:gap-6 w-full max-xl:justify-center max-xl:max-w-xl max-xl:mx-auto">
+                    <Skeleton className="w-[240px] h-[200px]" />
+                    <div className="flex flex-col h-full items-center justify-between">
+                      <Skeleton className="w-[240px] h-[40px]" />
+                      <Skeleton className="w-[240px] h-[40px]" />
+                      <Skeleton className="w-[240px] h-[40px]" />
+                    </div>
+                  </div>
+                  <div className="flex items-center flex-col min-[550px]:flex-row w-full max-xl:max-w-xl max-xl:mx-auto gap-2">
+                    <div className="flex items-center justify-center">
+                      <Skeleton className="w-[140px] h-[40px]" />
+                    </div>
+                    <div className="flex items-center justify-center">
+                      <Skeleton className="w-[240px] h-[40px]" />
+                    </div>
+                    <div className="flex items-center justify-center">
+                      <Skeleton className="w-[240px] h-[40px]" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 min-[550px]:gap-6 border-t border-gray-200 py-6">
+                  <div className="flex items-center flex-col min-[550px]:flex-row gap-3 min-[550px]:gap-6 w-full max-xl:justify-center max-xl:max-w-xl max-xl:mx-auto">
+                    <Skeleton className="w-[240px] h-[200px]" />
+                    <div className="flex flex-col h-full items-center justify-between">
+                      <Skeleton className="w-[240px] h-[40px]" />
+                      <Skeleton className="w-[240px] h-[40px]" />
+                      <Skeleton className="w-[240px] h-[40px]" />
+                    </div>
+                  </div>
+                  <div className="flex items-center flex-col min-[550px]:flex-row w-full max-xl:max-w-xl max-xl:mx-auto gap-2">
+                    <div className="flex items-center justify-center">
+                      <Skeleton className="w-[140px] h-[40px]" />
+                    </div>
+                    <div className="flex items-center justify-center">
+                      <Skeleton className="w-[240px] h-[40px]" />
+                    </div>
+                    <div className="flex items-center justify-center">
+                      <Skeleton className="w-[240px] h-[40px]" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+
         {cart?.items && (
           <>
             {cart.items.map((item) => (
-              <div className="relative">
+              <div className="relative" key={item.id}>
                 <button
                   onClick={() => handleDeleteItem(item.product.id)}
                   className="rounded-full group flex items-center w-full mt-6 focus-within:outline-red-500 absolute justify-end"
@@ -203,10 +258,8 @@ const CartPage = ({ Cart_id }: { Cart_id?: string }) => {
                       <h5 className="font-semibold text-xl leading-8 text-black max-[550px]:text-center">
                         {item.product.name}
                       </h5>
-                      {/* <p className="font-normal text-lg leading-8 text-gray-500 my-2 min-[550px]:my-3 max-[550px]:text-center">
-                      Perfumes
-                    </p> */}
-                      <h6 className="font-medium text-lg leading-8 text-indigo-600  max-[550px]:text-center">
+
+                      <h6 className="font-medium text-lg leading-8 text-primary  max-[550px]:text-center">
                         ₦ {item.product.price}
                       </h6>
                     </div>
@@ -240,7 +293,7 @@ const CartPage = ({ Cart_id }: { Cart_id?: string }) => {
                         <Add size={22} />
                       </button>
                     </div>
-                    <h6 className="text-indigo-600 font-manrope font-bold text-2xl leading-9 w-full max-w-[176px] text-center">
+                    <h6 className="text-primary font-manrope font-bold text-2xl leading-9 w-full max-w-[176px] text-center">
                       ₦ {item.product.price * item.quantity}
                       <span className="text-sm text-gray-300 ml-3 lg:hidden whitespace-nowrap">
                         (Price)
@@ -277,23 +330,35 @@ const CartPage = ({ Cart_id }: { Cart_id?: string }) => {
               <p className="font-manrope font-medium text-2xl leading-9 text-gray-900">
                 Total
               </p>
-              <h6 className="font-manrope font-medium text-2xl leading-9 text-indigo-500">
+              <h6 className="font-manrope font-medium text-2xl leading-9 text-primary">
                 ₦ {cart?.subtotal}
               </h6>
             </div>
           </div>
         )}
+        {isLoading && (
+          <div>
+            <Skeleton className="h-[250px] w-full" />
+          </div>
+        )}
         <div className="flex items-center flex-col sm:flex-row justify-center gap-3 mt-8">
-          <button className="rounded-full py-4 w-full max-w-[280px]  flex items-center bg-primary/50 justify-center transition-all duration-500  text-primary">
+          <Link
+            href={`/shop?cartId=${encryptString(Cart_id!)}`}
+            // onClick={() => router.back()}
+            className="rounded-full py-4 w-full max-w-[280px] flex items-center border border-primary justify-center transition-all duration-500  text-primary"
+          >
             <ArrowLeft2 />
             <span className="px-2 font-semibold text-lg leading-8">
               continute shopping
             </span>
-          </button>
-          <button className="rounded-full w-full max-w-[280px] py-4 text-center justify-center items-center bg-indigo-600 font-semibold text-lg text-white flex transition-all duration-500 hover:bg-indigo-700">
+          </Link>
+          <Link
+            href={`/shop/payment?cartId=${encryptString(Cart_id!)}`}
+            className="rounded-full w-full max-w-[280px] py-4 text-center justify-center items-center bg-primary font-semibold text-lg text-white flex transition-all duration-500 hover:bg-primary/50"
+          >
             Continue to Payment
             <ArrowRight2 />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -52,6 +52,11 @@ model Buyer {
   email         String
   phoneNumber   String
   address       String
+  fulladress    String?
+  city          String?
+  state         String?
+  postalcode    String?
+  tracking      String    @default("To be Shipped")
   paymentStatus Boolean?
   cartId        String
   price         String
