@@ -108,6 +108,29 @@ const SummaryPage = () => {
   });
 
   const handleFlutterPayment = useFlutterwave(config);
+
+  useEffect(() => {
+    if (config.amount > 0) {
+      handleFlutterPayment({
+        callback: (response) => {
+          closePaymentModal();
+          if (response.status === "completed") {
+            console.log("success");
+            toast({
+              title: "Payment completed",
+              description: `Thank you ${BuyersData?.name} for shoping with us`,
+            });
+            router.push(
+              `/shop/success?paymentstatus=true&userId=${BuyersData?.id}&tx_ref=${decryptedId}`
+            );
+          }
+        },
+        onClose: () => {
+          setShowOptionModal(true);
+        },
+      });
+    }
+  }, [config]);
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -147,26 +170,32 @@ const SummaryPage = () => {
           description: "trying to process purchase",
         });
 
-        const updatedConfig = {
-          public_key: process.env.NEXT_PUBLIC_FLUTER_PUBLIC_KEY as string,
-          tx_ref: decryptedId,
+        setConfig((prevConfig) => ({
+          ...prevConfig,
           amount: Number(data.price),
-          currency: "NGN",
-          payment_options: "card,mobilemoney,ussd",
           customer: {
             email: data.email,
             phone_number: data.phoneNumber,
             name: data.name,
           },
-          customizations: {
-            title: "ODS SHOP",
-            description: "Payment for Order",
-            logo: "http://res.cloudinary.com/ddjt9wfuv/image/upload/v1709210521/product/bdalfy8btveazx5kiyq6.jpg",
-          },
-        };
-        setConfig(updatedConfig);
+        }));
 
-        handlePayment(updatedConfig, data.id);
+        // setTimeout(() => {
+        //   handleFlutterPayment({
+        //     callback: (response) => {
+        //       closePaymentModal();
+        //       if (response.status === "completed") {
+        //         console.log("success");
+        //         router.push(
+        //           `/shop/success?paymentstatus=true&userId=${data.id}&tx_ref=${decryptedId}`
+        //         );
+        //       }
+        //     },
+        //     onClose: () => {
+        //       setShowOptionModal(true);
+        //     },
+        //   });
+        // }, 3000);
       }
       if (json.status === 400) {
         toast({
