@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -87,6 +89,25 @@ const SummaryPage = () => {
   const [BuyersData, setBuyersdata] = useState<Buyer>();
   const { setShowOptionModal } = useStateCtx();
 
+  const [config, setConfig] = useState({
+    public_key: process.env.NEXT_PUBLIC_FLUTER_PUBLIC_KEY as string,
+    tx_ref: decryptedId,
+    amount: 0,
+    currency: "NGN",
+    payment_options: "card,mobilemoney,ussd",
+    customer: {
+      email: "",
+      phone_number: "",
+      name: "",
+    },
+    customizations: {
+      title: "ODS SHOP",
+      description: "Payment for Order",
+      logo: "http://res.cloudinary.com/ddjt9wfuv/image/upload/v1709210521/product/bdalfy8btveazx5kiyq6.jpg",
+    },
+  });
+
+  const handleFlutterPayment = useFlutterwave(config);
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -143,24 +164,9 @@ const SummaryPage = () => {
             logo: "http://res.cloudinary.com/ddjt9wfuv/image/upload/v1709210521/product/bdalfy8btveazx5kiyq6.jpg",
           },
         };
+        setConfig(updatedConfig);
 
-        setTimeout(() => {
-          const handleFlutterPayment = useFlutterwave(updatedConfig);
-          handleFlutterPayment({
-            callback: (response) => {
-              closePaymentModal();
-              if (response.status === "completed") {
-                console.log("sucesss");
-                router.push(
-                  `/shop/success?paymentstatus=true&userId=${data.id}&tx_ref=${decryptedId}`
-                );
-              }
-            },
-            onClose: () => {
-              setShowOptionModal(true);
-            },
-          });
-        }, 3000);
+        handlePayment(updatedConfig, data.id);
       }
       if (json.status === 400) {
         toast({
@@ -182,6 +188,25 @@ const SummaryPage = () => {
     } catch (e: any) {
       setStatus("error");
     }
+  };
+
+  const handlePayment = (config: any, userId: string) => {
+    setTimeout(() => {
+      handleFlutterPayment({
+        callback: (response) => {
+          closePaymentModal();
+          if (response.status === "completed") {
+            console.log("success");
+            router.push(
+              `/shop/success?paymentstatus=true&userId=${userId}&tx_ref=${decryptedId}`
+            );
+          }
+        },
+        onClose: () => {
+          setShowOptionModal(true);
+        },
+      });
+    }, 3000);
   };
 
   return (

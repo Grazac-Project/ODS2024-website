@@ -16,7 +16,7 @@ const CartDetails = ({
   name,
   cartId,
   paymentId,
-  address,
+  // address,
   email,
   phoneNumber,
   price,
@@ -64,7 +64,7 @@ const CartDetails = ({
               <span>Verify Payment</span>
             </button>
           </div>
-          <p className="py-4 text-justify text-header ">Address: {address}</p>
+          {/* <p className="py-4 text-justify text-header ">Address: {address}</p> */}
           <p className="py-4 text-justify text-header ">Email: {email}</p>
           <p className="py-4 text-justify text-header ">
             PhoneNumber: {phoneNumber}
