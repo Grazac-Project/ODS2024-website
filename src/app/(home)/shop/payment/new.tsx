@@ -179,23 +179,6 @@ const SummaryPage = () => {
             name: data.name,
           },
         }));
-
-        // setTimeout(() => {
-        //   handleFlutterPayment({
-        //     callback: (response) => {
-        //       closePaymentModal();
-        //       if (response.status === "completed") {
-        //         console.log("success");
-        //         router.push(
-        //           `/shop/success?paymentstatus=true&userId=${data.id}&tx_ref=${decryptedId}`
-        //         );
-        //       }
-        //     },
-        //     onClose: () => {
-        //       setShowOptionModal(true);
-        //     },
-        //   });
-        // }, 3000);
       }
       if (json.status === 400) {
         toast({
