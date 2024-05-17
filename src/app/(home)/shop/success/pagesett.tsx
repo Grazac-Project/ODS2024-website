@@ -50,33 +50,33 @@ const Sucesspage = () => {
     fetchCart();
   }, []);
 
-  //   useEffect(() => {
-  //     const postData = async () => {
-  //       if (paymentStatus === "true") {
-  //         const requestBody: BodyProps = {
-  //           status: true,
-  //           paymentId: tx_ref!,
-  //         };
-  //         try {
-  //           setLoading(true);
-  //           const res = await fetch(`${baseUrl}/api/shop/payment/${userID}`, {
-  //             method: "POST",
-  //             headers: {
-  //               "Content-Type": "application/json",
-  //             },
-  //             body: JSON.stringify(requestBody),
-  //           });
+  useEffect(() => {
+    const postData = async () => {
+      if (paymentStatus === "true") {
+        const requestBody: BodyProps = {
+          status: true,
+          paymentId: tx_ref!,
+        };
+        try {
+          setLoading(true);
+          const res = await fetch(`${baseUrl}/api/shop/payment/${userID}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestBody),
+          });
 
-  //           if (res.ok || res.status === 200) {
-  //             setLoading(false);
-  //           }
-  //         } catch (e: any) {
-  //           setLoading(false);
-  //         }
-  //       }
-  //     };
-  //     postData();
-  //   }, []);
+          if (res.ok || res.status === 200) {
+            setLoading(false);
+          }
+        } catch (e: any) {
+          setLoading(false);
+        }
+      }
+    };
+    postData();
+  }, []);
 
   useEffect(() => {
     const getBuyer = async () => {
