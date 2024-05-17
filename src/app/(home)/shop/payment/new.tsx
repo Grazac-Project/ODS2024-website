@@ -6,6 +6,12 @@ import { decryptString } from "@/utils";
 import { ShoppingCartProps, getCart } from "@/actions/cart";
 import Image from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
+import { useStateCtx } from "@/context/StateCtx";
+import { Buyer } from "@prisma/client";
+import { baseUrl } from "@/actions/baseurl";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 const SummaryPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,6 +19,8 @@ const SummaryPage = () => {
   const searchParams = useSearchParams();
   const cartID = searchParams.get("cartid");
   const cartId = searchParams.get("cartId");
+  const { toast } = useToast();
+  const router = useRouter();
 
   const decryptedId = cartID
     ? decryptString(cartID)
@@ -20,6 +28,19 @@ const SummaryPage = () => {
     ? decryptString(cartId)
     : "";
 
+  const [formData, setformData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    phoneNumber: 0,
+    price: "",
+    fulladress: "",
+    city: "",
+    state: "",
+    postalcode: "",
+  });
+
+  console.log(formData);
   useEffect(() => {
     const fetchCart = async () => {
       try {
@@ -35,6 +56,11 @@ const SummaryPage = () => {
             createdAt: cartData.createdAt ?? new Date(),
             updatedAt: cartData.updatedAt ?? new Date(),
           });
+          setformData((prevFormData) => ({
+            ...prevFormData,
+            // @ts-ignore
+            price: cartData?.subtotal.toString(),
+          }));
         }
       } catch (error) {
         console.error("Error fetching cart data:", error);
@@ -55,15 +81,112 @@ const SummaryPage = () => {
     return discountedPrice;
   };
 
-//   const handleChange = (
-//     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-//   ) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+  const [status, setStatus] = useState("idle");
+  const [BuyersData, setBuyersdata] = useState<Buyer>();
+  const { setShowOptionModal } = useStateCtx();
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const { firstname, lastname, ...restFormData } = formData;
+    const name = `${firstname} ${lastname}`;
+    const completeData = { ...restFormData, name };
+
+    try {
+      setStatus("loading");
+      const res = await fetch(`${baseUrl}/api/shop/cart/buyer/${decryptedId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(completeData),
+      });
+
+      const json = await res.json();
+      if (json.status === 200) {
+        setSuccess("sucess");
+        setStatus("sucess");
+        setformData({
+          firstname: "",
+          lastname: "",
+          email: "",
+          phoneNumber: 0,
+          price: cart?.subtotal ? cart.subtotal.toString() : "",
+          fulladress: "",
+          city: "",
+          state: "",
+          postalcode: "",
+        });
+        const data: Buyer = json.buyer;
+        setBuyersdata(data);
+        toast({
+          title: "Please Wait ...",
+          description: "trying to process purchase",
+        });
+
+        const updatedConfig = {
+          public_key: process.env.NEXT_PUBLIC_FLUTER_PUBLIC_KEY as string,
+          tx_ref: decryptedId,
+          amount: Number(data.price),
+          currency: "NGN",
+          payment_options: "card,mobilemoney,ussd",
+          customer: {
+            email: data.email,
+            phone_number: data.phoneNumber,
+            name: data.name,
+          },
+          customizations: {
+            title: "ODS SHOP",
+            description: "Payment for Order",
+            logo: "http://res.cloudinary.com/ddjt9wfuv/image/upload/v1709210521/product/bdalfy8btveazx5kiyq6.jpg",
+          },
+        };
+
+        setTimeout(() => {
+          const handleFlutterPayment = useFlutterwave(updatedConfig);
+          handleFlutterPayment({
+            callback: (response) => {
+              closePaymentModal();
+              if (response.status === "completed") {
+                console.log("sucesss");
+                router.push(
+                  `/shop/success?paymentstatus=true&userId=${data.id}&tx_ref=${decryptedId}`
+                );
+              }
+            },
+            onClose: () => {
+              setShowOptionModal(true);
+            },
+          });
+        }, 3000);
+      }
+      if (json.status === 400) {
+        toast({
+          title: "Error",
+          description: `${json.error}`,
+        });
+        setError("something when wrong");
+        setStatus("error");
+      }
+      if (json.status === 500) {
+        toast({
+          title: "Error",
+          description: `${json.message}`,
+        });
+        setError("something when wrong");
+        console.log(json.error);
+        setStatus("error");
+      }
+    } catch (e: any) {
+      setStatus("error");
+    }
+  };
 
   return (
     <>
-      <section>
+      <section className="px-0 sm:px-8 xl:px-16 2xl:px-24">
         <div className="bg-gray-50">
           <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-4 h-full">
             <div className="bg-primarytwo  lg:sticky lg:top-0">
@@ -76,7 +199,10 @@ const SummaryPage = () => {
                     {cart?.items && (
                       <>
                         {cart.items.map((item) => (
-                          <div className="grid sm:grid-cols-2 items-start gap-6">
+                          <div
+                            key={item.id}
+                            className="grid sm:grid-cols-2 items-start gap-6"
+                          >
                             <div className=" rounded-md">
                               <Image
                                 src={item.product.image}
@@ -124,22 +250,29 @@ const SummaryPage = () => {
                 </div>
               </div>
             </div>
-            <div className="xl:col-span-2 h-max rounded-md p-8 sticky top-0">
+            <div className="xl:col-span-2 h-max rounded-md p-4 md:p-8 sticky top-0">
               <h2 className="text-2xl font-bold text-[#333]">
                 Complete your order
               </h2>
-              <form className="mt-10">
+              <form className="mt-10" onSubmit={onSubmit}>
                 <div>
                   <h3 className="text-lg font-bold text-[#333] mb-6">
                     Personal Details
                   </h3>
-                  <div className="grid sm:grid-cols-2 gap-6">
+                  <div className="grid sm:grid-cols-2 gap-6  gap-y-9">
                     <div className="relative flex items-center">
                       <div className="relative w-full">
                         <input
                           id="firstname"
                           name="firstname"
                           type="text"
+                          value={formData.firstname}
+                          onChange={(e) =>
+                            setformData({
+                              ...formData,
+                              [e.target.name]: e.target.value,
+                            })
+                          }
                           placeholder="John Doe"
                           className="peer h-12 w-full bg-transparent border-b-2 text-base border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-primary"
                         />
@@ -174,6 +307,13 @@ const SummaryPage = () => {
                         <input
                           id="lastname"
                           name="lastname"
+                          value={formData.lastname}
+                          onChange={(e) =>
+                            setformData({
+                              ...formData,
+                              [e.target.name]: e.target.value,
+                            })
+                          }
                           type="text"
                           placeholder="John Doe"
                           className="peer h-12 w-full bg-transparent border-b-2 text-base border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-primary"
@@ -210,6 +350,13 @@ const SummaryPage = () => {
                           id="email"
                           name="email"
                           type="email"
+                          value={formData.email}
+                          onChange={(e) =>
+                            setformData({
+                              ...formData,
+                              [e.target.name]: e.target.value,
+                            })
+                          }
                           placeholder="John Doe"
                           className="peer h-12 w-full bg-transparent border-b-2 text-base border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-primary"
                         />
@@ -257,14 +404,21 @@ const SummaryPage = () => {
                     <div className="relative flex items-center">
                       <div className="relative w-full">
                         <input
-                          id="phone"
+                          id="phoneNumber"
                           type="tel"
-                          name="phone"
+                          name="phoneNumber"
+                          value={formData.phoneNumber}
+                          onChange={(e) =>
+                            setformData({
+                              ...formData,
+                              [e.target.name]: e.target.value,
+                            })
+                          }
                           placeholder="(234) 123 456 789"
                           className="peer h-12 w-full bg-transparent border-b-2 text-base border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-primary"
                         />
                         <label
-                          htmlFor="phone"
+                          htmlFor="phoneNumber"
                           className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-primary peer-focus:text-sm"
                         >
                           Phone Number
@@ -287,17 +441,24 @@ const SummaryPage = () => {
                   <h3 className="text-lg font-bold text-[#333] mb-6">
                     Shipping Address
                   </h3>
-                  <div className="grid sm:grid-cols-2 gap-6">
+                  <div className="grid sm:grid-cols-2 gap-6 gap-y-9">
                     <div className="relative w-full">
                       <input
-                        id="addressline"
-                        name="addressline"
+                        id="fulladress"
+                        name="fulladress"
+                        value={formData.fulladress}
+                        onChange={(e) =>
+                          setformData({
+                            ...formData,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
                         type="text"
                         placeholder="John Doe"
                         className="peer h-12 w-full bg-transparent border-b-2 text-base border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-primary"
                       />
                       <label
-                        htmlFor="addressline"
+                        htmlFor="fulladress"
                         className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-primary peer-focus:text-sm"
                       >
                         Address Line
@@ -309,6 +470,13 @@ const SummaryPage = () => {
                         id="city"
                         name="city"
                         type="text"
+                        value={formData.city}
+                        onChange={(e) =>
+                          setformData({
+                            ...formData,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
                         placeholder="John Doe"
                         className="peer h-12 w-full bg-transparent border-b-2 text-base border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-primary"
                       />
@@ -325,6 +493,13 @@ const SummaryPage = () => {
                         name="state"
                         type="text"
                         placeholder="John Doe"
+                        value={formData.state}
+                        onChange={(e) =>
+                          setformData({
+                            ...formData,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
                         className="peer h-12 w-full bg-transparent border-b-2 text-base border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-primary"
                       />
                       <label
@@ -337,6 +512,13 @@ const SummaryPage = () => {
                     <div className="relative w-full">
                       <input
                         id="postalcode"
+                        value={formData.postalcode}
+                        onChange={(e) =>
+                          setformData({
+                            ...formData,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
                         name="postalcode"
                         type="text"
                         placeholder="John Doe"
@@ -358,10 +540,16 @@ const SummaryPage = () => {
                       Cancel
                     </button>
                     <button
-                      type="button"
-                      className="rounded-md px-6 py-3 w-full text-sm font-semibold bg-[#333] text-white hover:bg-[#222]"
+                      type="submit"
+                      disabled={!cart}
+                      className="rounded-md px-6 py-3 w-full text-sm font-semibold bg-primarytwo text-white hover:bg-primary"
                     >
-                      Complete Purchase
+                      {status === "loading"
+                        ? "please wait"
+                        : status === "error"
+                        ? "try again"
+                        : "Complete Purchase"}
+                      {/* Complete Purchase */}
                     </button>
                   </div>
                 </div>

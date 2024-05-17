@@ -51,7 +51,6 @@ model Buyer {
   name          String
   email         String
   phoneNumber   String
-  address       String
   fulladress    String?
   city          String?
   state         String?

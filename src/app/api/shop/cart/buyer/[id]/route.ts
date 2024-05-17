@@ -11,15 +11,28 @@ type ProductInput = {
   phoneNumber: string;
   address: string;
   price: string;
+  fulladress: string;
+  city: string;
+  state: string;
+  postalcode: string;
 };
 
 export async function POST(req: Request, context: { params: Params }) {
   const id = context.params.id;
 
   try {
-    const { name, email, phoneNumber, price, address }: ProductInput =
-      await req.json();
-    if (!name || !email || !address || !phoneNumber) {
+    const {
+      name,
+      email,
+      phoneNumber,
+      price,
+      fulladress,
+      city,
+      state,
+      postalcode,
+    }: ProductInput = await req.json();
+
+    if (!name || !email || !phoneNumber) {
       return new NextResponse(
         JSON.stringify({
           error: "All Fields are required",
@@ -31,7 +44,10 @@ export async function POST(req: Request, context: { params: Params }) {
       name,
       email,
       phoneNumber,
-      address,
+      fulladress,
+      city,
+      state,
+      postalcode,
       cartId: id,
       price,
     };
@@ -44,11 +60,13 @@ export async function POST(req: Request, context: { params: Params }) {
       JSON.stringify({ success: true, buyer, status: 200 })
     );
   } catch (e: any) {
+    console.log(e);
     return new NextResponse(
       JSON.stringify({
         message: "something went wrong",
         status: 500,
         success: false,
+        error: e,
       })
     );
   }

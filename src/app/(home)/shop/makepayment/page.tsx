@@ -71,8 +71,8 @@ const Makepayment = () => {
   };
 
   const handleFlutterPayment = useFlutterwave(config);
-  const router = useRouter();
   const { setShowOptionModal } = useStateCtx();
+  const router = useRouter();
 
   const image = `https://ui-avatars.com/api/?name=${buyer?.name!}&background=random`;
 
@@ -126,7 +126,7 @@ const Makepayment = () => {
                 Phone: <span className="font-medium">{buyer?.phoneNumber}</span>
               </p>
               <p className="font-medium">
-                Address: <span className="font-medium">{buyer?.address}</span>
+                {/* Address: <span className="font-medium">{buyer?.address}</span> */}
               </p>
               <p className="font-medium">
                 CartId: <span className="font-medium">{decryptedId}</span>
