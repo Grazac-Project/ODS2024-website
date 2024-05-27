@@ -17,6 +17,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
 import { encryptString } from "@/utils";
 
+
 interface CartTotals {
   totalDiscount: number;
   totalPriceWithoutDiscount: number;
@@ -268,8 +269,8 @@ const CartPage = ({ Cart_id }: { Cart_id?: string }) => {
                     </div>
                   </div>
                   <div className="flex items-center flex-col min-[550px]:flex-row w-full max-xl:max-w-xl max-xl:mx-auto gap-2">
-                    <h6 className="font-manrope font-bold text-2xl leading-9 text-black w-full max-w-[176px] text-center">
-                      %{item.product.discount}
+                    <h6 className="font-manrope font-bold text-lg leading-9 text-black w-full max-w-[176px] text-center">
+                      {item.product.discount}%
                       <span className="text-sm text-gray-300 ml-3 lg:hidden whitespace-nowrap">
                         (Discount)
                       </span>

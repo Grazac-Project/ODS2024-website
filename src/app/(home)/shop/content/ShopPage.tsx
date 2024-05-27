@@ -20,6 +20,7 @@ const Shop = () => {
 
   useEffect(() => {
     if (data) {
+      console.log(data)
       setProducts(data.products || []);
     }
   }, [data]);
