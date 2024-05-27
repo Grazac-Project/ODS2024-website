@@ -268,7 +268,7 @@ export const sendForDelivery = async (BuyerId: string) => {
   }
 };
 
-// services/deliveryService.ts
+
 
 export const markAsDelivered = async (BuyerId: string) => {
   try {
