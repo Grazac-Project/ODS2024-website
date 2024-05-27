@@ -250,3 +250,34 @@ const updateCartItemQuantity = async (
     return null;
   }
 };
+
+export const sendForDelivery = async (BuyerId: string) => {
+  try {
+    const buyer = await prisma.buyer.update({
+      where: {
+        id: BuyerId,
+      },
+      data: {
+        tracking: "In Transit",
+      },
+    });
+    return buyer;
+  } catch (error) {
+    console.error("Error updating tracking status:", error);
+    throw error;
+  }
+};
+
+// services/deliveryService.ts
+
+export const markAsDelivered = async (BuyerId: string) => {
+  try {
+    await prisma.buyer.update({
+      where: { id: BuyerId },
+      data: { tracking: "Delivered" },
+    });
+  } catch (error) {
+    console.error("Error updating delivery status:", error);
+    throw error;
+  }
+};

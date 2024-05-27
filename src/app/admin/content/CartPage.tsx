@@ -10,18 +10,51 @@ import {
 } from "@/components/ui/accordion";
 import { Buyer } from "@prisma/client";
 import { Car, Verify, FolderOpen } from "iconsax-react";
+import { sendForDelivery, markAsDelivered } from "@/actions/cart";
+import { useToast } from "@/components/ui/use-toast";
 
 const CartDetails = ({
   id,
   name,
   cartId,
   paymentId,
-  // address,
   email,
   phoneNumber,
+  tracking,
   price,
   updatedAt,
 }: Buyer) => {
+  const [isSending, setIsSending] = useState(false);
+  const [error, setError] = useState(null);
+  const { toast } = useToast();
+
+  const handleSendForDelivery = async () => {
+    setIsSending(true);
+    setError(null);
+    try {
+      await sendForDelivery(id);
+      toast({
+        title: "Updated delivery",
+        description: "Sent sucesssfully",
+      });
+    } catch (err: any) {
+      setError(err);
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  const handleMarkAsDelivered = async () => {
+    try {
+      await markAsDelivered(id);
+      alert('Tracking status updated to "Delivered".');
+    } catch (error) {
+      console.error("Error updating delivery status:", error);
+      alert("Failed to update delivery status.");
+    }
+  };
+
+  const isDelivered = tracking === "Delivered";
   return (
     <AccordionItem value={id}>
       <AccordionTrigger>{name}</AccordionTrigger>
@@ -33,12 +66,30 @@ const CartDetails = ({
               <p className="text-xs text-header font-normal">Buyers ID: {id}</p>
             </div>
             <div className="flex items-center gap-x-3">
+              <span>status: </span>
               <button
                 className="flex items-center gap-x-2 text-[#23a8d4]"
-                // onClick={() => handleEditButtonClick(task?._id!)}
+                onClick={
+                  tracking === "To be Shipped"
+                    ? handleSendForDelivery
+                    : handleMarkAsDelivered
+                }
+                disabled={isDelivered}
               >
-                <Car />
-                <span>Send For Delivery</span>
+                {tracking === "In Transit" ? (
+                  <>
+                    <span>In Transit</span>
+                  </>
+                ) : tracking === "Delivered" ? (
+                  <>
+                    <span>Delivered</span>
+                  </>
+                ) : (
+                  <>
+                    <Car />
+                    <span>Send For Delivery</span>
+                  </>
+                )}
               </button>
             </div>
           </div>
@@ -83,8 +134,6 @@ export const CartPage = () => {
   const url = "/api/admin/cart";
   const { isLoading, data, error } = useFetch(url);
   const [buyers, setBuyers] = useState<Buyer[]>();
-
-  
 
   useEffect(() => {
     if (data) {

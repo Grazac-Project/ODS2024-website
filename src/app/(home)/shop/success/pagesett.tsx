@@ -7,11 +7,19 @@ import React, { useState, useEffect } from "react";
 import { Buyer } from "@prisma/client";
 import { ShoppingCartProps, getCart } from "@/actions/cart";
 import { Skeleton } from "@/components/ui/skeleton";
-
-interface BodyProps {
-  status: boolean;
-  paymentId: string;
-}
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 
 const Sucesspage = () => {
   const searchParams = useSearchParams();
@@ -50,33 +58,33 @@ const Sucesspage = () => {
     fetchCart();
   }, []);
 
-  useEffect(() => {
-    const postData = async () => {
-      if (paymentStatus === "true") {
-        const requestBody: BodyProps = {
-          status: true,
-          paymentId: tx_ref!,
-        };
-        try {
-          setLoading(true);
-          const res = await fetch(`${baseUrl}/api/shop/payment/${userID}`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(requestBody),
-          });
+  // useEffect(() => {
+  //   const postData = async () => {
+  //     if (paymentStatus === "true") {
+  //       const requestBody: BodyProps = {
+  //         status: true,
+  //         paymentId: tx_ref!,
+  //       };
+  //       try {
+  //         setLoading(true);
+  //         const res = await fetch(`${baseUrl}/api/shop/payment/${userID}`, {
+  //           method: "POST",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           body: JSON.stringify(requestBody),
+  //         });
 
-          if (res.ok || res.status === 200) {
-            setLoading(false);
-          }
-        } catch (e: any) {
-          setLoading(false);
-        }
-      }
-    };
-    postData();
-  }, []);
+  //         if (res.ok || res.status === 200) {
+  //           setLoading(false);
+  //         }
+  //       } catch (e: any) {
+  //         setLoading(false);
+  //       }
+  //     }
+  //   };
+  //   postData();
+  // }, []);
 
   useEffect(() => {
     const getBuyer = async () => {
@@ -137,9 +145,39 @@ const Sucesspage = () => {
                 </>
               )}
             </div>
-            <button className="rounded-full py-3 px-7 font-semibold text-sm leading-7 text-white bg-indigo-600 max-lg:mt-5 shadow-sm shadow-transparent transition-all duration-500 hover:bg-indigo-700 hover:shadow-indigo-400">
-              Track Your Order
-            </button>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="rounded-full py-3 px-7 font-semibold text-sm leading-7 text-white bg-indigo-600 max-lg:mt-5 shadow-sm shadow-transparent transition-all duration-500 hover:bg-indigo-700 hover:shadow-indigo-400 hover:text-white"
+                >
+                  Track Your Order
+                </Button>
+              </SheetTrigger>
+              <SheetContent>
+                <SheetHeader>
+                  <SheetTitle>Track Your package</SheetTitle>
+                  <SheetDescription>Enter your order Id</SheetDescription>
+                </SheetHeader>
+                <div className="grid gap-4 py-4">
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="name" className="text-right">
+                      order Id
+                    </Label>
+                    <Input
+                      id="name"
+                      value="Pedro Duarte"
+                      className="col-span-3"
+                    />
+                  </div>
+                </div>
+                <SheetFooter>
+                  <SheetClose asChild>
+                    <Button type="submit">Save changes</Button>
+                  </SheetClose>
+                </SheetFooter>
+              </SheetContent>
+            </Sheet>
           </div>
           <div className="w-full px-3 min-[400px]:px-6">
             {isLoading && (
